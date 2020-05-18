@@ -1,0 +1,110 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: purple; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d51279; 
+}
+a {
+	color: #d51279;
+	text-decoration: none;
+}
+a:hover{
+	color: white;
+	text-decoration: underline;
+}
+a:active{
+	color: purple;
+		text-decoration: underline;
+}
+body{
+	color: white;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+}
+input{
+	padding: 5px;
+	margin-bottom: 3px;
+	background-color: black;
+	color: white;
+	border-color: purple;
+	outline-color: pink;
+	font-size: 14px;
+}
+input:hover{
+	border: 1px #d51279 solid;
+}
+input[type="submit"] {
+	padding: 5px 10px;
+	margin-top: 10px;
+	display: block;
+}
+input[type="submit"]:hover {
+	background-color: purple;
+	border: 1px black solid;
+	color: white;
+}
+input[type="submit"]:active {
+	background-color: #d51279;
+	color: black;
+}
+textarea {
+    background-color: black;
+    color: white;
+    border-color: purple;
+    outline-color: pink;
+    width: 70%;
+    height: 50px;
+    padding: 3px 5px;
+
+}
+hr{
+	border-top: 1px solid purple;
+}
+.post_profile_pic{
+	float: left;
+    padding-right: 20px;
+}
+.post_profile_img{
+	border-radius: 50%;
+	border: 2px solid purple;
+	width: 50px;
+	float: left;
+	margin-right: 15px;
+}
+.posted_by{
+	font-weight: 600;
+}
+.post_time{
+	font-style: oblique;
+	font-weight: 100;
+}
+#loading{
+	width: 30px;
+	align-self: center;
+    vertical-align: middle;
+    border-style: none;
+}
+.likes{
+	display: inline-block;
+}
+.comment_like{
+	background: transparent;
+	border: 0px;
+	color: #d500ff;
+	text-decoration: underline;
+}
+.like_value{
+	display: inline;
+}

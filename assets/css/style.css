@@ -1,0 +1,217 @@
+@font-face{
+	font-family: "Seagram";
+	src: url('../fonts/Seagram.ttf');
+	}
+a {
+	color: #d51279;
+	text-decoration: none;
+}
+a:hover{
+	color: white;
+	text-decoration: underline;
+}
+a:active{
+	color: purple;
+		text-decoration: underline;
+}
+body{
+	color: white;
+}
+body{
+	background-image: url("../images/images/sky.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height:100%;
+/*	min-width: 960px;*/
+	}
+.top_bar{
+	width: 100%;
+	height: 65px;
+	background: #000000c2;
+	border-bottom: 3px solid purple;
+	margin: 0 0 10px 0;
+	position: fixed;
+	padding: 0px 40px;
+	z-index: 10;
+}
+.logo{
+	font-family: "Seagram", sans-serif;
+	text-shadow: #000 1.5px 2.5px 3px;
+	padding-top: 7px;
+	padding-left: 10px; 
+}
+h1 a{
+	color: white;
+	text-decoration: none;
+}
+h1 a:hover{
+	color: #d51279;
+	text-decoration: none;
+}
+h1 a:active{
+	color: purple;
+	text-decoration: none;
+}
+nav{
+	float: right;
+	position: absolute;
+	right: 3px;
+	margin-right: 40px;
+	top: 17px;
+}
+nav a{
+	color: white;
+/*	text-decoration: none;*/
+	font-size: 18px;
+	font-weight: 600;
+}
+nav a:hover{
+	color: #d51279;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+nav a:active{
+	color: purple;
+	text-decoration: none;
+	font-weight: 600;
+}
+#profile_pic{
+	border-radius: 50%;
+	width: 100%;
+	padding: 0 auto;
+}
+
+.wrapper{
+	margin: 0 auto;
+	top: 75px;
+	padding: 0 10px;
+	position: relative;
+	width: 95%;
+}
+.column{
+	background: #000000c2;
+    padding: 20px;
+    border: 1px purple solid;
+	box-shadow: #000 1.5px 2.5px 3px;
+	z-index: -1;
+}
+.user_details {
+	width: 20%;
+	float: right;
+	margin-bottom: 20px;
+}
+#name{
+    font-size: 18px;
+    font-weight: 500;
+
+}
+.user_details_left_right{
+	padding-top: 10px;
+}
+.main_column{
+width: 78%;
+}
+input{
+	padding: 5px;
+	margin-bottom: 3px;
+	background-color: black;
+	color: white;
+	border-color: purple;
+	outline-color: pink;
+	font-size: 14px;
+}
+input:hover{
+	border: 1px #d51279 solid;
+}
+input[type="submit"] {
+	padding: 5px 10px;
+	margin-top: 10px;
+	display: block;
+}
+input[type="submit"]:hover {
+	background-color: purple;
+	border: 1px black solid;
+	color: white;
+}
+input[type="submit"]:active {
+	background-color: #d51279;
+	color: black;
+}
+textarea {
+    background-color: black;
+    color: white;
+    border-color: purple;
+    outline-color: pink;
+    width: 85%;
+    height: 100px;
+    padding: 5px 10px;
+
+}
+form .post_form{
+
+}
+hr{
+	border-top: 1px solid purple;
+}
+.post_profile_pic{
+	float: left;
+    padding-right: 20px;
+}
+.post_profile_img{
+	width: 75px;
+	border-radius: 50%;
+	border: 2px solid purple;
+}
+.posted_by{
+	font-weight: 600;
+}
+.post_time{
+	font-style: oblique;
+	font-weight: 100;
+}
+iframe{
+	width:100%;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: purple; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d51279; 
+}
+embed{
+	height: auto;
+	width:100%;
+}
+#loading{
+	width: 30px;
+	align-self: center;
+    vertical-align: middle;
+    border-style: none;
+}
+.newsfeedPostOptions{
+	color: #d500ff;
+	height: 100px;
+
+}
+.profile_left{
+	float: left;
+}
