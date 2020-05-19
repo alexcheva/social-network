@@ -34,7 +34,7 @@ c. **comments**:<br/>
 	6	***removed***	varchar(3)<br/>
 	7	***post_id***	int(11)<br/><br/>
 d. **likes**:<br/>
-        1	***id*** Primary	int(11)<br/>
+        1	***id*** Primary	int(11)	 AUTO_INCREMENT<br/>
 	2	***username***	varchar(225)<br/>
 	3	***post_id***	int(11)<br/><br/>
 
