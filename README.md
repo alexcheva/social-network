@@ -38,12 +38,12 @@ d. **likes**:<br/>
 	2	***username***	varchar(225)<br/>
 	3	***post_id***	int(11)<br/><br/>
 
-I changed iframes to embed elements for submit/show comments and likes after posts.<br/>
-The main files that are used for handling comments are:<br/>
+_I changed iframes to embed elements for submit/show comments and likes after posts._<br/><br/>
+The main files that are used for handling ***comments*** are:<br/>
   *comment_frame.php  <br/>
   /includes/classes/Post.php<br/>
   /includes/ajax_load_posts.php<br/>*<br/>
-For likes:<br/>
+For ***likes***:<br/>
   *like.php<br/>
   /includes/classes/Post.php<br/>
   <br/>*
