@@ -15,7 +15,7 @@ a. **Users**:<br/>
 	9	***num_posts***	int(11)<br/>
 	10	***num_likes***	int(11)	<br/>
 	11	***user_closed***	varchar(3)<br/>
-	12	***friend_array***	text<br/>
+	12	***friend_array***	text<br/><br/>
 b. **posts**:<br/>
         1	***id***  Primary	int(11)	AUTO_INCREMENT	<br/>
 	2	***body***	text<br/>
@@ -24,7 +24,7 @@ b. **posts**:<br/>
 	5	***date_added***	datetime<br/>
 	6	***user_closed***	varchar(3)	<br/>
 	7	***deleted***	varchar(3)	<br/>
-	8	***likes***	int(11)	<br/>
+	8	***likes***	int(11)	<br/><br/>
 c. **comments**:<br/>
         1	***id*** Primary int(11)	AUTO_INCREMENT<br/>
 	2	***body***	text<br/>
@@ -32,17 +32,17 @@ c. **comments**:<br/>
 	4	***posted_to***	varchar(200)<br/>
 	5	***date_added***	datetime<br/>
 	6	***removed***	varchar(3)<br/>
-	7	***post_id***	int(11)<br/>
+	7	***post_id***	int(11)<br/><br/>
 d. **likes**:<br/>
         1	***id*** Primary	int(11)<br/>
 	2	***username***	varchar(225)<br/>
-	3	***post_id***	int(11)<br/>
+	3	***post_id***	int(11)<br/><br/>
 
 I changed iframes to embed elements for submit/show comments and likes after posts.<br/>
 The main files that are used for handling comments are:<br/>
   *comment_frame.php  <br/>
   /includes/classes/Post.php<br/>
-  /includes/ajax_load_posts.php<br/>*
+  /includes/ajax_load_posts.php<br/>*<br/>
 For likes:<br/>
   *like.php<br/>
   /includes/classes/Post.php<br/>
@@ -51,7 +51,7 @@ Following files can be ignored, I've used them to try to experiment:<br/>
   ~~comments.php<br/>
   includes/classes/Comments.php<br/>
   includes/classes/Post_copy2.php<br/>~~
-  <br/>
+  <br/><br/>
 I would like to used AJAX to handle comments and likes loading and execution.<br/>
 <br/>
 Down the line, I would like to implement the option to post posts as global or friends only, and show only posts that are avaliable to see for a certain user.<br/>
