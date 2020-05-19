@@ -1,5 +1,5 @@
 # social-network
-PHP, MySQL
+PHP, MySQL, jQuery, Bootstrap, FontAwesome
 
 The database I use called "**social**."<br/>
 There are 4 tables so far:<br/><br/>
