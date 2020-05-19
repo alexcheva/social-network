@@ -54,6 +54,7 @@ Following files can be ignored, I've used them to try to experiment:
   
 I would like to used AJAX to handle comments and likes loading and execution.
 
-Down the like i would like to implement the option to post posts as global or friends only, and show only posts that are avaliable to see for a certain user.
+Down the line, I would like to implement the option to post posts as global or friends only, and show only posts that are avaliable to see for a certain user.
+And, therefore, show global posts even if your is not logged in, without the option to like or comment. Plus, add login/register instead of top right user menu.
 
 Thanks for looking it over, Gabriel!
