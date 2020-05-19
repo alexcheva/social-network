@@ -2,7 +2,7 @@
 PHP, MySQL
 
 The database I use called "**social**."<br/>
-There are 4 tables so far:<br/>
+There are 4 tables so far:<br/><br/>
 a. **Users**:<br/>
 	1	***id***  Primary	int(11)	AUTO_INCREMENT<br/>
 	2	***first_name***	varchar(25)	<br/>
@@ -38,7 +38,7 @@ d. **likes**:<br/>
 	2	***username***	varchar(225)<br/>
 	3	***post_id***	int(11)<br/><br/>
 
-_I changed iframes to embed elements for submit/show comments and likes after posts._<br/><br/>
+I've changed iframes to embed elements for submit/show comments and likes after posts.<br/><br/>
 The main files that are used for handling ***comments*** are:<br/>
   *comment_frame.php  <br/>
   /includes/classes/Post.php<br/>
@@ -54,7 +54,6 @@ Following files can be ignored, I've used them to try to experiment:<br/>
   <br/><br/>
 I would like to used AJAX to handle comments and likes loading and execution.<br/>
 <br/>
-Down the line, I would like to implement the option to post posts as global or friends only, and show only posts that are avaliable to see for a certain user.<br/>
-And, therefore, show global posts even if user is not logged in, without the option to like or comment. Plus, add login/register instead of top right user menu.<br/>
+Down the line, I would like to implement the option to post posts as global or friends only, and show only posts that are avaliable to see for a certain user. And, therefore, show global posts even if user is not logged in, without the option to like or comment. Plus, add login/register instead of top right user menu.<br/>
 <br/>
 Thanks for looking it over, Gabriel!<br/>
