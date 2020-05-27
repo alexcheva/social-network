@@ -103,7 +103,7 @@ CREATE TABLE messages(
     user_to VARCHAR(200) NOT NULL,
     user_from VARCHAR(200) NOT NULL,
     body TEXT NOT NULL,
-    DATE DATETIME NOT NULL,
+    date DATETIME NOT NULL,
     opened VARCHAR(3) NOT NULL,
     viewed VARCHAR(3) NOT NULL,
     deleted VARCHAR(3) NOT NULL
