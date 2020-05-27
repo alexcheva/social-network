@@ -1,14 +1,12 @@
 <?php
 include('includes/header.php');
-include('includes/classes/User.php');
-include('includes/classes/Post.php');
 
 //handle posting of posts
 //redirect back to index
 if(isset($_POST['post'])){
 	$post = new Post($con, $userLoggedIn);
 	$post->submitPost($_POST['post_text'], 'none');
-	header("Location: index.php");
+	// header("Location: index.php");
 }
 
 ?>
@@ -23,7 +21,9 @@ if(isset($_POST['post'])){
 			<p>			<?php 
 				echo "Posts: " . $user['num_posts'] . "<br>";
 				echo "Likes: " . $user['num_likes'];
+
 			?></p>
+			
 
 		</div>
 		
@@ -34,7 +34,12 @@ if(isset($_POST['post'])){
 	<div class="main_column column">
 	<form class="post_form" action="index.php" method="POST">
 		<textarea name="post_text" id="post_text"  placeholder="Write a post"></textarea>
-		<input type="submit" name="post" id="post_button" value="Post">
+<!-- 		<br>
+		<input type="radio" id="global" name="visibility" value="global" checked="checked">
+		<i class="fas fa-globe radio"></i>
+		<input type="radio" id="friends_only" name="visibility" value="friends_only">
+		<i class="fas fa-user-friends radio"></i>
+ -->		<input type="submit" name="post" id="post_button" value="Post">
 	</form>
 	<hr>
 

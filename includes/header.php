@@ -1,5 +1,8 @@
 <?php
 require 'config/config.php';
+include('includes/classes/User.php');
+include('includes/classes/Post.php');
+include('includes/classes/Message.php');
 
 if (isset($_SESSION['username'])){
 	$userLoggedIn = $_SESSION['username'];
@@ -20,12 +23,18 @@ else {
 		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		  crossorigin="anonymous"></script>
 		  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+		  <script src="assets/js/bootbox.min.js"></script>
+		  <script src="assets/js/main.js"></script>
+
 		  <!-- FontAwesome js -->
 		  <script src="assets/js/all.min.js"></script>
+		  <script src="assets/js/jquery.jcrop.js"></script>
+			<script src="assets/js/jcrop_bits.js"></script>
  			<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 		  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
 		  <link rel="stylesheet" href="assets/css/style.css">
+		  <link rel="stylesheet" href="assets/css/jquery.Jcrop.css" type="text/css" />
+
 	</head>
 	<body>
 		<div class="top_bar">
@@ -39,7 +48,7 @@ else {
 				</a>
 				<a href="index.php"><i class="fas fa-home"></i></a>
 				<a href="#"><i class="fas fa-user-circle"></i></a>
-				<a href="#"><i class="fas fa-user-friends"></i></a>
+				<a href="requests.php"><i class="fas fa-user-friends"></i></a>
 				<a href="#"><i class="fas fa-envelope"></i></a>
 				<a href="#"><i class="fas fa-bell"></i></a>
 				<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>
