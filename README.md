@@ -66,7 +66,7 @@ CREATE TABLE users(
     last_name VARCHAR(30) NOT NULL,
     username VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    PASSWORD VARCHAR(225) NOT NULL,
+    password VARCHAR(225) NOT NULL,
     signup_date DATE NOT NULL,
     profile_pic VARCHAR(225) NOT NULL,
     num_posts INT(11) NOT NULL,
