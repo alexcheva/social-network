@@ -108,3 +108,8 @@ CREATE TABLE messages(
     viewed VARCHAR(3) NOT NULL,
     deleted VARCHAR(3) NOT NULL
 );
+CREATE TABLE friend_requests(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_to VARCHAR(225) NOT NULL,
+    user_from VARCHAR(225) NOT NULL
+); 
