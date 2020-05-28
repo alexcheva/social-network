@@ -12,7 +12,7 @@
 		header("Location: register.php");
 	}
 	//find all comments for a post:
-		$get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id='$post_id' ORDER BY id ASC");
+		$get_comments = mysqli_query($con, "SELECT * FROM comments WHERE post_id='$post_id' ORDER BY id DESC");
 		$count = mysqli_num_rows($get_comments);
 		if($count != 0){
 			while($comment = mysqli_fetch_array($get_comments)){

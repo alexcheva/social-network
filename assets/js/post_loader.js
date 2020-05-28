@@ -26,7 +26,7 @@ $(function(){
         $.ajax({
             url: "includes/handlers/ajax_load_posts.php",
             type: "POST",
-            data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+            data: "page=" + page + "&userLoggedIn=" + VM.userLoggedIn,
             cache: false,
  
             success: function(response) {
@@ -36,7 +36,6 @@ $(function(){
  
                 $('#loading').hide();
                 $(".posts_area").append(response);
- 
                 inProgress = false;
             }
         });
@@ -52,5 +51,17 @@ $(function(){
             rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
             rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
         );
+    }
+
+    VM.submitComment = function(event){
+        console.log("submit comment called")
+        event.preventDefault()
+        event.stopPropagation()
+        var $target = $(event.target)
+        var $parent = $(event.target).parent()
+        var action = $parent.attr('action')
+        $.post(action, $parent.serialize()).done(function(response) {
+            $parent.parent().html(response)
+        })
     }
 })

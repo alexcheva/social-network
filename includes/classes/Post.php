@@ -120,7 +120,9 @@ class Post{
                             $.ajax({
                                 url: "comment_frame.php?post_id=<?php echo $id; ?>",
                                 success: function(response) {
-                                    $("#toggleComment<?php echo $id; ?>").html(response)
+                                    var $el = $("#toggleComment<?php echo $id; ?>")
+                                    $el.html(response)
+                                    $el.on('click', '.commentSubmit', VM.submitComment)
                                 }
                             })
 						}

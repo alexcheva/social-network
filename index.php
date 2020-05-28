@@ -48,7 +48,9 @@ if(isset($_POST['post'])){
 	</div>
 
 	<script>
-	var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+        const VM = {
+            userLoggedIn: '<?php echo $userLoggedIn; ?>'
+        };
 	</script>
     <script type="text/javascript" src="assets/js/post_loader.js"></script>
 
