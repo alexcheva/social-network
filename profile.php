@@ -77,8 +77,7 @@
 		<div class="posts_area"></div>
 			<img id="loading" src="assets/images/icons/loading.gif">
 	</div>
-	<!-- end wrapper from header -->
-	</div>
+
 	<!-- Modal -->
 	<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
@@ -170,6 +169,7 @@
 	    }
 	});
 	</script>
-
+	<!-- end wrapper from header -->
+	</div>
 	</body>
 </html>
