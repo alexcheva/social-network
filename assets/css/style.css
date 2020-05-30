@@ -184,6 +184,14 @@ hr{
 	border-radius: 50%;
 	border: 2px solid purple;
 }
+.comment_profile_img{
+	width: 55px;	
+	border-radius: 50%;
+	border: 2px solid purple;
+	float: left;
+    margin-right: 15px;
+    margin-left: 15px;
+}
 .posted_by{
 
 }

@@ -187,7 +187,7 @@ class Post{
 					}
 				}
 
-				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
+				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
@@ -209,8 +209,13 @@ class Post{
 								<embed src='like.php?post_id=$id'></embed>
 							</div>					
 						</div>
-						<div class='post_comment' id='toggleComment$id' style='display: none;'>
-						<embed src='comment_frame.php?post_id=$id' class='comment_frame' style='color: white;' frameborder='0'></embed></div>
+						<div class='post_comment' id='toggleComment$id' style='display:none;'>
+						   <div class='comments_area'>
+						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
+						     <input type='button' onclick='sendComment($id)' value='Send'>
+						   </div>"
+							.$this->getComments($id).
+						"</div>
 						<hr>";
 				}//if friend end if statement
 
@@ -408,8 +413,13 @@ class Post{
 								<embed src='like.php?post_id=$id'></embed>
 							</div>					
 						</div>
-						<div class='post_comment' id='toggleComment$id' style='display: none;'>
-						<embed src='comment_frame.php?post_id=$id' class='comment_frame' style='color: white;' frameborder='0'></embed></div>
+						<div class='post_comment' id='toggleComment$id' style='display:none;'>
+						   <div class='comments_area'>
+						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
+						     <input type='button' onclick='sendComment($id)' value='Send'>
+						   </div>"
+							.$this->getComments($id).
+						"</div>
 						<hr>";
 
 				?>
@@ -451,6 +461,176 @@ class Post{
 		echo $str;	
 
 	}
+	//send comments
+	public function sendComment($post_author, $commentText, $id, $user_to) {
+ 
+		$userLoggedIn = $this->user_obj->getUsername();
+	 
+		$body = strip_tags($commentText);
+		$body = mysqli_real_escape_string($this->con, $body);
+		$body = str_replace('\r\n', '\n', $body);
+		$body = nl2br($body);
+	 
+		if($body === "") {
+			echo "No text";
+			return;
+		};
+		$date_added = date("Y-m-d H:i:s");
+	 
+		$insert_comment = mysqli_query($this->con, "INSERT INTO comments VALUES(NULL, '$body', '$userLoggedIn', '$post_author', '$date_added', 'no', '$id')");
+
+	 	//notifications
+		// if($post_author !== $userLoggedIn) {
+		// 	$notification = new Notification($this->con, $userLoggedIn);
+		// 	$notification->insertNotification($id, $post_author, "comment");
+		// }
+	 
+		// if($user_to !== 'none' && $user_to !== $userLoggedIn) {
+		// 	$notification = new Notification($this->con, $userLoggedIn);
+		// 	$notification->insertNotification($id, $user_to, "profile_comment");
+		// }
+	 
+		// $get_commenters = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
+		// $notified_users = array();
+		// while($row = mysqli_fetch_array($get_commenters)) {
+	 
+		// 	if($row['posted_by'] !== $post_author && $row['posted_by'] !== $user_to 
+		// 		&& $row['posted_by'] !== $userLoggedIn && !in_array($row['posted_by'], $notified_users)) {
+	 
+		// 		$notification = new Notification($this->con, $userLoggedIn);
+		// 		$notification->insertNotification($id, $row['posted_by'], "comment_non_owner");
+	 
+		// 		array_push($notified_users, $row['posted_by']);
+		// 	}
+	 
+		// }
+	 
+	}
+	//loading comments
+	public function getComments($id, $get_only_last_comment = false) {
+	 
+		if($get_only_last_comment) {
+	 
+			$get_comments = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id' ORDER BY id DESC LIMIT 1");
+		}
+	 
+		else {
+			
+			$get_comments = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id' ORDER BY id ASC");
+		}
+	 
+		
+		$count = mysqli_num_rows($get_comments);
+	 
+		$commment_from_db = "";
+	 
+		if($count !== 0) {
+	 
+			while($comment = mysqli_fetch_array($get_comments)) {
+	 
+				$comment_body = $comment['body'];
+				$posted_to = $comment['posted_to'];
+				$posted_by = $comment['posted_by'];
+				$date_added = $comment['date_added'];
+				$removed = $comment['removed'];
+	 
+				//Timeframe
+				$date_time_now = date("Y-m-d H:i:s");
+				$start_date = new DateTime($date_added); //Time of post
+				$end_date = new DateTime($date_time_now); //Current time
+				$interval = $start_date->diff($end_date); //Difference between dates 
+				if($interval->y >= 1) {
+					if($interval == 1)
+						$time_message = $interval->y . " year ago"; //1 year ago
+					else 
+						$time_message = $interval->y . " years ago"; //1+ year ago
+				}
+				else if ($interval->m >= 1) {
+					if($interval->d == 0) {
+						$days = " ago";
+					}
+					else if($interval->d == 1) {
+						$days = $interval->d . " day ago";
+					}
+					else {
+						$days = $interval->d . " days ago";
+					}
+	 
+	 
+					if($interval->m == 1) {
+						$time_message = $interval->m . " month". $days;
+					}
+					else {
+						$time_message = $interval->m . " months". $days;
+					}
+	 
+				}
+				else if($interval->d >= 1) {
+					if($interval->d == 1) {
+						$time_message = "Yesterday";
+					}
+					else {
+						$time_message = $interval->d . " days ago";
+					}
+				}
+				else if($interval->h >= 1) {
+					if($interval->h == 1) {
+						$time_message = $interval->h . " hour ago";
+					}
+					else {
+						$time_message = $interval->h . " hours ago";
+					}
+				}
+				else if($interval->i >= 1) {
+					if($interval->i == 1) {
+						$time_message = $interval->i . " minute ago";
+					}
+					else {
+						$time_message = $interval->i . " minutes ago";
+					}
+				}
+				else {
+					if($interval->s < 30) {
+						$time_message = "Just now";
+					}
+					else {
+						$time_message = $interval->s . " seconds ago";
+					}
+				}
+	 
+				$user_obj = new User($this->con, $posted_by);
+	 
+				$profile_pic = $user_obj->getProfilePic();
+	 
+				$name = $user_obj->getFirstAndLastName();
+	 
+						
+				$commment_from_db .= "
+				<hr>
+				<div class='comment_section'>
+					<a href='$posted_by' target='_parent'><img src='$profile_pic' title='$posted_by' class='comment_profile_img'></a>
+					<a href='$posted_by' target='_parent'>$name</a>
+					<div class='post_body'>
+						$comment_body
+					</div>
+					<div class='post_time'>
+						$time_message
+					</div> 
+					
+				</div>";
+				
+	 
+			}
+		}
+	 
+		else {
+	 
+			$commment_from_db = "<div id='noComment$id'>No comments to show</div>";
+		}
+	 
+		return $commment_from_db;
+	}
+
 }
 
 
