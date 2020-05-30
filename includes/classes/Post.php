@@ -112,10 +112,19 @@ class Post{
 						var target = $(event.target);
 						if(!target.is("a")){
 							var element = document.getElementById("toggleComment<?php echo $id; ?>");
-							if(element.style.display == "block")
+							if(element.style.display == "block") {
 								element.style.display = "none";
-							else
+                            } else {
 								element.style.display = "block";
+                            }
+                            $.ajax({
+                                url: "comment_frame.php?post_id=<?php echo $id; ?>",
+                                success: function(response) {
+                                    var $el = $("#toggleComment<?php echo $id; ?>")
+                                    $el.html(response)
+                                    $el.on('click', '.commentSubmit', VM.submitComment)
+                                }
+                            })
 						}
 					}
 
@@ -209,8 +218,7 @@ class Post{
 								<embed src='like.php?post_id=$id'></embed>
 							</div>					
 						</div>
-						<div class='post_comment' id='toggleComment$id' style='display: none;'>
-						<embed src='comment_frame.php?post_id=$id' class='comment_frame' style='color: white;' frameborder='0'></embed></div>
+						<div class='post_comment' id='toggleComment$id' style='display: none;'></div>
 						<hr>";
 				}//if friend end if statement
 
@@ -310,10 +318,17 @@ class Post{
 						var target = $(event.target);
 						if(!target.is("a")){
 							var element = document.getElementById("toggleComment<?php echo $id; ?>");
-							if(element.style.display == "block")
+							if(element.style.display == "block") {
 								element.style.display = "none";
-							else
-								element.style.display = "block";
+                            } else {
+                                element.style.display = "block";
+                            }
+                            $.ajax({
+                                url: "comment_frame.php?post_id=$id",
+                                success: function(response) {
+                                    console.log(response);
+                                }
+                            })
 						}
 					}
 
@@ -408,11 +423,12 @@ class Post{
 								<embed src='like.php?post_id=$id'></embed>
 							</div>					
 						</div>
-						<div class='post_comment' id='toggleComment$id' style='display: none;'>
-						<embed src='comment_frame.php?post_id=$id' class='comment_frame' style='color: white;' frameborder='0'></embed></div>
+						<div class='post_comment' id='toggleComment$id' style='display: none;'></div>
 						<hr>";
 
 				?>
+
+                <!-- removed comment iframe -->
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
