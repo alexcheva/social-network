@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<title>Verni Moj 2007 &#128148;</title>
-			<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+			<script src="assets/js/jquery-2.2.4.min.js"></script>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 			<script src="assets/js/bootbox.min.js"></script>
 			<script src="assets/js/main.js"></script>

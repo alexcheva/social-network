@@ -1,8 +1,9 @@
 <?php
 class Post{
+	//define class properfies/attributes:
 	private $user_obj;
 	private $con;
-
+	//constuct an automatic behavior for every new post/object:
 	public function __construct($con, $user){
 		$this->con = $con;
 		$this->user_obj = new User($con, $user);
@@ -40,6 +41,68 @@ class Post{
 
 		}
 	}
+	//Time frame
+	public function getTime($date_time){
+			
+		$date_time_now = date("Y-m-d H:i:s");
+		$start_date = new DateTime($date_time);//time of post
+		$end_date = new DateTime($date_time_now);//current time
+		$interval = $start_date->diff($end_date); //difference between dates
+		
+		if($interval->y >= 1){
+			if($interval == 1)
+				$time_message = $interval->y . " year ago";
+			
+			else 
+				$time_message = $interval->y . " years ago";
+			
+		}
+		else if($interval-> m >= 1){
+			if($interval->d == 0) {
+				$days = " ago";
+			}
+			else if ($interval->d == 1) {
+				$days = $interval->d . " day ago";
+			} else {
+				$days = $interval->d . " days ago";
+			}
+			if($interval->m == 1){
+				$time_message = $interval->m . " month" . $days;
+			} else{
+				$time_message = $interval->m . " months" . $days;
+			}
+		}
+		else if($interval->d >= 1){
+			if ($interval->d == 1){
+				$time_message = "Yesterday";
+			} else{
+				$time_message = $interval->d . " days ago";
+			}
+		}
+		else if($interval->h >=1){
+			if ($interval->h == 1){
+				$time_message = $interval->h . " hour ago";
+			} else{
+				$time_message = $interval->h . " hours ago";
+			}
+		}
+		else if($interval->i >= 1){
+			if ($interval->i == 1){
+				$time_message = $interval->i ." minute ago";
+			} else{
+				$time_message = $interval->i . " minutes ago";
+				}
+		}
+		else{
+			if($interval->s <30){
+				$time_message = "Just now";
+			} else{
+				$time_message = $interval->s . " seconds ago";
+			}
+		}
+		return $time_message;
+	}
+
 	//Posts Loading function
 	public function loadPostsFriends($data, $limit){
 		$page = $data['page'];
@@ -127,65 +190,8 @@ class Post{
 				$comments_check = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
 				//find number of results:
 				$comments_check_num = mysqli_num_rows($comments_check);
-
-
-				//Time frame
-				$date_time_now = date("Y-m-d H:i:s");
-				$start_date = new DateTime($date_time);//time of post
-				$end_date = new DateTime($date_time_now);//current time
-				$interval = $start_date->diff($end_date); //difference between dates
-				
-				if($interval->y >= 1){
-					if($interval == 1)
-						$time_message = $interval->y . " year ago";
-					
-					else 
-						$time_message = $interval->y . " years ago";
-					
-				}
-				else if($interval-> m >= 1){
-					if($interval->d == 0) {
-						$days = " ago";
-					}
-					else if ($interval->d == 1) {
-						$days = $interval->d . " day ago";
-					} else {
-						$days = $interval->d . " days ago";
-					}
-					if($interval->m == 1){
-						$time_message = $interval->m . " month" . $days;
-					} else{
-						$time_message = $interval->m . " months" . $days;
-					}
-				}
-				else if($interval->d >= 1){
-					if ($interval->d == 1){
-						$time_message = "Yesterday";
-					} else{
-						$time_message = $interval->d . " days ago";
-					}
-				}
-				else if($interval->h >=1){
-					if ($interval->h == 1){
-						$time_message = $interval->h . " hour ago";
-					} else{
-						$time_message = $interval->h . " hours ago";
-					}
-				}
-				else if($interval->i >= 1){
-					if ($interval->i == 1){
-						$time_message = $interval->i ." minute ago";
-					} else{
-						$time_message = $interval->i . " minutes ago";
-	 				}
-				}
-				else{
-					if($interval->s <30){
-						$time_message = "Just now";
-					} else{
-						$time_message = $interval->s . " seconds ago";
-					}
-				}
+				//add time frame
+				$time_message = $this->getTime($date_time);
 
 				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
 							<div class='post_profile_pic'>
@@ -328,62 +334,7 @@ class Post{
 
 
 				//Time frame
-				$date_time_now = date("Y-m-d H:i:s");
-				$start_date = new DateTime($date_time);//time of post
-				$end_date = new DateTime($date_time_now);//current time
-				$interval = $start_date->diff($end_date); //difference between dates
-				
-				if($interval->y >= 1){
-					if($interval == 1)
-						$time_message = $interval->y . " year ago";
-					
-					else 
-						$time_message = $interval->y . " years ago";
-					
-				}
-				else if($interval-> m >= 1){
-					if($interval->d == 0) {
-						$days = " ago";
-					}
-					else if ($interval->d == 1) {
-						$days = $interval->d . " day ago";
-					} else {
-						$days = $interval->d . " days ago";
-					}
-					if($interval->m == 1){
-						$time_message = $interval->m . " month" . $days;
-					} else{
-						$time_message = $interval->m . " months" . $days;
-					}
-				}
-				else if($interval->d >= 1){
-					if ($interval->d == 1){
-						$time_message = "Yesterday";
-					} else{
-						$time_message = $interval->d . " days ago";
-					}
-				}
-				else if($interval->h >=1){
-					if ($interval->h == 1){
-						$time_message = $interval->h . " hour ago";
-					} else{
-						$time_message = $interval->h . " hours ago";
-					}
-				}
-				else if($interval->i >= 1){
-					if ($interval->i == 1){
-						$time_message = $interval->i ." minute ago";
-					} else{
-						$time_message = $interval->i . " minutes ago";
-	 				}
-				}
-				else{
-					if($interval->s <30){
-						$time_message = "Just now";
-					} else{
-						$time_message = $interval->s . " seconds ago";
-					}
-				}
+				$time_message = $this->getTime($date_time);
 
 				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
 							<div class='post_profile_pic'>

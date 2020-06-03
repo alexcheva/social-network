@@ -578,6 +578,7 @@ input[type="file"]:active {
 	color: white;
 	border-radius: 10px;
 	padding: 10px;
+	display: inline-block;
     float: left;
 }
 #received_message{
@@ -586,8 +587,37 @@ input[type="file"]:active {
 	color: white;
 	border-radius: 10px;
 	padding: 10px;
+	display: inline-block;
+	margin-right: 15px;
     float: right;
 }
 /*.noMorePosts p {
 	margin: 0px;
 }*/
+.loaded_messages{
+	height: 40%;
+    overflow: auto;
+    min-height: 300px;
+    max-height: 400px;
+
+}
+.message_details{
+	width: 27%;
+	margin-bottom: 20px;
+}
+.message_column {
+    width: 70%;
+    margin-bottom: 30px;
+}
+.found_message p{
+	margin-bottom: 5px;
+}
+.user_image{
+	float: left;
+}
+.timestamp_smaller{
+	font-style: italic;
+}
+#grey{
+	font-weight: 400;
+}
