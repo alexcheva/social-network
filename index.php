@@ -42,13 +42,15 @@
 	</div>
 
 	<script>
+    const VM = {
+        userLoggedIn: "<?php echo $userLoggedIn; ?>"
+    }
+
 	$(function(){
 	 
-		var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 		var inProgress = false;
-	 
+
 		loadPosts(); //Load first posts
-	 
 	    $(window).scroll(function() {
 	    	var bottomElement = $(".status_post").last();
 	    	var noMorePosts = $('.posts_area').find('.noMorePosts').val();
@@ -72,7 +74,7 @@
 			$.ajax({
 				url: "includes/handlers/ajax_load_posts.php",
 				type: "POST",
-				data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+				data: "page=" + page + "&userLoggedIn=" + VM.userLoggedIn,
 				cache: false,
 	 
 				success: function(response) {
@@ -82,7 +84,6 @@
 	 
 					$('#loading').hide();
 					$(".posts_area").append(response);
-	 
 					inProgress = false;
 				}
 			});
