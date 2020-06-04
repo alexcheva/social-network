@@ -102,7 +102,12 @@ class Post{
 		}
 		return $time_message;
 	}
-
+	public function sendLike($username, $id) {
+ 
+	$userLoggedIn = $this->user_obj->getUsername();
+ 
+	$insert_like = mysqli_query($this->con, "INSERT INTO likes VALUES(NULL, '$userLoggedIn', '$id')");
+	}
 	//Posts Loading function
 	public function loadPostsFriends($data, $limit){
 		$page = $data['page'];
@@ -192,6 +197,51 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
+				//Number of likes:
+				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$row = mysqli_fetch_array($get_likes);
+				$total_likes = $row['likes']; 
+				$user_liked = $row['added_by'];
+
+				$user_details_query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_liked'");
+				$row = mysqli_fetch_array($user_details_query);
+				$total_user_likes = $row['num_likes'];
+
+				//Like button
+				if(isset($_POST['like_button'])) {
+					$total_likes++;
+					$query = mysqli_query($this->con, "UPDATE posts SET likes='$total_likes' WHERE id='$id'");
+					//update total user likes
+					$total_user_likes++;
+					$user_likes = mysqli_query($this->con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
+					$insert_user = mysqli_query($this->con, "INSERT INTO likes VALUES(NULL, '$userLoggedIn', '$id')");
+
+					//Insert Notification
+				}
+				//Unlike button
+				if(isset($_POST['unlike_button'])) {
+					$total_likes--;
+					$query = mysqli_query($this->con, "UPDATE posts SET likes='$total_likes' WHERE id='$id'");
+					$total_user_likes--;
+					$user_likes = mysqli_query($this->con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
+					$insert_user = mysqli_query($this->con, "DELETE FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
+				}
+
+				//Check for previous likes
+				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
+				$num_rows = mysqli_num_rows($check_query);
+
+				if($num_rows > 0) {
+					$like_button = '<form action="like.php?post_id=$id" method="POST">
+							<input type="submit" class="comment_like" name="unlike_button" value="Unlike">
+						</form>
+					';
+				}
+				else {
+					$like_button = '
+							<input type="button" class="comment_like" name="like_button" value="Like" onclick="sendLike($id)">
+					';
+				}
 
 				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
 							<div class='post_profile_pic'>
@@ -212,7 +262,8 @@ class Post{
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
 									Comments ($comments_check_num)
 								</span>
-								<embed src='like.php?post_id=$id'></embed>
+								<span class='like_value'>$total_likes Likes </span>
+								<span>$like_button</span>
 							</div>					
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display: none;'>

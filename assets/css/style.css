@@ -572,7 +572,7 @@ input[type="file"]:active {
 	background-color: #d51279;
 	color: black;
 }*/
-
+/* Messages.php */
 #sent_message{
 	border: 1px solid purple;
 	color: white;
@@ -601,7 +601,7 @@ input[type="file"]:active {
     max-height: 400px;
 
 }
-.message_details{
+.message_details, .user_details_message{
 	width: 27%;
 	margin-bottom: 20px;
 }
@@ -609,8 +609,26 @@ input[type="file"]:active {
     width: 70%;
     margin-bottom: 30px;
 }
+#message_profile_pic{
+	float: left;
+    margin-right: 15px;
+    border-radius: 50%;
+    width: 45%;
+    border: 6px purple solid;
+}
 .found_message p{
 	margin-bottom: 5px;
+}
+.loaded-conversations{
+    max-height: 400px;
+    overflow: auto;
+}
+.user_found_messages{
+	border-bottom: 1px purple solid;
+    margin-bottom: 4px;
+}
+.user_found_messages:hover{
+	text-decoration: none;
 }
 .user_image{
 	float: left;

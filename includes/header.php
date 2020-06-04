@@ -44,7 +44,7 @@
 				<a href="index.php"><i class="fas fa-home"></i></a>
 				<a href="<?php echo $userLoggedIn ?>"><i class="fas fa-user-circle"></i></a>
 				<a href="requests.php"><i class="fas fa-user-friends"></i></a>
-				<a href="#"><i class="fas fa-envelope"></i></a>
+				<a href="messages.php"><i class="fas fa-envelope"></i></a>
 				<a href="#"><i class="fas fa-bell"></i></a>
 				<a href="#"><i class="fas fa-user-cog"></i></a>
 				<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>

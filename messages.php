@@ -26,8 +26,10 @@
 	}
 
  ?>
-<!-- <div class="user_details column profile_left">
-	<a href="<?php echo $userLoggedIn ?>"><img id="profile_pic" src="<?php echo $user['profile_pic']; ?>"></a>
+<div class="user_details_message column profile_left">
+	<a href="<?php echo $userLoggedIn ?>">
+		<img id="message_profile_pic" src="<?php echo $user['profile_pic']; ?>">
+	</a>
 	<div class="user_details_left_right">
 		<a href="<?php echo $userLoggedIn ?>" id="name">
 			<?php 
@@ -40,7 +42,7 @@
 		?></p>
 
 	</div>
-</div> -->
+</div>
 <div class="message_column column profile"  id="main_column">
 	<?php 
 		if($user_to != "new"){
@@ -59,7 +61,7 @@
 	 		<?php 
 	 		if($user_to == "new"){
 	 			echo "<p>Select the friend you would like to message: </p>";
-	 			echo "To: <input type='text' >";
+	 			echo "To: <input type='text' onkeyup='getUsers(this.value, <?php echo $userLoggedIn: ?>)' name='q' placeholder='Name' autocomplete='off' id='search_text_input'>";
 	 			echo "<div class='results'></div>";
 
 	 		}

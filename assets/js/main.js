@@ -18,3 +18,22 @@ $(document).ready(function(){
 	});
 
 });
+
+function getUser(value, user){
+	$.post("includes/handlers/ajax_friend_search.php",{
+		query: value,
+		userLogggedIn: user
+	}, function(data){
+		$(".results").html(data);
+	});
+}
+
+function sendLike(id) {
+ 
+	const sendLike = $.post("includes/handlers/send_like.php", 
+		{userLoggedIn:userLoggedIn, id:id}, 
+		function(response){
+ 			alert("sucess");
+ 
+	});
+}
