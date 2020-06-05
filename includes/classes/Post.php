@@ -230,7 +230,15 @@ class Post{
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
 									Comments ($comments_check_num)
 								</span>
-								<span class='like_value' id='total_like_$id'>$total_likes Likes </span>
+								<span class='like_value' id='total_like_$id'>";
+								if($total_likes === 1 ){
+									$str .= "$total_likes Like";
+								}
+								else{
+									$str .= "$total_likes Likes";
+								}
+
+								$str .= "</span>
 								<span>$like_button</span>
 							</div>					
 						</div>

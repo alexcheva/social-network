@@ -29,7 +29,7 @@ function getUser(value, user){
 }
 
 function updateLikes(id) {
-    return $.get("/like_post.php", {post_id: id}).done((num_likes) => {
+    return $.get("like_post.php", {post_id: id}).done((num_likes) => {
         $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
     })
 }
