@@ -191,6 +191,31 @@ hr{
 	float: left;
     margin-right: 15px;
     margin-left: 15px;
+    margin-top: 4px;
+}
+.comment_btn{
+	margin-top: 15px;
+    display: block;
+    color: #d500ff;
+    border-color: #d500ff;
+    font-weight: 500;
+    outline-color: pink;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 0px;
+    font-size: 14px;
+}
+.comment_btn:hover{
+	background-color: #d500ff;
+    border: 1px white solid;
+    font-weight: 500;
+    color: white;
+}
+.comment_btn:active{
+	background-color: purple;
+    border-color: black;
+    font-weight: 500;
+    color: black;
 }
 .posted_by{
 
@@ -232,8 +257,25 @@ embed{
 }
 .newsfeedPostOptions{
 	color: #d500ff;
-	height: 100px;
+	padding-left: 10px;
 
+}
+.post_comment{
+	padding: 10px;
+}
+.no_comments{
+	padding:10px 10px 0px 10px;
+	color: #8c8c8c;
+}
+.comments_area{
+	padding: 10px;
+}
+.comment_section{
+	font-weight: 100;
+    font-size: 15px;
+    background: #5f005f80;
+    border-radius: 36px;
+    padding: 5px;
 }
 .profile_left{
 	float: left;

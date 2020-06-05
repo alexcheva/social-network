@@ -247,7 +247,7 @@ class Post{
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
 						   <div class='comments_area'>
 						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
-						     <input type='button' onclick='sendComment($id)' value='Send'>
+						     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
 						   </div>"
 							.$this->getComments($id).
 						"</div>
@@ -422,7 +422,7 @@ class Post{
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
 						   <div class='comments_area'>
 						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
-						     <input type='button' onclick='sendComment($id)' value='Send'>
+						     <input class='comment_btn' type='button' onclick='sendComment($id)' value='Send'>
 						   </div>"
 							.$this->getComments($id).
 						"</div>
@@ -540,7 +540,7 @@ class Post{
 				$date_added = $comment['date_added'];
 				$removed = $comment['removed'];
         
-	      $time_message = $this->getTime($date_added);
+	    		$time_message = $this->getTime($date_added);
 	 
 				$user_obj = new User($this->con, $posted_by);
 	 
@@ -569,7 +569,7 @@ class Post{
 	 
 		else {
 	 
-			$commment_from_db = "<div id='noComment$id'>No comments to show</div>";
+			$commment_from_db = "<div class='no_comments' id='noComment$id'>No comments to show!</div>";
 		}
 	 
 		return $commment_from_db;
