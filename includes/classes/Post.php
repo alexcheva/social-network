@@ -102,7 +102,7 @@ class Post{
 		}
 		return $time_message;
 	}
-	
+
 	//Posts Loading function
 	public function loadPostsFriends($data, $limit){
 		$page = $data['page'];
@@ -193,46 +193,22 @@ class Post{
 				//add time frame
 				$time_message = $this->getTime($date_time);
 				//Number of likes:
-				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
-				$row = mysqli_fetch_array($get_likes);
-				$total_likes = $row['likes']; 
-				$user_liked = $row['added_by'];
-
-				$user_details_query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_liked'");
-				$row = mysqli_fetch_array($user_details_query);
-				$total_user_likes = $row['num_likes'];
-
-				//Like button
-				if(isset($_POST['like_button'])) {
-					$total_likes++;
-					$query = mysqli_query($this->con, "UPDATE posts SET likes='$total_likes' WHERE id='$id'");
-					//update total user likes
-					$total_user_likes++;
-					$user_likes = mysqli_query($this->con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
-					$insert_user = mysqli_query($this->con, "INSERT INTO likes VALUES(NULL, '$userLoggedIn', '$id')");
-
-					//Insert Notification
-				}
-				//Unlike button
-				if(isset($_POST['unlike_button'])) {
-					$total_likes--;
-					$query = mysqli_query($this->con, "UPDATE posts SET likes='$total_likes' WHERE id='$id'");
-					$total_user_likes--;
-					$user_likes = mysqli_query($this->con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
-					$insert_user = mysqli_query($this->con, "DELETE FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
-				}
+				$get_likes = mysqli_query($this->con, "SELECT * FROM likes WHERE post_id='$id'");
+				$total_likes = mysqli_num_rows($get_likes);
 
 				//Check for previous likes
 				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
 				$num_rows = mysqli_num_rows($check_query);
-
+                $like_button = '';
 				if($num_rows > 0) {
-					$like_button = "<form action='like.php?post_id=$id' method='POST'>
-							<input type='submit' class='comment_like' name='unlike_button' value='Unlike'>
-						</form>";
+
+					$like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>
+					";
 				}
 				else {
-					$like_button = "<input type='button' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>";
+					$like_button .= "
+							<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>
+					";
 				}
 
 				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
@@ -254,7 +230,7 @@ class Post{
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
 									Comments ($comments_check_num)
 								</span>
-								<span class='like_value'>$total_likes Likes </span>
+								<span class='like_value' id='total_like_$id'>$total_likes Likes </span>
 								<span>$like_button</span>
 							</div>					
 						</div>
