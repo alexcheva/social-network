@@ -1,8 +1,10 @@
 # social-network
 PHP, MySQL, jQuery, Bootstrap, FontAwesome
 
-The database I use called "**social**."<br/>
-SQL:
+Need to install XAMPP for it to work.<br/>
+Then copy git into htdocs folder.<br/>
+Then create database in phpmyadmin called "**social**."<br/>
+Here is SQL to create tables:<br/>
 
 CREATE TABLE users(
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
