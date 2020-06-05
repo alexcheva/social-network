@@ -102,12 +102,7 @@ class Post{
 		}
 		return $time_message;
 	}
-	public function sendLike($username, $id) {
- 
-	$userLoggedIn = $this->user_obj->getUsername();
- 
-	$insert_like = mysqli_query($this->con, "INSERT INTO likes VALUES(NULL, '$userLoggedIn', '$id')");
-	}
+	
 	//Posts Loading function
 	public function loadPostsFriends($data, $limit){
 		$page = $data['page'];
@@ -232,15 +227,12 @@ class Post{
 				$num_rows = mysqli_num_rows($check_query);
 
 				if($num_rows > 0) {
-					$like_button = '<form action="like.php?post_id=$id" method="POST">
-							<input type="submit" class="comment_like" name="unlike_button" value="Unlike">
-						</form>
-					';
+					$like_button = "<form action='like.php?post_id=$id' method='POST'>
+							<input type='submit' class='comment_like' name='unlike_button' value='Unlike'>
+						</form>";
 				}
 				else {
-					$like_button = '
-							<input type="button" class="comment_like" name="like_button" value="Like" onclick="sendLike($id)">
-					';
+					$like_button = "<input type='button' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>";
 				}
 
 				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
@@ -267,7 +259,7 @@ class Post{
 							</div>					
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display: none;'>
-						<embed src='comment_frame.php?post_id=$id' class='comment_frame' style='color: white;' frameborder='0'></embed></div>
+						</div>
 						<hr>";
 				}//if friend end if statement
 

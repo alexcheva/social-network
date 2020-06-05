@@ -29,6 +29,12 @@
 			} else{
 				$mutural_friends = "";
 			}
+			if($user->isFriend($row['username'])){
+				echo "<div class='resultDisplay'>
+
+				</div>"
+
+			}
 		}
 	}
 

@@ -45,6 +45,8 @@
 	$(function(){
 	 
 		var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+		window.userLoggedIn = '<?php echo $userLoggedIn; ?>';
+
 		var inProgress = false;
 	 
 		loadPosts(); //Load first posts
