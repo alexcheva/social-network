@@ -61,6 +61,12 @@ CREATE TABLE friend_requests(
 ); 
 
 <br/>
-I would like to implement the option to post posts as global or friends only, and show only posts that are avaliable to see for a certain user. And, therefore, show global posts even if user is not logged in, without the option to like or comment.<br/> Plus, add login/register instead of top right user menu.<br/>
+I would like to:<br/>
+1. Implement the option to post posts as global or friends only.<br/>
+2. Show global posts to everyone, without option to comment or like.<br/>
+3. Show friends only posts to user friends.<br/>
+4. Add login/register to top right nav bar, if user is not logged in.<br/>
+5. Add media queries for mobile devices.<br/>
+
 <br/>
 Thanks for looking it over, Gabriel!<br/>
