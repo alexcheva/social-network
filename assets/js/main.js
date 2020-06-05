@@ -28,12 +28,18 @@ function getUser(value, user){
 	});
 }
 
+function updateLikes(id) {
+    return $.get("/like_post.php", {post_id: id}).done((num_likes) => {
+        $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
+    })
+}
+
 function sendLike(id) {
- 
+    const current_label = $(`#like_button_${id}`).val()
 	const sendLike = $.post("includes/handlers/send_like.php", 
-		{userLoggedIn:userLoggedIn, id:id}, 
+		{userLoggedIn:VM.userLoggedIn, id:id}, 
 		function(response){
- 			alert("sucess");
- 
+            updateLikes(id);
+            $(`#like_button_${id}`).val(current_label == 'Like' ? 'Unlike' : 'Like'); 
 	});
 }
