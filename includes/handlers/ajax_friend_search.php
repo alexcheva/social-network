@@ -17,7 +17,7 @@
 
 	}
 	else {
-		$usersReturned = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '%$names[0]%' AND last_name LIKE '%$names[0]%') AND user_closed='no' LIMIT 8");
+		$usersReturned = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '%$names[0]%' OR last_name LIKE '%$names[0]%') AND user_closed='no' LIMIT 8");
 	}
 	if($query != "") {
 		while($row= mysqli_fetch_array($usersReturned)){
@@ -31,8 +31,17 @@
 			}
 			if($user->isFriend($row['username'])){
 				echo "<div class='resultDisplay'>
-
-				</div>"
+						<a href='messages.php?u='" . $row['username'] . "'
+							<div class='liveSearchProfilePic'>
+								<img src='". $row['profile_pic'] . "'>
+							</div>
+							<div class='liveSearchText'>"
+								. $row['first_name'] . " " . $row['last_name']"
+								<p>" . $row['username'] . "</p>
+								<p id='grey'" . $mutural_friends . "</p>
+							</div>
+						</a>
+					</div>"
 
 			}
 		}

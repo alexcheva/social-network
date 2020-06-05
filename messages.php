@@ -61,7 +61,10 @@
 	 		<?php 
 	 		if($user_to == "new"){
 	 			echo "<p>Select the friend you would like to message: </p>";
-	 			echo "To: <input type='text' onkeyup='getUsers(this.value, <?php echo $userLoggedIn: ?>)' name='q' placeholder='Name' autocomplete='off' id='search_text_input'>";
+	 			?>
+
+	 			To: <input type='text' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' name='q' placeholder='Name' autocomplete='off' id='search_text_input'>
+	 			<?php
 	 			echo "<div class='results'></div>";
 
 	 		}
@@ -78,8 +81,8 @@
 		
 </div>
 	<script>
-		 var div = document.getElementById("scroll_messages");
-		 div.scrollTop = div.scrollHeight;
+		 // var div = document.getElementById("scroll_messages");
+		 // div.scrollTop = div.scrollHeight;
 	</script>
 	<div class="message_details column profile_left" id="conversations">
 		<h4>Conversations:</h4>
