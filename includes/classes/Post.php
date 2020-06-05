@@ -192,9 +192,11 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
-				//Number of likes:
-				$get_likes = mysqli_query($this->con, "SELECT * FROM likes WHERE post_id='$id'");
-				$total_likes = mysqli_num_rows($get_likes);
+				
+				//Get number of likes for the post:
+				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$row = mysqli_fetch_array($get_likes);
+				$total_likes = $row['likes'];
 
 				//Check for previous likes
 				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
@@ -231,7 +233,7 @@ class Post{
 									Comments ($comments_check_num)
 								</span>
 								<span class='like_value' id='total_like_$id'>";
-								if($total_likes === 1 ){
+								if($total_likes === '1' ){
 									$str .= "$total_likes Like";
 								}
 								else{
@@ -363,11 +365,12 @@ class Post{
 				//Time frame
 				$time_message = $this->getTime($date_time);
 
-				//Number of likes:
-				$get_likes = mysqli_query($this->con, "SELECT * FROM likes WHERE post_id='$id'");
-				$total_likes = mysqli_num_rows($get_likes);
+				//Number of likes from posts:
+				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$row = mysqli_fetch_array($get_likes);
+				$total_likes = $row['likes'];
 
-				//Check for previous likes
+				//Check if the user already liked post
 				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
 				$num_rows = mysqli_num_rows($check_query);
 
@@ -400,7 +403,7 @@ class Post{
 								</span>
 								<span class='like_value' id='total_like_$id'>";
 
-								if($total_likes === 1 ){
+								if($total_likes === '1' ){
 								    $str .= "$total_likes Like";
 								}
 								else{
