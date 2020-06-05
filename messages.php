@@ -52,7 +52,7 @@
 			echo "</div><hr>";
 		}
 		else {
-			echo "<h4>New Message:<h4>";
+			echo "<h4>New Message:</h4>";
 		}
 	 ?>
 
