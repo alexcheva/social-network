@@ -42,13 +42,12 @@
 	</div>
 
 	<script>
+
 	$(function(){
 	 
-		var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 		var inProgress = false;
-	 
+
 		loadPosts(); //Load first posts
-	 
 	    $(window).scroll(function() {
 	    	var bottomElement = $(".status_post").last();
 	    	var noMorePosts = $('.posts_area').find('.noMorePosts').val();
@@ -82,7 +81,6 @@
 	 
 					$('#loading').hide();
 					$(".posts_area").append(response);
-	 
 					inProgress = false;
 				}
 			});

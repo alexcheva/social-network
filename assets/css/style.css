@@ -580,12 +580,13 @@ input[type="file"]:active {
 	background-color: #d51279;
 	color: black;
 }*/
-
+/* Messages.php */
 #sent_message{
 	border: 1px solid purple;
 	color: white;
 	border-radius: 10px;
 	padding: 10px;
+	display: inline-block;
     float: left;
 }
 #received_message{
@@ -594,8 +595,55 @@ input[type="file"]:active {
 	color: white;
 	border-radius: 10px;
 	padding: 10px;
+	display: inline-block;
+	margin-right: 15px;
     float: right;
 }
 /*.noMorePosts p {
 	margin: 0px;
 }*/
+.loaded_messages{
+	height: 40%;
+    overflow: auto;
+    min-height: 300px;
+    max-height: 400px;
+
+}
+.message_details, .user_details_message{
+	width: 27%;
+	margin-bottom: 20px;
+}
+.message_column {
+    width: 70%;
+    margin-bottom: 30px;
+}
+#message_profile_pic{
+	float: left;
+    margin-right: 15px;
+    border-radius: 50%;
+    width: 45%;
+    border: 6px purple solid;
+}
+.found_message p{
+	margin-bottom: 5px;
+}
+.loaded-conversations{
+    max-height: 400px;
+    overflow: auto;
+}
+.user_found_messages{
+	border-bottom: 1px purple solid;
+    margin-bottom: 4px;
+}
+.user_found_messages:hover{
+	text-decoration: none;
+}
+.user_image{
+	float: left;
+}
+.timestamp_smaller{
+	font-style: italic;
+}
+#grey{
+	font-weight: 400;
+}

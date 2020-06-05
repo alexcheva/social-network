@@ -1,8 +1,9 @@
 <?php
 class Post{
+	//define class properfies/attributes:
 	private $user_obj;
 	private $con;
-
+	//constuct an automatic behavior for every new post/object:
 	public function __construct($con, $user){
 		$this->con = $con;
 		$this->user_obj = new User($con, $user);
@@ -40,6 +41,68 @@ class Post{
 
 		}
 	}
+	//Time frame
+	public function getTime($date_time){
+			
+		$date_time_now = date("Y-m-d H:i:s");
+		$start_date = new DateTime($date_time);//time of post
+		$end_date = new DateTime($date_time_now);//current time
+		$interval = $start_date->diff($end_date); //difference between dates
+		
+		if($interval->y >= 1){
+			if($interval == 1)
+				$time_message = $interval->y . " year ago";
+			
+			else 
+				$time_message = $interval->y . " years ago";
+			
+		}
+		else if($interval-> m >= 1){
+			if($interval->d == 0) {
+				$days = " ago";
+			}
+			else if ($interval->d == 1) {
+				$days = $interval->d . " day ago";
+			} else {
+				$days = $interval->d . " days ago";
+			}
+			if($interval->m == 1){
+				$time_message = $interval->m . " month" . $days;
+			} else{
+				$time_message = $interval->m . " months" . $days;
+			}
+		}
+		else if($interval->d >= 1){
+			if ($interval->d == 1){
+				$time_message = "Yesterday";
+			} else{
+				$time_message = $interval->d . " days ago";
+			}
+		}
+		else if($interval->h >=1){
+			if ($interval->h == 1){
+				$time_message = $interval->h . " hour ago";
+			} else{
+				$time_message = $interval->h . " hours ago";
+			}
+		}
+		else if($interval->i >= 1){
+			if ($interval->i == 1){
+				$time_message = $interval->i ." minute ago";
+			} else{
+				$time_message = $interval->i . " minutes ago";
+				}
+		}
+		else{
+			if($interval->s <30){
+				$time_message = "Just now";
+			} else{
+				$time_message = $interval->s . " seconds ago";
+			}
+		}
+		return $time_message;
+	}
+
 	//Posts Loading function
 	public function loadPostsFriends($data, $limit){
 		$page = $data['page'];
@@ -127,64 +190,27 @@ class Post{
 				$comments_check = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
 				//find number of results:
 				$comments_check_num = mysqli_num_rows($comments_check);
-
-
-				//Time frame
-				$date_time_now = date("Y-m-d H:i:s");
-				$start_date = new DateTime($date_time);//time of post
-				$end_date = new DateTime($date_time_now);//current time
-				$interval = $start_date->diff($end_date); //difference between dates
+				//add time frame
+				$time_message = $this->getTime($date_time);
 				
-				if($interval->y >= 1){
-					if($interval == 1)
-						$time_message = $interval->y . " year ago";
-					
-					else 
-						$time_message = $interval->y . " years ago";
-					
+				//Get number of likes for the post:
+				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$row = mysqli_fetch_array($get_likes);
+				$total_likes = $row['likes'];
+
+				//Check for previous likes
+				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
+				$num_rows = mysqli_num_rows($check_query);
+                $like_button = '';
+				if($num_rows > 0) {
+
+					$like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>
+					";
 				}
-				else if($interval-> m >= 1){
-					if($interval->d == 0) {
-						$days = " ago";
-					}
-					else if ($interval->d == 1) {
-						$days = $interval->d . " day ago";
-					} else {
-						$days = $interval->d . " days ago";
-					}
-					if($interval->m == 1){
-						$time_message = $interval->m . " month" . $days;
-					} else{
-						$time_message = $interval->m . " months" . $days;
-					}
-				}
-				else if($interval->d >= 1){
-					if ($interval->d == 1){
-						$time_message = "Yesterday";
-					} else{
-						$time_message = $interval->d . " days ago";
-					}
-				}
-				else if($interval->h >=1){
-					if ($interval->h == 1){
-						$time_message = $interval->h . " hour ago";
-					} else{
-						$time_message = $interval->h . " hours ago";
-					}
-				}
-				else if($interval->i >= 1){
-					if ($interval->i == 1){
-						$time_message = $interval->i ." minute ago";
-					} else{
-						$time_message = $interval->i . " minutes ago";
-	 				}
-				}
-				else{
-					if($interval->s <30){
-						$time_message = "Just now";
-					} else{
-						$time_message = $interval->s . " seconds ago";
-					}
+				else {
+					$like_button .= "
+							<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>
+					";
 				}
 
 				$str .= "<div class='status_post'>
@@ -206,7 +232,16 @@ class Post{
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
 									Comments ($comments_check_num)
 								</span>
-								<embed src='like.php?post_id=$id'></embed>
+								<span class='like_value' id='total_like_$id'>";
+								if($total_likes === '1' ){
+									$str .= "$total_likes Like";
+								}
+								else{
+									$str .= "$total_likes Likes";
+								}
+
+								$str .= "</span>
+								<span>$like_button</span>
 							</div>					
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
@@ -333,64 +368,25 @@ class Post{
 
 
 				//Time frame
-				$date_time_now = date("Y-m-d H:i:s");
-				$start_date = new DateTime($date_time);//time of post
-				$end_date = new DateTime($date_time_now);//current time
-				$interval = $start_date->diff($end_date); //difference between dates
-				
-				if($interval->y >= 1){
-					if($interval == 1)
-						$time_message = $interval->y . " year ago";
-					
-					else 
-						$time_message = $interval->y . " years ago";
-					
-				}
-				else if($interval-> m >= 1){
-					if($interval->d == 0) {
-						$days = " ago";
-					}
-					else if ($interval->d == 1) {
-						$days = $interval->d . " day ago";
-					} else {
-						$days = $interval->d . " days ago";
-					}
-					if($interval->m == 1){
-						$time_message = $interval->m . " month" . $days;
-					} else{
-						$time_message = $interval->m . " months" . $days;
-					}
-				}
-				else if($interval->d >= 1){
-					if ($interval->d == 1){
-						$time_message = "Yesterday";
-					} else{
-						$time_message = $interval->d . " days ago";
-					}
-				}
-				else if($interval->h >=1){
-					if ($interval->h == 1){
-						$time_message = $interval->h . " hour ago";
-					} else{
-						$time_message = $interval->h . " hours ago";
-					}
-				}
-				else if($interval->i >= 1){
-					if ($interval->i == 1){
-						$time_message = $interval->i ." minute ago";
-					} else{
-						$time_message = $interval->i . " minutes ago";
-	 				}
-				}
-				else{
-					if($interval->s <30){
-						$time_message = "Just now";
-					} else{
-						$time_message = $interval->s . " seconds ago";
-					}
+				$time_message = $this->getTime($date_time);
+
+				//Number of likes from posts:
+				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$row = mysqli_fetch_array($get_likes);
+				$total_likes = $row['likes'];
+
+				//Check if the user already liked post
+				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
+				$num_rows = mysqli_num_rows($check_query);
+
+				$like_button = '';
+				if($num_rows > 0) {
+				    $like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>";
+				} else {
+				    $like_button .= "<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>";
 				}
 
-				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
+				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
@@ -410,7 +406,17 @@ class Post{
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
 									Comments ($comments_check_num)
 								</span>
-								<embed src='like.php?post_id=$id'></embed>
+								<span class='like_value' id='total_like_$id'>";
+
+								if($total_likes === '1' ){
+								    $str .= "$total_likes Like";
+								}
+								else{
+								    $str .= "$total_likes Likes";
+								}
+
+								$str .= "</span>
+								<span>$like_button</span>
 							</div>					
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
@@ -533,70 +539,8 @@ class Post{
 				$posted_by = $comment['posted_by'];
 				$date_added = $comment['date_added'];
 				$removed = $comment['removed'];
-	 
-				//Timeframe
-				$date_time_now = date("Y-m-d H:i:s");
-				$start_date = new DateTime($date_added); //Time of post
-				$end_date = new DateTime($date_time_now); //Current time
-				$interval = $start_date->diff($end_date); //Difference between dates 
-				if($interval->y >= 1) {
-					if($interval == 1)
-						$time_message = $interval->y . " year ago"; //1 year ago
-					else 
-						$time_message = $interval->y . " years ago"; //1+ year ago
-				}
-				else if ($interval->m >= 1) {
-					if($interval->d == 0) {
-						$days = " ago";
-					}
-					else if($interval->d == 1) {
-						$days = $interval->d . " day ago";
-					}
-					else {
-						$days = $interval->d . " days ago";
-					}
-	 
-	 
-					if($interval->m == 1) {
-						$time_message = $interval->m . " month". $days;
-					}
-					else {
-						$time_message = $interval->m . " months". $days;
-					}
-	 
-				}
-				else if($interval->d >= 1) {
-					if($interval->d == 1) {
-						$time_message = "Yesterday";
-					}
-					else {
-						$time_message = $interval->d . " days ago";
-					}
-				}
-				else if($interval->h >= 1) {
-					if($interval->h == 1) {
-						$time_message = $interval->h . " hour ago";
-					}
-					else {
-						$time_message = $interval->h . " hours ago";
-					}
-				}
-				else if($interval->i >= 1) {
-					if($interval->i == 1) {
-						$time_message = $interval->i . " minute ago";
-					}
-					else {
-						$time_message = $interval->i . " minutes ago";
-					}
-				}
-				else {
-					if($interval->s < 30) {
-						$time_message = "Just now";
-					}
-					else {
-						$time_message = $interval->s . " seconds ago";
-					}
-				}
+        
+	      $time_message = $this->getTime($date_added);
 	 
 				$user_obj = new User($this->con, $posted_by);
 	 

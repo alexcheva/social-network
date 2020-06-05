@@ -18,3 +18,28 @@ $(document).ready(function(){
 	});
 
 });
+
+function getUser(value, user){
+	$.post("includes/handlers/ajax_friend_search.php",{
+		query: value,
+		userLogggedIn: user
+	}, function(data){
+		$(".results").html(data);
+	});
+}
+
+function updateLikes(id) {
+    return $.get("like_post.php", {post_id: id}).done((num_likes) => {
+        $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
+    })
+}
+
+function sendLike(id) {
+    const current_label = $(`#like_button_${id}`).val()
+	const sendLike = $.post("includes/handlers/send_like.php", 
+		{userLoggedIn:userLoggedIn, id:id}, 
+		function(response){
+            updateLikes(id);
+            $(`#like_button_${id}`).val(current_label == 'Like' ? 'Unlike' : 'Like'); 
+	});
+}
