@@ -340,6 +340,11 @@ embed{
     color: white;
 }
 /*Add to friends*/
+.profile-name{
+	padding-bottom: 14px;
+    font-family: "Seagram", sans-serif;
+    color: #d500ff;
+}
 #success{
     color: #d500ff;
     border-color: #d500ff;

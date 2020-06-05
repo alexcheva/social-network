@@ -73,7 +73,9 @@
 	</div>
 
 	<div class="main_column column profile">
-		<h4>This is the profile page of <?php echo $username; ?>:</h4>
+		<h2 class="profile-name"><?php 
+				echo $user_array['first_name'] . " " . $user_array['last_name'];
+				?>:</h2>
 		<div class="posts_area"></div>
 			<img id="loading" src="assets/images/icons/loading.gif">
 	</div>
