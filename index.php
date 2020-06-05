@@ -42,9 +42,6 @@
 	</div>
 
 	<script>
-    const VM = {
-        userLoggedIn: "<?php echo $userLoggedIn; ?>"
-    }
 
 	$(function(){
 	 
@@ -74,7 +71,7 @@
 			$.ajax({
 				url: "includes/handlers/ajax_load_posts.php",
 				type: "POST",
-				data: "page=" + page + "&userLoggedIn=" + VM.userLoggedIn,
+				data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
 				cache: false,
 	 
 				success: function(response) {

@@ -363,7 +363,22 @@ class Post{
 				//Time frame
 				$time_message = $this->getTime($date_time);
 
-				$str .= "<div class='status_post' onClick='javaScript:toggle$id()'>
+				//Number of likes:
+				$get_likes = mysqli_query($this->con, "SELECT * FROM likes WHERE post_id='$id'");
+				$total_likes = mysqli_num_rows($get_likes);
+
+				//Check for previous likes
+				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
+				$num_rows = mysqli_num_rows($check_query);
+
+				$like_button = '';
+				if($num_rows > 0) {
+				    $like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>";
+				} else {
+				    $like_button .= "<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>";
+				}
+
+				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
@@ -383,11 +398,21 @@ class Post{
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
 									Comments ($comments_check_num)
 								</span>
-								<embed src='like.php?post_id=$id'></embed>
+								<span class='like_value' id='total_like_$id'>";
+
+								if($total_likes === 1 ){
+								    $str .= "$total_likes Like";
+								}
+								else{
+								    $str .= "$total_likes Likes";
+								}
+
+								$str .= "</span>
+								<span>$like_button</span>
 							</div>					
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display: none;'>
-						<embed src='comment_frame.php?post_id=$id' class='comment_frame' style='color: white;' frameborder='0'></embed></div>
+						</div>
 						<hr>";
 
 				?>

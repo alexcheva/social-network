@@ -37,7 +37,7 @@ function updateLikes(id) {
 function sendLike(id) {
     const current_label = $(`#like_button_${id}`).val()
 	const sendLike = $.post("includes/handlers/send_like.php", 
-		{userLoggedIn:VM.userLoggedIn, id:id}, 
+		{userLoggedIn:userLoggedIn, id:id}, 
 		function(response){
             updateLikes(id);
             $(`#like_button_${id}`).val(current_label == 'Like' ? 'Unlike' : 'Like'); 

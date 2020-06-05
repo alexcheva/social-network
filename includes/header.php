@@ -24,6 +24,9 @@
 			<script src="assets/js/all.min.js"></script>
 			<script src="assets/js/jquery.jcrop.js"></script>
 			<script src="assets/js/jcrop_bits.js"></script>
+			<script>
+    const userLoggedIn = "<?php echo $userLoggedIn; ?>";
+    </script>
 
 			<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
