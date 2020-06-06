@@ -44,6 +44,7 @@
 	    //insert notification
 	    if($user_liked != $userLoggedIn){
 	    		$notification = new Notification($this->con, $userLoggedIn);
+	    		//where does user_to comes from?
 				$notification->insertNotification($id, $user_to, "like");
 	    }
 	}

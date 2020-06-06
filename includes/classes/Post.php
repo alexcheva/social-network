@@ -491,30 +491,30 @@ class Post{
 		$insert_comment = mysqli_query($this->con, "INSERT INTO comments VALUES(NULL, '$body', '$userLoggedIn', '$post_author', '$date_added', 'no', '$id')");
 
 	 	//notifications
-		// if($post_author !== $userLoggedIn) {
-		// 	$notification = new Notification($this->con, $userLoggedIn);
-		// 	$notification->insertNotification($id, $post_author, "comment");
-		// }
+		if($post_author !== $userLoggedIn) {
+			$notification = new Notification($this->con, $userLoggedIn);
+			$notification->insertNotification($id, $post_author, "comment");
+		}
 	 
-		// if($user_to !== 'none' && $user_to !== $userLoggedIn) {
-		// 	$notification = new Notification($this->con, $userLoggedIn);
-		// 	$notification->insertNotification($id, $user_to, "profile_comment");
-		// }
+		if($user_to !== 'none' && $user_to !== $userLoggedIn) {
+			$notification = new Notification($this->con, $userLoggedIn);
+			$notification->insertNotification($id, $user_to, "profile_comment");
+		}
 	 
-		// $get_commenters = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
-		// $notified_users = array();
-		// while($row = mysqli_fetch_array($get_commenters)) {
+		$get_commenters = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
+		$notified_users = array();
+		while($row = mysqli_fetch_array($get_commenters)) {
 	 
-		// 	if($row['posted_by'] !== $post_author && $row['posted_by'] !== $user_to 
-		// 		&& $row['posted_by'] !== $userLoggedIn && !in_array($row['posted_by'], $notified_users)) {
+			if($row['posted_by'] !== $post_author && $row['posted_by'] !== $user_to 
+				&& $row['posted_by'] !== $userLoggedIn && !in_array($row['posted_by'], $notified_users)) {
 	 
-		// 		$notification = new Notification($this->con, $userLoggedIn);
-		// 		$notification->insertNotification($id, $row['posted_by'], "comment_non_owner");
+				$notification = new Notification($this->con, $userLoggedIn);
+				$notification->insertNotification($id, $row['posted_by'], "comment_non_owner");
 	 
-		// 		array_push($notified_users, $row['posted_by']);
-		// 	}
+				array_push($notified_users, $row['posted_by']);
+			}
 	 
-		// }
+		}
 	 
 	}
 	//loading comments
