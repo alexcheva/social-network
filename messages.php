@@ -80,10 +80,13 @@
 	 </div>
 		
 </div>
-	<script>
-		 // var div = document.getElementById("scroll_messages");
-		 // div.scrollTop = div.scrollHeight;
-	</script>
+<script>
+    var div = document.getElementById("scroll_messages");
+ 
+    if(div != null) {
+        div.scrollTop = div.scrollHeight;
+    }
+</script>
 	<div class="message_details column profile_left" id="conversations">
 		<h4>Conversations:</h4>
 		<div class="loaded-conversations">

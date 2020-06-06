@@ -111,8 +111,8 @@ class User{
 			echo $i;
 		}
 	}
-	public function getMuturalFriends($user_to_check){
-		$muturalFriends = 0;
+	public function getMutualFriends($user_to_check){
+		$mutualFriends = 0;
 		$user_array = $this->user['friend_array'];
 		//split string into an array for userLoggedIn
 		$user_array_explode = explode(",", $user_array);
@@ -126,11 +126,11 @@ class User{
 		foreach($user_array_explode as $i){
 			foreach($user_to_check_array_explode as $j){
 				if($i == $j &&$i != ""){
-					$muturalFriends++;
+					$mutualFriends++;
 				}
 			}
 		}
-		return $muturalFriends;
+		return $mutualFriends;
 
 	}
 
