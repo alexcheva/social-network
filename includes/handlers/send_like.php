@@ -41,6 +41,11 @@
 		$user_likes = mysqli_query($con, "UPDATE users SET num_likes='$total_user_likes' WHERE username='$user_liked'");
 		//add like to likes:
 	    $insert_like = mysqli_query($con, "INSERT INTO likes VALUES(NULL, '$userLoggedIn', '$id')");
+	    //insert notification
+	    if($user_liked != $userLoggedIn){
+	    		$notification = new Notification($this->con, $userLoggedIn);
+				$notification->insertNotification($id, $user_to, "like");
+	    }
 	}
 
 ?>
