@@ -627,6 +627,7 @@ input[type="file"]:active {
 	background-color: #d51279;
 	color: black;
 }*/
+
 /* Messages.php */
 #sent_message{
 	border: 1px solid purple;
@@ -677,8 +678,10 @@ input[type="file"]:active {
 .loaded-conversations{
     max-height: 400px;
     overflow: auto;
+    padding-bottom: 10px;
 }
 .user_found_messages{
+	padding: 5px 0px;
 	border-bottom: 1px purple solid;
     margin-bottom: 4px;
 }
@@ -694,3 +697,21 @@ input[type="file"]:active {
 #grey{
 	font-weight: 400;
 }
+/*Friend search*/
+.resultDisplay{
+	height: 130px;
+    border-bottom: 1px solid purple;
+}
+.liveSearchProfilePic{
+	padding: 15px;
+}
+.friend_search_profile_pic{
+	float: left;
+    margin-right: 15px;
+    border-radius: 50%;
+    width: 100px;
+    border: 4px purple solid;
+}
+h4{
+	padding-bottom: 5px;
+}  

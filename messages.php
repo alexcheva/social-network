@@ -93,7 +93,6 @@
 			<!-- go to Message classes and run getConvos function -->
 			<?php echo $message_obj->getConvos(); ?>
 		</div>
-		<br>
 		<a href="messages.php?u=new">New Message</a>
 	</div>
 </div>

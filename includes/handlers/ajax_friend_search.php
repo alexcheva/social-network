@@ -30,9 +30,9 @@ if($query != "") {
  
 		if($user->isFriend($row['username'])) {
 			echo "<div class='resultDisplay'>
-					<a href='messages.php?u=" . $row['username'] . "' style='color: #000'>
+					<a href='messages.php?u=" . $row['username'] . "'>
 						<div class='liveSearchProfilePic'>
-							<img src='". $row['profile_pic'] . "'>
+							<img class='friend_search_profile_pic' src='". $row['profile_pic'] . "'>
 						</div>
  
 						<div class='liveSearchText'>
