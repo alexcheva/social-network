@@ -48,13 +48,15 @@
 				<a href="<?php echo $userLoggedIn ?>"><i class="fas fa-user-circle"></i></a>
 				<a href="requests.php"><i class="fas fa-user-friends"></i></a>
 				<a href="messages.php"><i class="fas fa-envelope"></i></a>
-				<a href="#"><i class="fas fa-bell"></i></a>
+				<a href="javascript:void(0)" onlick="getDropdownData(userLoggedIn, 'notification')">
+					<i class="fas fa-bell"></i></a>
 				<a href="#"><i class="fas fa-user-cog"></i></a>
 				<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>
 
 				<!-- <a href="#"><i class="fas fa-house-user"></i></a> -->
-
 			</nav>
+			<div class="dropdown_data_window"></div>
+			<input type="hidden" id="dropdown_data_type" value="">
 		</div>
 		<div class="wrapper">
 
