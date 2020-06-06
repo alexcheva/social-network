@@ -63,8 +63,8 @@
 			<p><?php echo "Friends: " . $num_friends; ?></p>
 			<?php 
 				if($userLoggedIn != $username){
-					echo '<p class="profile_info_bottom">Mutural Friends: ';
-					echo $logged_in_user_obj->getMuturalFriends($username);
+					echo '<p class="profile_info_bottom">Mutual Friends: ';
+					echo $logged_in_user_obj->getMutualFriends($username);
 					echo '</p>';
 				}
 			?>
