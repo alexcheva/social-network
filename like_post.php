@@ -15,7 +15,7 @@
 		$post_id = $_GET['post_id'];
 	}
 
-	$get_likes = mysqli_query($con, "SELECT * FROM likes WHERE post_id=$post_id");
+	$get_likes = mysqli_query($con, "SELECT * FROM likes WHERE post_id='$post_id'");
 	$total_likes = mysqli_num_rows($get_likes);
     echo json_encode($total_likes);
 ?>
