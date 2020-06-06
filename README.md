@@ -67,6 +67,15 @@ I would like to:<br/>
 3. Show friends only posts to user friends.<br/>
 4. Add login/register to top right nav bar, if user is not logged in.<br/>
 5. Add media queries for mobile devices.<br/>
+6. Add notifications.<br/>
+7. Add about user.<br/>
+8. Add user settings.<br/>
+9. Add live search.<br/>
+10. Add emoji to posts.<br/>
+11. Add videos/pictures to posts.<br/>
+12. Edit post functionality.<br/>
+13. Delete comments.<br/>
+14. Edit comments.<br/>
 
 <br/>
 Thanks for looking it over, Gabriel!<br/>
