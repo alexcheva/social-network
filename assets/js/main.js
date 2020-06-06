@@ -24,8 +24,31 @@ function getUsers(value, user) {
 		$(".results").html(data);
 	});
 }
+function getDropdownData(user, type){
+	//might need to delete type  all together later
+	if($(".dropdown_data_window").css("height") == "0px"){
+		var pageName;
 
+		if(type == 'notification') {
+			pageName = "ajax_load_notifications.php";
+		}
+		var ajaxreq = $.ajax({
+			url: "includes/handlers/" + pageName,
+			type: "POST",
+			data: "page=1$userLoggedIn=" + user,
+			cashe: false,
+			success: function(response) {
+				$(".dropdown_data_window").html(response);
+				$(".dropdown_data_window").css({"padding": "0px", "height" : "280px"});
+				$("#dropdown_data_type").val(type);
+			}
+		});
 
+	} else {
+		$(".dropdown_data_window").html("");
+		$(".dropdown_data_window").css({"padding": "0px", "height" : "0px"});
+	}
+}
 function updateLikes(id) {
     return $.get("like_post.php", {post_id: id}).done((num_likes) => {
         $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
