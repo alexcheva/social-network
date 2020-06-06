@@ -78,7 +78,7 @@
 				?>:</h2>
 
 		<ul class="nav nav-tabs" id="profileTabs">
-		  <li class="active">
+		  <li>
 		    <a href="#newsfeed_div"  role="tab" data-toggle="tab">Newsfeed</a>
 		  </li>
 		  <li><a href="#about_div" aria-control="about_div" role="tab" data-toggle="tab">About</a></li>
@@ -88,7 +88,7 @@
 				<div class="posts_area"></div>
 				<img id="loading" src="assets/images/icons/loading.gif">
 			</div>
-			<div role="tabpanel" class="tab-pane fade in active" id="about_div">
+			<div role="tabpanel" class="tab-pane fade in" id="about_div">
 
 			</div>
 		</div>

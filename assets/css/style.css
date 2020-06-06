@@ -716,10 +716,7 @@ h4{
 	padding-bottom: 5px;
 }  
 .nav-tabs {
-    border-bottom: 1px solid purple;
-}
-.tab-content {
-	padding-top: 15px;
+    border-bottom: none;
 }
 .nav-tabs li{
 	border-top-left-radius: 5px;
@@ -733,16 +730,26 @@ h4{
 	background-color: #d500ff;
 }
 */
-/*.nav-tabs li.active a{
+.nav-tabs li a:hover{
 	color: white;
-}*/
+}
+.nav-tabs li a:active{
+	color: black;
+}
 .nav-tabs li:hover{
-	background-color: #d500ff;
+	background-color: #8a01a5b0;
 }
 .nav-tabs li:active {
 	background-color: purple;
 }
-
-
+.post_area{
+	padding: 0px 15px;
+}
+.tab-content{
+	border: 1px solid purple;
+}
+.tab-pane{
+	padding: 15px;
+}
 
 
