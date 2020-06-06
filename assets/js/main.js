@@ -19,14 +19,12 @@ $(document).ready(function(){
 
 });
 
-function getUsers(value, user){
-	$.post("includes/handlers/ajax_friend_search.php",{
-		query: value,
-		userLogggedIn: user
-	}, function(data){
+function getUsers(value, user) {
+	$.post("includes/handlers/ajax_friend_search.php", {query:value, userLoggedIn:user}, function(data) {
 		$(".results").html(data);
 	});
 }
+
 
 function updateLikes(id) {
     return $.get("like_post.php", {post_id: id}).done((num_likes) => {
