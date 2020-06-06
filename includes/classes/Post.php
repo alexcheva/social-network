@@ -288,7 +288,7 @@ class Post{
 			if($count > $limit)
 				$str .="<input type='hidden' class='nextPage' value='" . ($page + 1) ."'><input type='hidden' class='noMorePosts' value='false'>";//append to str
 				else
-				$str .="<input type='hidden' class='noMorePosts' value='true'><p style='text-align: center; color: white;'> No More Posts to show!</p>";
+				$str .="<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> No More Posts to show!</p>";
 		}//end if statement
 		echo $str;	
 
@@ -462,7 +462,7 @@ class Post{
 			if($count > $limit)
 				$str .="<input type='hidden' class='nextPage' value='" . ($page + 1) ."'><input type='hidden' class='noMorePosts' value='false'>";//append to str
 				else
-				$str .="<input type='hidden' class='noMorePosts' value='true'><p style='text-align: center; color: white;'> No More Posts to show!</p>";
+				$str .="<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> No More Posts to show!</p>";
 		}//end if statement
 		echo $str;	
 

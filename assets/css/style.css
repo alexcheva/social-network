@@ -751,5 +751,9 @@ h4{
 .tab-pane{
 	padding: 15px;
 }
-
+.no_posts_p{
+	text-align: center;
+    color: white;
+	margin-bottom: 5px;
+}
 
