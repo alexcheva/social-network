@@ -3,6 +3,7 @@
 	include('includes/classes/User.php');
 	include('includes/classes/Post.php');
 	include('includes/classes/Message.php');
+	include('includes/classes/Notification.php');
 
 	if (isset($_SESSION['username'])){
 		$userLoggedIn = $_SESSION['username'];
@@ -45,6 +46,9 @@
 				//Unread messages 
 				$messages = new Message($con, $userLoggedIn);
 				$num_messages = $messages->getUnreadNumber();
+				//Unread notifications 
+				$notification = new Notification($con, $userLoggedIn);
+				$num_notifications = $notification->getUnreadNumber();
 				 ?>
 				<a href="<?php echo $userLoggedIn ?>">
 					<?php echo $user['first_name']?>
@@ -57,8 +61,11 @@
 						echo '<span class="notification_badge" id="unread_message"></span>';
 					} ?>
 					</a>
-				<a href="javascript:void(0)" onlick="getDropdownData(userLoggedIn, 'notification')">
+				<a href="javascript:void(0);" onlick="getDropdownData(userLoggedIn, 'notification')">
 					<i class="fas fa-bell"></i></a>
+					<?php if($num_notifications > 0){
+						echo '<span class="notification_badge" id="unread_notification"></span>';
+					} ?>
 				<a href="#"><i class="fas fa-user-cog"></i></a>
 				<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>
 
