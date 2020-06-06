@@ -715,3 +715,34 @@ input[type="file"]:active {
 h4{
 	padding-bottom: 5px;
 }  
+.nav-tabs {
+    border-bottom: 1px solid purple;
+}
+.tab-content {
+	padding-top: 15px;
+}
+.nav-tabs li{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+    margin: -1px 10px;
+    border: 1px solid purple;
+    padding: 5px 10px;
+    border-bottom: none;
+}
+/*.nav-tabs li.active {
+	background-color: #d500ff;
+}
+*/
+/*.nav-tabs li.active a{
+	color: white;
+}*/
+.nav-tabs li:hover{
+	background-color: #d500ff;
+}
+.nav-tabs li:active {
+	background-color: purple;
+}
+
+
+
+
