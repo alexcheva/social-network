@@ -58,7 +58,18 @@ CREATE TABLE friend_requests(
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_to VARCHAR(225) NOT NULL,
     user_from VARCHAR(225) NOT NULL
-); 
+); <br/>
+
+CREATE TABLE notifications(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_to VARCHAR(200) NOT NULL,
+    user_from VARCHAR(200) NOT NULL,
+    message TEXT NOT NULL,
+    link VARCHAR(100) NOT NULL,
+    datetime DATETIME NOT NULL,
+    opened VARCHAR(3) NOT NULL,
+    viewed VARCHAR(3) NOT NULL
+);
 
 <br/>
 I would like to:<br/>
