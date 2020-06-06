@@ -30,9 +30,14 @@ class Post{
 			}
 			//insert post into a database
 			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added', 'no','no','0')");
+			//find out the id of the last post
 			$returned_id = mysqli_insert_id($this->con);
 
 			//Insert notification
+			if($user_to != 'none'){
+				$notification = new Notification($this->con, $userLoggedIn);
+				$notification->insertNotification($returned_id, $user_to, "profile_post");
+			}
 
 			//Update post count for user
 			$num_posts = $this->user_obj->getNumPosts();
