@@ -54,7 +54,7 @@
 				<a href="requests.php"><i class="fas fa-user-friends"></i></a>
 				<a href="messages.php"><i class="fas fa-envelope"></i>
 					<?php if($num_messages > 0){
-						echo '<span class="notification_badge" id="unread_message">$num_messages</span>';
+						echo '<span class="notification_badge" id="unread_message"></span>';
 					} ?>
 					</a>
 				<a href="javascript:void(0)" onlick="getDropdownData(userLoggedIn, 'notification')">
