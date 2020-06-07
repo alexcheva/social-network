@@ -5,7 +5,7 @@ Need to install XAMPP for it to work.<br/>
 Then copy git into htdocs folder.<br/>
 Then create database in phpmyadmin called "**social**."<br/>
 Here is SQL to create tables:<br/>
-
+```
 CREATE TABLE users(
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(25) NOT NULL,
@@ -87,6 +87,6 @@ I would like to:<br/>
 12. Edit post functionality.<br/>
 13. Delete comments.<br/>
 14. Edit comments.<br/>
-
+```
 <br/>
 Thanks for looking it over, Gabriel!<br/>
