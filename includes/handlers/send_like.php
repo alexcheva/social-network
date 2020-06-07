@@ -1,6 +1,7 @@
 <?php
 	 
 	require_once("../../config/config.php");
+	require_once("../classes/Notification.php");
 
 	$userLoggedIn = $_POST['userLoggedIn'];
 	$id = $_POST['id'];
@@ -43,7 +44,7 @@
 	    $insert_like = mysqli_query($con, "INSERT INTO likes VALUES(NULL, '$userLoggedIn', '$id')");
 	    //insert notification
 	    if($user_liked != $userLoggedIn){
-	    		$notification = new Notification($this->con, $userLoggedIn);
+	    		$notification = new Notification($con, $userLoggedIn);
 	    		//where does user_to comes from?
 				$notification->insertNotification($id, $user_to, "like");
 	    }

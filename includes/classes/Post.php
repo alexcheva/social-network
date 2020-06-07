@@ -33,7 +33,7 @@ class Post{
 			//find out the id of the last post
 			$returned_id = mysqli_insert_id($this->con);
 
-			//Insert notification
+			//Insert notification whn sone posts on user profile
 			if($user_to != 'none'){
 				$notification = new Notification($this->con, $userLoggedIn);
 				$notification->insertNotification($returned_id, $user_to, "profile_post");
