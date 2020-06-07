@@ -26,7 +26,7 @@
 			<script src="assets/js/jquery.jcrop.js"></script>
 			<script src="assets/js/jcrop_bits.js"></script>
 			<script>
-    const userLoggedIn = "<?php echo $userLoggedIn; ?>";
+    var userLoggedIn = "<?php echo $userLoggedIn; ?>";
     </script>
 
 			<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
@@ -47,8 +47,8 @@
 				$messages = new Message($con, $userLoggedIn);
 				$num_messages = $messages->getUnreadNumber();
 				//Unread notifications 
-				$notification = new Notification($con, $userLoggedIn);
-				$num_notifications = $notification->getUnreadNumber();
+				$notifications = new Notification($con, $userLoggedIn);
+				$num_notifications = $notifications->getUnreadNumber();
 				 ?>
 				<a href="<?php echo $userLoggedIn ?>">
 					<?php echo $user['first_name']?>
@@ -61,7 +61,7 @@
 						echo '<span class="notification_badge" id="unread_message"></span>';
 					} ?>
 					</a>
-				<a href="javascript:void(0);" onlick="getDropdownData(userLoggedIn, 'notification')">
+				<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>, 'notification')">
 					<i class="fas fa-bell"></i></a>
 					<?php if($num_notifications > 0){
 						echo '<span class="notification_badge" id="unread_notification"></span>';

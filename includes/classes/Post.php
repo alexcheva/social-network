@@ -33,7 +33,7 @@ class Post{
 			//find out the id of the last post
 			$returned_id = mysqli_insert_id($this->con);
 
-			//Insert notification whn sone posts on user profile
+			//Insert notification when someone posts on user profile
 			if($user_to != 'none'){
 				$notification = new Notification($this->con, $userLoggedIn);
 				$notification->insertNotification($returned_id, $user_to, "profile_post");
@@ -174,7 +174,7 @@ class Post{
 				$profile_pic = $user_row['profile_pic'];
 
 				?>
-				<!-- Show the comment iframe/embed -->
+				<!-- Show the comment -->
 				<script>
 					function toggle<?php echo $id; ?>(){
 						var target = $(event.target);
@@ -349,7 +349,7 @@ class Post{
 				$profile_pic = $user_row['profile_pic'];
 
 				?>
-				<!-- Show the comment iframe/embed -->
+				<!-- Show the comment -->
 				<script>
 					function toggle<?php echo $id; ?>(){
 						var target = $(event.target);
