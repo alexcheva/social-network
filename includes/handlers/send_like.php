@@ -1,6 +1,7 @@
 <?php
 	 
 	require_once("../../config/config.php");
+	require_once("../classes/User.php");
 	require_once("../classes/Notification.php");
 
 	$userLoggedIn = $_POST['userLoggedIn'];
@@ -46,7 +47,7 @@
 	    if($user_liked != $userLoggedIn){
 	    		$notification = new Notification($con, $userLoggedIn);
 	    		//where does user_to comes from?
-				$notification->insertNotification($id, $user_to, "like");
+				$notification->insertNotification($id, $user_liked, "like");
 	    }
 	}
 

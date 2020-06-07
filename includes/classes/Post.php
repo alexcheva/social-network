@@ -35,7 +35,7 @@ class Post{
 
 			//Insert notification when someone posts on user profile
 			if($user_to != 'none'){
-				$notification = new Notification($this->con, $userLoggedIn);
+				$notification = new Notification($this->con, $added_by);
 				$notification->insertNotification($returned_id, $user_to, "profile_post");
 			}
 
