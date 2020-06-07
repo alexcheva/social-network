@@ -199,7 +199,7 @@ class Post{
 				$time_message = $this->getTime($date_time);
 				
 				//Get number of likes for the post:
-				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
 				$row = mysqli_fetch_array($get_likes);
 				$total_likes = $row['likes'];
 
@@ -376,7 +376,7 @@ class Post{
 				$time_message = $this->getTime($date_time);
 
 				//Number of likes from posts:
-				$get_likes = mysqli_query($this->con, "SELECT likes, added_by FROM posts WHERE id='$id'");
+				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
 				$row = mysqli_fetch_array($get_likes);
 				$total_likes = $row['likes'];
 
