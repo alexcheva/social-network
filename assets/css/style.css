@@ -664,6 +664,7 @@ input[type="file"]:active {
 .message_column {
     width: 70%;
     margin-bottom: 30px;
+        min-height: 250px;
 }
 #message_profile_pic{
 	float: left;
