@@ -61,7 +61,7 @@
 						echo '<span class="notification_badge" id="unread_message"></span>';
 					} ?>
 					</a>
-				<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>, 'notification')">
+				<a href="javaScript:void(0);" onClick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
 					<i class="fas fa-bell"></i></a>
 					<?php if($num_notifications > 0){
 						echo '<span class="notification_badge" id="unread_notification"></span>';
