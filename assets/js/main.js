@@ -33,21 +33,28 @@ function getDropdownData(user, type){
 			pageName = "ajax_load_notifications.php";
 			$("span").remove("#unread_notification");
 		}
+		// else if(type == 'message'){
+		// 	pageName: "ajax_load_messages.php";
+		// 	$("span").remove("#unread_message");
+
+		// }
 		var ajaxreq = $.ajax({
 			url: "includes/handlers/" + pageName,
 			type: "POST",
-			data: "page=1$userLoggedIn=" + user,
+			data: "page=1&userLoggedIn=" + user,
 			cashe: false,
 			success: function(response) {
 				$(".dropdown_data_window").html(response);
-				$(".dropdown_data_window").css({"padding": "0px", "height" : "280px"});
+				$(".dropdown_data_window").css({"padding": "0px", "height" : "auto", "border": "2px solid purple" });
+				$(".fa-bell").css({"color":"#d500ff"});
 				$("#dropdown_data_type").val(type);
 			}
 		});
 
 	} else {
 		$(".dropdown_data_window").html("");
-		$(".dropdown_data_window").css({"padding": "0px", "height" : "0px"});
+		$(".dropdown_data_window").css({"padding": "0px", "height" : "0px", "border": "none"});
+		$(".fa-bell").css({"color":"white"});
 	}
 }
 function updateLikes(id) {

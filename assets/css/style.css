@@ -776,3 +776,26 @@ h4{
 	right: 49px;
     top: 6px;
 }
+
+/*Dropdown styling header*/
+.dropdown_data_window{
+    background: #000000d4;
+    float: right;
+    /*border: 2px solid purple; */
+}
+.dropdown_data_window p{
+    padding-top: 10px;
+    text-align: center;
+}
+.notification{
+	padding: 10px 15px;
+    border-bottom: 1px solid purple; 
+    width: 300px;
+
+}
+.notificationsProfilePic {
+	width: 55px;
+    float: left;
+    border-radius: 50%;
+    border: 2px solid purple;
+    margin-right: 15px;}
