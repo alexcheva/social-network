@@ -28,8 +28,9 @@ class Notification{
 
 		$set_viewed_query = mysqli_query($this->con, "UPDATE notifications SET viewed='yes' WHERE user_to='$userLoggedIn'");
 		$query = mysqli_query($this->con, "SELECT * FROM notifications WHERE user_to='$userLoggedIn' ORDER BY id DESC");
+
 		if(mysqli_num_rows($query) == 0) {
-			echo "You have no notifications!";
+			echo "<p>You have no notifications!</p>";
 		}
 
 		$num_iterations = 0;
@@ -47,9 +48,9 @@ class Notification{
 			//get timeframe
 			$post_obj = new Post($this->con, $userLoggedIn);
 			$time_message = $post_obj->getTime($row['datetime']);
-
-			$query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_from'");
-			$user_data = mysqli_fetch_array($query);
+			//get the data from the user who notification is from
+			$user_data_query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_from'");
+			$user_data = mysqli_fetch_array($user_data_query);
 
 			$opened = $row['opened'];
 
