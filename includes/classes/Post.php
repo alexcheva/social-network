@@ -579,7 +579,181 @@ class Post{
 	 
 		return $commment_from_db;
 	}
+	public function getSinglePost($id){
+		$userLoggedIn = $this->user_obj->getUsername();
+		
+		$str = ""; //string to return
+		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND id='$id'");
+		//if there is a posts:
+		if(mysqli_num_rows($data_query) > 0){
 
+			$row = mysqli_fetch_array($data_query);
+			$id = $row['id'];
+			$body = $row['body'];
+			$added_by = $row['added_by'];
+			$date_time = $row['date_added'];
+
+			//prepare user_to string so it can be included even if noot posted to a user
+			if($row['user_to'] == "none") {
+				$user_to = "";
+			}
+			else {
+				$user_to_obj = new User($this->con, $row['user_to']);
+				$user_to_name = $user_to_obj->getFirstAndLastName();
+				$user_to = "to <a href='" . $row['user_to'] ."'>" . $user_to_name . "</a>";
+
+			}
+			//check is user have their account closed
+			$added_by_obj = new User($this->con, $added_by);
+			if($added_by_obj->isClosed()){
+				return;
+			}
+
+			$user_logged_obj = new User($this->con, $userLoggedIn);
+
+			//If friend statement
+			if($user_logged_obj->isFriend($added_by)){
+
+				//add delete post button if logged in user is the one posted
+				if($userLoggedIn == $added_by)
+					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
+				else
+					$delete_button = "";
+
+				//get user details and store them in variables:
+				$user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE username='$added_by'");
+				$user_row = mysqli_fetch_array($user_details_query);
+				$first_name = $user_row['first_name'];
+				$last_name = $user_row['last_name'];
+				$profile_pic = $user_row['profile_pic'];
+
+				?>
+				<!-- Show the comment -->
+				<script>
+					function toggle<?php echo $id; ?>(){
+						var target = $(event.target);
+						if(!target.is("a")){
+							var element = document.getElementById("toggleComment<?php echo $id; ?>");
+							if(element.style.display == "block")
+								element.style.display = "none";
+							else
+								element.style.display = "block";
+						}
+					}
+
+				</script>
+				<?php
+
+				//Check if there are comments:
+				//find all comments for post:
+				$comments_check = mysqli_query($this->con, "SELECT * FROM comments WHERE post_id='$id'");
+				//find number of results:
+				$comments_check_num = mysqli_num_rows($comments_check);
+				//add time frame
+				$time_message = $this->getTime($date_time);
+				
+				//Get number of likes for the post:
+				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
+				$row = mysqli_fetch_array($get_likes);
+				$total_likes = $row['likes'];
+
+				//Check for previous likes
+				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
+				$num_rows = mysqli_num_rows($check_query);
+	            $like_button = '';
+				if($num_rows > 0) {
+
+					$like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>
+					";
+				}
+				else {
+					$like_button .= "
+							<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>
+					";
+				}
+
+				$str .= "<div class='status_post'>
+							<div class='post_profile_pic'>
+								<img class='post_profile_img' src='$profile_pic'>
+							</div>
+							<div class='posted_by'>
+								<a href='$added_by'>$first_name $last_name</a> $user_to 
+							</div>
+							<div class='post_body'>
+								$body
+							</div>
+							<div class='post_time'>
+								$time_message
+							</div>
+							$delete_button
+							<hr>
+							<div class='newsfeedPostOptions'>
+								<span class='num_comments' onClick='javaScript:toggle$id()'>
+									Comments ($comments_check_num)
+								</span>
+								<span class='like_value' id='total_like_$id'>";
+								if($total_likes === '1' ){
+									$str .= "$total_likes Like";
+								}
+								else{
+									$str .= "$total_likes Likes";
+								}
+
+								$str .= "</span>
+								<span>$like_button</span>
+							</div>					
+						</div>
+						<div class='post_comment' id='toggleComment$id' style='display:none;'>
+						   <div class='comments_area'>
+						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
+						     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
+						   </div>"
+							.$this->getComments($id).
+						"</div>
+						<hr>";
+			?>
+			<script>
+			//Delete post functionality bootbox
+				$(document).ready(function(){
+					$('#post<?php echo $id; ?>').on('click', function(){
+						//bootstrap
+						bootbox.confirm({
+							message: "Are you sure you want to delete this post?", buttons: {
+        					confirm: {
+					            label: 'Yes'
+					        },
+
+					        cancel: {
+					            label: 'No'						        }
+					    	},
+					    	
+					        callback:
+					    	function
+							(result){
+								$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
+								//if there is a result = true
+								if(result)
+									location.reload();
+							}
+						});
+					});
+				});
+			</script>
+			<?php
+			}//end if friend statement
+				else{
+					echo "<p>You cannot see this post, because you are not friends with this user.</p>";
+					return;
+				}
+
+		}//end if there is post statement
+		else{
+			echo "<p>No post found. If you clicked a link, it may be broken.</p>";
+					return;
+		}
+		echo $str;	
+
+	}
 }
 
 
