@@ -53,8 +53,8 @@ class Notification{
 			$user_data = mysqli_fetch_array($user_data_query);
 
 			$opened = $row['opened'];
-
-			$style = ($row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
+			//hightlight unread messages:
+			$style = (isset($row['opened']) && $row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
 
 			$return_string .= "<a href='". $row['link'] . "'>
 								<div class='notification'>
