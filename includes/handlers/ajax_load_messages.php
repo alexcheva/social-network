@@ -6,7 +6,7 @@ include("../classes/Message.php");
 $limit = 7;//limit the amount of messages loaded at once
 
 $message = new Message ($con, $_REQUEST['userLoggedIn']);
-echo $message->GetConvosDropdown($_REQUEST, $limit);
+echo $message->getConvosDropdown($_REQUEST, $limit);
 
 
  ?>

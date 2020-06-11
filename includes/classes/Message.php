@@ -169,14 +169,14 @@ class Message {
 								</div>
 								</a>";
 
-		}
+			}
 
 
 		//if posts were loaded
 		if($count > $limit)
 			$return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) ."'><input type='hidden' class='noMoreDropdownData'>" ;
 		else
-			$return_string .= "<input type='hidden' calss='noMoreDropdownData' value='true'><p style='text-align: center;'>No more messages to load!</p>";
+			$return_string .= "<input type='hidden' calss='noMoreDropdownData' value='true'><p>No more messages to load!</p>";
 		return $return_string;
 
 	}

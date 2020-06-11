@@ -63,7 +63,7 @@
 							echo '<span class="notification_badge" id="unread_request"></span>';
 						} ?>
 				</a>
-				<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')"><i class="fas fa-envelope"></i>
+				<a href="messages.php"><i class="fas fa-envelope"></i>
 					<?php if($num_messages > 0){
 						echo '<span class="notification_badge" id="unread_message"></span>';
 					} ?>

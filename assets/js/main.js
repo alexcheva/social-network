@@ -32,6 +32,7 @@ function getDropdownData(user, type){
 		if(type == 'notification') {
 			pageName = "ajax_load_notifications.php";
 			$("span").remove("#unread_notification");
+			$(".fa-bell").css({"color":"#d500ff"});
 		}
 		else if(type == 'message'){
 			pageName: "ajax_load_messages.php";
@@ -45,8 +46,8 @@ function getDropdownData(user, type){
 			cashe: false,
 			success: function(response) {
 				$(".dropdown_data_window").html(response);
-				$(".dropdown_data_window").css({"padding": "0px", "height" : "auto", "border": "2px solid purple" });
-				$(".fa-bell").css({"color":"#d500ff"});
+				$(".dropdown_data_window").css({"padding": "0px", "height" : "300", "border": "2px solid purple" });
+				
 				$("#dropdown_data_type").val(type);
 			}
 		});

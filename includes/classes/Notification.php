@@ -65,7 +65,7 @@ class Notification{
 								</a>";
 
 		}
-
+		//if notifications were loaded
 		if($count > $limit)
 			$return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) ."'><input type='hidden' class='noMoreDropdownData' value='false'>";
 		else
@@ -82,19 +82,19 @@ class Notification{
 
 		switch($type){
 			case 'comment':
-				$message = $userLoggedInName . " commented on your post";
+				$message = $userLoggedInName . " commented on your post.";
 				break;
 			case 'like':
-				$message = $userLoggedInName . " liked your post";
+				$message = $userLoggedInName . " liked your post.";
 				break;
 			case 'profile_post':
-				$message = $userLoggedInName . " posted on your profile";
+				$message = $userLoggedInName . " posted on your profile.";
 				break;
 			case 'comment_non_owner':
-				$message = $userLoggedInName . " commented on a post you commented on";
+				$message = $userLoggedInName . " commented on a post you commented on.";
 				break;
 			case 'profile_comment':
-				$message = $userLoggedInName . " commented on your profile post";
+				$message = $userLoggedInName . " commented on your profile post.";
 				break;
 		}
 
