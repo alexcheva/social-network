@@ -41,14 +41,29 @@
 				<h1><a href="index.php">Verni Moj 2007 &#128148;</a></h1>
 			</div>
 
+			<div class="search">
+				<form action="search.php" method="GET" name="search_form">
+					<input type="text" onkeyup="getLiveSearchUsers(this.valie, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+					<div class="button_holder">
+						<i class="fa fa-search"></i>
+					</div>
+
+				</form>
+				<div class="search_results"></div>
+				<div class="search_results_footer_empty"></div>
+			</div>
+
 			<nav>
+				
 				<?php 
 				//Unread messages 
 				$messages = new Message($con, $userLoggedIn);
 				$num_messages = $messages->getUnreadNumber();
+
 				//Unread notifications 
 				$notifications = new Notification($con, $userLoggedIn);
 				$num_notifications = $notifications->getUnreadNumber();
+				
 				//Unread friend_requests 
 				$user_obj = new User($con, $userLoggedIn);
 				$num_requests = $user_obj->getNumberFriendRequests();

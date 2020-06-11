@@ -132,11 +132,11 @@ nav a:active{
 }
 
 input{
-	padding: 5px;
+	padding: 5px 10px;
 	margin-bottom: 3px;
 	background-color: black;
 	color: white;
-	border-color: purple;
+    border: 1px solid purple;
 	outline-color: pink;
 	font-size: 14px;
 }
@@ -803,4 +803,29 @@ h4{
     float: left;
     border-radius: 50%;
     border: 2px solid purple;
-    margin-right: 15px;}
+    margin-right: 15px;
+}
+
+/*SEARCH BAR*/
+.search{
+	position: absolute;
+    /* width: 200px; */
+    /* height: 45px; */
+    right: 430px;
+    top: 13px;
+}
+.button_holder{
+	cursor: pointer;
+    border: 1px solid purple;
+    padding: 6px 10px;
+    display: inline;
+}
+.button_holder:hover{
+ 	color: #d500ff;
+ 	border-color: #d500ff;
+}
+.button_holder:active{
+ 	background-color: purple;
+ 	color: white;
+ 	border-color: white;
+}
