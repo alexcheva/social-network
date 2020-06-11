@@ -581,6 +581,8 @@ class Post{
 	}
 	public function getSinglePost($id){
 		$userLoggedIn = $this->user_obj->getUsername();
+		//changed notification to opened, when clicked
+		$opened_query = mysqli_query($this->con, "UPDATE notifications SET opened='yes' WHERE user_to='$userLoggedIn' AND link LIKE '%=$id'");
 		
 		$str = ""; //string to return
 		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND id='$id'");
