@@ -1,4 +1,15 @@
 $(document).ready(function(){
+	$('#search_text_input').focus(function(){
+		//if device is larger than 800px
+		if(window.matchMedia( "(min-width: 800px)" ).matches) {
+			$(this).animate({width: "25opx"}, 500);
+		}
+	});
+	//submit form when click on button holder div
+	$(".button_holder").on('click', function(){
+		document.search_form.submit();
+	});
+
 	//button for profile post
 	$('#submit_profile_post').click(function(){
 		$.ajax({
@@ -57,6 +68,25 @@ function getDropdownData(user, type){
 		$(".dropdown_data_window").css({"padding": "0px", "height" : "0px", "border": "none"});
 		$(".fa-bell").css({"color":"white"});
 	}
+}
+function getLiveSearchUsers(value, user){
+	$.post("includes/handlers/ajax_search.php", {query:value, userLoggedIn: user}, function(data){
+		if($(".search_results_footer_empty")[0]){
+			//change the class
+			$(".search_results_footer_empty").toggleClass("search_results_footer");
+			$(".search_results_footer_empty").toggleClass("search_results_footer_empty");
+		}
+		$(".search_results").html(data);
+		$(".search_results_footer").html("<a href='search.php?q=" + value +"'>See all results</a>");
+
+		if(data = ""){
+			$(".search_results_footer").html("");
+			$(".search_results_footer").toggleClass("search_results_footer_empty");
+			$(".search_results_footer").toggleClass("search_results_footer");
+		}
+
+	});
+
 }
 function updateLikes(id) {
     return $.get("like_post.php", {post_id: id}).done((num_likes) => {
