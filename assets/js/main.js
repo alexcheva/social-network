@@ -72,7 +72,6 @@ function getDropdownData(user, type){
 function getLiveSearchUsers(value, user){
 	$.post("includes/handlers/ajax_search.php", {query:value, userLoggedIn: user}, function(data){
 		if($(".search_results_footer_empty")[0]){
-			//change the class
 			$(".search_results_footer_empty").toggleClass("search_results_footer");
 			$(".search_results_footer_empty").toggleClass("search_results_footer_empty");
 		}

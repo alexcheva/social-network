@@ -24,23 +24,16 @@ if($query != ""){
 
 		$user = new User($con, $userLoggedIn);
 
-		if($row['username'] != $userLoggedIn)
-
-			$mutural_friends = $user->getMutualFriends($row['username']);
-
-		else
-			$mutural_friends = "";
+		$mutural_friends = $user->getMutualFriends($row['username']);
 
 		if($row['username'] == $userLoggedIn)
 			$friend_count = "";
-
 		else if($mutural_friends == 0) 
 			$friend_count = "No friends in common";
 		else if ($mutural_friends == 1)
-		$friend_count = $mutural_friends . " friend in common";
-		
+			$friend_count = $mutural_friends . " friend in common";
 		else
-		$friend_count = $mutural_friends . " friends in common";
+			$friend_count = $mutural_friends . " friends in common";
 
 		echo "<div class='liveSearchResult'>
 			<a href='" . $row['username'] ."'>
