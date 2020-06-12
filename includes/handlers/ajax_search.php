@@ -47,6 +47,8 @@ if($query != ""){
 			</a>
 			</div>";
 	}
+	if(mysqli_num_rows($usersReturnedQuery) == 0)
+		echo "<div class='liveSearchResult' id='no_results'>No results found!</div>";
 }
 
  ?>

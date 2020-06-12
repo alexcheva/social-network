@@ -29,13 +29,17 @@ if(isset($_GET['type'])){
 			if(count($names) == 3)
 			$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' AND last_name LIKE '$names[2]%') AND user_closed='no'");
 			//search first or last name
-			else if(count($names) == 1)
+			else if(count($names) == 2)
 				$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' AND last_name LIKE '$names[1]%') AND user_closed='no'");
 			else
 				$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' OR last_name LIKE '$names[0]%') AND user_closed='no'");
 		
 		}
+		if(mysqli_num_rows($usersReturnedQuery) == 0)
+		echo "<p>No results found!</p>";
 		
-	 ?>
+	
 	}
+
+	 ?>
 </div>
