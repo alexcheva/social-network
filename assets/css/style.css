@@ -557,6 +557,12 @@ embed{
     color: black;
     outline-color: #d500ff;
 }
+.active_tab{
+	background-color: #8a01a5b0;
+}
+.active_tab a{
+	color: white;
+}
 
 /*upload image*/
 /*#CroppingContainer{

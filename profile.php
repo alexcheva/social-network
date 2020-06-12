@@ -80,10 +80,10 @@
 				?>:</h2>
 
 		<ul class="nav nav-tabs" id="profileTabs">
-		  <li>
-		    <a href="#newsfeed_div"  role="tab" data-toggle="tab">Newsfeed</a>
+		  <li class="active_tab" id="newsfeed">
+		    <a href="#newsfeed_div" role="tab" data-toggle="tab">Newsfeed</a>
 		  </li>
-		  <li><a href="#about_div" aria-control="about_div" role="tab" data-toggle="tab">About</a></li>
+		  <li id="about"><a href="#about_div" aria-control="about_div" role="tab" data-toggle="tab">About</a></li>
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="newsfeed_div">
@@ -187,6 +187,15 @@
 	            rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
 	        );
 	    }
+	});
+	$("#about").on('click', function(){
+		$("#newsfeed").removeClass("active_tab");
+		$("#about").addClass("active_tab");
+		
+	});
+	$('#newsfeed').on('click', function(){
+		$("#about").removeClass("active_tab");
+		$("#newsfeed").addClass("active_tab");
 	});
 	function sendComment(id) {
  	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
