@@ -1,6 +1,5 @@
 <?php
 require 'config/config.php';
-
 require 'includes/form_handlers/register_handler.php';
 require 'includes/form_handlers/login_handler.php';
 ?>
@@ -8,11 +7,8 @@ require 'includes/form_handlers/login_handler.php';
 	<head>
 		<title>Welcome!</title>
 		<link rel="stylesheet" href="assets/css/register_style.css">
-		<script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-  <script src="assets/js/register.js"></script>
+		<script src="assets/js/jquery-2.2.4.min.js"></script>
+		<script src="assets/js/register.js"></script>
 	</head>
 	<body>
 
