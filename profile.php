@@ -67,8 +67,10 @@
 					echo $logged_in_user_obj->getMutualFriends($username);
 					echo '</p>';
 				}
+				if($logged_in_user_obj ->isFriend($username))
+					echo '<input type="submit" id="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">';
 			?>
-			<input type="submit" id="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">
+			
 		</div>
 	</div>
 
