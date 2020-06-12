@@ -36,13 +36,13 @@ if(isset($_GET['type'])){
 		
 		}
 		if(mysqli_num_rows($usersReturnedQuery) == 0)
-		echo "<p>We can't find anyone with a" . $type . " like: " . $query ."</p>";
-	else
-		echo "<p>" . mysqli_num_rows($usersReturnedQuery) . " results found:<p>";
+			echo "<p>We can't find anyone with a" . $type . " like: " . $query ."</p>";
+		else
+			echo "<p>" . mysqli_num_rows($usersReturnedQuery) . " results found:<p>";
+			echo "<p id='grey'>Try searching for: <p>";
+			echo "<a href='search.php?q=" . $query . "&type=name'>Names</a>/<a href='search.php?q=" . $query . "&type=username'>Usernames</a><hr>";
 
-	echo "<p id='grey'>Try searching for: <p>";
-	echo "<a href='search.php?q=" . $query . "&type=name'>Names</a>/<a href='search.php?q=" . $query . "&type=username'>Usernames</a><hr>";
-	while($row= mysqli_fetch_array($usersReturnedQuery)) {
+	while($row = mysqli_fetch_array($usersReturnedQuery)) {
 		$user_obj = new User($con, $user['username']);
 		$button = "";
 		$mutual_friends = "";
@@ -51,17 +51,17 @@ if(isset($_GET['type'])){
 		if($user['username'] != $row['username']){
 			//generate button depending on relationship status
 			if($user_obj->isFriend($row['username']))
-				$button = "<input type='submit' name='" . $row['username'] . "' class='danger' value='Remove Friend'>";
-			else if($user_obj->didRecieveRequest($row['username']))
-				$button = "<input type='submit' name='" . $row['username'] . "' class='warning' value='Respond to Request'>";
+				$button = "<input type='submit' name='" . $row['username'] . "' id='danger' value='Remove Friend'>";
+			else if($user_obj->didReceiveRequest($row['username']))
+				$button = "<input type='submit' name='" . $row['username'] . "' id='warning' value='Respond to Request'>";
 			else if($user_obj->didSendRequest($row['username']))
-				$button = "<input class='default' value='Request Sent'>";
+				$button = "<input id='default' value='Request Sent'>";
 			else
-				$button = "<input type='submit' name='" . $row['username'] . "' class='success' value='Add Friend'>";
+				$button = "<input type='submit' name='" . $row['username'] . "' id='success' value='Add Friend'>";
 
-			$mutural_friends = $user->getMutualFriends($row['username']);
+			$mutural_friends = $user_obj->getMutualFriends($row['username']);
 
-			else if($mutural_friends == 0) 
+			if($mutural_friends == 0) 
 				$friend_count = "No friends in common";
 			else if ($mutural_friends == 1)
 				$friend_count = $mutural_friends . " friend in common";
@@ -71,11 +71,21 @@ if(isset($_GET['type'])){
 			//button forms
 
 		}
-
+		echo "<div class='search_result'>
+				<a href='". $row['username']. "'> <img class='result_profile_pic' src='". $row['profile_pic'] ."'></a>
+				<div>
+				<a href='". $row['username']. "'>" . $row['first_name'] . " " . $row['last_name'] ."</a>
+				<p>" . $row['username'] . "</p>
+				<p id='grey'>" . $friend_count .
+				"</div>
+				<div class='searchPageFriend Buttons'>
+				<form action='' method='POST'>
+				" . $button . "
+				</form>
+				</div>
+			</div><hr>";
 	}
-		
-	
-	}
+		}
 
 	 ?>
 </div>

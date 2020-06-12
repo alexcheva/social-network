@@ -858,5 +858,17 @@ h4{
     padding: 10px 15px;
 }
 
+/* search.php*/
+.search_result {
+	padding: 10px 15px;
+    min-height: 170px;
+}
+.result_profile_pic{
+	height: 150px;
+    border-radius: 50%;
+    float: left;
+    border: 5px solid purple;
+    margin-right: 15px;
+}
 
 
