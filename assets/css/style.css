@@ -811,7 +811,7 @@ h4{
 	position: absolute;
     /* width: 200px; */
     /* height: 45px; */
-    right: 430px;
+    left: 430px;
     top: 13px;
 }
 .button_holder{
@@ -829,3 +829,28 @@ h4{
  	color: white;
  	border-color: white;
 }
+
+.lifeSearchProfilePic {
+    width: 55px;
+    float: left;
+    border-radius: 50%;
+    border: 2px solid purple;
+    margin-right: 15px;
+}
+.search_results{
+	background: #000000d4;
+    overflow: auto;
+    width: 350px;
+    max-height: 450px;
+}
+.search_results_footer{
+	background: #000000d4;
+	padding: 10px;
+}
+.liveSearchResult{
+	border-bottom: 1px solid purple;
+    padding: 10px 15px;
+}
+
+
+
