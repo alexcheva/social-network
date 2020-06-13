@@ -13,14 +13,26 @@ include("includes/header.php");
  	 <div>
  	 	<a href="upload.php">Upload new profile picture</a>
  	 	<p>Modify the values and click "Update Details":</p>
- 	 	<form action="settings.php" method="POST">
+ 	 	<form id="settings" action="settings.php" method="POST">
  	 		<label>First Name:</label>
  	 		<input type="text" name="first_name" value="<?php echo $user['first_name']; ?>">
  	 		<label>Last Name:</label>
  	 		<input type="text" name="last_name" value="<?php echo $user['last_name']; ?>">
  	 		<label>Username:</label>
  	 		<input type="text" name="username" value="<?php echo $user['username']; ?>">
-
+ 	 		<label>Email:</label>
+ 	 		<input type="text" name="email" value="<?php echo $user['email']; ?>">
+ 	 	</form>
+ 	 	<h4>Change Password:</h4>
+ 	 	<form id="settings" action="settings.php" method="POST">
+ 	 		<label>Old Password:</label>
+ 	 		<input type="password" name="first_name" value="<?php echo $user['first_name']; ?>">
+ 	 		<label>New Password:</label>
+ 	 		<input type="password" name="last_name" value="<?php echo $user['last_name']; ?>">
+ 	 		<label>New Password Again:</label>
+ 	 		<input type="password" name="username" value="<?php echo $user['username']; ?>">
+ 	 		<label>Email:</label>
+ 	 		<input type="text" name="email" value="<?php echo $user['email']; ?>">
  	 	</form>
  	 </div>
 
