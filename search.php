@@ -36,7 +36,7 @@ if(isset($_GET['type'])){
 		
 		}
 		if(mysqli_num_rows($usersReturnedQuery) == 0)
-			echo "<p>We can't find anyone with a" . $type . " like: " . $query ."</p>";
+			echo "<p>We can't find anyone with a " . $type . " like: " . $query ."</p>";
 		else
 			echo "<p>" . mysqli_num_rows($usersReturnedQuery) . " results found:<p>";
 			echo "<p id='grey'>Try searching for: <p>";
@@ -55,7 +55,7 @@ if(isset($_GET['type'])){
 			else if($user_obj->didReceiveRequest($row['username']))
 				$button = "<input type='submit' name='" . $row['username'] . "' id='warning' value='Respond to Request'>";
 			else if($user_obj->didSendRequest($row['username']))
-				$button = "<input id='default' value='Request Sent'>";
+				$button = "<input type='submit' id='default' value='Request Sent'>";
 			else
 				$button = "<input type='submit' name='" . $row['username'] . "' id='success' value='Add Friend'>";
 
@@ -69,6 +69,24 @@ if(isset($_GET['type'])){
 				$friend_count = $mutural_friends . " friends in common";
 
 			//button forms
+			if(isset($_POST[$row['username']])){
+
+				if($user_obj->isFriend($row['username'])){
+					$user_obj->removeFriend($row['username']);
+					header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+				}
+				else if($user_obj->didReceiveRequest($row['username'])){
+					header("Location: requests.php");
+				}
+				else if($user_obj->didSendRequest($row['username'])){
+
+				}
+				else{
+					$user_obj->sendRequest($row['username']);
+					header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+				}
+
+			}
 
 		}
 		echo "<div class='search_result'>

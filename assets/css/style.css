@@ -13,7 +13,7 @@ a:hover{
 }
 a:active{
 	color: purple;
-		text-decoration: underline;
+	text-decoration: underline;
 }
 body{
 	color: white;
@@ -224,9 +224,7 @@ hr{
 	font-style: oblique;
 	font-weight: 100;
 }
-iframe{
-	width:100%;
-}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -245,10 +243,7 @@ iframe{
 ::-webkit-scrollbar-thumb:hover {
   background: #d51279; 
 }
-embed{
-	height: auto;
-	width:100%;
-}
+
 #loading{
 	width: 30px;
 	align-self: center;
