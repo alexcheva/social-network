@@ -88,7 +88,7 @@
 					<?php if($num_notifications > 0){
 						echo '<span class="notification_badge" id="unread_notification"></span>';
 					} ?>
-				<a href="#"><i class="fas fa-user-cog"></i></a>
+				<a href="settings.php"><i class="fas fa-user-cog"></i></a>
 				<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>
 
 				<!-- <a href="#"><i class="fas fa-house-user"></i></a> -->
