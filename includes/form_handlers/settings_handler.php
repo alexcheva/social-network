@@ -12,7 +12,7 @@ if(isset($_POST['update_details'])){
 	$matched_user = $row['username'];
 
 	if($matched_user == "" || $matched_user == $userLoggedIn){
-		$message = "<p class='success'>User Details have been sucessfully updated!</p>";
+		$message = "<p class='success'>Details have been sucessfully updated!</p>";
 
 		$query = mysqli_query($con, "UPDATE users SET first_name='$first_name', last_name='$last_name', email='$email' WHERE username='$userLoggedIn'");
 
