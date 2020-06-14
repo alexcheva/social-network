@@ -51,5 +51,10 @@ if(isset($_POST['update_password'])){
 
 } else
 $password_message = "";
+// ********************************
 
+if(isset($_POST['close_account'])){
+	//could i do it in modal?
+	header("Location: close_account.php");
+}
 ?>
