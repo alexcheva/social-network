@@ -8,7 +8,7 @@ a {
 	font-weight: 600;
 }
 a:hover{
-	color: white;
+	color: #ffea00;
 	text-decoration: underline;
 }
 a:active{
@@ -180,8 +180,8 @@ input[type=button]:active{
 textarea {
     background-color: black;
     color: white;
-    border-color: purple;
-    outline-color: pink;
+	border-color: #d500ff;
+    outline-color: #d500ff;
     width: 85%;
     height: 100px;
     padding: 5px 10px;
@@ -467,13 +467,14 @@ hr{
 .form-control{
 	background-color: black;
 	color:white;
-    border-color: purple;
-    outline-color: pink;
+    border-color: #d500ff;
+    outline-color: #ffea00;
+    border-radius: 0px;
 }
 .form-control:focus {
     color: white;
     background-color: #000;
-    border-color: pink;
+    border-color: #d500ff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem #ffc0cb52;
     /*border-radius: 0px;*/
