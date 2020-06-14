@@ -105,7 +105,7 @@
 	
 	if(commentText === "") {
  
-		alert("Please enter some text first");
+		bootbox.alert("Please enter some text first!");
 		return;
 	}
  
@@ -139,7 +139,7 @@
  
 		else {
  
-			alert("Something went wrong. Please try again");
+			bootbox.alert("Something went wrong. Please try again.");
 		} 
  
 	});

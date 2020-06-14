@@ -166,6 +166,11 @@ class Post{
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
+				//edit post functionality
+				if($userLoggedIn == $added_by)
+					$edit_button = "<a class='edit_button' id='edit_post$id'><i class='fa fa-pencil-square-o'></i></a>";
+				else
+					$edit_button = "";
 
 				$user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE username='$added_by'");
 				$user_row = mysqli_fetch_array($user_details_query);

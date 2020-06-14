@@ -188,6 +188,7 @@
 	        );
 	    }
 	});
+	//tabs functionality
 	$("#about").on('click', function(){
 		$("#newsfeed").removeClass("active_tab");
 		$("#about").addClass("active_tab");
@@ -198,13 +199,13 @@
 		$("#newsfeed").addClass("active_tab");
 	});
 	function sendComment(id) {
- 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
-	const commentText = $("#comment" + id).val();
-	
-	if(commentText === "") {
- 
-		alert("Please enter some text first");
-		return;
+	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
+		const commentText = $("#comment" + id).val();
+		
+		if(commentText === "") {
+	 
+			bootbox.alert("Please enter some text first!");
+			return;
 	}
  
 	const sendComment = $.post("includes/handlers/send_comment.php", {
@@ -237,7 +238,7 @@
  
 		else {
  
-			alert("Something went wrong. Please try again");
+			bootbox.alert("Something went wrong. Please try again");
 		} 
  
 	});
