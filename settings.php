@@ -13,7 +13,7 @@ include("includes/header.php");
  	 <div>
  	 	<a href="upload.php">Upload new profile picture</a>
  	 	<p>Modify the values and click "Update Details":</p>
- 	 	<form id="settings" action="settings.php" method="POST">
+ 	 	<form class="settings" id="settings" action="settings.php" method="POST">
  	 		<label>First Name:</label>
  	 		<input type="text" name="first_name" value="<?php echo $user['first_name']; ?>">
  	 		<label>Last Name:</label>
@@ -24,15 +24,17 @@ include("includes/header.php");
  	 		<input type="text" name="email" value="<?php echo $user['email']; ?>">
  	 	</form>
  	 	<h4>Change Password:</h4>
- 	 	<form id="settings" action="settings.php" method="POST">
+ 	 	<form class="settings" id="settings" action="settings.php" method="POST">
  	 		<label>Old Password:</label>
- 	 		<input type="password" name="first_name" value="<?php echo $user['first_name']; ?>">
+ 	 		<input type="password" name="old_password">
  	 		<label>New Password:</label>
- 	 		<input type="password" name="last_name" value="<?php echo $user['last_name']; ?>">
+ 	 		<input type="password" name="new_password1">
  	 		<label>New Password Again:</label>
- 	 		<input type="password" name="username" value="<?php echo $user['username']; ?>">
- 	 		<label>Email:</label>
- 	 		<input type="text" name="email" value="<?php echo $user['email']; ?>">
+ 	 		<input type="password" name="new_password2">
+ 	 	</form>
+ 	 	<h4>Close Account:</h4>
+ 	 	<form action="close_account.php">
+ 	 		<input type="submit" name="close_account" id="close_account" value="Close Account">
  	 	</form>
  	 </div>
 
