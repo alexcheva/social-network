@@ -47,7 +47,7 @@ include("includes/form_handlers/settings_handler.php");
  	 	</form>
  	 	<h4>Close Account:</h4>
  	 	<form action="close_account.php">
- 	 		<input type="submit" name="close_account" id="close_account" value="Close Account">
+ 	 		<input type="submit" name="close_account" id="danger" value="Close Account">
  	 	</form>
  	 </div>
 

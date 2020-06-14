@@ -137,7 +137,7 @@ input{
 	background-color: black;
 	color: white;
     border: 1px solid purple;
-	outline-color: pink;
+	outline-color: #d500ff;
 	font-size: 14px;
 }
 input:hover{
@@ -147,15 +147,35 @@ input[type="submit"] {
 	padding: 5px 10px;
 	margin-top: 10px;
 	display: block;
+	border: 1px solid #d500ff;
+	font-weight: 500;
+	color: #d500ff;
+}
+input[type="button"] {
+	padding: 5px 10px;
+	border: 1px solid #d500ff;
+	font-weight: 500;
+	color: white;
 }
 input[type="submit"]:hover {
-	background-color: purple;
-	border: 1px black solid;
+	background-color: #d500ff;
+	border: 1px white solid;
+	color: white;
+}
+input[type=button]:hover {
+	background-color: #d500ff;
+	border: 1px white solid;
 	color: white;
 }
 input[type="submit"]:active {
-	background-color: #d500ff;
+	background-color: purple;
 	color: black;
+	outline-color: #d500ff;
+}
+input[type=button]:active{
+	background-color: purple;
+	color: black;
+	outline-color: #d500ff;
 }
 textarea {
     background-color: black;
@@ -766,7 +786,7 @@ h4{
     /* line-height: 1; */
     /* vertical-align: baseline; */
     /* color: white; */
-    background-color: var(--pink);
+    background-color: #ff00aa;
     border-radius: 10px;
     position: absolute;
     top: 3px;
