@@ -30,7 +30,7 @@ include("includes/form_handlers/settings_handler.php");
  	 		<input type="text" name="last_name" value="<?php echo $last_name; ?>">
  	 		<!-- <label>Username:</label>
  	 		<input type="text" name="username" value="<?php echo $username; ?>"> -->
- 	 		<label>Email:</label>
+ 	 		<label>E-mail:</label>
  	 		<input type="text" name="email" value="<?php echo $email; ?>">
  	 		<input type="submit" name="update_details" class="save_details" value="Update Details">
  	 	</form>
