@@ -46,8 +46,10 @@ if(isset($_POST['update_password'])){
 		}else{
 			$password_message = "<p id='password_message' class='error'>Your two new password doesn't match!</p>";
 		}
+	}else if($old_password == "" || $new_password1 == "" || $new_password2 == ""){
+		$password_message = "<p id='password_message' class='error'>One or more fields are empty:</p>";
 	}else
-	$password_message = "<p id='password_message' class='error'>Your old password doesn't match!</p>";
+		$password_message = "<p id='password_message' class='error'>Your old password doesn't match!</p>";
 
 } else
 $password_message = "";
