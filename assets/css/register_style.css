@@ -96,16 +96,16 @@ p{
 	display: block;
 	margin-top: 7px;
     margin-bottom: 10px;
-    color: #d51919;
+    color: #ff002b;
 }
 .success{
 	display: block;
 	margin-top: 7px;
-    color: #d51279;
+    color: #2bff00;
 }
 .success a{
 	text-decoration: underline;
-    color: #d51279;
+    color: #ffea00;
 }
 .success a:hover{
 	text-decoration: underline;
