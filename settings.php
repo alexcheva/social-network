@@ -6,12 +6,14 @@ include("includes/form_handlers/settings_handler.php");
 
  <div class="main_column column">
  	
- 	<h4 id="message">Account Settings:</h4>
+ 	<h2 id="message">Account Settings:</h2>
+ 	<h4>Profile Picture:</h4>
  	<?php 
  	echo "<img src='" . $user['profile_pic'] . "' id='small_profile_pic'>";
  	 ?>
  	 <div>
- 	 	<a href="upload.php">Upload new profile picture</a>
+ 	 	<p><a href="upload.php">Upload new profile picture</a></p>
+ 	 	<h4>Account Details:</h4>
  	 	<p>Modify the values and click "Update Details":</p>
 
  	 	<?php 
