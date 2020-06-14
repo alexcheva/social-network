@@ -22,6 +22,7 @@ include("includes/header.php");
  	 		<input type="text" name="username" value="<?php echo $user['username']; ?>">
  	 		<label>Email:</label>
  	 		<input type="text" name="email" value="<?php echo $user['email']; ?>">
+ 	 		<input type="submit" name="update_details" id="save_details" value="Update Details">
  	 	</form>
  	 	<h4>Change Password:</h4>
  	 	<form class="settings" id="settings" action="settings.php" method="POST">
@@ -31,6 +32,7 @@ include("includes/header.php");
  	 		<input type="password" name="new_password1">
  	 		<label>New Password Again:</label>
  	 		<input type="password" name="new_password2">
+ 	 		<input type="submit" name="update_password" id="save_details" value="Update Password">
  	 	</form>
  	 	<h4>Close Account:</h4>
  	 	<form action="close_account.php">
