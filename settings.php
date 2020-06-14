@@ -13,15 +13,25 @@ include("includes/form_handlers/settings_handler.php");
  	 <div>
  	 	<a href="upload.php">Upload new profile picture</a>
  	 	<p>Modify the values and click "Update Details":</p>
+
+ 	 	<?php 
+		$user_data_query = mysqli_query($con, "SELECT first_name, last_name, email FROM users WHERE username='$userLoggedIn'");
+		$row = mysqli_fetch_array($user_data_query);
+		$first_name = $row['first_name'];
+		$last_name = $row['last_name'];
+		// $username = $row['username'];
+		$email = $row['email'];
+ 	 	 ?>
  	 	<form class="settings" action="settings.php" method="POST">
 <!--  	 		<input type="hidden" name="id" value="<?php echo $user['id']; ?>">			 --> 	 		<label>First Name:</label>
- 	 		<input type="text" name="first_name" value="<?php echo $user['first_name']; ?>">
+ 	 		<input type="text" name="first_name" value="<?php echo $first_name; ?>">
  	 		<label>Last Name:</label>
- 	 		<input type="text" name="last_name" value="<?php echo $user['last_name']; ?>">
+ 	 		<input type="text" name="last_name" value="<?php echo $last_name; ?>">
  	 		<!-- <label>Username:</label>
- 	 		<input type="text" name="username" value="<?php echo $user['username']; ?>"> -->
+ 	 		<input type="text" name="username" value="<?php echo $username; ?>"> -->
  	 		<label>Email:</label>
- 	 		<input type="text" name="email" value="<?php echo $user['email']; ?>">
+ 	 		<input type="text" name="email" value="<?php echo $email; ?>">
+ 	 		<?php echo $message; ?>
  	 		<input type="submit" name="update_details" class="save_details" value="Update Details">
  	 	</form>
  	 	<h4>Change Password:</h4>
