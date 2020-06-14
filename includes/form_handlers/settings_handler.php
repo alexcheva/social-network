@@ -54,7 +54,9 @@ $password_message = "";
 // ********************************
 
 if(isset($_POST['close_account'])){
-	//could i do it in modal?
-	header("Location: close_account.php");
+	$close_query = mysqli_query($con, "UPDATE users SET user_closed='yes' WHERE username='$userLoggedIn'");
+		//log them out
+		session_destroy();
+		header("Location: register.php");
 }
 ?>

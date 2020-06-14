@@ -299,13 +299,13 @@ hr{
 /*Friend request buttons*/
 /*Delete friend*/
 #danger{
-    color: red;
-    border-color: red;
+    color: #ff002b;
+    border-color: #ff002b;
     font-weight: 500;
     outline-color: #d500ff;
 }
 #danger:hover {
-	background-color: red;
+	background-color: #ff002b;
 	border: 1px white solid;
 	font-weight: 500;
 	color: white;
@@ -902,5 +902,65 @@ label {
 	margin-top: 7px;
     color: #2bff00;
 }
+.small_profile_pic{
+	border: 1px solid purple;
+    margin-bottom: 15px;
+}
+input[type='submit'].save_details{
+	color: #ffaa00;
+    border-color: #ffaa00;
+    font-weight: 500;
+    outline-color: #d500ff;
+}
 
+input[type='submit'].save_details:hover {
+    background-color: #ffaa00;
+    border: 1px white solid;
+    color: white;
+}
 
+input[type='submit'].save_details:active {
+    background-color: #ff6a00;
+    color: black;
+    outline-color: black;
+}
+
+#close_account{
+	display: inline-block;
+	color: #ff002b;
+    border-color: #ff002b;
+    font-weight: 500;
+    outline-color: #d500ff;
+}
+
+#close_account:hover {
+    background-color: #ff002b;
+    border: 1px white solid;
+    color: white;
+}
+
+#close_account:active {
+    background-color: #a70000;
+    border-color: black;
+    color: black;
+}
+
+#dont_close{
+	display: inline-block;
+	color: #d500ff;
+    border-color: #d500ff;
+    font-weight: 500;
+    outline-color: #d500ff;
+}
+
+#dont_close:hover {
+    background-color: #d500ff;
+    border: 1px white solid;
+    color: white;
+}
+
+#dont_close:active {
+    background-color: purple;
+    color: black;
+    outline-color: #d500ff;
+}

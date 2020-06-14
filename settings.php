@@ -48,9 +48,33 @@ include("includes/form_handlers/settings_handler.php");
  	 		<input type="submit" name="update_password" class="save_details" value="Update Password">
  	 	</form>
  	 	<h4>Close Account:</h4>
- 	 	<form action="settings.php" method="POST">
- 	 		<input type="submit" name="close_account" id="danger" value="Close Account">
- 	 	</form>
+ 	 	
+ 	 		<input type="submit" data-toggle="modal" data-target="#close_account_form" id="danger" value="Close Account">
+ 	 	
  	 </div>
 
  </div>
+ 	<!-- Modal -->
+	<div class="modal fade" id="close_account_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="postModalLabel">Are you sure you want to close your account?</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+
+	      <div class="modal-body">
+	      	<p>Closing your account will hide your profile and all your activity from other users.</p>
+	      	<p>You can re-open your account at any time by simply logging in.</p>
+	      </div>
+
+	      <div class="modal-footer">
+	        <form action="settings.php" method="POST">
+	        <input type="submit" id="close_account" name="close_account" value="Yes! Close it.">
+	        <input type="button" id="dont_close" data-dismiss="modal" value="No way! Leave it.">
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
