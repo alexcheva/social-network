@@ -539,6 +539,7 @@ class Post{
 	}
 	//loading comments
 	public function getComments($id, $get_only_last_comment = false) {
+		$userLoggedIn = $this->user_obj->getUsername();
 	 
 		if($get_only_last_comment) {
 	 
@@ -564,6 +565,7 @@ class Post{
 				$posted_by = $comment['posted_by'];
 				$date_added = $comment['date_added'];
 				$removed = $comment['removed'];
+				$comment_id = $comment['id'];
         
 	    		$time_message = $this->getTime($date_added);
 	 
@@ -572,13 +574,19 @@ class Post{
 				$profile_pic = $user_obj->getProfilePic();
 	 
 				$name = $user_obj->getFirstAndLastName();
-	 
+	 			
+	 			//delete post if logged in user is the one posted
+				if($userLoggedIn == $posted_by)
+					$delete_button = "<a class='delete_button' id='comment$comment_id'><i class='fas fa-trash-alt'></i></a>";
+				else
+					$delete_button = "";
+
 						
 				$commment_from_db .= "
 				<hr>
 				<div class='comment_section'>
 					<a href='$posted_by' target='_parent'><img src='$profile_pic' title='$posted_by' class='comment_profile_img'></a>
-					<a href='$posted_by' target='_parent'>$name</a>
+					<a href='$posted_by' target='_parent'>$name</a>$delete_button
 					<div class='post_body'>
 						$comment_body
 					</div>
@@ -587,6 +595,35 @@ class Post{
 					</div> 
 					
 				</div>";
+				?>
+				<script>
+				//Delete comment functionality bootbox
+					$(document).ready(function(){
+						$('#comment<?php echo $comment_id; ?>').on('click', function(){
+							//bootstrap
+							bootbox.confirm({
+								message: "Are you sure you want to delete this comment?", buttons: {
+	        					confirm: {
+						            label: 'Yes'
+						        },
+
+						        cancel: {
+						            label: 'No'						        }
+						    	},
+						    	
+						        callback:
+						    	function
+								(result){
+									$.post("includes/form_handlers/delete_comment.php?comment_id=<?php echo $comment_id; ?>",{result: result});
+									//if there is a result = true
+									if(result)
+										location.reload();
+								}
+							});
+						});
+					});
+				</script>
+				<?php
 				
 	 
 			}
