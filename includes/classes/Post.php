@@ -594,8 +594,9 @@ class Post{
 						$time_message
 					</div> 
 					
-				</div>";
-				?>
+				</div>";				
+			}
+			?>
 				<script>
 				//Delete comment functionality bootbox
 					$(document).ready(function(){
@@ -618,15 +619,13 @@ class Post{
 									//if there is a result = true
 									if(result)
 										location.reload();
+
 								}
 							});
 						});
 					});
 				</script>
 				<?php
-				
-	 
-			}
 		}
 	 
 		else {
