@@ -520,6 +520,23 @@ hr{
 	color: #a70000;
     font-weight: 500;
 }
+.edit_button:not([href]){
+	color: #c45100;
+    font-weight: 500;
+    outline-color: red;
+    float: right;
+    margin-right: 5px;
+    z-index: 8;
+
+}
+.edit_button:not([href]):hover {
+	color: #ff6a00;
+}
+.edit_button:not([href]):active {
+	color: #c45100;
+    font-weight: 500;
+}
+
 .btn-primary:focus{
 	background-color: #d500ff;
 	border: 1px white solid;

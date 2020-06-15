@@ -168,7 +168,7 @@ class Post{
 					$delete_button = "";
 				//edit post functionality
 				if($userLoggedIn == $added_by)
-					$edit_button = "<a class='edit_button' id='edit_post$id'><i class='fa fa-pencil-square-o'></i></a>";
+					$edit_button = "<a class='edit_button' id='edit_post$id'><i class='fas fa-edit'></i></a>";
 				else
 					$edit_button = "";
 
@@ -229,6 +229,8 @@ class Post{
 							</div>
 							<div class='posted_by'>
 								<a href='$added_by'>$first_name $last_name</a> $user_to 
+							$delete_button
+							$edit_button
 							</div>
 							<div class='post_body'>
 								$body
@@ -236,7 +238,7 @@ class Post{
 							<div class='post_time'>
 								$time_message
 							</div>
-							$delete_button
+							
 							<hr>
 							<div class='newsfeedPostOptions'>
 								<span class='num_comments' onClick='javaScript:toggle$id()'>
@@ -283,6 +285,19 @@ class Post{
 						        callback:
 						    	function
 								(result){
+									$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
+									//if there is a result = true
+									if(result)
+										location.reload();
+								}
+							});
+						});
+						$('#edit_post<?php echo $id; ?>').on('click', function(){
+							//bootstrap
+							bootbox.prompt({
+							    title: "Edit post:",
+							    inputType: 'textarea',
+							    callback: function (result) {
 									$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
 									//if there is a result = true
 									if(result)
