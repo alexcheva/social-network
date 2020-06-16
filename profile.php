@@ -18,14 +18,14 @@
 		$new_about = strip_tags($_POST['about']);
 
 		if($new_about == "")
-			$message = "<p class='error'>The field cannot be empty.</p>";
+			$message = "<p class='message error'>The field cannot be empty.</p>";
 		else if($row > 0){
 			$query = mysqli_query($con, "UPDATE details SET about='$new_about' WHERE username='$userLoggedIn'");
-			$message = "<p class='success'>About was successfully updated!</p>";
+			$message = "<p class='message success'>About was successfully updated!</p>";
 			$about = $new_about;
 		}else{
 			$query = mysqli_query($con, "INSERT INTO details VALUES(NULL, '$userLoggedIn', '$about', '$interests', '$bands', 'yes')");
-			$message = "<p class='success'>About was successfully updated!</p>";
+			$message = "<p class='message success'>About was successfully updated!</p>";
 		}
 
 	}
@@ -121,7 +121,7 @@
 				<img id="loading" src="assets/images/icons/loading.gif">
 			</div>
 			<!-- ABOUT -->
-			<div role="tabpanel" class="tab-pane fade in" id="about_div">
+			<div role="tabpanel" class="tab-pane fade" id="about_div">
 			<?php 
 			if($userLoggedIn == $user_array['username']){
 				echo "<h4>Edit About Me:</h4>";
@@ -252,11 +252,13 @@
 		$("#newsfeed").addClass("active_tab");
 	});
 
-	$("#save_about").on('click', function(){
+	if($(".message").length){
 		$("#newsfeed").removeClass("active_tab");
 		$("#about").addClass("active_tab");
+		$("#newsfeed_div").removeClass("active").addClass("fade");
+		$("#about_div").removeClass("fade").addClass("active");
 		
-	});
+	};
 	function sendComment(id) {
 	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
 		const commentText = $("#comment" + id).val();
