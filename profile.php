@@ -16,16 +16,20 @@
 	if(isset($_POST['save_about'])){ 
 
 		$new_about = strip_tags($_POST['about']);
+		$new_interests = strip_tags($_POST['interests']);
+		$new_bands = strip_tags($_POST['bands']);
 
 		if($new_about == "")
 			$message = "<p class='message error'>The field cannot be empty.</p>";
 		else if($row > 0){
-			$query = mysqli_query($con, "UPDATE details SET about='$new_about' WHERE username='$userLoggedIn'");
-			$message = "<p class='message success'>About was successfully updated!</p>";
+			$query = mysqli_query($con, "UPDATE details SET about='$new_about', interests='$new_interests', bands='$new_bands' WHERE username='$userLoggedIn'");
+			$message = "<p class='message success'>About details has been successfully updated!</p>";
 			$about = $new_about;
+			$interests = $new_interests;
+			$bands = $new_bands;
 		}else{
-			$query = mysqli_query($con, "INSERT INTO details VALUES(NULL, '$userLoggedIn', '$about', '$interests', '$bands', 'yes')");
-			$message = "<p class='message success'>About was successfully updated!</p>";
+			$query = mysqli_query($con, "INSERT INTO details VALUES(NULL, '$userLoggedIn', '$new_about', '$new_interests', '$new_bands', 'yes')");
+			$message = "<p class='message success'>About details has been successfully updated!</p>";
 		}
 
 	}
@@ -140,7 +144,7 @@
 			<label>My Favourite Bands:</label>
 			<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
 			<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
-			<input type="submit" name="view" class="success" value="View">
+			<input type="submit" name="view" value="View">
 			<input type="submit" name="delete" class="danger" value="Delete">
 			</form>
 			<?php

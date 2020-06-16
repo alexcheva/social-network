@@ -357,7 +357,7 @@ input[type='submit'].warning{
     color: #ffaa00;
     border-color: #ffaa00;
     font-weight: 500;
-    outline-color: #d500ff;
+    outline-color: #c45100;
 }
 input[type='submit'].warning:hover {
 	background-color: #ffaa00;
@@ -366,7 +366,7 @@ input[type='submit'].warning:hover {
 	color: white;
 }
 input[type='submit'].warning:active {
-	background-color: purple;
+	background-color: #c45100;
 	border-color: black;
     font-weight: 500;
     color: black;
