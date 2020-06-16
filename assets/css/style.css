@@ -353,6 +353,42 @@ input[type='submit'].danger:active {
     font-weight: 500;
     color: black;
 }
+input[type='submit'].warning{
+    color: #ffaa00;
+    border-color: #ffaa00;
+    font-weight: 500;
+    outline-color: #d500ff;
+}
+input[type='submit'].warning:hover {
+	background-color: #ffaa00;
+	border: 1px white solid;
+	font-weight: 500;
+	color: white;
+}
+input[type='submit'].warning:active {
+	background-color: purple;
+	border-color: black;
+    font-weight: 500;
+    color: black;
+}
+input[type='submit'].sucess{
+    color: #2bff00;
+    border-color: #2bff00;
+    font-weight: 500;
+    outline-color: #d500ff;
+}
+input[type='submit'].sucess:hover {
+	background-color: #2bff00;
+	border: 1px white solid;
+	font-weight: 500;
+	color: white;
+}
+input[type='submit'].sucess:active {
+	background-color: purple;
+	border-color: black;
+    font-weight: 500;
+    color: black;
+}
 /*Request Sent*/
 #default{
     color: grey;

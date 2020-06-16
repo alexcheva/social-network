@@ -139,7 +139,8 @@
 			
 			<label>My Favourite Bands:</label>
 			<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
-			<input type="submit" name="save_about" id="save_about" value="Save">
+			<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
+			<input type="submit" name="view" class="success" value="View">
 			<input type="submit" name="delete" class="danger" value="Delete">
 			</form>
 			<?php
