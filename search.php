@@ -36,7 +36,8 @@ if(isset($_GET['type'])){
 		
 		}
 		if(mysqli_num_rows($usersReturnedQuery) == 0)
-			echo "<p>We can't find anyone with a " . $type . " like: " . $query ."</p>";
+			echo "<img style='width: 175px; margin-bottom: 10px;' src='assets/images/icons/why.png'>
+		<p>We can't find anyone with a " . $type . " like: " . $query ."</p>";
 		else
 			echo "<p>" . mysqli_num_rows($usersReturnedQuery) . " results found:<p>";
 			echo "<p id='grey'>Try searching for: <p>";

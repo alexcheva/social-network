@@ -155,7 +155,7 @@
 				<p>". $bands . "</p>";
 			}else{
 				echo "
-				<p><i>This user has not updated their about details yet.</i></p>
+				<p><i>This user has not updated their profile details yet.</i></p>
 				<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
 			}
 
