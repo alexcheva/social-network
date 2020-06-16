@@ -70,6 +70,15 @@ CREATE TABLE notifications(
     opened VARCHAR(3) NOT NULL,
     viewed VARCHAR(3) NOT NULL
 );
+
+CREATE TABLE details(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(200) NOT NULL,
+    about TEXT NOT NULL,
+	interests TEXT NOT NULL,
+    bands TEXT NOT NULL,
+    edited VARCHAR(3) NOT NULL
+); 
 ```
 <br/>
 I would like to:<br/>
