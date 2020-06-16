@@ -24,7 +24,7 @@
 		$interests = $row['interests'];
 		$bands = $row['bands'];
 	} else {
-		$about = "No information provided";
+		$about = "";
 		$interests = "";
 		$bands = "";
 	}
@@ -34,6 +34,11 @@
 	if(isset($_POST['save_about'])){ 
 
 		$new_about = strip_tags($_POST['about']);
+		// $new_about = mysqli_real_escape_string($con, $new_about);
+		// $new_about = str_replace('\r\n', '\n', $new_about);
+		// $new_about = nl2br($new_about); //replace new line with line break
+
+		// $check_empty = preg_replace('/\s+/', '', $new_about);
 		$new_interests = strip_tags($_POST['interests']);
 		$new_bands = strip_tags($_POST['bands']);
 
@@ -145,14 +150,14 @@
 
 				echo "<p class='purple'>About me:</p>
 				
-				<p>". $about ."</p>
+				<p>". nl2br($about) ."</p>
 				
 				
 				<p class='purple'>My Interests:</p>
-				<p>" . $interests . "</p>
+				<p>" . nl2br($interests) . "</p>
 				
 				<p class='purple'>My Favourite Bands:</p>
-				<p>". $bands . "</p>";
+				<p>". nl2br($bands) . "</p>";
 			}else{
 				echo "
 				<p><i>This user has not updated their profile details yet.</i></p>
