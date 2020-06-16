@@ -361,6 +361,11 @@ class Post{
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
+				//edit
+				if($userLoggedIn == $added_by)
+					$edit_button = "<a class='edit_button' id='edit_post$id'><i class='fas fa-edit'></i></a>";
+				else
+					$edit_button = "";
 
 				$user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE username='$added_by'");
 				$user_row = mysqli_fetch_array($user_details_query);
@@ -416,7 +421,7 @@ class Post{
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
 							<div class='posted_by'>
-								<a href='$added_by'>$first_name $last_name</a>
+								<a href='$added_by'>$first_name $last_name</a>$delete_button $edit_button
 							</div>
 							<div class='post_body'>
 								$body
@@ -424,7 +429,7 @@ class Post{
 							<div class='post_time'>
 								$time_message
 							</div>
-							$delete_button
+							
 							
 							<hr>
 							<div class='newsfeedPostOptions'>

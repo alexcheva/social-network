@@ -26,7 +26,8 @@ include("includes/form_handlers/settings_handler.php");
  	 	 ?>
  	 	<form class="settings" action="settings.php#message" method="POST">
  	 		<?php echo $message; ?>
-<!--  	 		<input type="hidden" name="id" value="<?php echo $user['id']; ?>">			 --> 	 		<label>First Name:</label>
+<!--  	 		<input type="hidden" name="id" value="<?php echo $user['id']; ?>">			 --> 	 		
+			<label>First Name:</label>
  	 		<input type="text" name="first_name" value="<?php echo $first_name; ?>">
  	 		<label>Last Name:</label>
  	 		<input type="text" name="last_name" value="<?php echo $last_name; ?>">

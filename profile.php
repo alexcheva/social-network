@@ -1,9 +1,39 @@
 <?php
 	include('includes/header.php');
+	$username = $userLoggedIn;
+	$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
+	$user_array = mysqli_fetch_array($user_details_query);
+	//find friends, look for commans
+	$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
+	$message = "";
+	$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
+	$row = mysqli_fetch_array($about_query);
+	$about = $row['about'];
+	$interests = $row['interests'];
+	$bands = $row['bands'];
+
+
+	if(isset($_POST['save_about'])){ 
+
+		$new_about = strip_tags($_POST['about']);
+
+		if($new_about == "")
+			$message = "<p class='error'>The field cannot be empty.</p>";
+		else if($row > 0){
+			$query = mysqli_query($con, "UPDATE details SET about='$new_about' WHERE username='$userLoggedIn'");
+			$message = "<p class='success'>About was successfully updated!</p>";
+			$about = $new_about;
+		}else{
+			$query = mysqli_query($con, "INSERT INTO details VALUES(NULL, '$userLoggedIn', '$about', '$interests', '$bands', 'yes')");
+			$message = "<p class='success'>About was successfully updated!</p>";
+		}
+
+	}
+	
 
 	if(isset($_GET['profile_username'])){
 		$username = $_GET['profile_username'];
-		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
+		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
 		$user_array = mysqli_fetch_array($user_details_query);
 		//find friends, look for commans
 		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
@@ -90,15 +120,38 @@
 				<div class="posts_area"></div>
 				<img id="loading" src="assets/images/icons/loading.gif">
 			</div>
+			<!-- ABOUT -->
 			<div role="tabpanel" class="tab-pane fade in" id="about_div">
-
+			<?php 
+			if($userLoggedIn == $user_array['username']){
+				echo "<h4>Edit About Me:</h4>";
+ 	 	
+			?>
+			
+			<form action="profile.php#about_div" method="POST">
+			<label>About me:</label>
+			<?php echo $message; ?>
+			<textarea name="about" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
+			
+			
+			<label>My Interests:</label>
+			<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php if($interests != "") echo $interests; ?></textarea>
+			
+			<label>My Favourite Bands:</label>
+			<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
+			<input type="submit" name="save_about" id="save_about" value="Save">
+			<input type="submit" name="delete" class="danger" value="Delete">
+			</form>
+			<?php
+			} 
+			?>
 			</div>
 		</div>
 
 		
 	</div>
 
-	<!-- Modal -->
+	<!-- Modal For New Post -->
 	<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -197,6 +250,12 @@
 	$('#newsfeed').on('click', function(){
 		$("#about").removeClass("active_tab");
 		$("#newsfeed").addClass("active_tab");
+	});
+
+	$("#save_about").on('click', function(){
+		$("#newsfeed").removeClass("active_tab");
+		$("#about").addClass("active_tab");
+		
 	});
 	function sendComment(id) {
 	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
