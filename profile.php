@@ -29,16 +29,9 @@
 		$bands = "";
 	}
 	
-
-
 	if(isset($_POST['save_about'])){ 
 
 		$new_about = strip_tags($_POST['about']);
-		// $new_about = mysqli_real_escape_string($con, $new_about);
-		// $new_about = str_replace('\r\n', '\n', $new_about);
-		// $new_about = nl2br($new_about); //replace new line with line break
-
-		// $check_empty = preg_replace('/\s+/', '', $new_about);
 		$new_interests = strip_tags($_POST['interests']);
 		$new_bands = strip_tags($_POST['bands']);
 
@@ -46,13 +39,13 @@
 			$message = "<p class='message error'>The field cannot be empty.</p>";
 		else if($row > 0){
 			$query = mysqli_query($con, "UPDATE details SET about='$new_about', interests='$new_interests', bands='$new_bands' WHERE username='$userLoggedIn'");
-			$message = "<p class='message success'>About details has been successfully updated!</p>";
+			$message = "<p class='message success'>Profile details have been successfully updated!</p>";
 			$about = $new_about;
 			$interests = $new_interests;
 			$bands = $new_bands;
 		}else{
 			$query = mysqli_query($con, "INSERT INTO details VALUES(NULL, '$userLoggedIn', '$new_about', '$new_interests', '$new_bands', 'yes')");
-			$message = "<p class='message success'>About details has been successfully updated!</p>";
+			$message = "<p class='message success'>Profile details have been successfully updated!</p>";
 		}
 
 	}
@@ -139,55 +132,73 @@
 				<div class="posts_area"></div>
 				<img id="loading" src="assets/images/icons/loading.gif">
 			</div>
-			<!-- ABOUT -->
+			<!-- *********ABOUT********* -->
 			<div role="tabpanel" class="tab-pane fade" id="about_div">
 			<?php 
 				echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
-				if($userLoggedIn == $user_array['username'])
- 	 			echo "<a href='#edit_about'>Edit</a>";
 
  	 			if($row > 0){
 
-				echo "<p class='purple'>About me:</p>
-				
+				echo $message ."<div id='about_info'>
+				<p class='purple'>About me:</p>			
 				<p>". nl2br($about) ."</p>
-				
 				
 				<p class='purple'>My Interests:</p>
 				<p>" . nl2br($interests) . "</p>
 				
 				<p class='purple'>My Favourite Bands:</p>
-				<p>". nl2br($bands) . "</p>";
+				<p>". nl2br($bands) . "</p></div>";
 			}else{
-				echo "
+				if($message != ""){
+					echo $message ."<div id='about_info'>
+				<p class='purple'>About me:</p>			
+				<p>". nl2br($new_about) ."</p>
+				
+				<p class='purple'>My Interests:</p>
+				<p>" . nl2br($new_interests) . "</p>
+				
+				<p class='purple'>My Favourite Bands:</p>
+				<p>". nl2br($new_bands) . "</p></div>";
+			}else{
+				echo $message . "
 				<p><i>This user has not updated their profile details yet.</i></p>
-				<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+				<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";}
 			}
 
  	 		if($userLoggedIn == $user_array['username']){
- 	 			echo "<a href='#edit_about'>Edit</a>";
+ 	 			echo "<a href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab' id='edit_button'><input type='submit' name='save_about' class='warning' id='edit_button' value='Edit'></a>
+ 	 			";
 			?>
-			<div id="edit_about">
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="edit_about">
+				<?php $about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
+					$row = mysqli_fetch_array($about_query);
+					if($row > 0){
+					$about = $row['about'];
+					$interests = $row['interests'];
+					$bands = $row['bands'];}
+				 ?>
+				<button type="button" class="close close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4>Edit your Profile Details:</h4>
 				<form action="profile.php" method="POST">
-				<label>About me:</label>
-				<?php echo $message; ?>
-				<textarea name="about" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
-				
-				
-				<label>My Interests:</label>
-				<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php if($interests != "") echo $interests; ?></textarea>
-				
-				<label>My Favourite Bands:</label>
-				<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
-				<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
-				<input type="submit" name="view" value="View">
-				<input type="submit" name="delete" class="danger" value="Delete">
+					<label>About me:</label>
+					
+					<textarea name="about" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
+					
+					
+					<label>My Interests:</label>
+					<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php if($interests != "") echo $interests; ?></textarea>
+					
+					<label>My Favourite Bands:</label>
+					<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
+					<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
+					<input type="submit" name="delete" class="danger close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" id="close_edit" value="Cancel">
 				</form>
 			</div>
 			<?php
 			} 
 			?>
-			</div>
+			
 		</div>
 
 		
@@ -294,13 +305,23 @@
 		$("#newsfeed").addClass("active_tab");
 	});
 
+	$('#edit_button').on('click', function(){
+		$("#about_div").removeClass("active").addClass("fade");
+		$("#edit_about").removeClass("fade").addClass("active");
+	});
+	$('.close_edit').on('click', function(){
+		$("#edit_about").removeClass("active").addClass("fade");
+		$("#about_div").removeClass("fade").addClass("active");
+	});
+
 	if($(".message").length){
 		$("#newsfeed").removeClass("active_tab");
 		$("#about").addClass("active_tab");
 		$("#newsfeed_div").removeClass("active").addClass("fade");
 		$("#about_div").removeClass("fade").addClass("active");
-		
 	};
+
+
 	function sendComment(id) {
 	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
 		const commentText = $("#comment" + id).val();
