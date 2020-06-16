@@ -151,18 +151,20 @@
 			}else{
 				if($message != ""){
 					echo $message ."<div id='about_info'>
-				<p class='purple'>About me:</p>			
-				<p>". nl2br($new_about) ."</p>
-				
-				<p class='purple'>My Interests:</p>
-				<p>" . nl2br($new_interests) . "</p>
-				
-				<p class='purple'>My Favourite Bands:</p>
-				<p>". nl2br($new_bands) . "</p></div>";
-			}else{
-				echo $message . "
-				<p><i>This user has not updated their profile details yet.</i></p>
-				<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";}
+					<p class='purple'>About me:</p>			
+					<p>". nl2br($new_about) ."</p>
+					
+					<p class='purple'>My Interests:</p>
+					<p>" . nl2br($new_interests) . "</p>
+					
+					<p class='purple'>My Favourite Bands:</p>
+					<p>". nl2br($new_bands) . "</p></div>";
+					$message = "";
+				}else{
+					echo "
+					<p><i>This user has not updated their profile details yet.</i></p>
+					<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+				}
 			}
 
  	 		if($userLoggedIn == $user_array['username']){
@@ -312,6 +314,7 @@
 	$('.close_edit').on('click', function(){
 		$("#edit_about").removeClass("active").addClass("fade");
 		$("#about_div").removeClass("fade").addClass("active");
+		$(".message").html("");
 	});
 
 	if($(".message").length){
