@@ -17,7 +17,7 @@
 		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
 	}
 	$message = "";
-	
+	$error = "";
 	$row = mysqli_fetch_array($about_query);
 	if($row > 0){
 		$about = $row['about'];
@@ -35,8 +35,8 @@
 		$new_interests = strip_tags($_POST['interests']);
 		$new_bands = strip_tags($_POST['bands']);
 
-		if($new_about == "")
-			$message = "<p class='message error'>The field cannot be empty.</p>";
+		if($new_about == "" && $new_interests == "" && $new_bands == "")
+			$error = "<p class='message error'>Nothing to update. The fields are empty.</p>";
 		else if($row > 0){
 			$query = mysqli_query($con, "UPDATE details SET about='$new_about', interests='$new_interests', bands='$new_bands' WHERE username='$userLoggedIn'");
 			$message = "<p class='message success'>Profile details have been successfully updated!</p>";
@@ -139,33 +139,52 @@
 
  	 			if($row > 0){
 
-				echo $message ."<div id='about_info'>
-				<p class='purple'>About me:</p>			
-				<p>". nl2br($about) ."</p>
-				
-				<p class='purple'>My Interests:</p>
-				<p>" . nl2br($interests) . "</p>
-				
-				<p class='purple'>My Favourite Bands:</p>
-				<p>". nl2br($bands) . "</p></div>";
-			}else{
-				if($message != ""){
-					echo $message ."<div id='about_info'>
-					<p class='purple'>About me:</p>			
-					<p>". nl2br($new_about) ."</p>
+					echo $message ."<div id='about_info'>";
+
+					if($about != ""){
+						echo "<p class='purple'>About me:</p>			
+						<p>". nl2br($about) ."</p>";
+					}
 					
-					<p class='purple'>My Interests:</p>
-					<p>" . nl2br($new_interests) . "</p>
+					if($interests != ""){
+						echo "<p class='purple'>My Interests:</p>
+						<p>" . nl2br($interests) . "</p>";
+					}
 					
-					<p class='purple'>My Favourite Bands:</p>
-					<p>". nl2br($new_bands) . "</p></div>";
-					$message = "";
+					if($bands != ""){
+						echo "<p class='purple'>My Favourite Bands:</p>
+						<p>". nl2br($bands) . "</p>";
+					}
+					echo "</div>";
 				}else{
-					echo "
-					<p><i>This user has not updated their profile details yet.</i></p>
-					<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+					if($message != ""){
+						echo $message ."<div id='about_info'>";
+						if($new_about !=0){
+							echo "<p class='purple'>About me:</p>			
+							<p>". nl2br($new_about) ."</p>";
+						}
+						
+						if($new_interests !=0){
+							echo "<p class='purple'>My Interests:</p>
+							<p>" . nl2br($new_interests) . "</p>";
+						}
+						
+						if($new_bands !=0){
+							echo "<p class='purple'>My Favourite Bands:</p>
+							<p>". nl2br($new_bands) . "</p>";
+						}
+
+						echo "</div>";
+					}else if($userLoggedIn == $user_array['username']) {
+						echo "
+						<p><i>You have not updated your profile details yet.</i></p>
+						<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+					} else {
+						echo "
+						<p><i>This user has not updated their profile details yet.</i></p>
+						<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+					}
 				}
-			}
 
  	 		if($userLoggedIn == $user_array['username']){
  	 			echo "<a href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab' id='edit_button'><input type='submit' name='save_about' class='warning' id='edit_button' value='Edit'></a>
@@ -173,15 +192,17 @@
 			?>
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="edit_about">
+
+				<button type="button" class="close close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4>Edit your Profile Details:</h4>
 				<?php $about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
 					$row = mysqli_fetch_array($about_query);
 					if($row > 0){
 					$about = $row['about'];
 					$interests = $row['interests'];
 					$bands = $row['bands'];}
+					echo $error;
 				 ?>
-				<button type="button" class="close close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4>Edit your Profile Details:</h4>
 				<form action="profile.php" method="POST">
 					<label>About me:</label>
 					
@@ -305,6 +326,7 @@
 	$('#newsfeed').on('click', function(){
 		$("#about").removeClass("active_tab");
 		$("#newsfeed").addClass("active_tab");
+		$(".message").html("");
 	});
 
 	$('#edit_button').on('click', function(){
@@ -323,6 +345,11 @@
 		$("#newsfeed_div").removeClass("active").addClass("fade");
 		$("#about_div").removeClass("fade").addClass("active");
 	};
+
+	if($(".error").length){
+		$("#about_div").removeClass("active").addClass("fade");
+		$("#edit_about").removeClass("fade").addClass("active");
+	}
 
 
 	function sendComment(id) {

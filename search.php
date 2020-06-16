@@ -37,11 +37,11 @@ if(isset($_GET['type'])){
 		}
 		if(mysqli_num_rows($usersReturnedQuery) == 0)
 			echo "<img style='width: 175px; margin-bottom: 10px;' src='assets/images/icons/why.png'>
-		<p>We can't find anyone with a " . $type . " like: " . $query ."</p>";
+		<p>We can't find anyone with a " . $type . ":<i> " . $query ."</i></p>";
 		else
 			echo "<p>" . mysqli_num_rows($usersReturnedQuery) . " results found:<p>";
 			echo "<p id='grey'>Try searching for: <p>";
-			echo "<a href='search.php?q=" . $query . "&type=name'>Names</a>/<a href='search.php?q=" . $query . "&type=username'>Usernames</a><hr>";
+			echo "<a href='search.php?q=" . $query . "&type=name'>Names</a> / <a href='search.php?q=" . $query . "&type=username'>Usernames</a><hr>";
 
 	while($row = mysqli_fetch_array($usersReturnedQuery)) {
 		$user_obj = new User($con, $user['username']);
