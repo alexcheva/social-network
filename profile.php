@@ -1,16 +1,34 @@
 <?php
 	include('includes/header.php');
-	$username = $userLoggedIn;
-	$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
-	$user_array = mysqli_fetch_array($user_details_query);
-	//find friends, look for commans
-	$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
+
+	if(isset($_GET['profile_username'])){
+		$username = $_GET['profile_username'];
+		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
+		$user_array = mysqli_fetch_array($user_details_query);
+		//find friends, look for commans
+		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
+		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$username'");
+	}else{
+		$username = $userLoggedIn;
+		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
+		$user_array = mysqli_fetch_array($user_details_query);
+		//find friends, look for commans
+		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
+		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
+	}
 	$message = "";
-	$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
+	
 	$row = mysqli_fetch_array($about_query);
-	$about = $row['about'];
-	$interests = $row['interests'];
-	$bands = $row['bands'];
+	if($row > 0){
+		$about = $row['about'];
+		$interests = $row['interests'];
+		$bands = $row['bands'];
+	} else {
+		$about = "No information provided";
+		$interests = "";
+		$bands = "";
+	}
+	
 
 
 	if(isset($_POST['save_about'])){ 
@@ -34,14 +52,6 @@
 
 	}
 	
-
-	if(isset($_GET['profile_username'])){
-		$username = $_GET['profile_username'];
-		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
-		$user_array = mysqli_fetch_array($user_details_query);
-		//find friends, look for commans
-		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
-	}
 	//when remove friend button pressed
 	if(isset($_POST['remove_friend'])){
 		$user = new User($con, $userLoggedIn);
@@ -127,26 +137,48 @@
 			<!-- ABOUT -->
 			<div role="tabpanel" class="tab-pane fade" id="about_div">
 			<?php 
-			if($userLoggedIn == $user_array['username']){
-				echo "<h4>Edit About Me:</h4>";
- 	 	
+				echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
+				if($userLoggedIn == $user_array['username'])
+ 	 			echo "<a href='#edit_about'>Edit</a>";
+
+ 	 			if($row > 0){
+
+				echo "<p class='purple'>About me:</p>
+				
+				<p>". $about ."</p>
+				
+				
+				<p class='purple'>My Interests:</p>
+				<p>" . $interests . "</p>
+				
+				<p class='purple'>My Favourite Bands:</p>
+				<p>". $bands . "</p>";
+			}else{
+				echo "
+				<p><i>This user has not updated their about details yet.</i></p>
+				<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+			}
+
+ 	 		if($userLoggedIn == $user_array['username']){
+ 	 			echo "<a href='#edit_about'>Edit</a>";
 			?>
-			
-			<form action="profile.php#about_div" method="POST">
-			<label>About me:</label>
-			<?php echo $message; ?>
-			<textarea name="about" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
-			
-			
-			<label>My Interests:</label>
-			<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php if($interests != "") echo $interests; ?></textarea>
-			
-			<label>My Favourite Bands:</label>
-			<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
-			<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
-			<input type="submit" name="view" value="View">
-			<input type="submit" name="delete" class="danger" value="Delete">
-			</form>
+			<div id="edit_about">
+				<form action="profile.php" method="POST">
+				<label>About me:</label>
+				<?php echo $message; ?>
+				<textarea name="about" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
+				
+				
+				<label>My Interests:</label>
+				<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php if($interests != "") echo $interests; ?></textarea>
+				
+				<label>My Favourite Bands:</label>
+				<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
+				<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
+				<input type="submit" name="view" value="View">
+				<input type="submit" name="delete" class="danger" value="Delete">
+				</form>
+			</div>
 			<?php
 			} 
 			?>

@@ -389,6 +389,11 @@ input[type='submit'].success:active {
     font-weight: 500;
     color: black;
 }
+.purple{
+	font-size: 18px;
+    color: #d500ff;
+    font-weight: 400;
+}
 /*Request Sent*/
 #default{
     color: grey;
