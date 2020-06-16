@@ -316,6 +316,24 @@ hr{
     font-weight: 500;
     color: black;
 }
+input[type='submit'].danger{
+    color: #ff002b;
+    border-color: #ff002b;
+    font-weight: 500;
+    outline-color: #d500ff;
+}
+input[type='submit'].danger:hover {
+	background-color: #ff002b;
+	border: 1px white solid;
+	font-weight: 500;
+	color: white;
+}
+input[type='submit'].danger:active {
+	background-color: #a70000;
+	border-color: black;
+    font-weight: 500;
+    color: black;
+}
 /*Respond to Request*/
 #warning{
     color: #d51279;
