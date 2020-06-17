@@ -19,6 +19,7 @@ body{
 	color: white;
 }
 body{
+	background-color: black;
 	background-image: url("../images/images/sky.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -570,7 +571,7 @@ input[type='submit'].success:active {
     outline-color: red;
     float: right;
     z-index: 8;
-
+	cursor: pointer;
 }
 .delete_button:not([href]):hover {
 	color: red;
@@ -586,6 +587,7 @@ input[type='submit'].success:active {
     float: right;
     margin-right: 5px;
     z-index: 8;
+    cursor: pointer;
 
 }
 .edit_button:not([href]):hover {
@@ -596,6 +598,22 @@ input[type='submit'].success:active {
     font-weight: 500;
 }
 
+#edit_button{
+	color: #c45100;
+    font-weight: 500;
+    outline-color: red;
+    float: right;
+    margin-right: 5px;
+    z-index: 8;
+
+}
+#edit_button:hover {
+	color: #ff6a00;
+}
+#edit_button:active {
+	color: #c45100;
+    font-weight: 500;
+}
 .btn-primary:focus{
 	background-color: #d500ff;
 	border: 1px white solid;

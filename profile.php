@@ -136,6 +136,11 @@
 			<div role="tabpanel" class="tab-pane fade" id="about_div">
 			<?php 
 				echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
+				if($userLoggedIn == $user_array['username']){
+					echo "
+					<a class='delete_button' id='delete_details'><i class='fas fa-trash-alt'></i></a>
+					<a class='edit_button' href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab' id='edit_button'><i class='fas fa-edit'></i></a>";
+				}
 
  	 			if($row > 0){
 
@@ -321,11 +326,17 @@
 	$("#about").on('click', function(){
 		$("#newsfeed").removeClass("active_tab");
 		$("#about").addClass("active_tab");
+		$("#newsfeed_div").removeClass("active").addClass("fade");
+		$("#edit_about").removeClass("active").addClass("fade");
+		$("#about_div").removeClass("fade").addClass("active");
 		
 	});
 	$('#newsfeed').on('click', function(){
 		$("#about").removeClass("active_tab");
 		$("#newsfeed").addClass("active_tab");
+		$("#edit_about").removeClass("active").addClass("fade");
+		$("#about_div").removeClass("active").addClass("fade");
+		$("#newsfeed_div").removeClass("fade").addClass("active");
 		$(".message").html("");
 	});
 
