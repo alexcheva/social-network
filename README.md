@@ -1,5 +1,12 @@
 # social-network
 PHP, MySQL, jQuery, Bootstrap, FontAwesome
+-------------
+WORDKING ON LIKES:
+1.assets/css/style.css : linnes 312 to 331;
+2.assets/js/main.js : lines 145 to 150;
+3.includes/classes/Post.php : lines 217 to 233;
+
+--------------
 
 Need to install XAMPP for it to work.<br/>
 Then copy git into htdocs folder.<br/>
