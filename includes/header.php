@@ -23,6 +23,7 @@
 			<script src="assets/js/bootbox.min.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="assets/js/all.min.js"></script>
+			<script scr="assets/js/emojionearea.min.js"></script>
 			<script src="assets/js/jquery.jcrop.js"></script>
 			<script src="assets/js/jcrop_bits.js"></script>
 			<script>
@@ -34,6 +35,7 @@
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 			<link rel="stylesheet" href="assets/css/style.css">
 			<link rel="stylesheet" href="assets/css/jquery.Jcrop.css" type="text/css" />
+			<link rel="stylesheet" type="text/css" href="assets/css/emojionearea.min.css">
 
 	</head>
 	<body>
