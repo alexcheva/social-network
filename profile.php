@@ -226,7 +226,7 @@
 					
 					
 					<label>My Interests:</label>
-					<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php if($interests != "") echo $interests; ?></textarea>
+					<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php echo $interests; ?></textarea>
 					
 					<label>My Favourite Bands:</label>
 					<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
@@ -282,11 +282,11 @@
 	        <h4 class="modal-title" id="postModalLabel">Are you sure you want to delete your account details?</h4>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	      </div>
-<!-- 
+
 	      <div class="modal-body">
-	      	<p>Closing your account will hide your profile and all your activity from other users.</p>
-	      	<p>You can re-open your account at any time by simply logging in.</p>
-	      </div> -->
+	      	<p>This will delete your profile details from the database.</p>
+	      	<p>You can add them back at any time by editing your profile details again.</p>
+	      </div>
 
 	      <div class="modal-footer">
 	        <form action="profile.php" method="POST">
