@@ -49,6 +49,10 @@
 		}
 
 	}
+	if(isset($_POST['delete_about'])){
+	$delete_about = mysqli_query($con, "DELETE FROM details WHERE username='$userLoggedIn'");
+	header("Location: profile.php");
+}
 	
 	//when remove friend button pressed
 	if(isset($_POST['remove_friend'])){
@@ -134,69 +138,75 @@
 			</div>
 			<!-- *********ABOUT********* -->
 			<div role="tabpanel" class="tab-pane fade" id="about_div">
-			<?php 
-				if($userLoggedIn == $user_array['username']){
-					echo "
-					<a class='delete_button' id='delete_details'><i class='fas fa-trash-alt'></i></a>
-					<a class='edit_button' href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab'><i class='fas fa-edit'></i></a>";
-				}
-				echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
-				
-
- 	 			if($row > 0){
-
-					echo $message ."<div id='about_info'>";
-
-					if($about != ""){
-						echo "<p class='purple'>About me:</p>			
-						<p>". nl2br($about) ."</p>";
+				<?php 
+					//show edit and delete buttons:
+					if($userLoggedIn == $user_array['username'] && $row > 0 || $message != ""){
+						echo "<a class='delete_button' id='delete_details' data-toggle='modal' data-target='#delete_about_modal'><i class='fas fa-trash-alt'></i></a>";
 					}
+					if($userLoggedIn == $user_array['username']){
+						echo "
+						<a class='edit_button' href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab'><i class='fas fa-edit'></i></a>";
+					}
+					//show heading:
+					echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
 					
-					if($interests != ""){
-						echo "<p class='purple'>My Interests:</p>
-						<p>" . nl2br($interests) . "</p>";
-					}
-					
-					if($bands != ""){
-						echo "<p class='purple'>My Favourite Bands:</p>
-						<p>". nl2br($bands) . "</p>";
-					}
-					echo "</div>";
-				}else{
-					if($message != ""){
+	 	 			if($row > 0){
+
 						echo $message ."<div id='about_info'>";
-						if($new_about !=0){
+
+						if($about != ""){
 							echo "<p class='purple'>About me:</p>			
-							<p>". nl2br($new_about) ."</p>";
+							<p>". nl2br($about) ."</p><hr>";
 						}
 						
-						if($new_interests !=0){
+						if($interests != ""){
 							echo "<p class='purple'>My Interests:</p>
-							<p>" . nl2br($new_interests) . "</p>";
+							<p>" . nl2br($interests) . "</p><hr>";
 						}
 						
-						if($new_bands !=0){
+						if($bands != ""){
 							echo "<p class='purple'>My Favourite Bands:</p>
-							<p>". nl2br($new_bands) . "</p>";
+							<p>". nl2br($bands) . "</p><hr>";
 						}
-
 						echo "</div>";
-					}else if($userLoggedIn == $user_array['username']) {
-						echo "
-						<p><i>You have not updated your profile details yet.</i></p>
-						<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
-					} else {
-						echo "
-						<p><i>This user has not updated their profile details yet.</i></p>
-						<img style='width: 100px; margin-bottom: 10px;' src='assets/images/icons/sad.png'>";
+
+					}else{
+						if($message != ""){
+							echo $message ."<div id='about_info'>";
+							if($new_about != ""){
+								echo "<p class='purple'>About me:</p>			
+								<p>". nl2br($new_about) ."</p><hr>";
+							}
+							
+							if($new_interests != ""){
+								echo "<p class='purple'>My Interests:</p>
+								<p>" . nl2br($new_interests) . "</p><hr>";
+							}
+							
+							if($new_bands != ""){
+								echo "<p class='purple'>My Favourite Bands:</p>
+								<p>". nl2br($new_bands) . "</p><hr>";
+							}
+							echo "</div>";
+
+						}else if($userLoggedIn == $user_array['username']) {
+							echo "<div id='about_info'>
+							<p><i>You have not updated your profile details yet.</i></p>
+							<img style='width: 100px; margin-bottom: 20px;' src='assets/images/icons/sad.png'></div>";
+						} else {
+							echo "
+							<p><i>This user has not updated their profile details yet.</i></p>
+							<img style='width: 100px; margin-bottom: 20px;' src='assets/images/icons/sad.png'>";
+							echo "</div>";//close about div
+						}
 					}
-				}
 
- 	 			if($userLoggedIn == $user_array['username']){
- 	 				echo "<a href='#edit_about' aria-control='edit_about' id='edit_button' class='edit_button' role='tab' data-toggle='tab'>Edit</a>";
-			?>
+	 	 			if($userLoggedIn == $user_array['username']){
+	 	 				echo "<a href='#edit_about' aria-control='edit_about' id='edit_button' class='edit_button' role='tab' data-toggle='tab'>Edit</a>";
+	 	 				echo "</div>"; //close about div
+				?>
 
-			</div>
+			
 			<div role="tabpanel" class="tab-pane fade" id="edit_about">
 
 				<button type="button" class="close close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -229,10 +239,10 @@
 			?>
 			
 		</div>
-	<!-- </div> -->
 	</div>
+	
 
-	<!-- Modal For New Post -->
+	<!-- Post on wall -->
 	<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -257,6 +267,32 @@
 	      <div class="modal-footer">
 	        <button type="button" id="ignore" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="button" id="submit_profile_post" class="btn btn-primary" name="post_button">Post</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- DELETE ABOUT INFO -->
+
+	<div class="modal fade" id="delete_about_modal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="postModalLabel">Are you sure you want to delete your account details?</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+<!-- 
+	      <div class="modal-body">
+	      	<p>Closing your account will hide your profile and all your activity from other users.</p>
+	      	<p>You can re-open your account at any time by simply logging in.</p>
+	      </div> -->
+
+	      <div class="modal-footer">
+	        <form action="profile.php" method="POST">
+	        <input type="submit" id="close_account" name="delete_about" value="Yes! Delete it.">
+	        <input type="button" id="dont_close" data-dismiss="modal" value="No! Leave it.">
+	        </form>
 	      </div>
 	    </div>
 	  </div>
@@ -380,34 +416,34 @@
 		}, 
 		function(response){
  
-		if(response !== "No text") {
+			if(response !== "No text") {
+	 
+				const loadComment = $.post("includes/handlers/load_comment.php", 
+					{
+						id: id, 
+						userLoggedIn: userLoggedIn
+					}, 
+					function(newComment) {
+	 
+					$("#comment" + id).val("");
+					const noComment = $("#toggleComment" + id).find("#noComment" + id);
+					
+					if(noComment.length !== 0) {
+						noComment.remove();
+					}
+	 
+					$("#toggleComment" + id).append(newComment);
+	 
+				});
+			}
+	 
+			else {
+	 
+				bootbox.alert("Something went wrong. Please try again");
+			} 
  
-			const loadComment = $.post("includes/handlers/load_comment.php", 
-				{
-					id: id, 
-					userLoggedIn: userLoggedIn
-				}, 
-				function(newComment) {
- 
-				$("#comment" + id).val("");
-				const noComment = $("#toggleComment" + id).find("#noComment" + id);
-				
-				if(noComment.length !== 0) {
-					noComment.remove();
-				}
- 
-				$("#toggleComment" + id).append(newComment);
- 
-			});
-		}
- 
-		else {
- 
-			bootbox.alert("Something went wrong. Please try again");
-		} 
- 
-	});
-};
+		});
+	};
 	</script>
 	<!-- end wrapper from header -->
 	</div>
