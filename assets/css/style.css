@@ -238,6 +238,18 @@ hr{
     font-weight: 500;
     color: black;
 }
+
+.num_comments {
+	color: #d500ff;
+	text-decoration: none;
+	font-weight: 600;
+}
+.num_comments:hover{
+	color: #ffea00;
+}
+.num_comments:active{
+	color: purple;
+}
 .posted_by{
 
 }

@@ -218,7 +218,7 @@ class Post{
 					";
 				}
 				else {
-					$like_button .= "
+					$like_button .= " 
 							<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>
 					";
 				}
@@ -241,9 +241,14 @@ class Post{
 							
 							<hr>
 							<div class='newsfeedPostOptions'>
-								<span class='num_comments' onClick='javaScript:toggle$id()'>
-									Comments ($comments_check_num)
-								</span>
+								<span class='num_comments' onClick='javaScript:toggle$id()'>";
+								if($comments_check_num == 0)
+									$str.= "<i class='fas fa-comment-alt'></i> Comment";
+								else if($comments_check_num == 1)
+									$str.= "<i class='fas fa-comment-alt'></i> $comments_check_num Comment";
+								else
+									$str.= "<i class='fas fa-comment-alt'></i> $comments_check_num Comments";
+								$str.="</span>  | 
 								<span class='like_value' id='total_like_$id'>";
 								if($total_likes === '1' ){
 									$str .= "$total_likes Like";
@@ -433,9 +438,14 @@ class Post{
 							
 							<hr>
 							<div class='newsfeedPostOptions'>
-								<span class='num_comments' onClick='javaScript:toggle$id()'>
-									Comments ($comments_check_num)
-								</span>
+								<span class='num_comments' onClick='javaScript:toggle$id()'>";
+								if($comments_check_num == 0)
+									$str.= "<i class='fas fa-comment-alt'></i> Comment";
+								else if($comments_check_num == 1)
+									$str.= "<i class='fas fa-comment-alt'></i> $comments_check_num Comment";
+								else
+									$str.= "<i class='fas fa-comment-alt'></i> $comments_check_num Comments";
+								$str.="</span>  | 
 								<span class='like_value' id='total_like_$id'>";
 
 								if($total_likes === '1' ){
