@@ -598,7 +598,7 @@ input[type='submit'].success:active {
     font-weight: 500;
 }
 
-#edit_button{
+.edit_button{
 	color: #c45100;
     font-weight: 500;
     outline-color: red;
@@ -607,10 +607,10 @@ input[type='submit'].success:active {
     z-index: 8;
 
 }
-#edit_button:hover {
+.edit_button:hover {
 	color: #ff6a00;
 }
-#edit_button:active {
+.edit_button:active {
 	color: #c45100;
     font-weight: 500;
 }
@@ -1059,3 +1059,25 @@ input[type='submit'].save_details:active {
     color: black;
     outline-color: #d500ff;
 }
+
+/*About Edit Button*/
+#edit_button{
+    color: #ffaa00;
+    background-color: black;
+    padding: 5px 10px;
+    border: 1px solid #ffaa00;
+    font-weight: 500;
+    outline-color: #c45100;
+    float: none;
+}
+#edit_button:hover {
+	background-color: #ffaa00;
+	border: 1px white solid;
+	font-weight: 500;
+	color: white;
+}
+#edit_button:active {
+	background-color: #c45100;
+	border-color: black;
+    font-weight: 500;
+    color: black;

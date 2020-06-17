@@ -135,12 +135,13 @@
 			<!-- *********ABOUT********* -->
 			<div role="tabpanel" class="tab-pane fade" id="about_div">
 			<?php 
-				echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
 				if($userLoggedIn == $user_array['username']){
 					echo "
 					<a class='delete_button' id='delete_details'><i class='fas fa-trash-alt'></i></a>
-					<a class='edit_button' href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab' id='edit_button'><i class='fas fa-edit'></i></a>";
+					<a class='edit_button' href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab'><i class='fas fa-edit'></i></a>";
 				}
+				echo "<h4>About ". $user_array['first_name'] . " " . $user_array['last_name'] .":</h4>";
+				
 
  	 			if($row > 0){
 
@@ -191,10 +192,10 @@
 					}
 				}
 
- 	 		if($userLoggedIn == $user_array['username']){
- 	 			echo "<a href='#edit_about' aria-control='edit_about' role='tab' data-toggle='tab' id='edit_button'><input type='submit' name='save_about' class='warning' id='edit_button' value='Edit'></a>
- 	 			";
+ 	 			if($userLoggedIn == $user_array['username']){
+ 	 				echo "<a href='#edit_about' aria-control='edit_about' id='edit_button' class='edit_button' role='tab' data-toggle='tab'>Edit</a>";
 			?>
+
 			</div>
 			<div role="tabpanel" class="tab-pane fade" id="edit_about">
 
@@ -224,12 +225,11 @@
 				</form>
 			</div>
 			<?php
-			} 
+			}
 			?>
 			
 		</div>
-
-		
+	<!-- </div> -->
 	</div>
 
 	<!-- Modal For New Post -->
@@ -340,7 +340,7 @@
 		$(".message").html("");
 	});
 
-	$('#edit_button').on('click', function(){
+	$('.edit_button').on('click', function(){
 		$("#about_div").removeClass("active").addClass("fade");
 		$("#edit_about").removeClass("fade").addClass("active");
 	});
