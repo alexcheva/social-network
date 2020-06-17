@@ -212,15 +212,22 @@ class Post{
 				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
 				$num_rows = mysqli_num_rows($check_query);
                 $like_button = '';
-				if($num_rows > 0) {
 
-					$like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>
+                //if you already liked:
+				if($num_rows > 0) {
+					$like_button .= "<a id='like_button_$id' class='unlike' name='like_button' value='Unlike' onclick='sendLike($id)'>
+					
+				    <i class='fas fa-heart'></i>
+				    <i class='fas fa-heart-broken'></i>
+					</a>
 					";
 				}
 				else {
-					$like_button .= " 
-							<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>
-					";
+					$like_button .= "
+							<a id='like_button_$id' class='like' name='like_button' value='Like' onclick='sendLike($id)'>
+    						<i class='far fa-heart hollow like_heart'></i>
+    						<i class='fas fa-heart full'></i>
+							</a>";
 				}
 
 				$str .= "<div class='status_post'>

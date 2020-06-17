@@ -28,6 +28,13 @@ $(document).ready(function(){
 		});
 	});
 
+	       //  $('.fa-heart').hover(function () {
+        //     $(this).addClass('fa-heart-broken');
+        //     $(this).removeClass('fa-heart'); 
+        // }, function () {
+        //     $(this).addClass('fa-heart');
+        //     $(this).removeClass('fa-heart-broken');
+        // });
 });
 
 function getUsers(value, user) {
@@ -120,16 +127,54 @@ $(document).click(function(e){
 
 function updateLikes(id) {
     return $.get("like_post.php", {post_id: id}).done((num_likes) => {
+    	//when got number of likes, update text: like or likes
         $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
     })
 }
 
 function sendLike(id) {
     const current_label = $(`#like_button_${id}`).val()
+    // const current_class = $(`#like_button_${id}`).val()
 	const sendLike = $.post("includes/handlers/send_like.php", 
 		{userLoggedIn:userLoggedIn, id:id}, 
 		function(response){
             updateLikes(id);
-            $(`#like_button_${id}`).val(current_label == 'Like' ? 'Unlike' : 'Like'); 
+            //if value = like -> on hover change to broken, if unlike change to solid heart.
+           // $(`#like_button_${id}`).val(current_label == 'Like' ? 'Unlike' : 'Like'); 
+
+            if($(`#like_button_${id}`).val() == 'Unlike'){
+            	$(`fa-heart`).removeClass("unlike").addClass("like");
+            }else{
+            	$(`#like_button_${id}`).removeClass("like").addClass("unlike");
+            }
+
+
 	});
+
+	
+	//if heart is solid:
+	// if($(`#like_${id}`).hasClass( "fas fa-heart" )){
+	// 	//make broken heart:
+	// 	$(`#like_${id}`).removeClass("fas fa-heart").addClass("fa-heart-broken");
+	// }
+// remove left hover listener
+  // left.off('hover');
+  // right.hover(function() {
+  //   right.css("margin-left", "10%");
+  //   left.css("margin-left", "-90%");
+  // }, function(){
+  //   right.css("margin-left", "50%");
+  //   left.css("margin-left", "-50%");
+  // });
+// }
+
+
+// 	{
+//             	$(`#like_button_${id}`).val(current_label == 'Unlike');
+//             	$(`#like_${id}`).removeClass("fas fa-heart").addClass("fas fa-heart");
+//             }else{
+//             	$(`#like_button_${id}`).val(current_label == 'Like');
+//             	$(`#like_${id}`).removeClass("fas fa-heart").addClass("far fa-heart");
+//             }
+
 }

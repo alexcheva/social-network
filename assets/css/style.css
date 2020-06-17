@@ -309,6 +309,20 @@ hr{
 	float: left;
 	min-width: 165px;
 }
+.unlike:hover .fa-heart,
+.unlike .fa-heart-broken {
+    display: none;
+}
+.unlike:hover .fa-heart-broken {
+    display: inline;
+}
+.like:hover .hollow,
+.like .full {
+    display: none;
+}
+.like:hover .full {
+    display: inline;
+}
 /*Friend request buttons*/
 /*Delete friend*/
 #danger{
