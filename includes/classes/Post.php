@@ -217,8 +217,8 @@ class Post{
 				if($num_rows > 0) {
 					$like_button .= "<a id='like_button_$id' class='unlike' name='like_button' value='Unlike' onclick='sendLike($id)'>
 					
-				    <i class='fas fa-heart reg-heart'></i>
-				    <i class='fas fa-heart-broken broken-heart'></i>
+				    <i class='fas fa-heart reg-heart active'></i>
+				    <i class='fas fa-heart-broken broken-heart hover'></i>
 				    <i id='click_unlike' class='far fa-heart'></i>
 
 					</a>
