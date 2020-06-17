@@ -142,11 +142,15 @@ function sendLike(id) {
             //if value = like -> on hover change to broken, if unlike change to solid heart.
            // $(`#like_button_${id}`).val(current_label == 'Like' ? 'Unlike' : 'Like'); 
 
-            if($(`#like_button_${id}`).val() == 'Unlike'){
-            	$(`fa-heart`).removeClass("unlike").addClass("like");
-            }else{
-            	$(`#like_button_${id}`).removeClass("like").addClass("unlike");
+            if($(`#like_button_${id}`).val() == 'Unlike')
+            {
+            	$("#click_unlike").css({"display": "inline"});
+            	$(".hollow").removeClass("active").addClass("hover");
+            	$(".full").removeClass("hover").addClass("active");
             }
+            // }else{
+            // 	$(`#like_button_${id}`).removeClass("like").addClass("unlike");
+            // }
 
 
 	});

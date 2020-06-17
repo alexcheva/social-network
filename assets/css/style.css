@@ -309,11 +309,14 @@ hr{
 	float: left;
 	min-width: 165px;
 }
-.unlike:hover .fa-heart,
-.unlike .fa-heart-broken {
+.unlike:hover .reg-heart,
+.unlike .broken-heart {
     display: none;
 }
-.unlike:hover .fa-heart-broken {
+#click_unlike{
+	display: none;
+}
+.unlike:hover .broken-heart {
     display: inline;
 }
 .like:hover .hollow,
@@ -322,6 +325,9 @@ hr{
 }
 .like:hover .full {
     display: inline;
+}
+#click_like{
+	display: none;
 }
 /*Friend request buttons*/
 /*Delete friend*/

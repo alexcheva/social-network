@@ -217,16 +217,19 @@ class Post{
 				if($num_rows > 0) {
 					$like_button .= "<a id='like_button_$id' class='unlike' name='like_button' value='Unlike' onclick='sendLike($id)'>
 					
-				    <i class='fas fa-heart'></i>
-				    <i class='fas fa-heart-broken'></i>
+				    <i class='fas fa-heart reg-heart'></i>
+				    <i class='fas fa-heart-broken broken-heart'></i>
+				    <i id='click_unlike' class='far fa-heart'></i>
+
 					</a>
 					";
 				}
 				else {
 					$like_button .= "
 							<a id='like_button_$id' class='like' name='like_button' value='Like' onclick='sendLike($id)'>
-    						<i class='far fa-heart hollow like_heart'></i>
-    						<i class='fas fa-heart full'></i>
+    						<i class='far fa-heart hollow active'></i>
+    						<i class='fas fa-heart full hover'></i>
+    						<i id='click_like' class='fas fa-heart full-heart click-active'></i>
 							</a>";
 				}
 
