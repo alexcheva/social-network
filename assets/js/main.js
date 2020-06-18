@@ -186,7 +186,7 @@ $(function(){
       const extension = $(this).attr("src").indexOf(".png");
       const emojisDash = $(this).attr("src").indexOf("emojis/");
       const num = $(this).attr("src").substring(emojisDash + 7, extension);
-      const emoji = `:s${num}:`;
+      let emoji = `:s${num}:`;
  
       const txt = $("#post_text");
       let caretPos = txt[0].selectionStart;
@@ -199,16 +199,12 @@ $(function(){
     });
  
     $(".toggle_emojis").on("click", function(){
+    	// $(".emojis").toggleClass("hide");
+    	if($(".emojis").hasClass( "hide" )){
+    		$(".emojis").removeClass("hide");
+    	}else{
+    		$(".emojis").addClass("hide");
+    	}
+	});
  
-      if($(".emojis").css("height") !== "0px"){
-        $(".emojis").css("max-height", "0px");
-        $(".emojis .toggle_emojis").attr("title", "Show emojis");
-      }
-      if($(".emojis").css("height") === "0px"){
-        $(".emojis").css("max-height", "40px");
-        $(".emojis .toggle_emojis").attr("title", "Close emojis");
-      }
- 
-    });
- 
-});
+ });

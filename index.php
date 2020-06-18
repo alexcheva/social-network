@@ -42,7 +42,7 @@
 
 	 -->	
 		<img src='assets/images/icons/emoji.png' class='toggle_emojis' title="Show emojis">
-		<div class="emojis"><?php echo Emojis::$emoji_list; ?></div>
+		<div class="emojis hide"><?php echo Emojis::$emoji_list; ?></div>
 	 	<input type="submit" name="post" id="post_button" value="Post">
 	
 		</form>

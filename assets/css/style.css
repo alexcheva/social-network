@@ -1115,18 +1115,21 @@ input[type='submit'].save_details:active {
     color: black;
 }
 /*EMOJI VLADIMIR*/
+.hide{
+	display: none;
+}
 .emojis {
-	display: block;
-	overflow-y: hidden;
-	max-height: 0px; 
+	width: 87%;
+	/*overflow-y: hidden;*/
+	height: auto; 
 	transition-property: all;
 	transition-duration: .5s;
 	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
  
 .emojis img {
-	height: 20px;
-	width: 20px;
+	height: 25px;
+	width: 25px;
 	cursor: pointer;
 	margin-bottom: 2.5px;
  
