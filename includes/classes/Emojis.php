@@ -12,37 +12,29 @@ class Emojis {
 						<img src='assets/images/emojis/8.png'>
 						<img src='assets/images/emojis/9.png'>
 						<img src='assets/images/emojis/10.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/11.png'>
 						<img src='assets/images/emojis/12.png'>
 						<img src='assets/images/emojis/13.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/14.png'>
 						<img src='assets/images/emojis/15.png'>
 						<img src='assets/images/emojis/16.png'>
 						<img src='assets/images/emojis/17.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/18.png'>
 						<img src='assets/images/emojis/19.png'>
 						<img src='assets/images/emojis/20.png'>
-						
-						&nbsp;&nbsp;
+						<img src='assets/images/emojis/21.png'>
 						<img src='assets/images/emojis/22.png'>
 						<img src='assets/images/emojis/23.png'>
 						<img src='assets/images/emojis/24.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/25.png'>
 						<img src='assets/images/emojis/26.png'>
 						<img src='assets/images/emojis/27.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/28.png'>
 						<img src='assets/images/emojis/29.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/30.png'>
 						<img src='assets/images/emojis/31.png'>
 						<img src='assets/images/emojis/32.png'>
 						<img src='assets/images/emojis/33.png'>
-						&nbsp;&nbsp;
 						<img src='assets/images/emojis/34.png'>
 						<img src='assets/images/emojis/35.png'>
 						";

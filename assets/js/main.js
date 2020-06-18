@@ -178,3 +178,37 @@ function sendLike(id) {
 //             }
 
 }
+//Vladimir emoji code
+$(function(){
+ 
+    $(".emojis img:not(.toggle_emojis)").on("click", function(){
+ 
+      const extension = $(this).attr("src").indexOf(".png");
+      const emojisDash = $(this).attr("src").indexOf("emojis/");
+      const num = $(this).attr("src").substring(emojisDash + 7, extension);
+      const emoji = `:s${num}:`;
+ 
+      const txt = $("#post_text");
+      let caretPos = txt[0].selectionStart;
+      const textAreaTxt = txt.val();
+ 
+      txt.val(textAreaTxt.substring(0, caretPos) + emoji + textAreaTxt.substring(caretPos));
+ 
+      if(caretPos === 0)
+        caretPos = textAreaTxt.substring(-1);
+    });
+ 
+    $(".toggle_emojis").on("click", function(){
+ 
+      if($(".emojis").css("height") !== "0px"){
+        $(".emojis").css("max-height", "0px");
+        $(".emojis .toggle_emojis").attr("title", "Show emojis");
+      }
+      if($(".emojis").css("height") === "0px"){
+        $(".emojis").css("max-height", "40px");
+        $(".emojis .toggle_emojis").attr("title", "Close emojis");
+      }
+ 
+    });
+ 
+});

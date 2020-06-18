@@ -202,6 +202,12 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
+
+				//EMOJI
+				$body_array = preg_split("/[ ]+|\n/", $body);
+				foreach($body_array as $key => $value) {
+				     $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				}
 				
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
@@ -415,6 +421,12 @@ class Post{
 				//Time frame
 				$time_message = $this->getTime($date_time);
 
+				//EMOJI
+				$body_array = preg_split("/[ ]+|\n/", $body);
+				foreach($body_array as $key => $value) {
+				     $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				}
+
 				//Number of likes from posts:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
 				$row = mysqli_fetch_array($get_likes);
@@ -593,6 +605,11 @@ class Post{
 				$comment_id = $comment['id'];
         
 	    		$time_message = $this->getTime($date_added);
+	    		//EMOJI
+				$body_array = preg_split("/[ ]+|\n/", $comment_body);
+				foreach($body_array as $key => $value) {
+				     $comment_body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				}
 	 
 				$user_obj = new User($this->con, $posted_by);
 	 
@@ -734,6 +751,11 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
+				//EMOJI
+				$body_array = preg_split("/[ ]+|\n/", $body);
+				foreach($body_array as $key => $value) {
+				     $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				}
 				
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
