@@ -9,9 +9,10 @@ $(document).ready(function(){
 	$(".button_holder").on('click', function(){
 		document.search_form.submit();
 	});
-	$("#post_text").emojioneArea({
-		pickerPosition: "bottom"
-	});
+	//emoji one plugIn
+	// $("#post_text").emojioneArea({
+	// 	pickerPosition: "bottom"
+	// });
 	//button for profile post
 	$('#submit_profile_post').click(function(){
 		$.ajax({
