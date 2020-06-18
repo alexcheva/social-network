@@ -3,6 +3,7 @@ require '../../config/config.php';
 include('../classes/User.php');
 include('../classes/Post.php');
 require_once("../classes/Notification.php");
+require_once("../classes/Emojis.php");
 
 //select textarea
 if(isset($_POST['post_body'])){

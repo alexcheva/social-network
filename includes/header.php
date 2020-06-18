@@ -4,6 +4,7 @@
 	include('includes/classes/Post.php');
 	include('includes/classes/Message.php');
 	include('includes/classes/Notification.php');
+	require_once("includes/classes/Emojis.php");
 
 	if (isset($_SESSION['username'])){
 		$userLoggedIn = $_SESSION['username'];

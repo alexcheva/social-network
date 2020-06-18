@@ -3,6 +3,7 @@
 	require_once("../../config/config.php");
 	require_once("../classes/User.php");
 	require_once("../classes/Post.php");
+	require_once("../classes/Emojis.php");
 	 
 	$id = $_POST['id'];
 	 

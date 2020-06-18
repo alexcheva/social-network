@@ -4,6 +4,7 @@
 	require_once("../classes/User.php");
 	require_once("../classes/Post.php");
 	require_once("../classes/Notification.php");
+	require_once("../classes/Emojis.php");
 	 
 	$userLoggedIn = $_POST['userLoggedIn'];
 	$commentText = $_POST['commentText'];
