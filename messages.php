@@ -86,6 +86,11 @@
     if(div != null) {
         div.scrollTop = div.scrollHeight;
     }
+    $(document).ready(function(){
+    	$("#message_textarea").emojioneArea({
+		pickerPosition: "bottom"
+	});
+    });
 </script>
 	<div class="message_details column profile_left" id="conversations">
 		<h4>Conversations:</h4>
