@@ -33,9 +33,10 @@
 			<!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'> -->
 			<link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet"/>
 			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+			<link rel="stylesheet" type="text/css" href="assets/css/emojionearea.css">
 			<link rel="stylesheet" href="assets/css/style.css">
 			<link rel="stylesheet" href="assets/css/jquery.Jcrop.css" type="text/css" />
-			<link rel="stylesheet" type="text/css" href="assets/css/emojionearea.css">
+			
 
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 				<h1><a href="index.php">Verni Moj 2007 &#128148;</a></h1>
 			</div>
 
-			<div class="search">
+			<div class="vm_search">
 				<form action="search.php" method="GET" name="search_form">
 					<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
 					<div class="button_holder">
