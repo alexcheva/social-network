@@ -555,7 +555,7 @@
     right: 23px; }
   .emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-left .emojionearea-wrapper:after, .emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-right .emojionearea-wrapper:after {
     top: 15px; }
-    
+
 .emojionearea .emojionearea-button > div, .emojionearea .emojionearea-picker .emojionearea-wrapper:after {
   background-image: url('../images/icons/emoji.png') !important;
     width: 20px;
@@ -569,3 +569,4 @@
     height: 20px;
     background-size: contain;
     background-repeat: no-repeat;}
+    /*# sourceMappingURL=emojionearea.css.map */
