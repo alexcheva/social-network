@@ -555,11 +555,17 @@
     right: 23px; }
   .emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-left .emojionearea-wrapper:after, .emojionearea.emojionearea-standalone .emojionearea-picker.emojionearea-picker-position-right .emojionearea-wrapper:after {
     top: 15px; }
-
+    
 .emojionearea .emojionearea-button > div, .emojionearea .emojionearea-picker .emojionearea-wrapper:after {
-  background-image: url('https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f929.png') !important; }
+  background-image: url('../images/icons/emoji.png') !important;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat; }
 
 .emojionearea.emojionearea-standalone .emojionearea-editor.has-placeholder {
-  background-image: url('https://cdn.jsdelivr.net/emojione/assets/3.1/png/32/1f929.png') !important; }
-
-/*# sourceMappingURL=emojionearea.css.map */
+  background-image: url('../images/icons/emoji.png') !important; 
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;}
