@@ -192,7 +192,7 @@ $(function(){
       let caretPos = txt[0].selectionStart;
       const textAreaTxt = txt.val();
  
-      txt.val(textAreaTxt.substring(0, caretPos) + emoji + textAreaTxt.substring(caretPos));
+      txt.val(textAreaTxt.substring(0, caretPos) + " " + emoji + " " + textAreaTxt.substring(caretPos));
  
       if(caretPos === 0)
         caretPos = textAreaTxt.substring(-1);

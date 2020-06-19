@@ -398,6 +398,12 @@
 		$("#edit_about").removeClass("fade").addClass("active");
 	}
 
+	//emoji one plugIn
+	$("textarea").emojioneArea({
+		pickerPosition: "bottom"
+	});
+
+
 
 	function sendComment(id) {
 	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
