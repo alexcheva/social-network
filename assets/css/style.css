@@ -309,21 +309,20 @@ hr{
 	float: left;
 	min-width: 165px;
 }
-.unlike:hover .reg-heart,
-.unlike .broken-heart {
+.unliked:hover .hollow,
+.unliked .broken-heart,
+.unliked .full {
     display: none;
 }
-#click_unlike{
-	display: none;
-}
-.unlike:hover .broken-heart {
+.unliked:hover .full {
     display: inline;
 }
-.like:hover .hollow,
-.like .full {
+.liked:hover .full,
+.liked .hollow,
+.liked .broken-heart {
     display: none;
 }
-.like:hover .full {
+.liked:hover .broken-heart {
     display: inline;
 }
 #click_like{
