@@ -219,25 +219,15 @@ class Post{
 				$num_rows = mysqli_num_rows($check_query);
                 $like_button = '';
 
-                //if you already liked:
-				if($num_rows > 0) {
-					$like_button .= "<a id='like_button_$id' class='unlike' name='like_button' value='Unlike' onclick='sendLike($id)'>
-					
-				    <i class='fas fa-heart reg-heart active'></i>
-				    <i class='fas fa-heart-broken broken-heart hover'></i>
-				    <i id='click_unlike' class='far fa-heart'></i>
+                $liked = $num_rows > 0 ? 'liked' : 'unliked';
 
-					</a>
-					";
-				}
-				else {
-					$like_button .= "
-							<a id='like_button_$id' class='like' name='like_button' value='Like' onclick='sendLike($id)'>
-    						<i class='far fa-heart hollow active'></i>
-    						<i class='fas fa-heart full hover'></i>
-    						<i id='click_like' class='fas fa-heart full-heart click-active'></i>
-							</a>";
-				}
+                //if you already liked:
+				$like_button .= "<a id='like_button_$id' class='$liked' name='like_button' value='Unlike' onclick='sendLike($id)'>
+    			    <i class='fas fa-heart-broken broken-heart hover'></i>
+					<i class='fas fa-heart full hover'></i>
+                    <i class='far fa-heart hollow active'></i>
+				</a>
+				";
 
 				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
