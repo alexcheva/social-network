@@ -427,11 +427,16 @@ class Post{
 				$num_rows = mysqli_num_rows($check_query);
 
 				$like_button = '';
-				if($num_rows > 0) {
-				    $like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>";
-				} else {
-				    $like_button .= "<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>";
-				}
+
+				$liked = $num_rows > 0 ? 'liked' : 'unliked';
+
+                //if you already liked:
+				$like_button .= "<a id='like_button_$id' class='$liked' name='like_button' value='Unlike' onclick='sendLike($id)'>
+    			    <i class='fas fa-heart-broken broken-heart hover'></i>
+					<i class='fas fa-heart full hover'></i>
+                    <i class='far fa-heart hollow active'></i>
+				</a>
+				";
 
 				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
@@ -755,17 +760,17 @@ class Post{
 				//Check for previous likes
 				$check_query = mysqli_query($this->con, "SELECT * FROM likes WHERE username='$userLoggedIn' AND post_id='$id'");
 				$num_rows = mysqli_num_rows($check_query);
-	            $like_button = '';
-				if($num_rows > 0) {
+				$like_button = '';
 
-					$like_button .= "<input id='like_button_$id' type='button' class='comment_like' name='like_button' value='Unlike' onclick='sendLike($id)'>
-					";
-				}
-				else {
-					$like_button .= "
-							<input type='button' id='like_button_$id' class='comment_like' name='like_button' value='Like' onclick='sendLike($id)'>
-					";
-				}
+	            $liked = $num_rows > 0 ? 'liked' : 'unliked';
+
+                //if you already liked:
+				$like_button .= "<a id='like_button_$id' class='$liked' name='like_button' value='Unlike' onclick='sendLike($id)'>
+    			    <i class='fas fa-heart-broken broken-heart hover'></i>
+					<i class='fas fa-heart full hover'></i>
+                    <i class='far fa-heart hollow active'></i>
+				</a>
+				";
 
 				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
