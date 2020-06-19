@@ -8,6 +8,7 @@
 		//find friends, look for commans
 		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
 		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$username'");
+		$get_number_posts = mysqli_query($con, "SELECT * FROM posts WHERE added_by='$username'");
 	}else{
 		$username = $userLoggedIn;
 		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");
@@ -15,10 +16,12 @@
 		//find friends, look for commans
 		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
 		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
+		$get_number_posts = mysqli_query($con, "SELECT * FROM posts WHERE added_by='$userLoggedIn'");
 	}
 	$message = "";
 	$error = "";
 	$row = mysqli_fetch_array($about_query);
+	$num_posts = mysqli_num_rows($get_number_posts);
 	if($row > 0){
 		$about = $row['about'];
 		$interests = $row['interests'];
@@ -104,7 +107,7 @@
 					}
 				?>
 			</form>
-			<p><?php echo "Posts: " . $user_array['num_posts']; ?></p>
+			<p><?php echo "Posts: " . $num_posts; ?></p>
 			<p><?php echo "Likes: " . $user_array['num_likes']; ?></p>
 			<p><?php echo "Friends: " . $num_friends; ?></p>
 			<?php 

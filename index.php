@@ -20,7 +20,9 @@
 			</a>
 			<p>
 				<?php 
-				echo "Posts: " . $user['num_posts'] . "<br>";
+				$get_number_posts = mysqli_query($con, "SELECT * FROM posts WHERE added_by='$userLoggedIn'");
+		$num_posts = mysqli_num_rows($get_number_posts);
+				echo "Posts: " . $num_posts . "<br>";
 				echo "Likes: " . $user['num_likes'];
 				?>
 			</p>
