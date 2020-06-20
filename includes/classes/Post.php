@@ -17,7 +17,21 @@ class Post{
 
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
 		
+		
 		if($check_empty != "") {
+			//redex
+			$body_array = preg_split("/\s+/", $body);
+
+			foreach($body_array as $key => $value){
+				if(strpos($value, "www.youtube.com/watch?v=") !== false){
+
+					$value = preg_replace("!watch\?v=!", "embed/", $value);
+					$value = "<br><iframe width=\'420\' height=\'315\' src=\'" . $value ."\' frameborder=\'0\' allowfullscreen></iframe><br>";
+					$body_array[$key] = $value;
+				}
+			}
+
+			$body = implode(" ", $body_array);
 
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
@@ -204,10 +218,10 @@ class Post{
 				$time_message = $this->getTime($date_time);
 
 				//EMOJI
-				$body_array = preg_split("/[ ]+|\n/", $body);
-				foreach($body_array as $key => $value) {
-				     $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
-				}
+				// $body_array = preg_split("/[ ]+|\n/", $body);
+				// foreach($body_array as $key => $value) {
+				//      $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				// }
 				
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
@@ -412,10 +426,10 @@ class Post{
 				$time_message = $this->getTime($date_time);
 
 				//EMOJI
-				$body_array = preg_split("/[ ]+|\n/", $body);
-				foreach($body_array as $key => $value) {
-				     $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
-				}
+				// $body_array = preg_split("/[ ]+|\n/", $body);
+				// foreach($body_array as $key => $value) {
+				//      $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				// }
 
 				//Number of likes from posts:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
@@ -747,10 +761,10 @@ class Post{
 				//add time frame
 				$time_message = $this->getTime($date_time);
 				//EMOJI
-				$body_array = preg_split("/[ ]+|\n/", $body);
-				foreach($body_array as $key => $value) {
-				     $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
-				}
+				// $body_array = preg_split("/[ ]+|\n/", $body);
+				// foreach($body_array as $key => $value) {
+				//      $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
+				// }
 				
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
