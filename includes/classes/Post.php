@@ -91,9 +91,9 @@ class Post{
 				$days = $interval->d . " days ago";
 			}
 			if($interval->m == 1){
-				$time_message = $interval->m . " month" . $days;
+				$time_message = $interval->m . " month " . $days;
 			} else{
-				$time_message = $interval->m . " months" . $days;
+				$time_message = $interval->m . " months " . $days;
 			}
 		}
 		else if($interval->d >= 1){
@@ -474,20 +474,22 @@ class Post{
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
-							<div class='posted_by'>
-								<a href='$added_by'>$first_name $last_name</a>$delete_button $edit_button
+							<div class='post_main'>
+								<div class='posted_by'>
+									<a href='$added_by'>$first_name $last_name</a>$delete_button $edit_button
+								</div>
+								<div class='post_body'>
+									$body
+								</div>
+								<div class='post_time'>
+									$time_message
+								</div>
 							</div>
-							<div class='post_body'>
-								$body
-							</div>
-							<div class='post_time'>
-								$time_message
-							</div>
-							</div>
+						</div>
 							
-							<hr>
-							<div class='newsfeedPostOptions'>
-								<span class='num_comments' onClick='javaScript:toggle$id()'>";
+						<hr>
+						<div class='newsfeedPostOptions'>
+							<span class='num_comments' onClick='javaScript:toggle$id()'>";
 								if($comments_check_num == 0)
 									$str.= "<i class='fas fa-comment-alt'></i> Comment";
 								else if($comments_check_num == 1)
@@ -655,13 +657,16 @@ class Post{
 				<hr>
 				<div class='comment_section'>
 					<a href='$posted_by' target='_parent'><img src='$profile_pic' title='$posted_by' class='comment_profile_img'></a>
-					<a href='$posted_by' target='_parent'>$name</a>$delete_button
-					<div class='post_body'>
-						$comment_body
+					<div class='post_main'>
+						<a href='$posted_by'>$name</a>
+						$delete_button
+						<div class='post_body'>
+							$comment_body
+						</div>
+						<div class='post_time'>
+							$time_message
+						</div> 
 					</div>
-					<div class='post_time'>
-						$time_message
-					</div> 
 					
 				</div>";				
 			}
@@ -809,16 +814,16 @@ class Post{
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
 							<div class='post_main'>
-							<div class='posted_by'>
-								<a href='$added_by'>$first_name $last_name</a> $user_to 
-							</div>
-							<div class='post_body'>
-								$body
-							</div>
-							<div class='post_time'>
-								$time_message
-							</div>
-							$delete_button
+								<div class='posted_by'>
+									<a href='$added_by'>$first_name $last_name</a> $user_to 
+								</div>
+								<div class='post_body'>
+									$body
+								</div>
+								<div class='post_time'>
+									$time_message
+								</div>
+								$delete_button
 							</div>
 							<hr>
 							<div class='newsfeedPostOptions'>
