@@ -29,7 +29,7 @@ class Post{
 					$link = preg_split("!&!", $value);
 					//find !that!
 					$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
-					$value = "<iframe width=\'420\' height=\'315\' src=\'" . $value ."\' frameborder=\'0\' allowfullscreen></iframe>";
+					$value = "<div class=\'embed-container\'><iframe src=\'" . $value ."\' frameborder=\'0\' allowfullscreen></iframe></div>";
 					//save newly modified $value into post:
 					//$key refers to position of the link
 					$body_array[$key] = $value;
