@@ -635,6 +635,12 @@ input[type='submit'].success:active {
 iframe{
 	display: block;
 }
+.postedImages{
+	max-width: 100%;
+	display: block;
+	cursor: zoom-in;
+	max-height: 400px;
+}
 .edit_button{
 	color: #c45100;
     font-weight: 500;

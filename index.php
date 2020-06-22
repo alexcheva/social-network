@@ -4,9 +4,45 @@
 	//handle posting of posts
 	//redirect back to index
 	if(isset($_POST['post'])){
-		$post = new Post($con, $userLoggedIn);
-		$post->submitPost($_POST['post_text'], 'none');
-		header("Location: index.php");
+		$uploadOk = 1;
+		$imageName = $_FILES['fileToUpload']['name'];
+		$errorMessage = "";
+
+		if($imageName != ""){
+			$targetDir = "assets/images/posts/";
+			$imageName = $targetDir . uniqid() . basename($imageName);
+			$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
+
+			if($_FILES['fileToUpload']['size'] > 10000000){
+				$errorMessage = "Sorry, your file is too large";
+				$uploadOk = 0;
+			}
+			if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
+			$errorMessage = "Sorry, only jpeg/jpg, png and gif files are allowed";
+				$uploadOk = 0;
+			}
+
+			if($uploadOk){
+				if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)){
+					//image uploaded sucessfully
+
+				}else{
+					//image did not upload
+					$uploadOk = 0;
+				}
+			}
+		}
+
+		if($uploadOk){
+			$post = new Post($con, $userLoggedIn);
+			$post->submitPost($_POST['post_text'], 'none', $imageName);
+			header("Location: index.php");
+		}else{
+			echo "<div style='text-align:center;' class='error'> 
+			$errorMessage</div>";
+		}
+
+
 	}
 
 ?>
@@ -30,9 +66,8 @@
 	</div>
 	<div class="main_column column">
 		
-		<form class="post_form" action="index.php" method="POST">
-			
-	 		
+		<form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
+
 			<textarea name="post_text" id="post_text"  placeholder="Write a post"></textarea>
 			
 			
@@ -45,6 +80,7 @@
 	 -->	
 		<!-- <img src='assets/images/icons/emoji.png' class='toggle_emojis' title="Show emojis">
 		<div class="emojis hide"><?php echo Emojis::$emoji_list; ?></div> -->
+		<input type="file" name="fileToUpload" id="fileToUpload">
 	 	<input type="submit" name="post" id="post_button" value="Post">
 	
 		</form>

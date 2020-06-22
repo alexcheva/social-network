@@ -9,7 +9,7 @@ class Post{
 		$this->user_obj = new User($con, $user);
 	}
 	//handle post submission
-	public function submitPost($body, $user_to){
+	public function submitPost($body, $user_to, $imageName){
 		$body = strip_tags($body);//removes html tags
 		//$body = mysqli_real_escape_string($this->con, $body);
 		// $body = str_replace('\r\n', '\n', $body);
@@ -48,7 +48,7 @@ class Post{
 				$user_to = "none";
 			}
 			//insert post into a database
-			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added', 'no','no','0')");
+			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added', 'no','no','0', '$imageName')");
 			//find out the id of the last post
 			$returned_id = mysqli_insert_id($this->con);
 
@@ -151,6 +151,7 @@ class Post{
 				$body = $row['body'];
 				$added_by = $row['added_by'];
 				$date_time = $row['date_added'];
+				$imagePath = $row['image'];
 
 				//prepare user_to string so it can be included even if noot posted to a user
 				if($row['user_to'] == "none") {
@@ -227,6 +228,13 @@ class Post{
 				// foreach($body_array as $key => $value) {
 				//      $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
 				// }
+
+				//image
+				if($imagePath != ""){
+					$imageDiv = "<div><a href='$imagePath' target='_black'><img class='postedImages' src='$imagePath'></a></div>";
+				}else{
+					$imageDiv = "";
+				}
 				
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
@@ -260,6 +268,7 @@ class Post{
 							</div>
 							<div class='post_body'>
 								$body
+								$imageDiv
 							</div>
 							<div class='post_time'>
 								$time_message
