@@ -635,6 +635,12 @@ input[type='submit'].success:active {
 iframe{
 	display: block;
 }
+#toggle_file_upload{
+	margin-top: 10px;
+}
+#fileToUpload{
+	margin-top: 10px;
+}
 .postedImages{
 	max-width: 100%;
 	display: block;

@@ -80,8 +80,10 @@
 	 -->	
 		<!-- <img src='assets/images/icons/emoji.png' class='toggle_emojis' title="Show emojis">
 		<div class="emojis hide"><?php echo Emojis::$emoji_list; ?></div> -->
-		<input type="file" name="fileToUpload" id="fileToUpload">
-	 	<input type="submit" name="post" id="post_button" value="Post">
+		<a href="javaScript:void(0)" onClick="showFileUpload()">
+			<i class="fas fa-file-image" id="toggle_file_upload"></i></a>
+			<input type="file" name="fileToUpload" id="fileToUpload" class="hide">
+		 	<input type="submit" name="post" id="post_button" value="Post">
 	
 		</form>
 		<hr>

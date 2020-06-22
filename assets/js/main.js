@@ -39,6 +39,9 @@ function getUsers(value, user) {
 		$(".results").html(data);
 	});
 }
+function showFileUpload(){
+	$("#fileToUpload").toggleClass("hide");
+}
 function getDropdownData(user, type){
 	//might need to delete type  all together later
 	if($(".dropdown_data_window").css("height") == "0px"){
@@ -143,7 +146,7 @@ function sendLike(id) {
 }
 //Vladimir emoji code
 $(function(){
- 
+
     $(".emojis img:not(.toggle_emojis)").on("click", function(){
  
       const extension = $(this).attr("src").indexOf(".png");
