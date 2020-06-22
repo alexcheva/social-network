@@ -28,7 +28,9 @@
 			<script src="assets/js/all.min.js"></script>
 			<script src="assets/js/jquery.jcrop.js"></script>
 			<script src="assets/js/jcrop_bits.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
 			<script src="assets/js/emojionearea.js"></script>
+
 			<script>
     var userLoggedIn = "<?php echo $userLoggedIn; ?>";
     </script>

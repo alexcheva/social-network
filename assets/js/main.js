@@ -31,6 +31,15 @@ $(document).ready(function(){
 			}
 		});
 	});
+	 // if you save to database with default value of EmojioneArea saveEmojisAs: 'unicode'
+    $(".your-selector-with-unicode-emojis").each(function() {
+        $(this).html(emojione.unicodeToImage($(this).html()));
+    });
+
+    // if you save to db with value EmojioneArea saveEmojisAs: 'shortname'
+    $(".your-selector-with-shortname-emojis").each(function() {
+        $(this).html(emojione.shortnameToImage($(this).html()));
+    });
 	
 });
 
