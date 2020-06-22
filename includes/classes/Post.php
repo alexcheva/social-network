@@ -11,26 +11,31 @@ class Post{
 	//handle post submission
 	public function submitPost($body, $user_to){
 		$body = strip_tags($body);//removes html tags
-		$body = mysqli_real_escape_string($this->con, $body);
-		$body = str_replace('\r\n', '\n', $body);
-		$body = nl2br($body); //replace new line with line break
+		//$body = mysqli_real_escape_string($this->con, $body);
+		// $body = str_replace('\r\n', '\n', $body);
+		//$body = nl2br($body); //replace new line with line break
 
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
 		
-		
+		//https://www.youtube.com/?app=desktop
 		if($check_empty != "") {
-			//redex
+			//redex split at spaces
 			$body_array = preg_split("/\s+/", $body);
 
 			foreach($body_array as $key => $value){
+				//string position, look for the following string:
 				if(strpos($value, "www.youtube.com/watch?v=") !== false){
-
-					$value = preg_replace("!watch\?v=!", "embed/", $value);
-					$value = "<br><iframe width=\'420\' height=\'315\' src=\'" . $value ."\' frameborder=\'0\' allowfullscreen></iframe><br>";
+					//replace a string inside a string:
+					$link = preg_split("!&!", $value);
+					//find !that!
+					$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+					$value = "<iframe width=\'420\' height=\'315\' src=\'" . $value ."\' frameborder=\'0\' allowfullscreen></iframe>";
+					//save newly modified $value into post:
+					//$key refers to position of the link
 					$body_array[$key] = $value;
 				}
 			}
-
+			//separate array elements with a space
 			$body = implode(" ", $body_array);
 
 			//Current date and time
@@ -182,7 +187,7 @@ class Post{
 					$delete_button = "";
 				//edit post functionality
 				if($userLoggedIn == $added_by)
-					$edit_button = "<a class='edit_button' id='edit_post$id'><i class='fas fa-edit'></i></a>";
+					$edit_button = "<a class='edit_button' id='edit_post$id' data-toggle='modal' data-target='#edit_post$id'><i class='fas fa-edit'></i></a>";
 				else
 					$edit_button = "";
 
@@ -247,6 +252,7 @@ class Post{
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
+							<div class='post_main'>
 							<div class='posted_by'>
 								<a href='$added_by'>$first_name $last_name</a> $user_to 
 							$delete_button
@@ -258,7 +264,7 @@ class Post{
 							<div class='post_time'>
 								$time_message
 							</div>
-							
+							</div>
 							<hr>
 							<div class='newsfeedPostOptions'>
 								<span class='num_comments' onClick='javaScript:toggle$id()'>";
@@ -283,7 +289,7 @@ class Post{
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
 						   <div class='comments_area'>
-						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
+						     <textarea class='comment' id='comment$id' placeholder='Post a comment...'></textarea>
 						     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
 						   </div>"
 							.$this->getComments($id).
@@ -295,6 +301,9 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
+							// $(".comment").emojioneArea({
+							// 	pickerPosition: "bottom"
+							// });
 						$('#post<?php echo $id; ?>').on('click', function(){
 							//bootstrap
 							bootbox.confirm({
@@ -317,19 +326,19 @@ class Post{
 								}
 							});
 						});
-						$('#edit_post<?php echo $id; ?>').on('click', function(){
-							//bootstrap
-							bootbox.prompt({
-							    title: "Edit post:",
-							    inputType: 'textarea',
-							    callback: function (result) {
-									$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
-									//if there is a result = true
-									if(result)
-										location.reload();
-								}
-							});
-						});
+						// $('#edit_post<?php echo $id; ?>').on('click', function(){
+						// 	//bootstrap
+						// 	bootbox.prompt({
+						// 	    title: "Edit post:",
+						// 	    inputType: 'textarea',
+						// 	    callback: function (result) {
+						// 			$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
+						// 			//if there is a result = true
+						// 			if(result)
+						// 				location.reload();
+						// 		}
+						// 	});
+						// });
 					});
 				</script>
 				<?php
@@ -465,7 +474,7 @@ class Post{
 							<div class='post_time'>
 								$time_message
 							</div>
-							
+							</div>
 							
 							<hr>
 							<div class='newsfeedPostOptions'>
@@ -790,6 +799,7 @@ class Post{
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
+							<div class='post_main'>
 							<div class='posted_by'>
 								<a href='$added_by'>$first_name $last_name</a> $user_to 
 							</div>
@@ -800,6 +810,7 @@ class Post{
 								$time_message
 							</div>
 							$delete_button
+							</div>
 							<hr>
 							<div class='newsfeedPostOptions'>
 								<span class='num_comments' onClick='javaScript:toggle$id()'>

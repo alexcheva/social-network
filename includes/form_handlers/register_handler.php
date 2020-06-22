@@ -68,6 +68,7 @@ if($password !== $password2){
 }
 if(empty($error_array)){
 	$password = md5($password); //ecrypt password
+
 	//Genarate username by concatentaing first name and last name
 	$username = strtolower($fname . "_" . $lname);
 	$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
@@ -78,6 +79,7 @@ if(empty($error_array)){
 		$username = $username . "_" . $i;
 		$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
 	}
+
 	//Profile picture assignment
 	$rand = rand(1, 2); //random number between 1 and 2
 	
@@ -85,6 +87,7 @@ if(empty($error_array)){
 		$profile_pic = "assets/images/profile_pics/defaults/pic_1.png";
 	else if($rand == 2)
 		$profile_pic = "assets/images/profile_pics/defaults/pic_2.png";
+	
 	//Insert values into the database
 	$query = mysqli_query($con, "INSERT INTO users VALUES (NULL, '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
 	array_push($error_array, "<span class='success'>You are all set! Go ahead and login!</span>");

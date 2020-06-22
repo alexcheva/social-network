@@ -55,7 +55,7 @@
 	if(isset($_POST['delete_about'])){
 	$delete_about = mysqli_query($con, "DELETE FROM details WHERE username='$userLoggedIn'");
 	header("Location: profile.php");
-}
+	}
 	
 	//when remove friend button pressed
 	if(isset($_POST['remove_friend'])){

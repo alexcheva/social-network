@@ -1,7 +1,7 @@
 <?php
-require 'config/config.php';
-require 'includes/form_handlers/register_handler.php';
-require 'includes/form_handlers/login_handler.php';
+	require 'config/config.php';
+	require 'includes/form_handlers/register_handler.php';
+	require 'includes/form_handlers/login_handler.php';
 ?>
 <html>
 	<head>
@@ -47,6 +47,9 @@ if(isset($_POST['register_button'])){
 			<?php if(in_array("<span class='error'>Your Last name must be between 2 and 50 characters.</span>", $error_array)) echo "<span class='error'>Your Last name must be between 2 and 50 characters.</span>";?>
 			<input type="text" name="req_lname" placeholder="Last Name" value="<?php if(isset($_SESSION['req_lname'])){ echo $_SESSION['req_lname']; } ?>" required>
 			<br>
+<!-- 			<?php if(in_array("<span class='error'>Your nickname can only contain english characters and numbers.</span>", $error_array)) echo "<span class='error'>Your nickname can only contain english characters and numbers.</span>";?>
+			<input type="text" name="nickname" placeholder="Nickname" value="<?php if(isset($_SESSION['nickname'])){ echo $_SESSION['nickname']; } ?>" required>
+			<br> -->
 			<?php if(in_array("<span class='error'>This email is already in use.</span>", $error_array)) echo "<span class='error'>This email is already in use.</span>";?>
 			<?php if(in_array("<span class='error'>Invalid email format.</span>", $error_array)) echo "<span class='error'>Invalid email format.</span>";?>
 			<?php if(in_array("<span class='error'>Emails don't match.</span>", $error_array)) echo "<span class='error'>Emails don't match.</span>";?>
