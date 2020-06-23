@@ -1197,3 +1197,40 @@ input[type='submit'].save_details:active {
     z-index: 5;
 
 }
+/*IPAD*/
+@media only screen and (max-width: 750px) {
+    .some-div {
+        width: 80%;
+    }
+}
+/*MOBILE*/
+@media only screen and (max-width: 500px) {
+    /* For mobile phones: */
+    .user_details{
+        display: none;
+    }
+    .top_bar{
+    	padding: 0px;
+    	height: 70px;
+    }
+    .logo h1{
+    	font-size: 26px;
+    }
+    nav{
+    	background-color: purple;
+	    display: block;
+	    margin: 10px auto;
+	    padding: 0px 22px;
+    }
+    .main_column {
+	    width: 100%;
+	}
+	.post_profile_pic {
+    	padding-right: 13px;
+    }
+	.post_profile_img {
+    	width: 50px;
+	}
+
+
+}
