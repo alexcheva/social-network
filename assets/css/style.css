@@ -1206,22 +1206,33 @@ input[type='submit'].save_details:active {
 /*MOBILE*/
 @media only screen and (max-width: 500px) {
     /* For mobile phones: */
+    .wrapper {
+    	top: 90px;
+    }
     .user_details{
         display: none;
     }
     .top_bar{
     	padding: 0px;
-    	height: 70px;
+    	height: 76px;
+    }
+    .logo{
+    	padding-left: 18px;
     }
     .logo h1{
     	font-size: 26px;
     }
     nav{
-    	background-color: purple;
+    	background-color: #800080c4;
 	    display: block;
-	    margin: 10px auto;
+	    margin: 0px auto;
 	    padding: 0px 22px;
+	    float: none;
+	    position: sticky;
     }
+    nav a {
+	  /*  padding: 5px;*/
+	}
     .main_column {
 	    width: 100%;
 	}
