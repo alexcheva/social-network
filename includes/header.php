@@ -50,7 +50,22 @@
 			<div class="logo">
 				<h1><a href="index.php">Verni Moj 2007 &#128148;</a></h1>
 			</div>
+			<!-- MOBILE TOP BAR -->
+			<div class="logo-mobile">
+				<h1><a href="index.php">Verni 2007 &#128148;</a></h1>
+				<div class="mobile_search">
+				<form action="search.php" method="GET" name="search_form">
+					<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+					<div class="button_holder">
+						<i class="fa fa-search"></i>
+					</div>
 
+				</form>
+				<div class="search_results"></div>
+				<div class="search_results_footer_empty"></div>
+			</div>
+			<!-- SCREEN SEARCH -->
+			</div>
 			<div class="vm_search">
 				<form action="search.php" method="GET" name="search_form">
 					<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">

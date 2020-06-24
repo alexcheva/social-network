@@ -35,7 +35,7 @@ body{
 .top_bar{
 	width: 100%;
 	height: 65px;
-	background: #000000c2;
+	background-color: rgba(0, 0, 0, 0.9);
 	border-bottom: 3px solid purple;
 	margin: 0 0 10px 0;
 	position: fixed;
@@ -98,7 +98,7 @@ nav a:active{
 	width: 95%;
 }
 .column{
-	background: #000000c2;
+	background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border: 1px purple solid;
 	box-shadow: #000 1.5px 2.5px 3px;
@@ -981,7 +981,7 @@ h4{
 
 /*Dropdown styling header*/
 .dropdown_data_window{
-    background: #000000d4;
+    background: rgba(0, 0, 0, 0.9);
     float: right;
     /*border: 2px solid purple; */
     overflow: auto;
@@ -1036,13 +1036,13 @@ h4{
     margin-right: 15px;
 }
 .search_results{
-	background: #000000d4;
+	background: rgba(0, 0, 0, 0.9);
     overflow: auto;
     width: 350px;
     max-height: 450px;
 }
 .search_results_footer{
-	background: #000000d4;
+	background: rgba(0, 0, 0, 0.9);
 	padding: 10px;
 }
 .liveSearchResult{
@@ -1197,6 +1197,11 @@ input[type='submit'].save_details:active {
     z-index: 5;
 
 }
+.logo-mobile,
+.mobile_search{
+	display: none;
+}
+
 /*IPAD*/
 @media only screen and (max-width: 750px) {
     .some-div {
@@ -1204,11 +1209,32 @@ input[type='submit'].save_details:active {
     }
 }
 /*MOBILE*/
+/*XS - 320*/
+/*@media only screen and (max-width: 350px) {
+
+}
+*/
+/*M - 375 L -425*/
+
 @media only screen and (max-width: 500px) {
     /* For mobile phones: */
+    body{
+    	font-size:14px;
+    	color: #e2e2e2;
+    }
+    h2 {
+	    font-size: 1.5rem;
+	}
+	h4 {
+	    font-size: 1.2rem;
+	    margin-top: 10px;
+	}
     .wrapper {
     	top: 90px;
-    }
+    	margin: 0px;
+	    padding: 0px;
+	    width: 100%;
+	}
     .user_details{
         display: none;
     }
@@ -1217,20 +1243,49 @@ input[type='submit'].save_details:active {
     	height: 76px;
     }
     .logo{
-    	padding-left: 18px;
+    	display: none;
     }
-    .logo h1{
+    .logo-mobile{
+    	display: block;
+    	padding-left: 18px;
+    	padding-top: 7px;
+    }
+    .logo-mobile h1{
+    	font-family: "Seagram", sans-serif;
+		text-shadow: #000 1.5px 2.5px 3px;
     	font-size: 26px;
+    	display: inline-block;
+    }
+    .vm_search{
+    	display: none;
+    }
+    .mobile_search{
+    	display: inline-block;
+    	position: fixed;
+
+    }
+    #search_text_input{
+    	width: 70px;
+	    margin-top: 2px;
+	    margin-left: 15px;
+	    height: 27px;
+    }
+    .button_holder {
+	    padding: 4px;
+	}
+    input{
+    	padding: 5px;
     }
     nav{
-    	background-color: #800080c4;
+    	background-color: rgba(128, 0, 128, 0.9);
 	    display: block;
 	    margin: 0px auto;
 	    padding: 0px 22px;
 	    float: none;
-	    position: sticky;
+	    position: initial;
     }
     nav a {
+    	padding: 1px;
 	  /*  padding: 5px;*/
 	}
     .main_column {

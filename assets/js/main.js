@@ -1,10 +1,13 @@
 $(document).ready(function(){
-	$('#search_text_input').focus(function(){
+	// $('#search_text_input').focus(function(){
 		//if device is larger than 800px
-		if(window.matchMedia( "(min-width: 800px)" ).matches) {
-			$(this).animate({width: "25opx"}, 500);
-		}
-	});
+		// if(window.matchMedia( "(min-width: 800px)" ).matches) {
+		// 	$(this).animate({width: "250px"}, 500);
+		// }
+	// 	if(window.matchMedia( "(max-width: 500px)" ).matches) {
+	// 		$(this).animate({width: "250px"}, 500);
+	// 	}
+	// });
 	//submit form when click on button holder div
 	$(".button_holder").on('click', function(){
 		document.search_form.submit();
