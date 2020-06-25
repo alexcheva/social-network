@@ -13,7 +13,8 @@ include('includes/header.php');
 			while($row = mysqli_fetch_array($query)){
 				$user_from = $row['user_from'];
 				$user_from_obj = new User($con, $user_from);
-				echo $user_from_obj->getFirstAndLastName() . " sent you a friend request!";
+				echo "<b><a href='" . $user_from_obj->getUsername() ."'>" .
+				$user_from_obj->getFirstAndLastName() . "</a></b> sent you a friend request!";
 
 				$user_from_friend_array = $user_from_obj->getFriendArray();
 				//create a unique name for accept request
@@ -58,7 +59,9 @@ include('includes/header.php');
 			</a></p>
 			<p><?php echo "Posts: " . $user['num_posts']; ?></p>
 			<p><?php echo "Likes: " . $user['num_likes']; ?></p>
-			<?php echo "Friends: " . str_replace(",", "<br>", $user['friend_array']); ?>
+			<?php 
+			if($user['friend_array'] !== ",")
+			echo "Friends: " . str_replace(",", "<br>", $user['friend_array']); ?>
 			
 		</div>
 	</div>
