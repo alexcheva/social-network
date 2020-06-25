@@ -1039,8 +1039,8 @@ h4{
 .search_results{
 	background: rgba(0, 0, 0, 0.9);
     overflow: auto;
-    width: 350px;
-    max-height: 450px;
+    width: 320px;
+    max-height: 400px;
 }
 .search_results_footer{
 	background: rgba(0, 0, 0, 0.9);
@@ -1259,8 +1259,8 @@ input[type='submit'].save_details:active {
     	margin-right: 20px;
 
 	}
-	.search_results {
-	    width: auto;
+	.mobile_search_results{
+		display: inline-block;
 	}
 
     .top_bar{
@@ -1323,6 +1323,11 @@ input[type='submit'].save_details:active {
 	.post_profile_img {
     	width: 50px;
 	}
+	.result_profile_pic {
+	    width: 28%;
+	    border: 2px solid purple;
+	}
+
 	
 
 }
