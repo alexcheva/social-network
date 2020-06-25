@@ -5,6 +5,7 @@
 ?>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Welcome!</title>
 		<link rel="stylesheet" href="assets/css/register_style.css">
 		<script src="assets/js/jquery-2.2.4.min.js"></script>

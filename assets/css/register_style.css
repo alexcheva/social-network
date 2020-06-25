@@ -70,7 +70,8 @@ a:active{
 	}
 .login-box{
 	border-radius: 11px;
-    background-color: #00000087;
+    background-color: rgba(0, 0, 0, 0.54);
+;
     padding-top: 3px;
 	position: relative;
 	margin-right: auto;
@@ -115,4 +116,10 @@ p{
 .success a:active{
 	text-decoration: underline;
     color: purple;
+}
+@media only screen and (max-width: 500px) {
+	.login-box {
+		min-width: 300px;
+	    max-width: 76%;
+	}
 }

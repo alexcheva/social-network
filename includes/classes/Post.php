@@ -139,6 +139,10 @@ class Post{
 		
 		$str = ""; //string to return
 		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC");
+		//if there are no posts:
+		if(mysqli_num_rows($data_query) == 0){
+			echo "<p>There are no posts to show yet! Try adding firends or posting something!</p>";
+		}
 		//if there are posts:
 		if(mysqli_num_rows($data_query) > 0){
 
