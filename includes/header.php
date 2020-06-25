@@ -52,6 +52,8 @@
 			</div>
 			<!-- MOBILE TOP BAR -->
 			<div class="logo-mobile">
+				
+				<div class="mobile_logo_center">
 				<h1><a href="index.php">Verni 2007 &#128148;</a></h1>
 				<div class="mobile_search">
 				<form action="search.php" method="GET" name="search_form">
@@ -61,9 +63,9 @@
 					</div>
 
 				</form>
-				<div class="search_results"></div>
-				<div class="search_results_footer_empty"></div>
+				</div>
 			</div>
+			
 			<!-- SCREEN SEARCH -->
 			</div>
 			<div class="vm_search">
@@ -120,6 +122,10 @@
 			</nav>
 			<div class="dropdown_data_window"></div>
 			<input type="hidden" id="dropdown_data_type" value="">
+			<div class="mobile_search_results">
+				<div class="search_results"></div>
+				<div class="search_results_footer_empty"></div>
+			</div>
 		</div>
 		<div class="wrapper">
 

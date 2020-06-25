@@ -124,9 +124,52 @@
 	</div>
 
 	<div class="main_column column profile">
-		<h2 class="profile-name"><?php 
-				echo $user_array['first_name'] . " " . $user_array['last_name'];
-				?>:</h2>
+		<h2 class="profile-name">
+			<?php echo $user_array['first_name'] . " " . $user_array['last_name']; ?>:
+		</h2>
+		<div id="mobile_profile_info">
+			<a href="<?php echo $username; ?>">
+				<img id="profile_pic" src="<?php echo $user_array['profile_pic']; ?>">
+			</a>
+			<div class="mobile_profile_info_data">
+				<form action="<?php echo $username; ?>" method="POST">
+					<?php 
+						$profile_user_obj = new User($con, $username); 
+						if($profile_user_obj->isClosed()){
+							header("Location: user_closed.php");
+						}
+						$logged_in_user_obj = new User($con, $userLoggedIn); 
+						//if they are friends
+						if($userLoggedIn != $username) {
+							if($logged_in_user_obj ->isFriend($username)){
+								echo '<input id="danger" type="submit" name="remove_friend" value="Remove Friend">';
+							}
+							else if($logged_in_user_obj ->didReceiveRequest($username)){
+								echo '<input id="warning" type="submit" name="respond_request" value="Respond to Request">';
+							}
+							else if($logged_in_user_obj ->didSendRequest($username)){
+								echo '<input id="default" type="submit" name="" value="Request Sent">';
+							}
+							else {
+								echo '<input id="success" type="submit" name="add_friend" value="Add Friend">';
+							}
+						}
+					?>
+				</form>
+				<p><?php echo "Posts: " . $num_posts; ?></p>
+				<p><?php echo "Likes: " . $user_array['num_likes']; ?></p>
+				<p><?php echo "Friends: " . $num_friends; ?></p>
+				<?php 
+					if($userLoggedIn != $username){
+						echo '<p class="profile_info_bottom">Mutual Friends: ';
+						echo $logged_in_user_obj->getMutualFriends($username);
+						echo '</p>';
+					}
+					if($logged_in_user_obj ->isFriend($username))
+						echo '<input type="submit" id="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">';
+				?>
+			</div>
+		</div>
 
 		<ul class="nav nav-tabs" id="profileTabs">
 		  <li class="active_tab" id="newsfeed">

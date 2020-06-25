@@ -1201,6 +1201,12 @@ input[type='submit'].save_details:active {
 .mobile_search{
 	display: none;
 }
+#mobile_profile_info{
+	display: none;
+}
+.mobile_search_results{
+	display: none;
+}
 
 /*IPAD*/
 @media only screen and (max-width: 750px) {
@@ -1238,6 +1244,24 @@ input[type='submit'].save_details:active {
     .user_details{
         display: none;
     }
+    #mobile_profile_info{
+		display: block;
+		margin-bottom: 20px;
+	}
+	#mobile_profile_info_data{
+		display: inline-block;
+	}
+	#profile_pic {
+	    width: 35%;
+	    border: 4px solid purple;
+	    float: left;
+    	margin-right: 20px;
+
+	}
+	.search_results {
+	    width: auto;
+	}
+
     .top_bar{
     	padding: 0px;
     	height: 76px;
@@ -1272,6 +1296,7 @@ input[type='submit'].save_details:active {
     }
     .button_holder {
 	    padding: 4px;
+	    border: none;
 	}
     input{
     	padding: 5px;
@@ -1297,6 +1322,6 @@ input[type='submit'].save_details:active {
 	.post_profile_img {
     	width: 50px;
 	}
-
+	
 
 }
