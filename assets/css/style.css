@@ -937,7 +937,7 @@ h4{
 	color: black;
 }
 .nav-tabs li:hover{
-	background-color: #8a01a5b0;
+	background-color: rgba(138, 1, 165, 0.7);
 }
 .nav-tabs li:active {
 	background-color: purple;

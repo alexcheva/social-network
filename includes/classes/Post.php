@@ -391,6 +391,7 @@ class Post{
 				$id = $row['id'];
 				$body = $row['body'];
 				$added_by = $row['added_by'];
+				$user_to = $row['user_to'];
 				$date_time = $row['date_added'];
 
 				if($num_iterations++ < $start)
@@ -403,7 +404,7 @@ class Post{
 					$count++;
 				}
 				//delete post if logged in user is the one posted
-				if($userLoggedIn == $added_by)
+				if($userLoggedIn == $added_by || $userLoggedIn == $user_to )
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
