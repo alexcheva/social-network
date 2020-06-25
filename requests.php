@@ -37,9 +37,9 @@ include('includes/header.php');
 			?> 
 				 <form action="requests.php" method="POST" class="friend_requests">
 				 	<!-- pass in uniques name for accept request -->
-				 	<input type="submit" name="accept_request<?php echo $user_from; ?>" value="Accept Request" id="accept">
+				 	<input type="submit" name="accept_request<?php echo $user_from; ?>" value="Accept Request" class="success">
 				 	<!-- pass in uniques name for ignore request -->
-				 	<input type="submit" name="ignore_request<?php echo $user_from; ?>" value="Ignore Request" id="ignore">
+				 	<input type="submit" name="ignore_request<?php echo $user_from; ?>" value="Ignore Request" class="danger">
 				 </form>
 			
 			<?php

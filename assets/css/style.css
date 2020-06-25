@@ -151,6 +151,7 @@ input[type="submit"] {
 	border: 1px solid #d500ff;
 	font-weight: 500;
 	color: #d500ff;
+	margin-right: 15px;
 }
 input[type="button"] {
 	padding: 5px 10px;
