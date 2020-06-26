@@ -3,11 +3,17 @@
 	src: url('../fonts/Seagram.ttf');
 }
 body{
-	background-image: url("../images/images/sky.jpg");
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background-color: black;
+	background: url("../images/images/sky.jpg") no-repeat fixed;
 	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	top: 0;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+  	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -28,38 +34,38 @@ input{
 	font-size: 14px;
 }
 input:hover{
-	border: 1px #d500ff solid;
+	border-color: #d500ff;
 }
 input[type="submit"] {
 	padding: 5px 10px;
 	margin-top: 10px;
 }
 input[type="submit"]:hover {
-	background-color: purple;
-	border: 1px black solid;
+	background-color: #d500ff;
+	border-color: white;
 	color: white;
 }
 input[type="submit"]:active {
-	background-color: #d500ff;
+	background-color: purple;
+	border-color: black;
 	color: black;
 }
-body{
-	margin: 0px;
-	padding: 0px;
-}
+
 a {
 	color: #d500ff;
 	text-decoration: none;
 	font-weight: 600;
 
 }
+a:hover,
+a:active{
+	text-decoration: underline;
+}
 a:hover{
 	color: white;
-	text-decoration: underline;
 }
 a:active{
 	color: purple;
-	text-decoration: underline;
 }
 .wrapper{
 	margin: 0 auto;
@@ -71,7 +77,6 @@ a:active{
 .login-box{
 	border-radius: 11px;
     background-color: rgba(0, 0, 0, 0.54);
-;
     padding-top: 3px;
 	position: relative;
 	margin-right: auto;
@@ -93,29 +98,20 @@ p{
 #second{
 	display: none;
 }
-.error{
-	display: block;
-	margin-top: 7px;
-    margin-bottom: 10px;
-    color: #ff002b;
-}
+.error, 
 .success{
 	display: block;
 	margin-top: 7px;
+    margin-bottom: 10px;	
+}
+.error{
+    color: #ff002b;
+}
+.success{
     color: #2bff00;
 }
 .success a{
-	text-decoration: underline;
     color: #ffea00;
-}
-.success a:hover{
-	text-decoration: underline;
-    color: white;
-}
-
-.success a:active{
-	text-decoration: underline;
-    color: purple;
 }
 @media only screen and (max-width: 500px) {
 	.login-box {
