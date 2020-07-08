@@ -43,6 +43,15 @@
 
 	</div>
 </div>
+<div class="message_details column profile_left" id="conversations">
+		<h4>Conversations:</h4>
+		<div class="loaded-conversations">
+			<!-- go to Message classes and run getConvos function -->
+			<?php echo $message_obj->getConvos(); ?>
+		</div>
+		<a href="messages.php?u=new">New Message</a>
+	</div>
+</div>
 <div class="message_column column profile"  id="main_column">
 	<?php 
 		if($user_to != "new"){
@@ -88,16 +97,8 @@
     }
     $(document).ready(function(){
     	$("#message_textarea").emojioneArea({
-		pickerPosition: "bottom"
+		pickerPosition: "top"
 	});
     });
 </script>
-	<div class="message_details column profile_left" id="conversations">
-		<h4>Conversations:</h4>
-		<div class="loaded-conversations">
-			<!-- go to Message classes and run getConvos function -->
-			<?php echo $message_obj->getConvos(); ?>
-		</div>
-		<a href="messages.php?u=new">New Message</a>
-	</div>
-</div>
+	
