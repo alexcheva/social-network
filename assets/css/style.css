@@ -1,32 +1,6 @@
-@font-face
-{
-    font-family: 'Seagram';
-
-    src: url('../fonts/Seagram.ttf');
-}
-a
-{
-    font-weight: 600;
-
-    text-decoration: none;
-
-    color: #d500ff;
-}
-a:hover, a:active{
-    text-decoration: underline;	
-}
-a:hover
-{
-    color: white;
-}
-a:active
-{
-    color: purple;
-}
-body
-{
-    color: white;
-}
+/* ================================= 
+  Base Element Styles
+==================================== */
 body
 {
     top: 0;
@@ -37,147 +11,34 @@ body
     width: 100%;
     height: 100%;
 
+    color: white;
+
     background-color: black;
     background-image: url('../images/images/sky.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    /*	min-width: 960px;*/
 }
-.top_bar
-{
-    position: fixed;
-    z-index: 10;
 
-    width: 100%;
-    height: 65px;
-    margin: 0 0 10px 0;
-    padding: 0 40px;
-
-    border-bottom: 3px solid purple;
-    background-color: rgba(0, 0, 0, .9);
-}
-.logo
-{
-    font-family: 'Seagram', sans-serif;
-
-    padding-top: 7px;
-    padding-left: 10px;
-
-    text-shadow: #000 1.5px 2.5px 3px;
-}
-h1 a
-{
-    text-decoration: none;
-
-    color: white;
-}
-h1 a:hover
-{
-    text-decoration: none;
-
-    color: #d500ff;
-}
-h1 a:active
-{
-    text-decoration: none;
-
-    color: purple;
-}
-nav
-{
-    position: absolute;
-    top: 17px;
-    right: 3px;
-
-    float: right;
-
-    margin-right: 40px;
-}
-nav a
-{
-    /*	text-decoration: none;*/
-    font-size: 18px;
+a {
     font-weight: 600;
 
-    color: white;
-}
-nav a:hover
-{
     text-decoration: none;
 
     color: #d500ff;
 }
-
-nav a:active
+a:hover, 
+a:active {
+    text-decoration: underline;	
+}
+a:hover
 {
-    text-decoration: none;
-
+    color: white;
+}
+a:active
+{
     color: purple;
 }
-#profile_pic
-{
-    width: 100%;
-
-    border: 7px solid purple;
-    border-radius: 50%;
-}
-
-.wrapper
-{
-    position: relative;
-    top: 75px;
-
-    width: 95%;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-.column
-{
-    z-index: -1;
-
-    padding: 20px;
-
-    border: 1px purple solid;
-    background: rgba(0, 0, 0, .8);
-    box-shadow: #000 1.5px 2.5px 3px;
-}
-.user_details
-{
-    float: right;
-
-    width: 20%;
-    margin-bottom: 20px;
-}
-#name
-{
-    font-size: 18px;
-    font-weight: 500;
-}
-.user_details_left_right
-{
-    padding-top: 10px;
-}
-.main_column
-{
-    width: 78%;
-    margin-bottom: 30px;
-}
-.profile
-{
-    float: right;
-}
-.profile_info
-{
-    margin-top: 15px;
-}
-.profile_info p
-{
-    margin: 5px 0;
-
-    word-wrap: break-word;
-}
-
 input
 {
     font-size: 14px;
@@ -246,6 +107,286 @@ hr
 {
     border-top: 1px solid purple;
 }
+/* ================================= 
+  Base Layout Styles
+==================================== */
+@font-face {
+    font-family: 'Seagram';
+    src: url('../fonts/Seagram.ttf');
+}
+/* ---- HEADER ---- */
+.top_bar
+{
+    position: fixed;
+    z-index: 10;
+
+    width: 100%;
+    height: 65px;
+    margin: 0 0 10px 0;
+    padding: 0 40px;
+
+    border-bottom: 3px solid purple;
+    background-color: rgba(0, 0, 0, .9);
+}
+.header-wrapper{
+	width: 99%;
+	max-width: 1445px;
+	margin: 0 auto;
+}
+.logo
+{
+    font-family: 'Seagram', sans-serif;
+
+    padding-top: 7px;
+	margin-right: 1em;
+
+    float: left;
+
+    text-shadow: #000 1.5px 2.5px 3px;
+}
+h1 a
+{
+    color: white;
+
+}
+h1 a:hover
+{
+    color: #d500ff;
+    text-decoration: none;
+}
+h1 a:active
+{
+    color: purple;
+    text-decoration: none;
+}
+/* ---- Search Bar ---- */
+
+.vm_search{
+	display: inline-block;
+
+	position: relative;
+	top: 13px;
+
+    margin: 0 auto;
+}
+.button_holder
+{
+    display: inline;
+
+    padding: 6px 10px;
+
+    cursor: pointer;
+
+    border: 1px solid purple;
+}
+.button_holder:hover
+{
+    color: #d500ff;
+    border-color: #d500ff;
+}
+.button_holder:active
+{
+    color: white;
+    border-color: white;
+    background-color: purple;
+}
+
+/* ---- Navigation ---- */
+
+nav
+{
+    position: relative;
+    top: 17px;
+
+    float: right;
+
+    font-size: 18px;
+    font-weight: 600;
+}
+nav a
+{
+    color: white;
+}
+nav a:hover
+{
+    text-decoration: none;
+
+    color: #d500ff;
+}
+
+nav a:active
+{
+    text-decoration: none;
+
+    color: purple;
+}
+/* ---- Notifications ---- */
+.notification_badge
+{
+    position: absolute;
+    top: 3px;
+    /*    left: 175px;*/
+    right: 66px;
+    /*font-size: 10px; */
+
+    padding: 4px;
+
+    border-radius: 10px;
+    /* font-weight: 600; */
+    /* white-space: nowrap; */
+    /* line-height: 1; */
+    /* vertical-align: baseline; */
+    /* color: white; */
+    background-color: #f0a;
+}
+#unread_notification
+{
+    top: 6px;
+    right: 49px;
+}
+#unread_request
+{
+    top: 15px;
+    right: 92px;
+}
+
+/*Dropdown styling header*/
+.dropdown_data_window
+{
+    float: right;
+    /*border: 2px solid purple; */
+    overflow: auto;
+
+    background: rgba(0, 0, 0, .9);
+}
+.dropdown_data_window p
+{
+    padding-top: 10px;
+
+    text-align: center;
+}
+.notification
+{
+    width: 300px;
+    padding: 10px 15px;
+
+    border-bottom: 1px solid purple;
+}
+.notificationsProfilePic
+{
+    float: left;
+
+    width: 55px;
+    margin-right: 15px;
+
+    border: 2px solid purple;
+    border-radius: 50%;
+}
+
+/*SEARCH BAR*/
+
+
+
+.lifeSearchProfilePic
+{
+    float: left;
+
+    width: 55px;
+    margin-right: 15px;
+
+    border: 2px solid purple;
+    border-radius: 50%;
+}
+.search_results
+{
+    overflow: auto;
+
+    width: 320px;
+    max-height: 400px;
+
+    background: rgba(0, 0, 0, .9);
+}
+.search_results_footer
+{
+    padding: 10px;
+
+    background: rgba(0, 0, 0, .9);
+}
+.liveSearchResult
+{
+    padding: 10px 15px;
+
+    border-bottom: 1px solid purple;
+}
+
+.wrapper
+{
+    position: relative;
+    top: 75px;
+
+    width: 95%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.column
+{
+    z-index: -1;
+
+    padding: 20px;
+
+    border: 1px purple solid;
+    background: rgba(0, 0, 0, .8);
+    box-shadow: #000 1.5px 2.5px 3px;
+}
+.user_details
+{
+    float: right;
+
+    width: 20%;
+    margin-bottom: 20px;
+}
+.user_details_left_right
+{
+    padding-top: 10px;
+}
+.main_column
+{
+    width: 78%;
+    margin-bottom: 30px;
+}
+.profile
+{
+    float: right;
+}
+.profile_info
+{
+    margin-top: 15px;
+}
+.profile_info p
+{
+    margin: 5px 0;
+
+    word-wrap: break-word;
+}
+
+
+#profile_pic
+{
+    width: 100%;
+
+    border: 7px solid purple;
+    border-radius: 50%;
+}
+
+
+
+#name
+{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
 .post_profile_pic
 {
     float: left;
@@ -1221,130 +1362,6 @@ h4
     text-align: center;
 
     color: white;
-}
-.notification_badge
-{
-    position: absolute;
-    top: 3px;
-    /*    left: 175px;*/
-    right: 66px;
-    /*font-size: 10px; */
-
-    padding: 4px;
-
-    border-radius: 10px;
-    /* font-weight: 600; */
-    /* white-space: nowrap; */
-    /* line-height: 1; */
-    /* vertical-align: baseline; */
-    /* color: white; */
-    background-color: #f0a;
-}
-#unread_notification
-{
-    top: 6px;
-    right: 49px;
-}
-#unread_request
-{
-    top: 15px;
-    right: 92px;
-}
-
-/*Dropdown styling header*/
-.dropdown_data_window
-{
-    float: right;
-    /*border: 2px solid purple; */
-    overflow: auto;
-
-    background: rgba(0, 0, 0, .9);
-}
-.dropdown_data_window p
-{
-    padding-top: 10px;
-
-    text-align: center;
-}
-.notification
-{
-    width: 300px;
-    padding: 10px 15px;
-
-    border-bottom: 1px solid purple;
-}
-.notificationsProfilePic
-{
-    float: left;
-
-    width: 55px;
-    margin-right: 15px;
-
-    border: 2px solid purple;
-    border-radius: 50%;
-}
-
-/*SEARCH BAR*/
-.vm_search
-{
-    position: absolute;
-    top: 13px;
-    /* width: 200px; */
-    /* height: 45px; */
-    left: 430px;
-}
-.button_holder
-{
-    display: inline;
-
-    padding: 6px 10px;
-
-    cursor: pointer;
-
-    border: 1px solid purple;
-}
-.button_holder:hover
-{
-    color: #d500ff;
-    border-color: #d500ff;
-}
-.button_holder:active
-{
-    color: white;
-    border-color: white;
-    background-color: purple;
-}
-
-.lifeSearchProfilePic
-{
-    float: left;
-
-    width: 55px;
-    margin-right: 15px;
-
-    border: 2px solid purple;
-    border-radius: 50%;
-}
-.search_results
-{
-    overflow: auto;
-
-    width: 320px;
-    max-height: 400px;
-
-    background: rgba(0, 0, 0, .9);
-}
-.search_results_footer
-{
-    padding: 10px;
-
-    background: rgba(0, 0, 0, .9);
-}
-.liveSearchResult
-{
-    padding: 10px 15px;
-
-    border-bottom: 1px solid purple;
 }
 
 /* search.php*/
