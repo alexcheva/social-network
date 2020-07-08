@@ -26,23 +26,7 @@
 	}
 
  ?>
-<div class="user_details_message column profile_left">
-	<a href="<?php echo $userLoggedIn ?>">
-		<img id="message_profile_pic" src="<?php echo $user['profile_pic']; ?>">
-	</a>
-	<div class="user_details_left_right">
-		<a href="<?php echo $userLoggedIn ?>" id="name">
-			<?php 
-			echo $user['first_name'] . " " . $user['last_name'];
-			?>
-		</a>
-		<p>			<?php 
-			echo "Posts: " . $user['num_posts'] . "<br>";
-			echo "Likes: " . $user['num_likes'];
-		?></p>
 
-	</div>
-</div>
 <div class="message_details column profile_left" id="conversations">
 		<h4>Conversations:</h4>
 		<div class="loaded-conversations">
@@ -50,7 +34,6 @@
 			<?php echo $message_obj->getConvos(); ?>
 		</div>
 		<a href="messages.php?u=new">New Message</a>
-	</div>
 </div>
 <div class="message_column column profile"  id="main_column">
 	<?php 
@@ -102,3 +85,4 @@
     });
 </script>
 	
+</div>

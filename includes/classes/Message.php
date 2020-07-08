@@ -46,7 +46,7 @@ class Message {
 			$user_from = $row['user_from'];
 			$body = $row['body'];
 			//if logged in user send it make puple, else make bright purple
-			$div_top = ($user_to == $userLoggedIn) ? "<div class='message' id='received_message'>" : "<div class='message' id='sent_message'>";
+			$div_top = ($user_to == $userLoggedIn) ? "<div class='message received'>" : "<div class='message sent'>";
 			$data = $data . $div_top . $body . "</div><br><br>";
 
 		}

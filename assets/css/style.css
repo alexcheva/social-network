@@ -1042,46 +1042,18 @@ input[type="file"]:active {
 	color: black;
 }*/
 
-/* Messages.php */
-#sent_message
-{
-    display: inline-block;
-    float: left;
-
-    padding: 10px;
-
-    color: white;
-    border: 1px solid purple;
-    border-radius: 10px;
-}
-#received_message
-{
-    display: inline-block;
-    float: right;
-
-    margin-right: 15px;
-    padding: 10px;
-
-    color: white;
-    border-radius: 10px;
-    /*light purple*/
-    background-color: purple ;
-}
-/*.noMorePosts p {
-	margin: 0px;
-}*/
-.loaded_messages
-{
-    overflow: auto;
-
-    height: 40%;
-    min-height: 300px;
-    max-height: 400px;
-}
-.message_details,
-.user_details_message
-{
+/* ================================= 
+  Messages.php
+==================================== */
+aside{
     width: 27%;
+    float: left;
+    min-width: 165px;
+}
+
+.message_details
+{
+    width: 28%;
     margin-bottom: 20px;
 }
 .message_column
@@ -1090,6 +1062,40 @@ input[type="file"]:active {
     min-height: 250px;
     margin-bottom: 30px;
 }
+
+.message{
+	display: inline-block;
+
+	padding: 10px;
+
+    color: white;
+    border-radius: 10px;
+}
+#sent_message,
+.sent
+{
+    float: left;
+    border: 1px solid purple;
+}
+#received_message,
+.received
+{
+    float: right;
+
+    margin-right: 15px;
+
+    background-color: purple;
+}
+
+.loaded_messages
+{
+    overflow: auto;
+
+    height: 40%;
+    min-height: 300px;
+    max-height: 400px;
+}
+
 #message_profile_pic
 {
     float: left;
@@ -1134,7 +1140,7 @@ input[type="file"]:active {
 {
     font-weight: 400;
 }
-/*Friend search*/
+/* ---- Friend Search ---- */
 .resultDisplay
 {
     height: 130px;
@@ -1155,6 +1161,9 @@ input[type="file"]:active {
     border: 4px purple solid;
     border-radius: 50%;
 }
+/* ================================= 
+  Profile page
+==================================== */
 h4
 {
     padding-bottom: 5px;
@@ -1690,4 +1699,10 @@ input[type='submit'].save_details:active
 
         border: 2px solid purple;
     }
+    .message_details,
+    .message_column,
+    .message_post
+    {
+    width: 100%;
+    margin-bottom: 0px;
 }
