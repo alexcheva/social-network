@@ -107,6 +107,30 @@ hr
 {
     border-top: 1px solid purple;
 }
+/* ---- Scroll Bar ---- */
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track
+{
+    background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb
+{
+    background: purple;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+{
+    background: #d51279;
+}
+
 /* ================================= 
   Base Layout Styles
 ==================================== */
@@ -122,14 +146,12 @@ hr
 
     width: 100%;
     height: 65px;
-    margin: 0 0 10px 0;
-    padding: 0 40px;
 
     border-bottom: 3px solid purple;
     background-color: rgba(0, 0, 0, .9);
 }
 .header-wrapper{
-	width: 99%;
+	width: 93%;
 	max-width: 1445px;
 	margin: 0 auto;
 }
@@ -220,23 +242,23 @@ nav a:active
 
     color: purple;
 }
+/* ================================= 
+  Notifications and Dropdowns
+==================================== */
+
 /* ---- Notifications ---- */
 .notification_badge
 {
     position: absolute;
     top: 3px;
-    /*    left: 175px;*/
+
     right: 66px;
-    /*font-size: 10px; */
+
 
     padding: 4px;
 
     border-radius: 10px;
-    /* font-weight: 600; */
-    /* white-space: nowrap; */
-    /* line-height: 1; */
-    /* vertical-align: baseline; */
-    /* color: white; */
+
     background-color: #f0a;
 }
 #unread_notification
@@ -250,11 +272,11 @@ nav a:active
     right: 92px;
 }
 
-/*Dropdown styling header*/
+/* ---- Dropdown ---- */
 .dropdown_data_window
 {
     float: right;
-    /*border: 2px solid purple; */
+
     overflow: auto;
 
     background: rgba(0, 0, 0, .9);
@@ -283,9 +305,30 @@ nav a:active
     border-radius: 50%;
 }
 
-/*SEARCH BAR*/
+/* ---- Search Results ---- */
+.search_results
+{
+    overflow: auto;
 
+    max-height: 400px;
 
+}
+.search_results,
+.search_results_footer{
+    width: 320px;
+
+    background: rgba(0, 0, 0, .9);
+}
+.search_results_footer
+{
+    padding: 10px;
+}
+.liveSearchResult
+{
+    padding: 10px 15px;
+
+    border-bottom: 1px solid purple;
+}
 
 .lifeSearchProfilePic
 {
@@ -297,27 +340,10 @@ nav a:active
     border: 2px solid purple;
     border-radius: 50%;
 }
-.search_results
-{
-    overflow: auto;
 
-    width: 320px;
-    max-height: 400px;
-
-    background: rgba(0, 0, 0, .9);
-}
-.search_results_footer
-{
-    padding: 10px;
-
-    background: rgba(0, 0, 0, .9);
-}
-.liveSearchResult
-{
-    padding: 10px 15px;
-
-    border-bottom: 1px solid purple;
-}
+/* ================================= 
+  Base Layout Styles
+==================================== */
 
 .wrapper
 {
@@ -369,7 +395,6 @@ nav a:active
     word-wrap: break-word;
 }
 
-
 #profile_pic
 {
     width: 100%;
@@ -378,34 +403,52 @@ nav a:active
     border-radius: 50%;
 }
 
-
-
 #name
 {
     font-size: 18px;
     font-weight: 500;
 }
+#loading
+{
+    width: 30px;
 
+    vertical-align: middle;
 
+    border-style: none;
+
+    align-self: center;
+}
+/* ---- Posts ---- */
 .post_profile_pic
 {
     float: left;
 
     padding-right: 20px;
 }
+
 .post_profile_img,
 .comment_profile_img{
     border: 2px solid purple;
     border-radius: 50%;	
 }
+
 .post_profile_img
 {
     width: 75px;
 }
+
 .post_main
 {
     display: flow-root;
 }
+
+.post_time
+{
+    font-weight: 100;
+    font-style: oblique;
+}
+
+/* ---- Comments ---- */
 .comment_profile_img
 {
     float: left;
@@ -461,45 +504,6 @@ nav a:active
     color: purple;
 }
 
-.post_time
-{
-    font-weight: 100;
-    font-style: oblique;
-}
-/*SCROLL BAR STYLE*/
-::-webkit-scrollbar
-{
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track
-{
-    background: black;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb
-{
-    background: purple;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover
-{
-    background: #d51279;
-}
-
-#loading
-{
-    width: 30px;
-
-    vertical-align: middle;
-
-    border-style: none;
-
-    align-self: center;
-}
 .newsfeedPostOptions
 {
     padding-left: 10px;
@@ -536,32 +540,12 @@ nav a:active
 
     min-width: 165px;
 }
-.unliked:hover .hollow,
-.unliked .broken-heart,
-.unliked .full
-{
-    display: none;
-}
-.unliked:hover .full
-{
-    display: inline;
-}
-.liked:hover .full,
-.liked .hollow,
-.liked .broken-heart
-{
-    display: none;
-}
-.liked:hover .broken-heart
-{
-    display: inline;
-}
-#click_like
-{
-    display: none;
-}
-/*Friend request buttons*/
-/*Delete friend*/
+
+/* ================================= 
+  Friend Request Buttons
+==================================== */
+
+/* ---- Delete friend ---- */
 #danger
 {
     font-weight: 500;
@@ -606,7 +590,7 @@ input[type='submit'].danger:active
     border-color: black;
     background-color: #a70000;
 }
-/*Respond to Request*/
+/* ---- Respond to Request ---- */
 #warning
 {
     font-weight: 500;
@@ -686,7 +670,7 @@ input[type='submit'].success:active
 
     color: #d500ff;
 }
-/*Request Sent*/
+/* ---- Request Sent ---- */
 #default
 {
     font-weight: 500;
@@ -712,7 +696,7 @@ input[type='submit'].success:active
     color: white;
     background-color: grey;
 }
-/*Add to friends*/
+/* ---- Add to friends ---- */
 .profile-name
 {
     font-family: 'Seagram', sans-serif;
@@ -775,7 +759,6 @@ input[type='submit'].success:active
 {
     font-size: 14px;
     font-weight: 500;
-    /*dark red*/
 
     color: #e80000;
     border-color: #e80000;
@@ -948,6 +931,7 @@ input[type='submit'].success:active
 
     color: #c45100;
 }
+/* ---- Youtube Embeds ---- */
 .embed-container
 {
     position: relative;
@@ -970,10 +954,7 @@ input[type='submit'].success:active
     width: 100%;
     height: 100%;
 }
-/*iframe{
-	display: block;
-}*/
-
+/* ---- Emoji ---- */
 .emojione
 {
     font-size: inherit;
@@ -994,7 +975,7 @@ input[type='submit'].success:active
 
     background-image: none;
 }
-
+/* ---- Add file ---- */
 #toggle_file_upload
 {
     margin-top: 10px;
@@ -1364,7 +1345,9 @@ h4
     color: white;
 }
 
-/* search.php*/
+/* ================================= 
+  Search Page
+==================================== */
 .search_result
 {
     min-height: 170px;
@@ -1380,7 +1363,10 @@ h4
     border: 5px solid purple;
     border-radius: 50%;
 }
-/*SETTINGS */
+/* ================================= 
+  Settings Page
+==================================== */
+
 label
 {
     display: block;
@@ -1388,6 +1374,7 @@ label
     margin-top: .8em;
     margin-bottom: .5rem;
 }
+
 .error
 {
     display: block;
@@ -1397,6 +1384,7 @@ label
 
     color: #ff002b;
 }
+
 .success
 {
     display: block;
@@ -1405,12 +1393,14 @@ label
 
     color: #2bff00;
 }
+
 #small_profile_pic
 {
     margin-bottom: 15px;
 
     border: 1px solid purple;
 }
+
 input[type='submit'].save_details
 {
     font-weight: 500;
@@ -1514,45 +1504,7 @@ input[type='submit'].save_details:active
     border-color: black;
     background-color: #c45100;
 }
-/*EMOJI VLADIMIR*/
-.hide
-{
-    display: none;
-}
-.emojis
-{
-    width: 87%;
-    /*overflow-y: hidden;*/
-    height: auto;
 
-    transition-timing-function: cubic-bezier(0, 1, .5, 1);
-    transition-duration: .5s;
-    transition-property: all;
-}
-
-.emojis img
-{
-    width: 25px;
-    height: 25px;
-    margin-bottom: 2.5px;
-
-    cursor: pointer;
-}
-
-.emojis img:not(.toggle_emojis):hover
-{
-    transform: scale(1.4);
-}
-
-.toggle_emojis
-{
-    position: relative;
-    z-index: 5;
-    top: -28px;
-
-    height: 22px;
-    margin-left: 82%;
-}
 .logo-mobile,
 .mobile_search,
 #mobile_profile_info,
@@ -1560,14 +1512,69 @@ input[type='submit'].save_details:active
 {
     display: none;
 }
+/* ---- Like heart animation ---- */
 
-/*IPAD*/
-@media only screen and (max-width: 750px)
+.unliked .broken-heart,
+.unliked .full
 {
-    .some-div
-    {
-        width: 80%;
-    }
+    display: none;
+}
+.liked .hollow,
+.liked .broken-heart
+{
+    display: none;
+}
+#click_like
+{
+    display: none;
+}
+
+/*LAPTOP ONLY */
+@media (min-width: 769px){
+	.unliked:hover .hollow,
+	.unliked .broken-heart,
+	.unliked .full
+	{
+	    display: none;
+	}
+	.unliked:hover .full
+	{
+	    display: inline;
+	}
+	.liked:hover .full,
+	.liked .hollow,
+	.liked .broken-heart
+	{
+	    display: none;
+	}
+	.liked:hover .broken-heart
+	{
+	    display: inline;
+	}
+	#click_like
+	{
+	    display: none;
+	}
+}
+/*IPAD*/
+@media only screen and (max-width: 768px)
+{
+	h1{
+		font-size: 32px;
+	}
+    .logo {
+	    padding-top: 11px;
+	    margin-right: 2em;
+	}
+	#name {
+		display: none;
+	}
+	nav a {
+	    padding: 1px;
+	}
+	.main_column {
+	    width: 75%;
+	}
 }
 /*MOBILE*/
 /*XS - 320*/
