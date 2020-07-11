@@ -418,6 +418,9 @@ nav a:active
 
     align-self: center;
 }
+.hide{
+    display: none;
+}
 /* ---- Posts ---- */
 .post_profile_pic
 {
