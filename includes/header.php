@@ -45,25 +45,7 @@
 		<div class="top_bar">
 			<div class="header-wrapper">
 				<div class="logo">
-					<h1><a href="index.php">Verni Moj 2007 &#128148;</a></h1>
-				</div>
-				<!-- MOBILE TOP BAR -->
-				<div class="logo-mobile">
-					
-					<div class="mobile_logo_center">
-					<h1><a href="index.php">Verni 2007 &#128148;</a></h1>
-					<div class="mobile_search">
-					<form action="search.php" method="GET" name="search_form">
-						<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
-						<div class="button_holder">
-							<i class="fa fa-search"></i>
-						</div>
-
-					</form>
-					</div>
-				</div>
-				
-				<!-- SCREEN SEARCH -->
+					<h1><a href="index.php">Verni <span id="moj">Moj </span>2007 &#128148;</a></h1>
 				</div>
 				<div class="vm_search">
 					<form action="search.php" method="GET" name="search_form">
@@ -74,7 +56,6 @@
 
 					</form>
 				</div>
-
 				<nav>
 
 					<?php 
@@ -112,18 +93,12 @@
 						} ?>
 					<a href="settings.php"><i class="fas fa-user-cog"></i></a>
 					<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>
-
-					<!-- <a href="#"><i class="fas fa-house-user"></i></a> -->
 				</nav>
 				<div class="search_results"></div>
 				<div class="search_results_footer_empty"></div>
 				
 				<div class="dropdown_data_window"></div>
 				<input type="hidden" id="dropdown_data_type" value="">
-				<div class="mobile_search_results">
-					<div class="search_results"></div>
-					<div class="search_results_footer_empty"></div>
-				</div>
 			</div>
 		</div>
 		<div class="wrapper">
