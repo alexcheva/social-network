@@ -45,9 +45,13 @@
 		<div class="top_bar">
 			<div class="header-wrapper">
 				<div class="logo">
-					<h1><a href="index.php">Verni <span id="moj">Moj </span>2007 &#128148;</a></h1>
+					<h1>
+						<a href="index.php">
+							Verni <span id="moj">Moj </span>2007 &#128148;
+						</a>
+					</h1>
 				</div>
-				<div class="vm_search">
+				<div id="search" class="vm_search">
 					<form action="search.php" method="GET" name="search_form">
 						<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
 						<div class="button_holder">
@@ -57,46 +61,61 @@
 					</form>
 				</div>
 				<nav>
-
 					<?php 
-					//Unread messages 
-					$messages = new Message($con, $userLoggedIn);
-					$num_messages = $messages->getUnreadNumber();
+						//Unread messages 
+						$messages = new Message($con, $userLoggedIn);
+						$num_messages = $messages->getUnreadNumber();
 
-					//Unread notifications 
-					$notifications = new Notification($con, $userLoggedIn);
-					$num_notifications = $notifications->getUnreadNumber();
-					
-					//Unread friend_requests 
-					$user_obj = new User($con, $userLoggedIn);
-					$num_requests = $user_obj->getNumberFriendRequests();
+						//Unread notifications 
+						$notifications = new Notification($con, $userLoggedIn);
+						$num_notifications = $notifications->getUnreadNumber();
+						
+						//Unread friend_requests 
+						$user_obj = new User($con, $userLoggedIn);
+						$num_requests = $user_obj->getNumberFriendRequests();
 					 ?>
-					<a id="name" href="<?php echo $userLoggedIn ?>">
+
+					<a id="username" href="<?php echo $userLoggedIn ?>">
 						<?php echo $user['first_name']?>
 					</a>
-					<a href="index.php"><i class="fas fa-home"></i></a>
-					<a href="<?php echo $userLoggedIn ?>"><i class="fas fa-user-circle"></i></a>
-					<a href="requests.php"><i class="fas fa-user-friends"></i>
-						<?php if($num_requests > 0){
-								echo '<span class="notification_badge" id="unread_request"></span>';
-							} ?>
+					<a href="index.php">
+						<i class="fas fa-home"></i>
 					</a>
-					<a href="messages.php"><i class="fas fa-envelope"></i>
-						<?php if($num_messages > 0){
-							echo '<span class="notification_badge" id="unread_message"></span>';
-						} ?>
-						</a>
+					<a href="<?php echo $userLoggedIn ?>">
+						<i class="fas fa-user-circle"></i>
+					</a>
+					<a href="requests.php">
+						<?php if($num_requests > 0)
+							echo '<span id="unread_request" class="notification_badge"></span>';
+						?>
+						<i class="fas fa-user-friends"></i>
+					</a>
+					<a href="messages.php">
+						<?php if($num_messages > 0)
+							echo '<span id="unread_message" class="notification_badge"></span>';
+						?>
+						<i class="fas fa-envelope"></i>
+					</a>
 					<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
-						<i class="fas fa-bell"></i></a>
-						<?php if($num_notifications > 0){
-							echo '<span class="notification_badge" id="unread_notification"></span>';
-						} ?>
-					<a href="settings.php"><i class="fas fa-user-cog"></i></a>
-					<a href="includes/handlers/logout.php"><i class="fas fa-sign-out-alt"></i></a>
+						<?php if($num_notifications > 0)
+							echo '<span id="unread_notification" class="notification_badge"></span>';
+						?>
+						<i class="fas fa-bell"></i>
+					</a>
+					<a href="settings.php">
+						<i class="fas fa-user-cog"></i>
+					</a>
+					<a class="search_button" href="javaScript:void(0);">
+						<i class="fa fa-search"></i>
+					</a>
+					<a href="includes/handlers/logout.php">
+						<i class="fas fa-sign-out-alt"></i>
+					</a>
 				</nav>
-				<div class="search_results"></div>
-				<div class="search_results_footer_empty"></div>
-				
+				<div class="search_dropdown">
+					<div class="search_results"></div>
+					<div class="search_results_footer_empty"></div>
+				</div>
 				<div class="dropdown_data_window"></div>
 				<input type="hidden" id="dropdown_data_type" value="">
 			</div>

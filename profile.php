@@ -117,7 +117,7 @@
 					echo '</p>';
 				}
 				if($logged_in_user_obj ->isFriend($username))
-					echo '<input type="submit" id="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">';
+					echo '<input type="submit" data-toggle="modal" data-target="#post_form" value="Post Something">';
 			?>
 			
 		</div>
@@ -166,7 +166,7 @@
 						echo '</p>';
 					}
 					if($logged_in_user_obj ->isFriend($username))
-						echo '<input type="submit" id="post_button" data-toggle="modal" data-target="#post_form" value="Post Something">';
+						echo '<input type="submit" data-toggle="modal" data-target="#post_form" value="Post Something">';
 				?>
 			</div>
 		</div>

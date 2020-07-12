@@ -1,13 +1,28 @@
 $(document).ready(function(){
+
+	// $(".search_button").on('click', function(){
+	// 	$("#search").show();
+	// 	$("#search").hide();
+	// });
 	// $('#search_text_input').focus(function(){
 		//if device is larger than 800px
-		// if(window.matchMedia( "(min-width: 800px)" ).matches) {
-		// 	$(this).animate({width: "250px"}, 500);
-		// }
-	// 	if(window.matchMedia( "(max-width: 500px)" ).matches) {
-	// 		$(this).animate({width: "250px"}, 500);
-	// 	}
-	// });
+		if(window.matchMedia( "(min-width: 800px)" ).matches) {
+		$("#search").toggleClass("hide");
+		$("#search").toggleClass("vm_search");
+		}
+	if(window.matchMedia( "(max-width: 500px)" ).matches) {
+		
+		$("#search").toggleClass("vm_search");
+		$("#search").toggleClass("hide");
+		
+
+		$(".search_button").on('click', function(){
+
+			$("#search").toggleClass("hide");
+			$("#search").toggleClass("vm_search");
+		});
+	};
+	//});
 	//submit form when click on button holder div
 	$(".button_holder").on('click', function(){
 		document.search_form.submit();
@@ -128,20 +143,20 @@ $(document).click(function(e){
 		$(".search_results_footer").toggleClass("search_results_footer_empty");
 		$(".search_results_footer").toggleClass("search_results_footer");
 		$(".search_results_footer_empty").css({"border": "none" });
-	}
+	};
 	if(e.target.class != "dropdown_data_window"){
 
 		$(".dropdown_data_window").html("");
 		$(".dropdown_data_window").css({"padding": "0px", "height" : "0px", "border": "none"});
 		$(".fa-bell").css({"color":""});
-	}
+	};
 });
 
 function updateLikes(id) {
     return $.get("like_post.php", {post_id: id}).done((num_likes) => {
         $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
-    })
-}
+    });
+};
 
 function sendLike(id) {
     const $elem = $(`#like_button_${id}`);
@@ -155,34 +170,4 @@ function sendLike(id) {
             $elem.removeClass(isLiked ? 'liked' : 'unliked');
         });
 
-}
-//Vladimir emoji code
-$(function(){
-
-    $(".emojis img:not(.toggle_emojis)").on("click", function(){
- 
-      const extension = $(this).attr("src").indexOf(".png");
-      const emojisDash = $(this).attr("src").indexOf("emojis/");
-      const num = $(this).attr("src").substring(emojisDash + 7, extension);
-      let emoji = `:s${num}:`;
- 
-      const txt = $("#post_text");
-      let caretPos = txt[0].selectionStart;
-      const textAreaTxt = txt.val();
- 
-      txt.val(textAreaTxt.substring(0, caretPos) + " " + emoji + " " + textAreaTxt.substring(caretPos));
- 
-      if(caretPos === 0)
-        caretPos = textAreaTxt.substring(-1);
-    });
- 
-    $(".toggle_emojis").on("click", function(){
-    	// $(".emojis").toggleClass("hide");
-    	if($(".emojis").hasClass( "hide" )){
-    		$(".emojis").removeClass("hide");
-    	}else{
-    		$(".emojis").addClass("hide");
-    	}
-	});
- 
- });
+};
