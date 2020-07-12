@@ -59,7 +59,7 @@
 	</div>
 
 	<div class="main_column column" id="main_column">
-		<button type="submit" class="close" href="index.php" ><span aria-hidden="true">&times;</span></button>
+		<button type="submit" class="close"><a href="index.php"><span aria-hidden="true">&times;</span></a></button>
 		<h4>Edit post:</h4>
 	        
 		<div class="post_area"><?php echo $error; ?>

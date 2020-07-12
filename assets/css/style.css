@@ -1286,7 +1286,7 @@ aside{
     border-radius: 50%;
 }
 /* ================================= 
-  Profile page
+    Profile page
 ==================================== */
 h4
 {
@@ -1476,7 +1476,7 @@ input[type='submit'].save_details:active
     background-color: purple;
 }
 
-/*About Edit Button*/
+/* ---- Edit About Button ---- */
 #edit_button
 {
     font-weight: 500;
@@ -1526,8 +1526,21 @@ input[type='submit'].save_details:active
 .mobile_profile_info{
     display: none;
 }
+/* ================================= 
+    Edit Post Page
+==================================== */
+/*---- Close x Button ----*/
+.close a {
+    color: #ff002b;
+    text-decoration: none;
+}
+.close a:active {
+    color: purple;
+}
+
 /*LAPTOP ONLY */
 @media (min-width: 769px){
+    /*---- Like Post Button ----*/
 	.unliked:hover .hollow,
 	.unliked .broken-heart,
 	.unliked .full
@@ -1552,6 +1565,18 @@ input[type='submit'].save_details:active
 	{
 	    display: none;
 	}
+    /*---- Close x Button ----*/
+    .close a {
+        color: white;
+    }
+
+    .close a:hover {
+        color: #ff002b;
+        text-decoration: none;
+    }
+    .close a:active {
+        color: purple;
+    }
 }
 /*IPAD*/
 @media only screen and (max-width: 768px)
