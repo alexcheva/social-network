@@ -1686,6 +1686,35 @@ input[type='submit'].save_details:active
     nav a:active{
         color: #d500ff;
     }
+    .profile_left {
+        float: none;
+        display: block;
+        width: 100%;
+        border-bottom: none;
+        margin-bottom: 0px;
+    }
+    #profile_pic {
+        float: right;
+        margin: 0px;
+        border: 4px solid purple;
+        border-radius: 50%;
+    }
+    #profile_name{
+        font-family: 'Seagram', sans-serif;
+        font-size: 2em;
+        text-align: center;
+    }
+    .profile_info {
+        margin: 0 auto;
+        width: 90%;
+    }
+    .profile {
+        border-top: none;
+    }
+    .profile-name {
+        display: none;
+    }
+
     .main_column
     {
         width: 100%;
