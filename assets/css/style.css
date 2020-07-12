@@ -1663,9 +1663,17 @@ input[type='submit'].save_details:active
     .button_holder
     {
         padding: 4px;
-
-        border: none;
     }
+/*    .dropdown_data_window {
+        margin: 0 auto;
+        width: 90%;
+        float: none;
+    }
+    .notification {
+        min-width: 100%;
+        min-height: 81px;
+    }*/
+
     input
     {
         padding: 5px;
