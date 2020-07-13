@@ -310,9 +310,9 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
-							// $(".comment").emojioneArea({
-							// 	pickerPosition: "bottom"
-							// });
+							$("textarea").emojioneArea({
+								pickerPosition: "bottom"
+							});
 						$('#post<?php echo $id; ?>').on('click', function(){
 							//bootstrap
 							bootbox.confirm({
@@ -335,19 +335,6 @@ class Post{
 								}
 							});
 						});
-						// $('#edit_post<?php echo $id; ?>').on('click', function(){
-						// 	//bootstrap
-						// 	bootbox.prompt({
-						// 	    title: "Edit post:",
-						// 	    inputType: 'textarea',
-						// 	    callback: function (result) {
-						// 			$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
-						// 			//if there is a result = true
-						// 			if(result)
-						// 				location.reload();
-						// 		}
-						// 	});
-						// });
 					});
 				</script>
 				<?php
