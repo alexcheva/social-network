@@ -48,7 +48,7 @@ class Post{
 				$user_to = "none";
 			}
 			//insert post into a database
-			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added', 'no','no','0', '$imageName')");
+			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added', 'no','0', '$imageName')");
 			//find out the id of the last post
 			$returned_id = mysqli_insert_id($this->con);
 
@@ -138,7 +138,7 @@ class Post{
 			$start = ($page - 1) * $limit;
 		
 		$str = ""; //string to return
-		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' ORDER BY id DESC");
+		$data_query = mysqli_query($this->con, "SELECT * FROM posts ORDER BY id DESC");
 		//if there are posts:
 		if(mysqli_num_rows($data_query) > 0){
 
@@ -379,7 +379,7 @@ class Post{
 		
 		$str = ""; //string to return
 		//show only posts that are not addressed to anybody or addressed to this user
-		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername') ORDER BY id DESC");
+		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername') ORDER BY id DESC");
 		//if there are posts:
 		if(mysqli_num_rows($data_query) > 0){
 
@@ -719,7 +719,7 @@ class Post{
 		$opened_query = mysqli_query($this->con, "UPDATE notifications SET opened='yes' WHERE user_to='$userLoggedIn' AND link LIKE '%=$id'");
 		
 		$str = ""; //string to return
-		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE deleted='no' AND id='$id'");
+		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE id='$id'");
 		//if there is a posts:
 		if(mysqli_num_rows($data_query) > 0){
 
