@@ -25,6 +25,7 @@ CREATE TABLE users(
     num_posts INT(11) NOT NULL,
     num_likes INT(11) NOT NULL,
     user_closed VARCHAR(3) NOT NULL,
+    admin VARCHAR(3) NOT NULL,
     friend_array TEXT NOT NULL
 ); 
 CREATE TABLE posts(
@@ -34,7 +35,6 @@ CREATE TABLE posts(
     user_to VARCHAR(200) NOT NULL,
     date_added DATETIME NOT NULL,
     user_closed VARCHAR(3) NOT NULL,
-    deleted VARCHAR(3) NOT NULL,
     likes INT(11) NOT NULL
 ); 
 CREATE TABLE comments(
