@@ -55,7 +55,7 @@
 			</a>
 			<p>
 				<?php 
-					echo "Posts: " . $user['num_posts']; . "<br>";
+					echo "Posts: " . $user['num_posts'] . "<br>";
 					echo "Likes: " . $user['num_likes'];
 				?>
 			</p>
