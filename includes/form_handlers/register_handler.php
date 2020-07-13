@@ -89,7 +89,7 @@ if(empty($error_array)){
 		$profile_pic = "assets/images/profile_pics/defaults/pic_2.png";
 	
 	//Insert values into the database
-	$query = mysqli_query($con, "INSERT INTO users VALUES (NULL, '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',')");
+	$query = mysqli_query($con, "INSERT INTO users VALUES (NULL, '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', 'no', ',')");
 	array_push($error_array, "<span class='success'>You are all set! Go ahead and login!</span>");
 
 	//Clear session variables
