@@ -181,8 +181,8 @@ class Post{
 				} else {
 					$count++;
 				}
-				//delete post if logged in user is the one posted
-				if($userLoggedIn == $added_by || $user_logged_obj->isFriend($userLoggedIn))
+				//delete post if logged in user is the one posted or admin
+				if($userLoggedIn == $added_by || $user_logged_obj->isAdmin($userLoggedIn))
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
@@ -222,12 +222,6 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
-
-				//EMOJI
-				// $body_array = preg_split("/[ ]+|\n/", $body);
-				// foreach($body_array as $key => $value) {
-				//      $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
-				// }
 
 				//image
 				if($imagePath != ""){
@@ -358,6 +352,7 @@ class Post{
 		//comes from ajax_load_profile_posts.php $_REQUEST and ajaxReq data
 		$profileUsername = $data['profileUsername'];
 		$userLoggedIn = $this->user_obj->getUsername();
+		$user_logged_obj = new User($this->con, $userLoggedIn);
 
 		if($page == 1)
 			$start = 0;
@@ -390,8 +385,9 @@ class Post{
 				} else {
 					$count++;
 				}
-				//delete post if logged in user is the one posted
-				if($userLoggedIn == $added_by || $userLoggedIn == $user_to )
+
+				//delete post if user is the one posted, profile owner or admin
+				if($userLoggedIn == $added_by || $userLoggedIn == $user_to || $user_logged_obj->isAdmin($userLoggedIn))
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
@@ -737,8 +733,8 @@ class Post{
 			//If friend statement
 			if($user_logged_obj->isFriend($added_by)){
 
-				//add delete post button if logged in user is the one posted
-				if($userLoggedIn == $added_by)
+				//add delete post button if user is the one posted or admin
+				if($userLoggedIn == $added_by  || $user_logged_obj->isAdmin($userLoggedIn))
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
