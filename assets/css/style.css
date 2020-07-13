@@ -448,6 +448,7 @@ nav a:active
 {
     font-weight: 100;
     font-style: oblique;
+    color: #9e9e9e;
 }
 
 /* ---- Comments ---- */
@@ -534,7 +535,10 @@ nav a:active
     padding: 5px;
 
     border-radius: 36px;
-    background: #5f005f80;
+    /*dar purple*/
+    /*background: rgba(95, 0, 95, 0.5);*/
+    /*dark blue*/
+    background-color: rgba(85, 0, 255, 0.17);
 }
 .profile_left
 {
