@@ -182,7 +182,7 @@ class Post{
 					$count++;
 				}
 				//delete post if logged in user is the one posted
-				if($userLoggedIn == $added_by)
+				if($userLoggedIn == $added_by || $user_logged_obj->isFriend($userLoggedIn))
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
