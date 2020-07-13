@@ -58,9 +58,8 @@ include('includes/header.php');
 				?>
 			</a></p>
 
-			<p><?php $get_number_posts = mysqli_query($con, "SELECT * FROM posts WHERE added_by='$userLoggedIn'");
-					$num_posts = mysqli_num_rows($get_number_posts);
-					echo "Posts: " . $num_posts; ?></p>
+			<p><?php
+					echo "Posts: " . $user['num_posts']; ?></p>
 			<p><?php echo "Likes: " . $user['num_likes']; ?></p>
 			<?php 
 			if($user['friend_array'] !== ",")
