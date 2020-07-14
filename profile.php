@@ -16,7 +16,7 @@
 		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
 		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$userLoggedIn'");
 	}
-	
+
 	$message = "";
 	$error = "";
 	$row = mysqli_fetch_array($about_query);
@@ -409,15 +409,15 @@
 
 	function sendComment(id) {
 	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
-		const commentText = $("#comment" + id).val();
+		const commentText = $("#comment_textarea" + id).val();
 		
 		if(commentText === "") {
 	 
 			bootbox.alert("Please enter some text first!");
 			return;
-	}
+		}
  
-	const sendComment = $.post("includes/handlers/send_comment.php", {
+		const sendComment = $.post("includes/handlers/send_comment.php", {
 			userLoggedIn: userLoggedIn, 
 			commentText: commentText, 
 			id: id
@@ -433,7 +433,7 @@
 					}, 
 					function(newComment) {
 	 
-					$("#comment" + id).val("");
+					$("div.emojionearea-editor").text("");
 					const noComment = $("#toggleComment" + id).find("#noComment" + id);
 					
 					if(noComment.length !== 0) {

@@ -37,6 +37,8 @@ class Post{
 			}
 			//separate array elements with a space
 			$body = implode(" ", $body_array);
+			$body = str_replace('\r\n', '\n', $body);
+			$body = nl2br($body); //replace new line with line break
 
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
@@ -493,7 +495,7 @@ class Post{
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
 						   <div class='comments_area'>
-						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
+						     <textarea id='comment_textarea$id' placeholder='Post a comment...'></textarea>
 						     <input class='comment_btn' type='button' onclick='sendComment($id)' value='Send'>
 						   </div>"
 							.$this->getComments($id).
@@ -504,7 +506,7 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
-						$("textarea").emojioneArea({
+						$("#comment_textarea<?php echo $id; ?>").emojioneArea({
 								pickerPosition: "bottom"
 							});
 						$('#post<?php echo $id; ?>').on('click', function(){
@@ -618,19 +620,15 @@ class Post{
 				$comment_id = $comment['id'];
         
 	    		$time_message = $this->getTime($date_added);
-	    		//EMOJI
-				$body_array = preg_split("/[ ]+|\n/", $comment_body);
-				foreach($body_array as $key => $value) {
-				     $comment_body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
-				}
 	 
 				$user_obj = new User($this->con, $posted_by);
+				$user_logged_obj = new User($this->con, $userLoggedIn);
 	 
 				$profile_pic = $user_obj->getProfilePic();
 	 
 				$name = $user_obj->getFirstAndLastName();
 	 			
-	 			//delete post if logged in user is the one posted
+	 			//delete comment if user is the one posted or post creator or admin
 				if($userLoggedIn == $posted_by)
 					$delete_button = "<a class='delete_button' id='comment$comment_id'><i class='fas fa-trash-alt'></i></a>";
 				else
@@ -640,9 +638,13 @@ class Post{
 				$commment_from_db .= "
 				<hr>
 				<div class='comment_section'>
-					<a href='$posted_by' target='_parent'><img src='$profile_pic' title='$posted_by' class='comment_profile_img'></a>
+					<a href='$posted_by' target='_parent'>
+						<img src='$profile_pic' title='$posted_by' class='comment_profile_img'>
+					</a>
 					<div class='post_main'>
-						<a href='$posted_by'>$name</a>
+						<a href='$posted_by'>
+							$name
+						</a>
 						$delete_button
 						<div class='post_body'>
 							$comment_body
@@ -731,7 +733,7 @@ class Post{
 			if($user_logged_obj->isFriend($added_by)){
 
 				//add delete post button if user is the one posted or admin
-				if($userLoggedIn == $added_by  || $user_logged_obj->isAdmin($userLoggedIn))
+				if($userLoggedIn == $added_by || $user_logged_obj->isAdmin($userLoggedIn))
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
@@ -767,11 +769,6 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
-				//EMOJI
-				// $body_array = preg_split("/[ ]+|\n/", $body);
-				// foreach($body_array as $key => $value) {
-				//      $body = implode(" ", Emojis::createEmojis($body_array, $key, $value));
-				// }
 				
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
@@ -838,6 +835,9 @@ class Post{
 			<script>
 			//Delete post functionality bootbox
 				$(document).ready(function(){
+					$(".textarea").emojioneArea({
+						pickerPosition: "bottom"
+					});
 					$('#post<?php echo $id; ?>').on('click', function(){
 						//bootstrap
 						bootbox.confirm({

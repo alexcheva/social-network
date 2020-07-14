@@ -420,6 +420,9 @@ nav a:active
 .hide{
     display: none;
 }
+.inline{
+    display: inline-block;
+}
 /* ---- Posts ---- */
 .post_profile_pic
 {

@@ -238,13 +238,6 @@
 		});
 	};
 	</script>
-	<script>
-		$(document).ready(function(){
-			$(".comment").emojioneArea({
-				pickerPosition: "bottom"
-			});
-		});
-	</script>
 
 	<!-- end wrapper from header -->
 	</div>
