@@ -13,7 +13,7 @@
 	$post_image_src = $row['image'];
 
 	if($post_image_src != "")
-		$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$post_image_src'></a></div>";
+		$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$post_image_src'></a></div>";
 	else
 		$post_image = "";
 	
@@ -157,6 +157,8 @@
 
 		$delete_image = mysqli_query($con, "UPDATE posts SET image='' WHERE id='$id'");
 		$message = "<p class='success'>Image have been successfully removed!</p>";
+		unlink($post_image_src);
+
 		$post_image = "";
 
 
