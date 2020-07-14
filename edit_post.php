@@ -92,7 +92,7 @@
 
 			if($uploadOk){
 				$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
-				$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$imageName'></a></div>";
+				$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$imageName'></a></div>";
 
 
 			}else{
@@ -146,7 +146,7 @@
 			if($uploadOk){
 				$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
 				$message = "<p class='success'>Image have been successfully updated!</p>";
-				$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$imageName'></a></div>";
+				$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$imageName'></a></div>";
 
 			}else{
 				$error = "<p class='error'>Something went wrong. Please, try again.</p>";
@@ -159,7 +159,6 @@
 		$message = "<p class='success'>Image have been successfully removed!</p>";
 		unlink($post_image_src);
 		$post_image = "";
-
 
 	}
  ?>
