@@ -18,6 +18,9 @@ class Post{
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
 		
 		//https://www.youtube.com/?app=desktop
+		//https://youtu.be/rrmsJhf89MY
+		//https://www.youtube.com/watch?v=rrmsJhf89MY&feature=youtu.be
+		 // Standard Definition (SD): http://img.youtube.com/vi/G0wGs3useV8/sddefault.jpg (640×480 pixels)
 		if($check_empty != "") {
 			//redex split at spaces
 			$body_array = preg_split("/\s+/", $body);
@@ -28,8 +31,16 @@ class Post{
 					//replace a string inside a string:
 					$link = preg_split("!&!", $value);
 					//find !that!
-					$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
-					$value = "<div class=\'embed-container\'><iframe src=\'" . $value ."\' frameborder=\'0\' allowfullscreen></iframe></div>";
+					//$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
+					//https://img.youtube.com/vi/gGdGFtwCNBE/sddefault.jpg
+					$image = str_replace("https://www.youtube.com/watch?v=", "https://img.youtube.com/vi/", $link[0]);
+					$image = $image ."/sddefault.jpg";
+
+					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'>
+					<img src=\'".$image. "\' async class=\'play-youtube-video\'>
+					<div class=\'play-button\'></div> 
+					</div>";
 					//save newly modified $value into post:
 					//$key refers to position of the link
 					$body_array[$key] = $value;
@@ -38,7 +49,7 @@ class Post{
 			//separate array elements with a space
 			$body = implode(" ", $body_array);
 			$body = str_replace('\r\n', '\n', $body);
-			$body = nl2br($body); //replace new line with line break
+			//$body = nl2br($body); //replace new line with line break
 
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
@@ -306,6 +317,15 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
+							var youtube = document.querySelectorAll( ".youtube" );	
+							for (var i = 0; i < youtube.length; i++) {
+						    
+						    	youtube[i].addEventListener( "click", function() {
+
+						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+						       
+						    } );
+							}
 							$("textarea").emojioneArea({
 								pickerPosition: "bottom"
 							});
