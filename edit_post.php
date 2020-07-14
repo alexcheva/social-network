@@ -158,7 +158,6 @@
 		$delete_image = mysqli_query($con, "UPDATE posts SET image='' WHERE id='$id'");
 		$message = "<p class='success'>Image have been successfully removed!</p>";
 		unlink($post_image_src);
-
 		$post_image = "";
 
 
