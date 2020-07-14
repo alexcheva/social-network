@@ -21,13 +21,14 @@
 	$post_body = str_replace($youtube_div, '', $post_body);
 	$error = "";
 	$message = "";
+	$errorImage = "";
 
 	if(isset($_POST['save_post'])){ 
 
 		$new_post_body = strip_tags($_POST['new_post']);
 
 		if($new_post_body == "")
-			$error = "<p class='message error'>Post cannot be empty.</p>";
+			$error = "<p class='error'>Post cannot be empty.</p>";
 		else{
 			$body_array = preg_split("/\s+/", $new_post_body);
 			
@@ -56,43 +57,47 @@
 
 			$new_post_youtube_div = ["<div class=\'embed-container\'><iframe src=\'","\' frameborder=\'0\' allowfullscreen></iframe></div>"];
 			$post_body = str_replace($new_post_youtube_div, '', $new_post_body);
-			$message = "<p class='message success'>Post have been successfully updated!</p>";
+			$message = "<p class='success'>Post have been successfully updated!</p>";
 		}
-		$uploadOk = 1;
-		$imageName = $_FILES['fileToUpload']['name'];
+		if(!isset($_FILES['fileToUpload']) || $_FILES['fileToUpload']['error'] == UPLOAD_ERR_NO_FILE){
+			$post_image = "";
+		}else{
+			$uploadOk = 1;
+			$imageName = $_FILES['fileToUpload']['name'];
 
-		if($imageName != ""){
-			$targetDir = "assets/images/posts/";
-			$imageName = $targetDir . uniqid() . basename($imageName);
-			$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
+			if($imageName != ""){
+				$targetDir = "assets/images/posts/";
+				$imageName = $targetDir . uniqid() . basename($imageName);
+				$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
 
-			if($_FILES['fileToUpload']['size'] > 10000000){
-				$error = "<p class='message error'>Sorry, your file is too large.</p>";
-				$uploadOk = 0;
-			}
-			if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
-			$error = "<p class='message error'>Sorry, only jpeg/jpg, png and gif files are allowed!</p>";
-				$uploadOk = 0;
+				if($_FILES['fileToUpload']['size'] > 10000000){
+					$error = "<p class='error'>Sorry, your file is too large.</p>";
+					$uploadOk = 0;
+				}
+				if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
+				$error = "<p class='error'>Sorry, only jpeg/jpg, png and gif files are allowed!</p>";
+					$uploadOk = 0;
+				}
+
+				if($uploadOk){
+					if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)){
+						//image uploaded sucessfully
+
+					}else{
+						//image did not upload
+						$uploadOk = 0;
+					}
+				}
 			}
 
 			if($uploadOk){
-				if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)){
-					//image uploaded sucessfully
+				$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
+				$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$imageName'></a></div>";
 
-				}else{
-					//image did not upload
-					$uploadOk = 0;
-				}
+
+			}else{
+				$error = "<p class='error'>Something went wrong. Please, try again.</p>";
 			}
-		}
-
-		if($uploadOk){
-			$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
-			$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$imageName'></a></div>";
-
-
-		}else{
-			$error = "<p class='message error'>Something went wrong. Please, try again.</p>";
 		}
 	}
 	if(isset($_POST['delete_post'])){ 
@@ -107,48 +112,51 @@
 	}
 
 	if(isset($_POST['update_image'])){
-		$uploadOk = 1;
-		$imageName = $_FILES['fileToUpload']['name'];
+		if(!isset($_FILES['fileToUpload']) || $_FILES['fileToUpload']['error'] == UPLOAD_ERR_NO_FILE){
+			$errorImage = "<p class='error'>No file chosen to update the image.</p>";
+		} else{
+			$uploadOk = 1;
+			$imageName = $_FILES['fileToUpload']['name'];
 
-		if($imageName != ""){
-			$targetDir = "assets/images/posts/";
-			$imageName = $targetDir . uniqid() . basename($imageName);
-			$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
+			if($imageName != ""){
+				$targetDir = "assets/images/posts/";
+				$imageName = $targetDir . uniqid() . basename($imageName);
+				$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
 
-			if($_FILES['fileToUpload']['size'] > 10000000){
-				$error = "<p class='message error'>Sorry, your file is too large.</p>";
-				$uploadOk = 0;
-			}
-			if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
-			$error = "<p class='message error'>Sorry, only jpeg/jpg, png and gif files are allowed!</p>";
-				$uploadOk = 0;
+				if($_FILES['fileToUpload']['size'] > 10000000){
+					$error = "<p class='error'>Sorry, your file is too large.</p>";
+					$uploadOk = 0;
+				}
+				if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
+				$error = "<p class='error'>Sorry, only jpeg/jpg, png and gif files are allowed!</p>";
+					$uploadOk = 0;
+				}
+
+				if($uploadOk){
+					if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)){
+						//image uploaded sucessfully
+
+					}else{
+						//image did not upload
+						$uploadOk = 0;
+					}
+				}
 			}
 
 			if($uploadOk){
-				if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)){
-					//image uploaded sucessfully
+				$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
+				$message = "<p class='success'>Image have been successfully updated!</p>";
+				$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$imageName'></a></div>";
 
-				}else{
-					//image did not upload
-					$uploadOk = 0;
-				}
+			}else{
+				$error = "<p class='error'>Something went wrong. Please, try again.</p>";
 			}
-		}
-
-		if($uploadOk){
-			$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
-			$message = "<p class='message success'>Image have been successfully updated!</p>";
-			$post_image = "<div><a href='$post_image_src' target='_black'><img class='postedImages' src='$imageName'></a></div>";
-
-
-		}else{
-			$error = "<p class='message error'>Something went wrong. Please, try again.</p>";
 		}
 	}
 	if(isset($_POST['delete_image'])){ 
 
 		$delete_image = mysqli_query($con, "UPDATE posts SET image='' WHERE id='$id'");
-		$message = "<p class='message success'>Image have been successfully removed!</p>";
+		$message = "<p class='success'>Image have been successfully removed!</p>";
 		$post_image = "";
 
 
@@ -192,6 +200,7 @@
 			</form>
 			<?php if ($post_image != ""){ ?>
 				<h4>Edit attachment:</h4>
+				<?php echo $errorImage; ?>
 				<?php echo $post_image; ?>
 				<form action="edit_post.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
 
