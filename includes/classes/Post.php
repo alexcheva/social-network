@@ -227,7 +227,7 @@ class Post{
 
 				//image
 				if($imagePath != ""){
-					$imageDiv = "<div><a href='$imagePath' target='_black'><img class='postedImages' src='$imagePath'></a></div>";
+					$imageDiv = "<div><a href='$imagePath' target='_blank'><img class='postedImages' src='$imagePath'></a></div>";
 				}else{
 					$imageDiv = "";
 				}
@@ -377,6 +377,7 @@ class Post{
 				$added_by = $row['added_by'];
 				$user_to = $row['user_to'];
 				$date_time = $row['date_added'];
+				$imagePath = $row['image'];
 
 				if($num_iterations++ < $start)
 					continue;
@@ -428,7 +429,6 @@ class Post{
 				//find number of results:
 				$comments_check_num = mysqli_num_rows($comments_check);
 
-
 				//Time frame
 				$time_message = $this->getTime($date_time);
 
@@ -452,7 +452,12 @@ class Post{
                     <i class='far fa-heart hollow active'></i>
 				</a>
 				";
-
+				//image
+				if($imagePath != ""){
+					$imageDiv = "<div><a href='$imagePath' target='_blank'><img class='postedImages' src='$imagePath'></a></div>";
+				}else{
+					$imageDiv = "";
+				}
 				$str .= "<div class='status_post'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
@@ -463,7 +468,7 @@ class Post{
 								</div>
 								<div class='post_body'>
 									$body
-								</div>
+								</div>$imageDiv
 								<div class='post_time'>
 									$time_message
 								</div>
@@ -710,6 +715,7 @@ class Post{
 			$body = $row['body'];
 			$added_by = $row['added_by'];
 			$date_time = $row['date_added'];
+			$imagePath = $row['image'];
 
 			//prepare user_to string so it can be included even if noot posted to a user
 			if($row['user_to'] == "none") {
@@ -737,6 +743,12 @@ class Post{
 					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
+
+				//edit post functionality
+				if($userLoggedIn == $added_by)
+					$edit_button = "<a class='edit_button' href='edit_post.php?id=$id'><i class='fas fa-edit'></i></a>";
+				else
+					$edit_button = "";
 
 				//get user details and store them in variables:
 				$user_details_query = mysqli_query($this->con, "SELECT first_name, last_name, profile_pic FROM users WHERE username='$added_by'");
@@ -769,7 +781,12 @@ class Post{
 				$comments_check_num = mysqli_num_rows($comments_check);
 				//add time frame
 				$time_message = $this->getTime($date_time);
-				
+				//image
+				if($imagePath != ""){
+					$imageDiv = "<div><a href='$imagePath' target='_blank'><img class='postedImages' src='$imagePath'></a></div>";
+				}else{
+					$imageDiv = "";
+				}
 				//Get number of likes for the post:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
 				$row = mysqli_fetch_array($get_likes);
@@ -797,14 +814,15 @@ class Post{
 							<div class='post_main'>
 								<div class='posted_by'>
 									<a href='$added_by'>$first_name $last_name</a> $user_to 
+									$delete_button $edit_button
 								</div>
 								<div class='post_body'>
 									$body
 								</div>
+								$imageDiv
 								<div class='post_time'>
 									$time_message
 								</div>
-								$delete_button
 							</div>
 							<hr>
 							<div class='newsfeedPostOptions'>
@@ -871,7 +889,7 @@ class Post{
 
 		}//end if there is post statement
 		else{
-			echo "<p>No post found. If you clicked a link, it may be broken.</p>";
+			echo "<p>No post found. It might be deleted.</p>";
 					return;
 		}
 		echo $str;	

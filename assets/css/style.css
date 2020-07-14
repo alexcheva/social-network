@@ -1635,7 +1635,7 @@ input[type='submit'].save_details:active
     .wrapper
     {
         top: 90px;
-
+        height: 100vh;
         width: 100%;
         margin: 0;
         padding: 0;
