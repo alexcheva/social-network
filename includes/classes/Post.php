@@ -45,6 +45,25 @@ class Post{
 					//$key refers to position of the link
 					$body_array[$key] = $value;
 				}
+				if(strpos($value, "https://youtu.be/") !== false){
+					//replace a string inside a string:
+					$link = preg_split("!\?!", $value);
+					//find !that!
+					//$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+					$value = str_replace("https://youtu.be/", "", $link[0]);
+					//https://img.youtube.com/vi/gGdGFtwCNBE/sddefault.jpg
+					$image = str_replace("https://youtu.be/", "https://img.youtube.com/vi/", $link[0]);
+					$image = $image ."/sddefault.jpg";
+
+					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'>
+					<img src=\'".$image. "\' async class=\'play-youtube-video\'>
+					<div class=\'play-button\'></div> 
+					</div>";
+					//save newly modified $value into post:
+					//$key refers to position of the link
+					$body_array[$key] = $value;
+				}
+
 			}
 			//separate array elements with a space
 			$body = implode(" ", $body_array);
