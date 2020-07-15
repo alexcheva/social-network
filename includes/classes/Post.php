@@ -26,6 +26,11 @@ class Post{
 			$body_array = preg_split("/\s+/", $body);
 
 			foreach($body_array as $key => $value){
+
+				// $regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
+
+				// $value = preg_replace($regex_images, "<img src='\\0'>", $value);
+				// $body_array[$key] = $value;
 				//string position, look for the following string:
 				if(strpos($value, "www.youtube.com/watch?v=") !== false){
 					//replace a string inside a string:
@@ -67,7 +72,9 @@ class Post{
 			}
 			//separate array elements with a space
 			$body = implode(" ", $body_array);
-			$body = str_replace('\r\n', '\n', $body);
+			
+
+			//$body = str_replace('\r\n', '\n', $body);
 			//$body = nl2br($body); //replace new line with line break
 
 			//Current date and time
@@ -553,6 +560,15 @@ class Post{
 						$("#comment_textarea<?php echo $id; ?>").emojioneArea({
 								pickerPosition: "bottom"
 							});
+						var youtube = document.querySelectorAll( ".youtube" );	
+						for (var i = 0; i < youtube.length; i++) {
+					    
+					    	youtube[i].addEventListener( "click", function() {
+
+					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+					       
+					    	});
+						};
 						$('#post<?php echo $id; ?>').on('click', function(){
 							//bootstrap
 							bootbox.confirm({
@@ -895,6 +911,15 @@ class Post{
 					$(".textarea").emojioneArea({
 						pickerPosition: "bottom"
 					});
+					var youtube = document.querySelectorAll( ".youtube" );	
+						for (var i = 0; i < youtube.length; i++) {
+					    
+					    	youtube[i].addEventListener( "click", function() {
+
+					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+					       
+					    } );
+					};
 					$('#post<?php echo $id; ?>').on('click', function(){
 						//bootstrap
 						bootbox.confirm({
