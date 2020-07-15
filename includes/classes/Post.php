@@ -432,7 +432,7 @@ class Post{
 					$delete_button = "";
 				//edit
 				if($userLoggedIn == $added_by)
-					$edit_button = "<a class='edit_button' id='edit_post$id'><i class='fas fa-edit'></i></a>";
+					$edit_button = "<a class='edit_button' href='edit_post.php?id=$id'><i class='fas fa-edit'></i></a>";
 				else
 					$edit_button = "";
 
