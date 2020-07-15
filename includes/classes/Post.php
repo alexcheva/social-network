@@ -38,14 +38,8 @@ class Post{
 					//find !that!
 					//$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
 					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
-					//https://img.youtube.com/vi/gGdGFtwCNBE/sddefault.jpg
-					$image = str_replace("https://www.youtube.com/watch?v=", "https://img.youtube.com/vi/", $link[0]);
-					$image = $image ."/sddefault.jpg";
 
-					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'>
-					<img src=\'".$image. "\' async class=\'play-youtube-video\'>
-					<div class=\'play-button\'></div> 
-					</div>";
+					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
 					//save newly modified $value into post:
 					//$key refers to position of the link
 					$body_array[$key] = $value;
@@ -56,14 +50,8 @@ class Post{
 					//find !that!
 					//$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
 					$value = str_replace("https://youtu.be/", "", $link[0]);
-					//https://img.youtube.com/vi/gGdGFtwCNBE/sddefault.jpg
-					$image = str_replace("https://youtu.be/", "https://img.youtube.com/vi/", $link[0]);
-					$image = $image ."/sddefault.jpg";
 
-					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'>
-					<img src=\'".$image. "\' async class=\'play-youtube-video\'>
-					<div class=\'play-button\'></div> 
-					</div>";
+					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
 					//save newly modified $value into post:
 					//$key refers to position of the link
 					$body_array[$key] = $value;
@@ -345,6 +333,8 @@ class Post{
 					$(document).ready(function(){
 							var youtube = document.querySelectorAll( ".youtube" );	
 							for (var i = 0; i < youtube.length; i++) {
+
+								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
 						    
 						    	youtube[i].addEventListener( "click", function() {
 
@@ -562,7 +552,9 @@ class Post{
 							});
 						var youtube = document.querySelectorAll( ".youtube" );	
 						for (var i = 0; i < youtube.length; i++) {
-					    
+
+					    	youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+
 					    	youtube[i].addEventListener( "click", function() {
 
 					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
@@ -913,6 +905,7 @@ class Post{
 					});
 					var youtube = document.querySelectorAll( ".youtube" );	
 						for (var i = 0; i < youtube.length; i++) {
+							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
 					    
 					    	youtube[i].addEventListener( "click", function() {
 
