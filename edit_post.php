@@ -70,8 +70,8 @@
 
 			// $new_post_youtube_div = ["<div class=\'embed-container\'><iframe src=\'","\' frameborder=\'0\' allowfullscreen></iframe></div>"];
 			// $post_body = str_replace($new_post_youtube_div, '', $new_post_body);
-			
-			$message = "<p class='success'>Post have been successfully updated!</p>";
+
+			$message = "<p class='success'>Post have been successfully updated! <a href='post.php?id=".$id."'>View post</a></p>";
 		}
 		if(!isset($_FILES['fileToUpload']) || $_FILES['fileToUpload']['error'] == UPLOAD_ERR_NO_FILE){
 			$post_image = "";
@@ -159,7 +159,7 @@
 
 			if($uploadOk){
 				$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
-				$message = "<p class='success'>Image have been successfully updated!</p>";
+				$message = "<p class='success'>Image have been successfully updated! <a href='post.php?id=".$id."'>View post</a></p>";
 				$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$imageName'></a></div>";
 
 			}else{
@@ -170,7 +170,7 @@
 	if(isset($_POST['delete_image'])){ 
 
 		$delete_image = mysqli_query($con, "UPDATE posts SET image='' WHERE id='$id'");
-		$message = "<p class='success'>Image have been successfully removed!</p>";
+		$message = "<p class='success'>Image have been successfully removed! <a href='post.php?id=".$id."'>View post</a></p>";
 		unlink($post_image_src);
 		$post_image = "";
 
