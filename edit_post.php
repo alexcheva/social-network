@@ -35,12 +35,12 @@
 		if($new_post_body == "")
 			$error = "<p class='error'>Post cannot be empty.</p>";
 		else{
-			$body_array = preg_split("/\s+/", $new_post_body);
 			
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
 		
-			//https://www.youtube.com/?app=desktop
 			if($check_empty != "") {
+				$body_array = preg_split("/\s+/", $new_post_body);
+
 				foreach($body_array as $key => $value){
 
 					if(strpos($value, "www.youtube.com/watch?v=") !== false){
@@ -68,8 +68,13 @@
 
 			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' WHERE id='$id'");
 
-			// $new_post_youtube_div = ["<div class=\'embed-container\'><iframe src=\'","\' frameborder=\'0\' allowfullscreen></iframe></div>"];
-			// $post_body = str_replace($new_post_youtube_div, '', $new_post_body);
+			$new_youtube_div_open = "<div class=\'embed-container youtube\' data-embed=\'";
+			$new_youtube_div_close = "\'></div>";
+
+			$post_body = $new_post_body;
+			
+			$post_body = str_replace($new_youtube_div_open, "https://www.youtube.com/watch?v=", $post_body);
+			$post_body = str_replace($new_youtube_div_close, "", $post_body);
 
 			$message = "<p class='success'>Post have been successfully updated! <a href='post.php?id=".$id."'>View post</a></p>";
 		}
