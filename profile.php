@@ -5,9 +5,19 @@
 		$username = $_GET['profile_username'];
 		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
 		$user_array = mysqli_fetch_array($user_details_query);
+
+		if($user_array == 0){
+			echo '<div class="main_column column" id="main_colum">
+			<h4>User profile not found.</h4><img style="width: 175px; margin-bottom: 10px;" src="assets/images/icons/why.png">
+			<p>Username "'.$username.'" does not exist, sorry.</p>
+			<p><a href="index.php">Go back to the main page.</a></p>
+			</div>';
+			die();
+		}else{
 		//find friends, look for commans
 		$num_friends = (substr_count($user_array['friend_array'], ',')) - 1;
 		$about_query = mysqli_query($con, "SELECT about, interests, bands FROM details WHERE username='$username'");
+		}
 	}else{
 		$username = $userLoggedIn;
 		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$userLoggedIn'");

@@ -12,7 +12,7 @@ class Post{
 	public function submitPost($body, $user_to, $imageName){
 		$body = strip_tags($body);//removes html tags
 		//$body = mysqli_real_escape_string($this->con, $body);
-		// $body = str_replace('\r\n', '\n', $body);
+		$body = str_replace('\r\n', '\n', $body);
 		//$body = nl2br($body); //replace new line with line break
 
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
@@ -63,7 +63,7 @@ class Post{
 			
 
 			//$body = str_replace('\r\n', '\n', $body);
-			//$body = nl2br($body); //replace new line with line break
+			$body = nl2br($body); //replace new line with line break
 
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
