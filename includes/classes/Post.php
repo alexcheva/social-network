@@ -12,16 +12,10 @@ class Post{
 	public function submitPost($body, $user_to, $imageName){
 		$body = strip_tags($body);//removes html tags
 		//$body = mysqli_real_escape_string($this->con, $body);
-		//$body = str_replace('\r\n', '\n', $body);
 		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
-		//$body = nl2br($body); //replace new line with line break
 
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
 		
-		//https://www.youtube.com/?app=desktop
-		//https://youtu.be/rrmsJhf89MY
-		//https://www.youtube.com/watch?v=rrmsJhf89MY&feature=youtu.be
-		 // Standard Definition (SD): http://img.youtube.com/vi/G0wGs3useV8/sddefault.jpg (640×480 pixels)
 		if($check_empty != "") {
 			//redex split at spaces
 			$body_array = preg_split("/\s+/", $body);
@@ -31,40 +25,32 @@ class Post{
 				// $regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
 
 				// $value = preg_replace($regex_images, "<img src='\\0'>", $value);
-				// $body_array[$key] = $value;
-				//string position, look for the following string:
+
 				if(strpos($value, "www.youtube.com/watch?v=") !== false){
-					//replace a string inside a string:
+
 					$link = preg_split("!&!", $value);
-					//find !that!
-					//$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+
 					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
 
 					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
-					//save newly modified $value into post:
+					
 					//$key refers to position of the link
 					$body_array[$key] = $value;
 				}
 				if(strpos($value, "https://youtu.be/") !== false){
-					//replace a string inside a string:
+
 					$link = preg_split("!\?!", $value);
-					//find !that!
-					//$value = preg_replace("!watch\?v=!", "embed/", $link[0]);
+					
 					$value = str_replace("https://youtu.be/", "", $link[0]);
 
 					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
-					//save newly modified $value into post:
-					//$key refers to position of the link
+				
 					$body_array[$key] = $value;
 				}
 
 			}
 			//separate array elements with a space
 			$body = implode(" ", $body_array);
-			
-
-			//$body = str_replace(array("\r\n", "\r", "\n"), "<br/> ", $body);
-//			$body = nl2br($body); //replace new line with line break
 
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
@@ -172,7 +158,6 @@ class Post{
 
 			$num_iterations = 0; //Number of results checked (not nessasery posted)
 			$count = 1; //how many results will be loaded
-
 
 			while($row = mysqli_fetch_array($data_query)){
 				$id = $row['id'];
