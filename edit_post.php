@@ -21,6 +21,7 @@
 
 	$youtube_div_close = "'></div>";
 
+	$post_body = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $post_body);
 	$post_body = str_replace($youtube_div_open, "https://www.youtube.com/watch?v=", $post_body);
 	$post_body = str_replace($youtube_div_close, "", $post_body);
 
@@ -35,7 +36,7 @@
 		if($new_post_body == "")
 			$error = "<p class='error'>Post cannot be empty.</p>";
 		else{
-			
+			$new_post_body = str_replace(array("\r\n", "\r", "\n"), "<br/> ", $new_post_body);
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
 		
 			if($check_empty != "") {
@@ -65,6 +66,7 @@
 				}
 			}
 			$new_post_body = implode(" ", $body_array);
+			// $new_post_body = str_replace(array("\r\n", "\r", "\n"), "<br/>", $new_post_body);
 
 			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' WHERE id='$id'");
 
@@ -72,7 +74,8 @@
 			$new_youtube_div_close = "\'></div>";
 
 			$post_body = $new_post_body;
-			
+			$post_body = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $post_body);
+
 			$post_body = str_replace($new_youtube_div_open, "https://www.youtube.com/watch?v=", $post_body);
 			$post_body = str_replace($new_youtube_div_close, "", $post_body);
 
