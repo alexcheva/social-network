@@ -17,13 +17,21 @@
 	else
 		$post_image = "";
 	
-	$youtube_div_open = "<div class='embed-container youtube' data-embed='";
 
-	$youtube_div_close = "'></div>";
 
 	$post_body = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $post_body);
+	//youtube div
+	$youtube_div_open = "<div class='embed-container youtube' data-embed='";
+	//image div
+	$image_div_open = "<div class='embed-images' data-embed='";
+	//link div
+	$link_div_open = "<div class='embed-link' data-embed='";
+	$div_close = "'></div>";
+
 	$post_body = str_replace($youtube_div_open, "https://www.youtube.com/watch?v=", $post_body);
-	$post_body = str_replace($youtube_div_close, "", $post_body);
+	$post_body = str_replace($image_div_open, "", $post_body);
+	$post_body = str_replace($link_div_open, "", $post_body);
+	$post_body = str_replace($div_close, "", $post_body);
 
 	$error = "";
 	$message = "";
@@ -39,30 +47,47 @@
 			$new_post_body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $new_post_body);
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
 		
-			if($check_empty != "") {
-				$body_array = preg_split("/\s+/", $new_post_body);
+		if($check_empty != "") {
+			//Vladimir Add link:
+			$body_array = preg_split("/\s+/", $new_post_body);
+ 
+			foreach($body_array as $key => $value) {
 
-				foreach($body_array as $key => $value){
+				$regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
+				$regex_links = '~(?<!src=\')https?://\S+\b~x';
 
-					if(strpos($value, "www.youtube.com/watch?v=") !== false){
-						//replace a string inside a string:
-						$link = preg_split("!&!", $value);
-						$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
-						$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
-						//$key refers to position of the link
-						$body_array[$key] = $value;
-					}
-					if(strpos($value, "https://youtu.be/") !== false){
-						//replace a string inside a string:
-						$link = preg_split("!\?!", $value);
+				if(strpos($value, "www.youtube.com/watch?v=") !== false){
 
-						$value = str_replace("https://youtu.be/", "", $link[0]);
+					$link = preg_split("!&!", $value);
 
-						$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
+					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
 
-						$body_array[$key] = $value;
-					}
+					$value = "<div class='embed-container youtube' data-embed='". $value ."'></div>";
+					
+					//$key refers to position of the link
+					$body_array[$key] = $value;
+				}
+				if(strpos($value, "https://youtu.be/") !== false){
 
+					$link = preg_split("!\?!", $value);
+					
+					$value = str_replace("https://youtu.be/", "", $link[0]);
+
+					$value = "<div class='embed-container youtube' data-embed='". $value ."'></div>";
+				
+					$body_array[$key] = $value;
+				}
+				if(preg_match($regex_images, $value)) {
+				 	$value = preg_replace($regex_images, "<div class='embed-images' data-embed='\\0'></div>", $value);
+					$body_array[$key] = $value;
+				}
+				else if(preg_match($regex_links, $value)) {
+				 	$value = preg_replace($regex_links, "<div class='embed-link' data-embed='\\0'></div>", $value);
+				 	//<i class='fa fa-external-link-square'></i>
+					$body_array[$key] = $value;
+				}
+			 
+					
 				}
 			}
 			$new_post_body = implode(" ", $body_array);

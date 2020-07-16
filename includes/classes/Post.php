@@ -47,14 +47,23 @@ class Post{
 					$body_array[$key] = $value;
 				}
 				if(preg_match($regex_images, $value)) {
-				 	$value = preg_replace($regex_images, "<a target='_blank' title='Open image in a new window' class='external_link' href='\\0'><img class='postedImages' src='\\0'></a>", $value);
+				 	$value = preg_replace($regex_images, "<div class='embed-images' data-embed='\\0'></div>", $value);
 					$body_array[$key] = $value;
 				}
 				else if(preg_match($regex_links, $value)) {
-				 	$value = preg_replace($regex_links, "<a target='_blank' title='Open link in a new window' class='external_link' href='\\0'>\\0</a>", $value);
+				 	$value = preg_replace($regex_links, "<div class='embed-link' data-embed='\\0'></div>", $value);
 				 	//<i class='fa fa-external-link-square'></i>
 					$body_array[$key] = $value;
 				}
+				// if(preg_match($regex_images, $value)) {
+				//  	$value = preg_replace($regex_images, "<a target='_blank' title='Open image in a new window' class='external_link' href='\\0'><img class='postedImages' src='\\0'></a>", $value);
+				// 	$body_array[$key] = $value;
+				// }
+				// else if(preg_match($regex_links, $value)) {
+				//  	$value = preg_replace($regex_links, "<a target='_blank' title='Open link in a new window' class='external_link' href='\\0'>\\0</a>", $value);
+				//  	//<i class='fa fa-external-link-square'></i>
+				// 	$body_array[$key] = $value;
+				// }
 			 
 					$body = implode(" ", $body_array);
 			}
@@ -328,7 +337,8 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
-							var youtube = document.querySelectorAll( ".youtube" );	
+							var youtube = document.querySelectorAll( ".youtube" );
+
 							for (var i = 0; i < youtube.length; i++) {
 
 								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
@@ -337,8 +347,23 @@ class Post{
 
 						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
 						       
-						    } );
-							}
+						    	});
+							};
+
+							var embeded_images = document.querySelectorAll( ".embed-images" );
+
+							for (var i = 0; i < embeded_images.length; i++) {
+
+								embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+							};
+
+							var embeded_link = document.querySelectorAll( ".embed-link" );
+
+							for (var i = 0; i < embeded_link.length; i++) {
+
+								embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+							};
+
 							$("textarea").emojioneArea({
 								pickerPosition: "bottom"
 							});
