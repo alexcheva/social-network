@@ -36,7 +36,7 @@
 		if($new_post_body == "")
 			$error = "<p class='error'>Post cannot be empty.</p>";
 		else{
-			$new_post_body = str_replace(array("\r\n", "\r", "\n"), "<br/> ", $new_post_body);
+			$new_post_body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $new_post_body);
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
 		
 			if($check_empty != "") {
