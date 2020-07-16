@@ -66,7 +66,6 @@
 				}
 			}
 			$new_post_body = implode(" ", $body_array);
-			// $new_post_body = str_replace(array("\r\n", "\r", "\n"), "<br/>", $new_post_body);
 
 			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' WHERE id='$id'");
 

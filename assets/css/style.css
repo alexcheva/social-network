@@ -241,6 +241,10 @@ nav a:active
 
     color: purple;
 }
+.external_link{
+    color: #007bff;
+}
+
 /* ================================= 
   Notifications and Dropdowns
 ==================================== */

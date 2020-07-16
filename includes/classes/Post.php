@@ -17,14 +17,13 @@ class Post{
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
 		
 		if($check_empty != "") {
-			//redex split at spaces
+			//Vladimir Add link:
 			$body_array = preg_split("/\s+/", $body);
+ 
+			foreach($body_array as $key => $value) {
 
-			foreach($body_array as $key => $value){
-
-				// $regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
-
-				// $value = preg_replace($regex_images, "<img src='\\0'>", $value);
+				$regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
+				$regex_links = '~(?<!src=\')https?://\S+\b~x';
 
 				if(strpos($value, "www.youtube.com/watch?v=") !== false){
 
@@ -32,7 +31,7 @@ class Post{
 
 					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
 
-					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
+					$value = "<div class='embed-container youtube' data-embed='". $value ."'></div>";
 					
 					//$key refers to position of the link
 					$body_array[$key] = $value;
@@ -43,14 +42,26 @@ class Post{
 					
 					$value = str_replace("https://youtu.be/", "", $link[0]);
 
-					$value = "<div class=\'embed-container youtube\' data-embed=\'". $value ."\'></div>";
+					$value = "<div class='embed-container youtube' data-embed='". $value ."'></div>";
 				
 					$body_array[$key] = $value;
 				}
-
+				if(preg_match($regex_images, $value)) {
+				 	$value = preg_replace($regex_images, "<a target='_blank' title='Open image in a new window' class='external_link' href='\\0'><img class='postedImages' src='\\0'></a>", $value);
+					$body_array[$key] = $value;
+				}
+				else if(preg_match($regex_links, $value)) {
+				 	$value = preg_replace($regex_links, "<a target='_blank' title='Open link in a new window' class='external_link' href='\\0'>\\0</a>", $value);
+				 	//<i class='fa fa-external-link-square'></i>
+					$body_array[$key] = $value;
+				}
+			 
+					$body = implode(" ", $body_array);
 			}
-			//separate array elements with a space
-			$body = implode(" ", $body_array);
+			 
+			 
+			$body = mysqli_real_escape_string($this->con, $body);
+			// $body = implode(" ", $body_array);
 
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
