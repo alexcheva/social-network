@@ -48,7 +48,7 @@
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
 		
 		if($check_empty != "") {
-			//Vladimir Add link:
+			
 			$body_array = preg_split("/\s+/", $new_post_body);
  
 			foreach($body_array as $key => $value) {
@@ -78,7 +78,8 @@
 					$body_array[$key] = $value;
 				}
 				if(preg_match($regex_images, $value)) {
-				 	$value = preg_replace($regex_images, "<div class='embed-images' data-embed='\\0'></div>", $value);
+				 	$link = preg_split("!\?!", $value);
+				 	$value = preg_replace($regex_images, "<div class='embed-images' data-embed='\\0'></div>", $link[0]);
 					$body_array[$key] = $value;
 				}
 				else if(preg_match($regex_links, $value)) {
