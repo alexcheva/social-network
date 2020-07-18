@@ -48,7 +48,7 @@
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
 		
 		if($check_empty != "") {
-			
+
 			$body_array = preg_split("/\s+/", $new_post_body);
  
 			foreach($body_array as $key => $value) {
@@ -96,13 +96,17 @@
 
 			//remake newpost body into post body:
 
-			$new_youtube_div_open = "<div class=\'embed-container youtube\' data-embed=\'";
-				$image_div_open = "<div class=\'embed-images\' data-embed=\'";
+			$youtube_div_open = "<div class=\'embed-container youtube\' data-embed=\'";
+			$image_div_open = "<div class=\'embed-images\' data-embed=\'";
 			//link div
 			$link_div_open = "<div class=\'embed-link\' data-embed=\'";
-			$new_youtube_div_close = "\'></div>";
+			$div_close = "\'></div>";
 
 			$post_body = $new_post_body;
+			$post_body = str_replace($youtube_div_open, "https://www.youtube.com/watch?v=", $post_body);
+			$post_body = str_replace($image_div_open, "", $post_body);
+			$post_body = str_replace($link_div_open, "", $post_body);
+			$post_body = str_replace($div_close, "", $post_body);
 			$post_body = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $post_body);
 
 			$message = "<p class='success'>Post have been successfully updated! <a href='post.php?id=".$id."'>View post</a></p>";
@@ -142,6 +146,7 @@
 			if($uploadOk){
 				$update_image = mysqli_query($con, "UPDATE posts SET image='$imageName' WHERE id='$id'");
 				$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$imageName'></a></div>";
+
 
 
 			}else{
