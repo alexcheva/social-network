@@ -368,9 +368,9 @@ nav a:active
     position: relative;
     top: 75px;
     height: 100vh;
-    width: 95%;
+    width: 93%;
+    max-width: 1445px;
     margin: 0 auto;
-    padding: 0 10px;
 }
 .column
 {
