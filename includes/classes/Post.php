@@ -572,17 +572,32 @@ class Post{
 						$("#comment_textarea<?php echo $id; ?>").emojioneArea({
 								pickerPosition: "bottom"
 							});
-						var youtube = document.querySelectorAll( ".youtube" );	
-						for (var i = 0; i < youtube.length; i++) {
+						var youtube = document.querySelectorAll( ".youtube" );
 
-					    	youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+							for (var i = 0; i < youtube.length; i++) {
 
-					    	youtube[i].addEventListener( "click", function() {
+								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+						    
+						    	youtube[i].addEventListener( "click", function() {
 
-					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-					       
-					    	});
-						};
+						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+						       
+						    	});
+							};
+
+							var embeded_images = document.querySelectorAll( ".embed-images" );
+
+							for (var i = 0; i < embeded_images.length; i++) {
+
+								embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+							};
+
+							var embeded_link = document.querySelectorAll( ".embed-link" );
+
+							for (var i = 0; i < embeded_link.length; i++) {
+
+								embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+							};
 						$('#post<?php echo $id; ?>').on('click', function(){
 							//bootstrap
 							bootbox.confirm({
@@ -925,16 +940,32 @@ class Post{
 					$(".textarea").emojioneArea({
 						pickerPosition: "bottom"
 					});
-					var youtube = document.querySelectorAll( ".youtube" );	
-						for (var i = 0; i < youtube.length; i++) {
-							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-					    
-					    	youtube[i].addEventListener( "click", function() {
+					var youtube = document.querySelectorAll( ".youtube" );
 
-					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-					       
-					    } );
-					};
+							for (var i = 0; i < youtube.length; i++) {
+
+								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+						    
+						    	youtube[i].addEventListener( "click", function() {
+
+						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+						       
+						    	});
+							};
+
+							var embeded_images = document.querySelectorAll( ".embed-images" );
+
+							for (var i = 0; i < embeded_images.length; i++) {
+
+								embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+							};
+
+							var embeded_link = document.querySelectorAll( ".embed-link" );
+
+							for (var i = 0; i < embeded_link.length; i++) {
+
+								embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+							};
 					$('#post<?php echo $id; ?>').on('click', function(){
 						//bootstrap
 						bootbox.confirm({

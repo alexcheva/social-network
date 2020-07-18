@@ -42,7 +42,7 @@
 		$new_post_body = strip_tags($_POST['new_post']);
 
 		if($new_post_body == "")
-			$error = "<p class='error'>Post cannot be empty.</p>";
+			$error = "<p class='error'>Post cannot be empty or have HTML tags.</p>";
 		else{
 			$new_post_body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $new_post_body);
 			$check_empty = preg_replace('/\s+/', '', $new_post_body); //deletes all spaces
@@ -85,26 +85,28 @@
 				 	$value = preg_replace($regex_links, "<div class='embed-link' data-embed='\\0'></div>", $value);
 				 	//<i class='fa fa-external-link-square'></i>
 					$body_array[$key] = $value;
-				}
-			 
-					
-				}
+				}		
 			}
+
 			$new_post_body = implode(" ", $body_array);
+			$new_post_body = mysqli_real_escape_string($con, $new_post_body);
 
 			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' WHERE id='$id'");
 
+			//remake newpost body into post body:
+
 			$new_youtube_div_open = "<div class=\'embed-container youtube\' data-embed=\'";
+				$image_div_open = "<div class=\'embed-images\' data-embed=\'";
+			//link div
+			$link_div_open = "<div class=\'embed-link\' data-embed=\'";
 			$new_youtube_div_close = "\'></div>";
 
 			$post_body = $new_post_body;
 			$post_body = preg_replace('/\<br(\s*)?\/?\>/i', "\n", $post_body);
 
-			$post_body = str_replace($new_youtube_div_open, "https://www.youtube.com/watch?v=", $post_body);
-			$post_body = str_replace($new_youtube_div_close, "", $post_body);
-
 			$message = "<p class='success'>Post have been successfully updated! <a href='post.php?id=".$id."'>View post</a></p>";
 		}
+
 		if(!isset($_FILES['fileToUpload']) || $_FILES['fileToUpload']['error'] == UPLOAD_ERR_NO_FILE){
 			$post_image = "";
 		}else{
@@ -146,6 +148,7 @@
 			}
 		}
 	}
+}
 	if(isset($_POST['delete_post'])){ 
 
 		$delete_post = mysqli_query($con, "DELETE FROM posts WHERE id='$id' AND added_by='$userLoggedIn'");
