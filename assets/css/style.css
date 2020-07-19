@@ -960,7 +960,6 @@ input[type='submit'].success:active
     color: #c45100;
 }
 /* ---- Youtube Embeds ---- */
-
 .youtube {
     background-color: #000;
     margin-bottom: 30px;
@@ -995,12 +994,10 @@ input[type='submit'].success:active
     cursor: pointer;
 }
 .youtube img,
-.youtube iframe{
-    position: relative;
-}
+.youtube iframe,
 .youtube .play-button,
 .youtube .play-button:before {
-    position: fixed;
+    position: absolute;
 }
 .youtube .play-button,
 .youtube .play-button:before {
@@ -1014,7 +1011,6 @@ input[type='submit'].success:active
     top: 0;
     left: 0;
 }
-
 /*.embed-container
 {
     position: relative;
