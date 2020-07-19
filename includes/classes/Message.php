@@ -26,11 +26,60 @@ class Message {
 	}
 
 	public function sendMessage($user_to, $body, $date){
+
+		$userLoggedIn = $this->user_obj->getUsername();
+		$body = strip_tags($body);//removes html tags
+		//$body = mysqli_real_escape_string($this->con, $body);
+		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
+		$check_empty = preg_replace('/\s+/', '', $body);
 		//if not empty
-		if($body != ""){
-			$userLoggedIn = $this->user_obj->getUsername();
+		if($check_empty != "") {
+			$body_array = preg_split("/\s+/", $body);
+ 
+			foreach($body_array as $key => $value) {
+
+				$regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
+				$regex_links = '~(?<!src=\')https?://\S+\b~x';
+
+				if(strpos($value, "www.youtube.com/watch?v=") !== false){
+
+					$link = preg_split("!&!", $value);
+
+					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
+
+					$value = "<div class='youtube-embed' data-embed='". $value ."'></div>";
+					
+					//$key refers to position of the link
+					$body_array[$key] = $value;
+				}
+				if(strpos($value, "https://youtu.be/") !== false){
+
+					$link = preg_split("!\?!", $value);
+					
+					$value = str_replace("https://youtu.be/", "", $link[0]);
+
+					$value = "<div class='embed-container youtube-embed' data-embed='". $value ."'></div>";
+				
+					$body_array[$key] = $value;
+				}
+				if(preg_match($regex_images, $value)) {
+					$link = preg_split("!\?!", $value);
+				 	$value = preg_replace($regex_images, "<div class='embed-images' data-embed='\\0'></div>", $link[0]);
+					$body_array[$key] = $value;
+				}
+				else if(preg_match($regex_links, $value)) {
+				 	$value = preg_replace($regex_links, "<div class='embed-link' data-embed='\\0'></div>", $value);
+				 	//<i class='fa fa-external-link-square'></i>
+					$body_array[$key] = $value;
+				}
+			 $body = implode(" ", $body_array);
+			}
+			$body = mysqli_real_escape_string($this->con, $body);
+			
+
 			$query = mysqli_query($this->con, "INSERT INTO messages VALUES(NULL, '$user_to', '$userLoggedIn', '$body', '$date', 'no', 'no', 'no')");
 		}
+
 	}
 
 	public function getMessages($otherUser){
@@ -47,6 +96,7 @@ class Message {
 			$user_to = $row['user_to'];
 			$user_from = $row['user_from'];
 			$body = $row['body'];
+			
 			$id = $row['id'];
 			//if logged in user send it make puple, else make bright purple
 			$div_top = ($user_to == $userLoggedIn) ? "<div class='message received'>" : "<div class='message sent'>";
@@ -76,10 +126,9 @@ class Message {
 				});
 			});
 		</script>";
-			$data = $data . $div_top . $body . $delete_button ."</div>". $script ."<br><br>";
+			$data = $data . $div_top . "<div class='message_body'>" . $body . "</div>" . $delete_button ."</div>". $script;
 		}
 		return $data;
-
 	}
 	public function getLatestMessage($userLoggedIn, $user2){
 		$details_array = array();

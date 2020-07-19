@@ -995,10 +995,12 @@ input[type='submit'].success:active
     cursor: pointer;
 }
 .youtube img,
-.youtube iframe,
+.youtube iframe{
+    position: relative;
+}
 .youtube .play-button,
 .youtube .play-button:before {
-    position: absolute;
+    position: fixed;
 }
 .youtube .play-button,
 .youtube .play-button:before {
@@ -1267,7 +1269,11 @@ aside{
 }
 
 .message{
-	display: inline-block;
+	display: flex;
+    clear: both;
+    margin-bottom: 4px;
+
+    max-width: 545px;
 
 	padding: 10px;
 
