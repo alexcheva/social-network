@@ -1287,7 +1287,7 @@ aside{
 
     margin-right: 15px;
 
-    background-color: purple;
+    background-color: rgba(128, 0, 128, 0.4);
 }
 .delete_message{
     padding-left: 8px;
