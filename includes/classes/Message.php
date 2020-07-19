@@ -35,9 +35,11 @@ class Message {
 
 	public function getMessages($otherUser){
 		$userLoggedIn = $this->user_obj->getUsername();
+		$user_logged_obj = new User($this->con, $userLoggedIn);
 		$data = "";
 
 		$query = mysqli_query($this->con, "UPDATE messages SET opened='yes' WHERE user_to='$userLoggedIn' AND user_from='$otherUser'");
+
 		//retrive the messages between two users:
 		$get_messages_query = mysqli_query($this->con, "SELECT * FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$otherUser') OR (user_from='$userLoggedIn' AND user_to='$otherUser')");
 		//while we have results populate the data
@@ -45,12 +47,39 @@ class Message {
 			$user_to = $row['user_to'];
 			$user_from = $row['user_from'];
 			$body = $row['body'];
+			$id = $row['id'];
 			//if logged in user send it make puple, else make bright purple
 			$div_top = ($user_to == $userLoggedIn) ? "<div class='message received'>" : "<div class='message sent'>";
-			$data = $data . $div_top . $body . "</div><br><br>";
+			//delete button
+			$delete_button = ($user_from == $userLoggedIn || $user_logged_obj->isAdmin($userLoggedIn)) ? "<a class='delete_button delete_message' id='message$id'><i class='fas fa-trash-alt'></i></a>" : "";
+			//delete handling
+			$script = "<script>
+			$('#message$id').on('click', function(){
+				bootbox.confirm({
+					message: 'Are you sure you want to delete this message?', buttons: {
+					confirm: {
+			            label: 'Yes'
+			        },
 
+			        cancel: {
+			            label: 'No'						        }
+			    	},
+			    	
+			        callback:
+			    	function
+					(result){
+						$.post('includes/form_handlers/delete_message.php?message_id=$id',{result: result});
+						//if there is a result = true
+						if(result)
+							location.reload();
+					}
+				});
+			});
+		</script>";
+			$data = $data . $div_top . $body . $delete_button ."</div>". $script ."<br><br>";
 		}
 		return $data;
+
 	}
 	public function getLatestMessage($userLoggedIn, $user2){
 		$details_array = array();

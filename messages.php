@@ -21,6 +21,7 @@
 			$body = mysqli_real_escape_string($con,$_POST['message_body']);
 			$date = date("Y-m-d H:i:s");
 			$message_obj->sendMessage($user_to, $body, $date);
+			header("Location: messages.php");
 
 		}
 	}
@@ -80,8 +81,7 @@
     }
     $(document).ready(function(){
     	$("#message_textarea").emojioneArea({
-		pickerPosition: "top"
-	});
+			pickerPosition: "top" });
     });
 </script>
 	

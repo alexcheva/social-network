@@ -1289,6 +1289,9 @@ aside{
 
     background-color: purple;
 }
+.delete_message{
+    padding-left: 8px;
+}
 
 .loaded_messages
 {
