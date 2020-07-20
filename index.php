@@ -14,11 +14,11 @@
 			$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
 
 			if($_FILES['fileToUpload']['size'] > 10000000){
-				$errorMessage = "Sorry, your file is too large";
+				$errorMessage = "Sorry, your file is too large!";
 				$uploadOk = 0;
 			}
 			if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
-			$errorMessage = "Sorry, only jpeg/jpg, png and gif files are allowed";
+			$errorMessage = "Sorry, only jpeg/jpg, png and gif files are allowed!";
 				$uploadOk = 0;
 			}
 
@@ -38,11 +38,11 @@
 			$post->submitPost($_POST['post_text'], 'none', $imageName);
 			header("Location: index.php");
 		}else{
-			echo "<div style='text-align:center;' class='error'> 
-			$errorMessage</div>";
+			echo "<script>bootbox.alert('$errorMessage');</script>";
 		}
 	}
 ?>
+
 	<div class="user_details column">
 		<a href="<?php echo $userLoggedIn ?>">
 			<img id="profile_pic" src="<?php echo $user['profile_pic']; ?>">

@@ -16,14 +16,52 @@
 		$user_to_obj = new User ($con, $user_to);
 
 	if(isset($_POST['post_message'])){
-		if(isset($_POST['message_body'])){
-			//turn into string
+		$uploadOk = 1;
+		$imageName = $_FILES['fileToUpload']['name'];
+		$errorMessage = "";
+
+		if($imageName != ""){
+			$targetDir = "assets/images/posts/";
+			$imageName = $targetDir . uniqid() . basename($imageName);
+			$imageFileType = pathinfo($imageName, PATHINFO_EXTENSION);
+
+			if($_FILES['fileToUpload']['size'] > 10000000){
+				$errorMessage = "Sorry, your file is too large!";
+				$uploadOk = 0;
+			}
+			if(strtolower($imageFileType) != "jpeg" && strtolower($imageFileType) != "png" && strtolower($imageFileType) != "jpg" && strtolower($imageFileType) != "gif"){
+			$errorMessage = "Sorry, only jpeg/jpg, png and gif files are allowed!";
+				$uploadOk = 0;
+			}
+
+			if($uploadOk){
+				if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $imageName)){
+					//image uploaded sucessfully
+
+				}else{
+					//image did not upload
+					$uploadOk = 0;
+				}
+			}
+		}
+
+		if($uploadOk){
 			$body = mysqli_real_escape_string($con,$_POST['message_body']);
 			$date = date("Y-m-d H:i:s");
-			$message_obj->sendMessage($user_to, $body, $date);
+			$message_obj->sendMessage($user_to, $body, $date, $imageName);
 			header("Location: messages.php");
-
+		}else{
+			echo "<script>bootbox.alert('$errorMessage');</script>";
 		}
+
+		// if(isset($_POST['message_body'])){
+		// 	//turn into string
+		// 	$body = mysqli_real_escape_string($con,$_POST['message_body']);
+		// 	$date = date("Y-m-d H:i:s");
+		// 	$message_obj->sendMessage($user_to, $body, $date, $imageName);
+		// 	header("Location: messages.php");
+
+		// }
 	}
 
  ?>
@@ -35,7 +73,6 @@
 			<?php echo $message_obj->getConvos(); ?>
 		</div>
 		<a href="messages.php?u=new">New Message</a>
-</div>
 </div>
 
 <div class="message_column column profile"  id="main_column">
@@ -52,7 +89,7 @@
 	 ?>
 
 	 <div class="message_post">
-	 	<form action="" method="POST">
+	 	<form action="" method="POST" enctype="multipart/form-data">
 	 		<?php 
 	 		if($user_to == "new"){
 	 			echo "<p>Select the friend you would like to message: </p>";
@@ -65,6 +102,10 @@
 	 		}
 	 		else{
 	 			echo "<textarea name='message_body' id='message_textarea' placeholder='Write your message ...'></textarea>";
+	 			echo '<a href="javaScript:void(0)" onClick="showFileUpload()">
+				<i class="fas fa-file-image" id="toggle_file_upload"></i>
+			</a>
+			<input type="file" name="fileToUpload" id="fileToUpload" class="hide">';
 	 			echo "<input type='submit' name='post_message' class='info' id='message_submit' value='Send'>";
 	 		}
 

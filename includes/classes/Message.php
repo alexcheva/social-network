@@ -25,7 +25,7 @@ class Message {
 			return $user_from;
 	}
 
-	public function sendMessage($user_to, $body, $date){
+	public function sendMessage($user_to, $body, $date, $imageName){
 
 		$userLoggedIn = $this->user_obj->getUsername();
 		$body = strip_tags($body);//removes html tags
@@ -74,10 +74,8 @@ class Message {
 				}
 			 $body = implode(" ", $body_array);
 			}
-			$body = mysqli_real_escape_string($this->con, $body);
-			
 
-			$query = mysqli_query($this->con, "INSERT INTO messages VALUES(NULL, '$user_to', '$userLoggedIn', '$body', '$date', 'no', 'no', 'no')");
+			$query = mysqli_query($this->con, "INSERT INTO messages VALUES(NULL, '$user_to', '$userLoggedIn', '$body', '$date', 'no', 'no', 'no', '$imageName')");
 		}
 
 	}
@@ -96,7 +94,14 @@ class Message {
 			$user_to = $row['user_to'];
 			$user_from = $row['user_from'];
 			$body = $row['body'];
+			$imagePath = $row['image'];
 			
+			//image
+				if($imagePath != ""){
+					$imageDiv = "<div><a href='$imagePath' target='_blank'><img class='postedImages' src='$imagePath'></a></div>";
+				}else{
+					$imageDiv = "";
+				}
 			$id = $row['id'];
 			//if logged in user send it make puple, else make bright purple
 			$div_top = ($user_to == $userLoggedIn) ? "<div class='message received'>" : "<div class='message sent'>";
@@ -126,7 +131,7 @@ class Message {
 				});
 			});
 		</script>";
-			$data = $data . $div_top . "<div class='message_body'>" . $body . "</div>" . $delete_button ."</div>". $script;
+			$data = $data . $div_top . "<div class='message_body'>" . $body . "</div>" . $delete_button .$imageDiv."</div>". $script;
 		}
 		return $data;
 	}
