@@ -161,13 +161,14 @@ function sendComment(id) {
 
 		bootbox.alert("Please enter some text first!");
 		return;
-}
+		}
 
-const sendComment = $.post("includes/handlers/send_comment.php", {
+	const sendComment = $.post("includes/handlers/send_comment.php", {
 		userLoggedIn: userLoggedIn, 
 		commentText: commentText, 
 		id: id
-	}, 
+		},
+
 	function(response){
 
 	if(response !== "No text") {
@@ -178,8 +179,8 @@ const sendComment = $.post("includes/handlers/send_comment.php", {
 				userLoggedIn: userLoggedIn
 			}, 
 			function(newComment) {
-
-			$("#comment" + id).val("");
+			//$(".emojionearea-editor").text("");
+			//$("#comment" + id).val("");
 			const noComment = $("#toggleComment" + id).find("#noComment" + id);
 			
 			if(noComment.length !== 0) {
@@ -188,15 +189,15 @@ const sendComment = $.post("includes/handlers/send_comment.php", {
 
 			$("#toggleComment" + id).append(newComment);
 
-		});
-	}
+			});
+		}
 
 	else {
 
 		bootbox.alert("Something went wrong. Please try again.");
-	} 
+		} 
 
-});
+	});
 };
 
 function updateLikes(id) {

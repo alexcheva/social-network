@@ -170,8 +170,8 @@
 						userLoggedIn: userLoggedIn
 					}, 
 					function(newComment) {
-	 
-					$("#comment" + id).val("");
+
+					$(".emojionearea-editor").text("");
 					const noComment = $("#toggleComment" + id).find("#noComment" + id);
 					
 					if(noComment.length !== 0) {

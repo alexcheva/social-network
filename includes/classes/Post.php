@@ -708,8 +708,37 @@ class Post{
 				$name = $user_obj->getFirstAndLastName();
 	 			
 	 			//delete comment if user is the one posted or post creator or admin
-				if($userLoggedIn == $posted_by)
+				if($userLoggedIn == $posted_by || $user_logged_obj->isAdmin($userLoggedIn)) {
 					$delete_button = "<a class='delete_button' id='comment$comment_id'><i class='fas fa-trash-alt'></i></a>";
+					$script = "<script>
+				//Delete comment functionality bootbox
+					$(document).ready(function(){
+						$('#comment$comment_id').on('click', function(){
+							//bootstrap
+							bootbox.confirm({
+								message: 'Are you sure you want to delete this comment?', buttons: {
+	        					confirm: {
+						            label: 'Yes'
+						        },
+
+						        cancel: {
+						            label: 'No'						        }
+						    	},
+						    	
+						        callback:
+						    	function
+								(result){
+									$.post('includes/form_handlers/delete_comment.php?comment_id=$comment_id',{result: result});
+									//if there is a result = true
+									if(result)
+										location.reload();
+
+								}
+							});
+						});
+					});
+				</script>";
+					$delete_button .= $script;	}
 				else
 					$delete_button = "";
 
@@ -733,38 +762,9 @@ class Post{
 						</div> 
 					</div>
 					
-				</div>";				
+				</div>";		
 			}
-			?>
-				<script>
-				//Delete comment functionality bootbox
-					$(document).ready(function(){
-						$('#comment<?php echo $comment_id; ?>').on('click', function(){
-							//bootstrap
-							bootbox.confirm({
-								message: "Are you sure you want to delete this comment?", buttons: {
-	        					confirm: {
-						            label: 'Yes'
-						        },
 
-						        cancel: {
-						            label: 'No'						        }
-						    	},
-						    	
-						        callback:
-						    	function
-								(result){
-									$.post("includes/form_handlers/delete_comment.php?comment_id=<?php echo $comment_id; ?>",{result: result});
-									//if there is a result = true
-									if(result)
-										location.reload();
-
-								}
-							});
-						});
-					});
-				</script>
-				<?php
 		}
 	 
 		else {
