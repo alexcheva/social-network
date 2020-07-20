@@ -7,10 +7,11 @@
 		$id = 0;
 	}
 
-	$post_query = mysqli_query($con, "SELECT body, image FROM posts WHERE id='$id'");
+	$post_query = mysqli_query($con, "SELECT * FROM posts WHERE id='$id'");
 	$row = mysqli_fetch_array($post_query);
 	$post_body = $row['body'];
 	$post_image_src = $row['image'];
+	$post_author = $row['added_by'];
 
 	if($post_image_src != "")
 		$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$post_image_src'></a></div>";
@@ -159,6 +160,13 @@
 		if ($post_image_src != "")
 			unlink($post_image_src);
 		
+		//update number of posts:
+		$get_number_posts = mysqli_query($con, "SELECT * FROM users WHERE username='$post_author'");
+		$row = mysqli_fetch_array($get_number_posts);
+		$total_user_posts = $row['num_posts'];
+		$total_user_posts--;
+		$user_posts = mysqli_query($con, "UPDATE users SET num_posts='$total_user_posts' WHERE username='$post_author'");
+
 		$delete_post = mysqli_query($con, "DELETE FROM posts WHERE id='$id' AND added_by='$userLoggedIn'");
 		header("Location: index.php");
 
