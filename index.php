@@ -86,53 +86,6 @@
 		<div class="posts_area"></div>
 		<img id="loading" src="assets/images/icons/loading.gif">
 	</div>
-
-	<!-- Post on wall Edit post -->
-	<?php 
-		if(isset($_GET['post_id'])){
-		$post_id = $_GET['post_id'];
-		$get_post = mysqli_query($con, "SELECT body FROM posts WHERE post_id='$post_id'");
-		$old_post = $row['body'];
-	?>
-	<div class="modal fade" id="edit_post<?php echo $post_id;?>" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-
-	      <div class="modal-header">
-	        <h4 class="modal-title" id="postModalLabel">Edit post:</h4>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	      </div>
-
-	      <div class="modal-body">
-	        <form class="profile_post" action="" method="POST">
-	        	<div class="form-group">
-	        		<textarea class="form-control" name="new_post" rows="5"><?php echo $old_post; ?></textarea>
-	        		<!-- <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>"> -->
-	        		<!-- user whos page we are on -->
-	        		<!-- <input type="hidden" name="user_to" value="<?php echo $username; ?>"> -->
-	        	</div>
-	        </form>
-	      </div>
-
-	      <div class="modal-footer">
-	        <button type="button" id="ignore" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" id="submit_profile_post" class="btn btn-primary" name="post_button">Save</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<?php
-		}
-
-		if(isset($_POST['post_button'])){
-		
-			$new_post = strip_tags($_POST['new_post']);
-				
-			//set post in posts table deleted field to yes
-			$query = mysqli_query($con, "UPDATE posts SET body='$new_post' WHERE id='$post_id'");
-		}
-	?>
-		
 	<script>
 
 		$(function(){
