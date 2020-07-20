@@ -35,7 +35,8 @@ CREATE TABLE posts(
     user_to VARCHAR(200) NOT NULL,
     date_added DATETIME NOT NULL,
     user_closed VARCHAR(3) NOT NULL,
-    likes INT(11) NOT NULL
+    likes INT(11) NOT NULL,
+    image VARCHAR(500) NOT NULL
 ); 
 CREATE TABLE comments(
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -59,7 +60,8 @@ CREATE TABLE messages(
     date DATETIME NOT NULL,
     opened VARCHAR(3) NOT NULL,
     viewed VARCHAR(3) NOT NULL,
-    deleted VARCHAR(3) NOT NULL
+    deleted VARCHAR(3) NOT NULL,
+    image VARCHAR(500) NOT NULL
 );
 CREATE TABLE friend_requests(
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -82,7 +84,7 @@ CREATE TABLE details(
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(200) NOT NULL,
     about TEXT NOT NULL,
-	interests TEXT NOT NULL,
+    interests TEXT NOT NULL,
     bands TEXT NOT NULL,
     edited VARCHAR(3) NOT NULL
 ); 
