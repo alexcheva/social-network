@@ -156,7 +156,9 @@
 	}
 }
 	if(isset($_POST['delete_post'])){ 
-
+		if ($post_image_src != "")
+			unlink($post_image_src);
+		
 		$delete_post = mysqli_query($con, "DELETE FROM posts WHERE id='$id' AND added_by='$userLoggedIn'");
 		header("Location: index.php");
 
