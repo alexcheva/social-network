@@ -106,9 +106,7 @@ class Message {
 			//if logged in user send it make puple, else make bright purple
 			$div_top = ($user_to == $userLoggedIn) ? "<div class='message received'>" : "<div class='message sent'>";
 			//delete button
-			$delete_button = ($user_from == $userLoggedIn || $user_logged_obj->isAdmin($userLoggedIn)) ? "<a class='delete_button delete_message' id='message$id'><i class='fas fa-trash-alt'></i></a>" : "";
-			//delete handling
-			$script = "<script>
+			$delete_button = ($user_from == $userLoggedIn || $user_logged_obj->isAdmin($userLoggedIn)) ? "<a class='delete_button delete_message' id='message$id'><i class='fas fa-trash-alt'></i></a><script>
 			$('#message$id').on('click', function(){
 				bootbox.confirm({
 					message: 'Are you sure you want to delete this message?', buttons: {
@@ -130,8 +128,9 @@ class Message {
 					}
 				});
 			});
-		</script>";
-			$data = $data . $div_top . "<div class='message_body'>" . $body . "</div>" . $delete_button .$imageDiv."</div>". $script;
+		</script>" : "";
+			
+			$data = $data . $div_top . "<div class='message_body'>" . $body . "</div>" . $delete_button .$imageDiv."</div>";
 		}
 		return $data;
 	}
