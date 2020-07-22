@@ -86,19 +86,19 @@
 					</a>
 					<a href="requests.php">
 						<?php if($num_requests > 0)
-							echo '<span id="unread_request" class="notification_badge"></span>';
+							echo '<span id="unread_request" class="notification_badge">'.$num_requests.'</span>';
 						?>
 						<i class="fas fa-user-friends"></i>
 					</a>
 					<a href="messages.php">
 						<?php if($num_messages > 0)
-							echo '<span id="unread_message" class="notification_badge"></span>';
+							echo '<span id="unread_message" class="notification_badge">'.$num_messages.'</span>';
 						?>
 						<i class="fas fa-envelope"></i>
 					</a>
 					<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
 						<?php if($num_notifications > 0)
-							echo '<span id="unread_notification" class="notification_badge"></span>';
+							echo '<span id="unread_notification" class="notification_badge">'.$num_notifications.'</span>';
 						?>
 						<i class="fas fa-bell"></i>
 					</a>
@@ -112,6 +112,7 @@
 						<i class="fas fa-sign-out-alt"></i>
 					</a>
 				</nav>
+			</div>
 				<div class="search_dropdown">
 					<div class="search_results"></div>
 					<div class="search_results_footer_empty"></div>

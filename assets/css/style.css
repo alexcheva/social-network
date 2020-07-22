@@ -267,19 +267,23 @@ nav a:active
 /* ---- Notifications ---- */
 .notification_badge
 {
-    position: absolute;
-    top: 3px;
+    position: relative;
+    top: -2px;
 
-    right: 66px;
+    left: 7px;
 
-
+    z-index: -1;
+    font-size: 9px;
     padding: 4px;
 
     border-radius: 10px;
 
     background-color: #f0a;
 }
-#unread_notification
+.notification_badge:hover{
+    color: white;
+}
+/*#unread_notification
 {
     top: 6px;
     right: 49px;
@@ -288,7 +292,7 @@ nav a:active
 {
     top: 15px;
     right: 92px;
-}
+}*/
 
 /* ---- Dropdown ---- */
 .dropdown_data_window
