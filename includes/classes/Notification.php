@@ -103,6 +103,18 @@ class Notification{
 		$insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES(NULL, '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
 	}
 
+	public function friendNotification($user_to) {
+		$userLoggedIn = $this->user_obj->getUsername();
+		$userLoggedInName = $this->user_obj->getFirstAndLastName();
+
+		$date_time = date("Y-m-d H:i:s");
+
+		$message = $userLoggedInName . " accepted your friend request.";
+
+		$link = $userLoggedIn;
+
+		$insert_query = mysqli_query($this->con, "INSERT INTO notifications VALUES(NULL, '$user_to', '$userLoggedIn', '$message', '$link', '$date_time', 'no', 'no')");
+	}
 
 }
 

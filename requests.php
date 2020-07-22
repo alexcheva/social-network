@@ -24,6 +24,8 @@ include('includes/header.php');
 
 					//delete the request from the friend request table
 					$delete_query = mysqli_query($con, "DELETE FROM friend_requests WHERE user_to='$userLoggedIn' AND user_from='$user_from'");
+					$notification = new Notification($con, $userLoggedIn);
+					$notification->friendNotification($user_from);
 					echo "You are now friends!";
 					header("Location: requests.php");
 
