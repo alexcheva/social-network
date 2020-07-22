@@ -71,12 +71,14 @@
 		$user = new User($con, $userLoggedIn);
 		//pass the parameter into removeFriend function
 		$user->removeFriend($username);
+		echo "<script>bootbox.alert('Friend has been removed!');</script>";
 	}
 	//when add friend button pressed
 	if(isset($_POST['add_friend'])){
 		$user = new User($con, $userLoggedIn);
 		//pass the parameter into sendRequest( function
 		$user->sendRequest($username);
+		echo "<script>bootbox.alert('Friend request has been sent!');</script>";
 	}
 	//when respond_request button pressed redirect to requests
 	if(isset($_POST['respond_request'])){
