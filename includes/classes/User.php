@@ -23,9 +23,9 @@ class User{
 	}
 	public function getNumPosts() {
 		$username = $this->user['username'];
-		$get_number_posts = mysqli_query($this->con, "SELECT * FROM posts WHERE added_by='$username'");
-		$num_posts = mysqli_num_rows($get_number_posts);
-		$query = mysqli_query($this->con, "UPDATE users SET num_posts='$num_posts' WHERE username='$username'");
+		//$get_number_posts = mysqli_query($this->con, "SELECT * FROM posts WHERE added_by='$username'");
+		//$num_posts = mysqli_num_rows($get_number_posts);
+		//$query = mysqli_query($this->con, "UPDATE users SET num_posts='$num_posts' WHERE username='$username'");
 		$query = mysqli_query($this->con, "SELECT num_posts FROM users WHERE username='$username'");
 		$row = mysqli_fetch_array($query);
 		return $row['num_posts'];

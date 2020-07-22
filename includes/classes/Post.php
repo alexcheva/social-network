@@ -412,6 +412,10 @@ class Post{
 		$str = ""; //string to return
 		//show only posts that are not addressed to anybody or addressed to this user
 		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername') ORDER BY id DESC");
+		//if there are no posts:
+			if(mysqli_num_rows($data_query) == 0){
+				$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet! Try <a href='requests.php'>adding firends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>post something</a>!</p>";
+			}
 		//if there are posts:
 		if(mysqli_num_rows($data_query) > 0){
 
