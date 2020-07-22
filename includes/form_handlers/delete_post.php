@@ -16,7 +16,8 @@ if(isset($_POST['result'])) {
 		//if image, unlink:
 		$image_src = "../../" .$post_image_src;
 		unlink($image_src);
-
+		//delete notifications for this post:
+		$delete_notifications = mysqli_query($con, "DELETE FROM notifications WHERE link='post.php?id=$post_id'");
 		//update number of posts:
 		$get_number_posts = mysqli_query($con, "SELECT * FROM users WHERE username='$post_author'");
 		$row = mysqli_fetch_array($get_number_posts);
