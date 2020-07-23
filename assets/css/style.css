@@ -241,27 +241,9 @@ nav a:active
 
     color: purple;
 }
-.external_link{
-    color: #007bff;
-    /* These are technically the same, but use both */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-
-    -ms-word-break: break-all;
-    /* This is the dangerous one in WebKit, as it breaks things wherever */
-    word-break: break-all;
-    /* Instead use this non-standard one: */
-    word-break: break-word;
-
-    /* Adds a hyphen where the word breaks, if supported (No Blink) */
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}
 
 /* ================================= 
-  Notifications and Dropdowns
+   Notifications and Dropdowns
 ==================================== */
 
 /* ---- Notifications ---- */
@@ -271,6 +253,7 @@ nav a:active
     top: -2px;
 
     left: 7px;
+    margin-left: -7px;
 
     z-index: -1;
     font-size: 9px;
@@ -370,7 +353,7 @@ nav a:active
 .wrapper
 {
     position: relative;
-    top: 75px;
+    padding-top: 75px;
     height: 100vh;
     width: 93%;
     max-width: 1445px;
@@ -446,6 +429,10 @@ nav a:active
 .inline{
     display: inline-block;
 }
+/* ================================= 
+   Posts and Comments
+==================================== */
+
 /* ---- Posts ---- */
 .post_profile_pic
 {
@@ -475,6 +462,25 @@ nav a:active
     font-weight: 100;
     font-style: oblique;
     color: #9e9e9e;
+}
+/* ---- Embeds ---- */
+.external_link{
+    color: #007bff;
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 /* ---- Comments ---- */
@@ -1691,6 +1697,25 @@ input[type='submit'].save_details:active
 	    width: 75%;
 	}
 }
+
+@media only screen and (max-width: 699px) and (min-width: 500px) {
+#username{
+    display: none;
+}
+#search{
+    display: none;
+}
+.logo{
+    margin-right: 11px;
+}
+.main_column{
+    width: 100%;
+}
+.user_details{
+    display: none;
+}
+
+} 
 /*MOBILE*/
 /*XS - 320*/
 /*@media only screen and (max-width: 350px) {
