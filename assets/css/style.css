@@ -1175,6 +1175,11 @@ input[type='submit'].success:active
 {
     color: white;
 }
+.why{
+  width: 175px; 
+  margin-top: 15px;
+  margin-bottom: 15px;  
+}
 
 /*upload image*/
 /*#CroppingContainer{
