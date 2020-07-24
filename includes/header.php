@@ -51,15 +51,16 @@
 						</a>
 					</h1>
 				</div>
+				<!-- SEARCH -->
 				<div id="search" class="vm_search">
 					<form action="search.php" method="GET" name="search_form">
 						<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
 						<div class="button_holder">
 							<i class="fa fa-search"></i>
 						</div>
-
 					</form>
 				</div>
+				<!-- Navigation -->
 				<nav>
 					<?php 
 						//Unread messages 
@@ -85,22 +86,24 @@
 						<i class="fas fa-user-circle"></i>
 					</a>
 					<a href="requests.php">
+						<i class="fas fa-user-friends"></i>
 						<?php if($num_requests > 0)
 							echo '<span id="unread_request" class="notification_badge">'.$num_requests.'</span>';
 						?>
-						<i class="fas fa-user-friends"></i>
+						<!-- <span id="unread_request" class="notification_badge">5</span> -->
 					</a>
 					<a href="messages.php">
+						<i class="fas fa-envelope"></i>
 						<?php if($num_messages > 0)
 							echo '<span id="unread_message" class="notification_badge">'.$num_messages.'</span>';
 						?>
-						<i class="fas fa-envelope"></i>
+						<!-- <span id="unread_message" class="notification_badge">5</span> -->
 					</a>
 					<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
+						<i class="fas fa-bell"></i>
 						<?php if($num_notifications > 0)
 							echo '<span id="unread_notification" class="notification_badge">'.$num_notifications.'</span>';
 						?>
-						<i class="fas fa-bell"></i>
 					</a>
 					<a href="settings.php">
 						<i class="fas fa-user-cog"></i>
@@ -112,14 +115,16 @@
 						<i class="fas fa-sign-out-alt"></i>
 					</a>
 				</nav>
-			</div>
+				<div class="dropdown_data_window"></div>
+				<input type="hidden" id="dropdown_data_type" value="">
+			</div> <!-- end header wrapper -->
+
 				<div class="search_dropdown">
 					<div class="search_results"></div>
 					<div class="search_results_footer_empty"></div>
 				</div>
-				<div class="dropdown_data_window"></div>
-				<input type="hidden" id="dropdown_data_type" value="">
-			</div>
+				
+			</div><!-- end top bar -->
 		</div>
 		<div class="wrapper">
 
