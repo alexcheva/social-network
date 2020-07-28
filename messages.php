@@ -134,7 +134,7 @@ Maximum Resolution: http://img.youtube.com/vi/G0wGs3useV8/maxresdefault.jpg (192
     	
 		var youtube = document.querySelectorAll( ".youtube-embed" );
 
-		if(window.matchMedia( "(max-width: 500px)" ).matches) {
+		if(window.matchMedia( "(max-width: 768px)" ).matches) {
 			for (var i = 0; i < youtube.length; i++) {
 
 				youtube[i].innerHTML = "<div class='youtube-play' style='width: 320px; height: 180px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/mqdefault.jpg);'><img class='youtube-logo'  style='width: 20%; height: auto; position: relative; top: 66px; left: 128px;' src='assets/images/icons/youtube.png'></div>";

@@ -1702,7 +1702,7 @@ input[type='submit'].save_details:active
     }
 }
 /*IPAD*/
-@media only screen and (max-width: 768px)
+@media only screen and (max-width: 868px)
 {
 	h1{
 		font-size: 32px;
@@ -1714,9 +1714,6 @@ input[type='submit'].save_details:active
     #username{
         display: none;
     }
-	#name {
-		display: none;
-	}
 	nav a {
 	    padding: 1px;
 	}
@@ -1725,22 +1722,23 @@ input[type='submit'].save_details:active
 	}
 }
 
-@media only screen and (max-width: 699px) and (min-width: 579px) {
-#username{
-    display: none;
-}
-#search{
-    display: none;
-}
-.logo{
-    margin-right: 11px;
-}
-.main_column{
-    width: 100%;
-}
-.user_details{
-    display: none;
-}
+@media only screen and (max-width: 744px) and (min-width: 647px) {
+    #moj{
+        display: none;
+    }
+    .logo{
+        margin-right: 11px;
+    }
+    #search_text_input{
+        width: 115px;
+    }
+
+    .main_column{
+        width: 100%;
+    }
+    .user_details{
+        display: none;
+    }
 
 } 
 /*MOBILE*/
@@ -1751,7 +1749,7 @@ input[type='submit'].save_details:active
 */
 /*M - 375 L -425*/
 
-@media only screen and (max-width: 578px)
+@media only screen and (max-width: 646px)
 {
     /* For mobile phones: */
     body
