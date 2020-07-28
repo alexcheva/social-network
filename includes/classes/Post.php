@@ -386,7 +386,7 @@ class Post{
 
 			//if there are no posts:
 			if(mysqli_num_rows($data_query) == 0){
-				$str = "<p>There are no posts to show yet! Try adding firends or posting something!</p>";
+				$str = "<p>There are no posts to show yet! Try adding friends or post something!</p>";
 			}else if($count > $limit)
 				$str .="<input type='hidden' class='nextPage' value='" . ($page + 1) ."'><input type='hidden' class='noMorePosts' value='false'>";//append to str
 				else
@@ -414,7 +414,14 @@ class Post{
 		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername') ORDER BY id DESC");
 		//if there are no posts:
 			if(mysqli_num_rows($data_query) == 0){
-				$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet! Try <a href='requests.php'>adding firends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>post something</a>!</p>";
+				$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet!";
+				if($userLoggedIn == $profileUsername){
+					$str .= "Try <a href='requests.php'>adding friends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>Post something</a>!";
+				}
+				else{
+					$str .= " Add user to friends to post on their wall.";
+				}
+			$str .= "</p>";
 			}
 		//if there are posts:
 		if(mysqli_num_rows($data_query) > 0){
