@@ -116,9 +116,9 @@
 					</a>
 				</nav>
 			</div> <!-- end header wrapper -->
-		<!-- </div>end top bar -->
+		<div class="header-wrapper">
 		<div class="dropdown_data_window"></div>
-		<input type="hidden" id="dropdown_data_type" value="">
+		<input type="hidden" id="dropdown_data_type" value=""></div>
 		<div class="search-wrapper">
 			<div class="search_dropdown">
 				<div class="search_results"></div>
@@ -127,8 +127,8 @@
 		</div>
 			
 				
-	</div>
-		<!-- </div> -->
+	</div><!-- end top bar -->
+
 		<div class="wrapper">
 
 

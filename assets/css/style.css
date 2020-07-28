@@ -290,6 +290,7 @@ span.notification_badge:hover{
     float: right;
 
     overflow: auto;
+    margin-right: -15px;
 
     background: rgba(0, 0, 0, .9);
 }
@@ -1804,7 +1805,6 @@ input[type='submit'].save_details:active
     .header-wrapper{
         text-align: center;
         width: 100%;
-        background-color: rgba(0, 0, 0, .9);
     }
     .search-wrapper {
         width: 100%;
@@ -1840,11 +1840,11 @@ input[type='submit'].save_details:active
     .search_results, .search_results_footer {
         width: 100%;
     }
-/*    .dropdown_data_window {
+    .dropdown_data_window {
         margin: 0 auto;
         width: 90%;
         float: none;
-    }*/
+    }
     .notification {
         width: 100%;
         min-height: 86px;
