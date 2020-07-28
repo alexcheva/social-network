@@ -116,15 +116,16 @@
 					</a>
 				</nav>
 			</div> <!-- end header wrapper -->
-		<div class="header-wrapper">
-		<div class="dropdown_data_window"></div>
-		<input type="hidden" id="dropdown_data_type" value=""></div>
 		<div class="search-wrapper">
 			<div class="search_dropdown">
 				<div class="search_results"></div>
 				<div class="search_results_footer_empty"></div>
 			</div>
 		</div>
+		<div class="header-wrapper">
+		<div class="dropdown_data_window"></div>
+		<input type="hidden" id="dropdown_data_type" value=""></div>
+		
 			
 				
 	</div><!-- end top bar -->

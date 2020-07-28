@@ -1772,7 +1772,7 @@ input[type='submit'].save_details:active
     }
     .wrapper
     {
-        top: 125px;
+        top: 130px;
         height: calc(100vh - 125px);
         width: 100%;
         margin: 0;
@@ -1806,14 +1806,12 @@ input[type='submit'].save_details:active
         text-align: center;
         width: 100%;
     }
-    .search-wrapper {
-        width: 100%;
-    }
     .top_bar
     {
         padding: 0;
         min-height: 94px;
         max-height: 132px;
+        border: none;
     }
     .logo{
         float: none;
@@ -1840,6 +1838,7 @@ input[type='submit'].save_details:active
     .search_results, .search_results_footer {
         width: 100%;
     }
+    .search-wrapper,
     .dropdown_data_window {
         margin: 0 auto;
         width: 90%;
@@ -1866,8 +1865,7 @@ input[type='submit'].save_details:active
     }
     nav a
     {
-        padding: 1px;
-        /*  padding: 5px;*/
+        padding: 5px;
     }
     nav a:active{
         color: #d500ff;
