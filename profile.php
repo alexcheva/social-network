@@ -8,7 +8,7 @@
 
 		if($user_array == 0){
 			echo '<div class="main_column column" id="main_colum">
-			<h4>User profile not found.</h4><img style="width: 175px; margin-bottom: 10px;" src="assets/images/icons/why.png">
+			<h4>User profile not found.</h4><img class="why" src="assets/images/icons/why.png">
 			<p>Username "'.$username.'" does not exist, sorry.</p>
 			<p><a href="index.php">Go back to the main page.</a></p>
 			</div>';
@@ -104,16 +104,16 @@
 					//if they are friends
 					if($userLoggedIn != $username) {
 						if($logged_in_user_obj ->isFriend($username)){
-							echo '<input id="danger" type="submit" name="remove_friend" value="Remove Friend">';
+							echo '<input class="danger" type="submit" name="remove_friend" value="Remove Friend">';
 						}
 						else if($logged_in_user_obj ->didReceiveRequest($username)){
-							echo '<input id="warning" type="submit" name="respond_request" value="Respond to Request">';
+							echo '<input class="warning" type="submit" name="respond_request" value="Respond to Request">';
 						}
 						else if($logged_in_user_obj ->didSendRequest($username)){
-							echo '<input id="default" type="submit" name="" value="Request Sent">';
+							echo '<input class="default" type="submit" name="" value="Request Sent">';
 						}
 						else {
-							echo '<input id="success" type="submit" name="add_friend" value="Add Friend">';
+							echo '<input type="submit" name="add_friend" value="Add Friend">';
 						}
 					}
 				?>
@@ -236,14 +236,14 @@
 				<form action="profile.php" method="POST">
 					<label>About me:</label>
 					
-					<textarea name="about" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
+					<textarea name="about" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
 					
 					
 					<label>My Interests:</label>
-					<textarea name="interests" id="" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php echo $interests; ?></textarea>
+					<textarea name="interests" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php echo $interests; ?></textarea>
 					
 					<label>My Favourite Bands:</label>
-					<textarea name="bands" id="" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
+					<textarea name="bands" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
 					<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
 					<input type="submit" name="delete" class="danger close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" id="close_edit" value="Cancel">
 				</form>
@@ -305,7 +305,7 @@
 	      <div class="modal-footer">
 	        <form action="profile.php" method="POST">
 	        <input type="submit" id="close_account" name="delete_about" value="Yes! Delete it.">
-	        <input type="button" id="dont_close" data-dismiss="modal" value="No! Leave it.">
+	        <input type="submit" id="dont_close" data-dismiss="modal" value="No! Leave it.">
 	        </form>
 	      </div>
 	    </div>

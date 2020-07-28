@@ -52,13 +52,13 @@ if(isset($_GET['type'])){
 		if($user['username'] != $row['username']){
 			//generate button depending on relationship status
 			if($user_obj->isFriend($row['username']))
-				$button = "<input type='submit' name='" . $row['username'] . "' id='danger' value='Remove Friend'>";
+				$button = "<input type='submit' name='" . $row['username'] . "' class='danger' value='Remove Friend'>";
 			else if($user_obj->didReceiveRequest($row['username']))
-				$button = "<input type='submit' name='" . $row['username'] . "' id='warning' value='Respond to Request'>";
+				$button = "<input type='submit' name='" . $row['username'] . "' class='warning' value='Respond to Request'>";
 			else if($user_obj->didSendRequest($row['username']))
-				$button = "<input type='submit' id='default' value='Request Sent'>";
+				$button = "<input type='submit' class='default' value='Request Sent'>";
 			else
-				$button = "<input type='submit' name='" . $row['username'] . "' id='success' value='Add Friend'>";
+				$button = "<input type='submit' name='" . $row['username'] . "' value='Add Friend'>";
 
 			$mutural_friends = $user_obj->getMutualFriends($row['username']);
 
@@ -95,8 +95,8 @@ if(isset($_GET['type'])){
 				<div>
 				<a href='". $row['username']. "'>" . $row['first_name'] . " " . $row['last_name'] ."</a>
 				<p>" . $row['username'] . "</p>
-				<p id='grey'>" . $friend_count .
-				"</div>
+				<p class='mutural_friends'>" . $friend_count .
+				"</p></div>
 				<div class='searchPageFriend Buttons'>
 				<form action='' method='POST'>
 				" . $button . "

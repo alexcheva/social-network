@@ -19,7 +19,6 @@ else
 	$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' OR last_name LIKE '$names[0]%') AND user_closed='no' LIMIT 8");
 
 if($query != ""){
-	$button = "";
 
 	while($row = mysqli_fetch_array($usersReturnedQuery)){
 
@@ -36,37 +35,6 @@ if($query != ""){
 		else
 			$friend_count = $mutural_friends . " friends in common";
 
-		if($userLoggedIn != $row['username']){
-			//generate button depending on relationship status
-			if($user->isFriend($row['username']))
-				$button = "<input type='submit' name='" . $row['username'] . "' id='danger' value='Remove Friend'>";
-			else if($user->didReceiveRequest($row['username']))
-				$button = "<input type='submit' name='" . $row['username'] . "' id='warning' value='Respond to Request'>";
-			else if($user->didSendRequest($row['username']))
-				$button = "<input type='submit' id='default' value='Request Sent'>";
-			else
-				$button = "<input type='submit' name='" . $row['username'] . "' id='success' value='Add Friend'>";
-			
-			if(isset($_POST[$row['username']])){
-
-				if($user->isFriend($row['username'])){
-					$user->removeFriend($row['username']);
-					header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-				}
-				else if($user->didReceiveRequest($row['username'])){
-					header("Location: requests.php");
-				}
-				else if($user->didSendRequest($row['username'])){
-
-				}
-				else{
-					$user->sendRequest($row['username']);
-					header("Location: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-				}
-
-			}
-		}
-
 		echo "<div class='liveSearchResult'>
 			<a href='" . $row['username'] ."'>
 			<div>
@@ -76,11 +44,7 @@ if($query != ""){
 			<p>" . $row['username'] . "</p>
 			<p class='mutural_friends'>" . $friend_count .
 			"</div>
-			<div class='searchPageFriend Buttons'>
-				<form action='' method='POST'>
-				" . $button . "
-				</form>
-				</div>
+			
 			
 			</div>";
 	}

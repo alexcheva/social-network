@@ -1,6 +1,33 @@
 /* ================================= 
   Base Element Styles
 ==================================== */
+/* ---- Scroll Bar ---- */
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track
+{
+    background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb
+{
+    background: purple;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+{
+    background: #d51279;
+}
+@font-face {
+    font-family: 'Seagram';
+    src: url('../fonts/Seagram.ttf');
+}
 body
 {
     top: 0;
@@ -106,37 +133,12 @@ hr
 {
     border-top: 1px solid purple;
 }
-/* ---- Scroll Bar ---- */
-::-webkit-scrollbar
-{
-    width: 10px;
-}
 
-/* Track */
-::-webkit-scrollbar-track
-{
-    background: black;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb
-{
-    background: purple;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover
-{
-    background: #d51279;
-}
 
 /* ================================= 
   Base Layout Styles
 ==================================== */
-@font-face {
-    font-family: 'Seagram';
-    src: url('../fonts/Seagram.ttf');
-}
+
 /* ---- HEADER ---- */
 .top_bar
 {
@@ -149,11 +151,14 @@ hr
     border-bottom: 3px solid purple;
     background-color: rgba(0, 0, 0, .9);
 }
+.header-wrapper,
+.wrapper{
+    width: 93%;
+    max-width: 1240px;
+    margin: 0 auto;
+    }
 .header-wrapper{
-	width: 93%;
-	max-width: 1445px;
     min-height: 65px;
-	margin: 0 auto;
 }
 .logo
 {
@@ -363,9 +368,6 @@ span.notification_badge:hover{
     position: relative;
     padding-top: 75px;
     height: 100vh;
-    width: 93%;
-    max-width: 1445px;
-    margin: 0 auto;
 }
 .column
 {
@@ -618,24 +620,18 @@ span.notification_badge:hover{
 }
 input[type='submit'].danger
 {
-    font-weight: 500;
-
     color: #ff002b;
     border-color: #ff002b;
     outline-color: #d500ff;
 }
 input[type='submit'].danger:hover
 {
-    font-weight: 500;
-
     color: white;
     border: 1px white solid;
     background-color: #ff002b;
 }
 input[type='submit'].danger:active
 {
-    font-weight: 500;
-
     color: black;
     border-color: black;
     background-color: #a70000;
@@ -643,72 +639,54 @@ input[type='submit'].danger:active
 /* ---- Respond to Request ---- */
 #warning
 {
-    font-weight: 500;
-
     color: #d51279;
     border-color: #d51279;
     outline-color: pink;
 }
 #warning:hover
 {
-    font-weight: 500;
-
     color: white;
     border: 1px black solid;
     background-color: #d51279;
 }
 #warning:active
 {
-    font-weight: 500;
-
     color: black;
     border-color: black;
     background-color: purple;
 }
 input[type='submit'].warning
 {
-    font-weight: 500;
-
     color: #fa0;
     border-color: #fa0;
     outline-color: #c45100;
 }
 input[type='submit'].warning:hover
 {
-    font-weight: 500;
-
     color: white;
     border: 1px white solid;
     background-color: #fa0;
 }
 input[type='submit'].warning:active
 {
-    font-weight: 500;
-
     color: black;
     border-color: black;
     background-color: #c45100;
 }
 input[type='submit'].success
 {
-    font-weight: 500;
-
     color: #2bff00;
     border-color: #2bff00;
     outline-color: #d500ff;
 }
 input[type='submit'].success:hover
 {
-    font-weight: 500;
-
     color: white;
     border: 1px white solid;
     background-color: #2bff00;
 }
 input[type='submit'].success:active
 {
-    font-weight: 500;
-
     color: black;
     border-color: black;
     background-color: purple;
@@ -721,28 +699,22 @@ input[type='submit'].success:active
     color: #d500ff;
 }
 /* ---- Request Sent ---- */
-#default
+input[type='submit'].default
 {
-    font-weight: 500;
-
     cursor: not-allowed;
 
     color: grey;
     border-color: grey;
     outline-color: purple;
 }
-#default:hover
+input[type='submit'].default:hover
 {
-    font-weight: 500;
-
     color: black;
     border: 1px black solid;
     background-color: grey;
 }
-#default:active
+input[type='submit'].default:active
 {
-    font-weight: 500;
-
     color: white;
     background-color: grey;
 }
@@ -1539,8 +1511,6 @@ input[type='submit'].save_details:active
 
 #close_account
 {
-    font-weight: 500;
-
     display: inline-block;
 
     color: #ff002b;
@@ -1562,10 +1532,8 @@ input[type='submit'].save_details:active
     background-color: #a70000;
 }
 
-#dont_close
+.inline
 {
-    font-weight: 500;
-
     display: inline-block;
 
     color: #d500ff;
