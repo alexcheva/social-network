@@ -467,7 +467,8 @@ span.notification_badge:hover{
     display: flow-root;
 }
 
-.post_time
+.post_time,
+.mutural_friends
 {
     font-weight: 100;
     font-style: oblique;
@@ -1920,6 +1921,9 @@ input[type='submit'].save_details:active
         margin-bottom: 15px;
 
         border: 2px solid purple;
+    }
+    .message_details{
+        border-bottom: 3px solid purple;
     }
     .message_details,
     .message_column,

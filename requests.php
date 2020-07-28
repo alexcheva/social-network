@@ -9,16 +9,6 @@ include('includes/header.php');
 		//check if there are friend requests
 		if(mysqli_num_rows($query) == 0){
 			echo "<p>You have no friend requests at this time!</p>";
-			echo '<h4>Find users:</h4>
-
-			<form action="search_page.php" method="GET" name="search_form">
-				<input type="text" onkeyup="getUsers(this.value,"' .$userLoggedIn.
-				'")" name="q" placeholder="Search..." autocomplete="off" id="search_page_text_input">
-				<input type="submit" name="find" value="Search">
-
-			</form>
-
-			<div class="results"></div>';
 		}
 		else{
 			while($row = mysqli_fetch_array($query)){
@@ -60,7 +50,16 @@ include('includes/header.php');
 			}
 		}
 	 ?>
+	<h4>Friend Search:</h4>
+	<p>Find users</p>
 
+	<form action="search_page.php" method="GET" name="search_form">
+		<input type="text" onkeyup="getUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_page_text_input">
+		<input type="submit" name="find" value="Search">
+
+	</form>
+
+	<div class="results"></div>
 	</div>
 	<div class="user_details column profile_left">
 		<a href="<?php echo $userLoggedIn ?>"><img id="profile_pic" src="<?php echo $user['profile_pic']; ?>"></a>
