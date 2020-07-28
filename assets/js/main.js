@@ -11,7 +11,7 @@ $(document).ready(function(){
 			$("#search").toggleClass("hide");
 			$("#search").toggleClass("vm_search");
 		});
-	
+
 	if(window.matchMedia( "(min-width: 800px)" ).matches) {
 		$("#search").toggleClass("hide");
 		$("#search").toggleClass("vm_search");
@@ -71,6 +71,7 @@ function getUsers(value, user) {
 		$(".results").html(data);
 	});
 }
+
 function showFileUpload(){
 	$("#fileToUpload").toggleClass("hide");
 }
@@ -96,7 +97,7 @@ function getDropdownData(user, type){
 			cashe: false,
 			success: function(response) {
 				$(".dropdown_data_window").html(response);
-				$(".dropdown_data_window").css({"padding": "0px", "height" : "300", "border": "2px solid purple" });
+				$(".dropdown_data_window").css({"padding": "0px", "height" : "350", "border": "2px solid purple", "border-top": "none" });
 				
 				$("#dropdown_data_type").val(type);
 			}

@@ -3,12 +3,23 @@ include('includes/header.php');
 
 ?>
 	<div class="main_column column profile" id="main_column">
-	<h4>Friend Requests:</h4>
+	<h2>Friend Requests:</h2>
 	<?php 
 		$query = mysqli_query($con, "SELECT * FROM friend_requests WHERE user_to='$userLoggedIn'");
 		//check if there are friend requests
-		if(mysqli_num_rows($query) == 0)
-			echo "You have no friend requests at this time!";
+		if(mysqli_num_rows($query) == 0){
+			echo "<p>You have no friend requests at this time!</p>";
+			echo '<h4>Find users:</h4>
+
+			<form action="search_page.php" method="GET" name="search_form">
+				<input type="text" onkeyup="getUsers(this.value,"' .$userLoggedIn.
+				'")" name="q" placeholder="Search..." autocomplete="off" id="search_page_text_input">
+				<input type="submit" name="find" value="Search">
+
+			</form>
+
+			<div class="results"></div>';
+		}
 		else{
 			while($row = mysqli_fetch_array($query)){
 				$user_from = $row['user_from'];

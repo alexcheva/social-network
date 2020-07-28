@@ -152,6 +152,7 @@ hr
 .header-wrapper{
 	width: 93%;
 	max-width: 1445px;
+    min-height: 65px;
 	margin: 0 auto;
 }
 .logo
@@ -192,9 +193,9 @@ h1 a:active
 }
 .button_holder
 {
-    display: inline;
+    display: inline-block;
 
-    padding: 6px 10px;
+    padding: 4px 9px;
 
     cursor: pointer;
 
@@ -210,6 +211,10 @@ h1 a:active
     color: white;
     border-color: white;
     background-color: purple;
+}
+.search-wrapper{
+    width: 37%;
+    margin: 0 auto;
 }
 
 /* ---- Navigation ---- */
@@ -452,6 +457,9 @@ span.notification_badge:hover{
 .post_profile_img
 {
     width: 75px;
+}
+.posted_by {
+    padding-bottom: 10px;
 }
 
 .post_main
@@ -1679,6 +1687,18 @@ input[type='submit'].save_details:active
         color: purple;
     }
 }
+@media only screen and (max-width: 830px){
+
+
+}
+@media only screen and (max-width: 960px){
+    h1{
+        font-size: 2.3rem;
+    }
+    #search_text_input{
+        width: 125px;
+    }
+}
 /*IPAD*/
 @media only screen and (max-width: 768px)
 {
@@ -1687,8 +1707,11 @@ input[type='submit'].save_details:active
 	}
     .logo {
 	    padding-top: 11px;
-	    margin-right: 2em;
+	    margin-right: 1em;
 	}
+    #username{
+        display: none;
+    }
 	#name {
 		display: none;
 	}
@@ -1696,7 +1719,7 @@ input[type='submit'].save_details:active
 	    padding: 1px;
 	}
 	.main_column {
-	    width: 75%;
+	    width: 77%;
 	}
 }
 
@@ -1733,7 +1756,7 @@ input[type='submit'].save_details:active
     {
         font-size: 14px;
 
-        color: #e2e2e2;
+        /*color: #e2e2e2;*/
     }
     h2
     {
@@ -1747,8 +1770,8 @@ input[type='submit'].save_details:active
     }
     .wrapper
     {
-        top: 90px;
-        height: 100vh;
+        top: 125px;
+        height: calc(100vh - 125px);
         width: 100%;
         margin: 0;
         padding: 0;
@@ -1780,12 +1803,16 @@ input[type='submit'].save_details:active
     .header-wrapper{
         text-align: center;
         width: 100%;
+        background-color: rgba(0, 0, 0, .9);
+    }
+    .search-wrapper {
+        width: 100%;
     }
     .top_bar
     {
         padding: 0;
-        height: auto;
-        background-color: rgba(0, 0, 0, .9);
+        min-height: 94px;
+        max-height: 132px;
     }
     .logo{
         float: none;
@@ -1797,8 +1824,8 @@ input[type='submit'].save_details:active
     }
     .vm_search{
         display: block;
-        padding: 5px;
-        top: 0px;
+        padding-bottom: 5px;
+        top: -2px;
     }
 
     #search_text_input
@@ -1807,17 +1834,21 @@ input[type='submit'].save_details:active
     }
     .button_holder
     {
-        padding: 4px;
+        padding: 2px 6px;
+    }
+    .search_results, .search_results_footer {
+        width: 100%;
     }
 /*    .dropdown_data_window {
         margin: 0 auto;
         width: 90%;
         float: none;
-    }
-    .notification {
-        min-width: 100%;
-        min-height: 81px;
     }*/
+    .notification {
+        width: 100%;
+        min-height: 86px;
+        padding: 15px 20px;
+    }
 
     input
     {
@@ -1829,6 +1860,7 @@ input[type='submit'].save_details:active
         float: none;
         top: 0px;
         padding: 5px;
+        border-bottom: 3px solid purple;
         background: rgba(128, 0, 128, 0.58);
     }
     nav a
@@ -1845,6 +1877,7 @@ input[type='submit'].save_details:active
         width: 100%;
         border-bottom: none;
         margin-bottom: 0px;
+        box-shadow: none;
     }
     #profile_pic {
         float: right;
@@ -1883,6 +1916,8 @@ input[type='submit'].save_details:active
     .result_profile_pic
     {
         width: 28%;
+        height: auto;
+        margin-bottom: 15px;
 
         border: 2px solid purple;
     }

@@ -115,17 +115,20 @@
 						<i class="fas fa-sign-out-alt"></i>
 					</a>
 				</nav>
-				<div class="dropdown_data_window"></div>
-				<input type="hidden" id="dropdown_data_type" value="">
 			</div> <!-- end header wrapper -->
-
-				<div class="search_dropdown">
-					<div class="search_results"></div>
-					<div class="search_results_footer_empty"></div>
-				</div>
-				
-			</div><!-- end top bar -->
+		<!-- </div>end top bar -->
+		<div class="dropdown_data_window"></div>
+		<input type="hidden" id="dropdown_data_type" value="">
+		<div class="search-wrapper">
+			<div class="search_dropdown">
+				<div class="search_results"></div>
+				<div class="search_results_footer_empty"></div>
+			</div>
 		</div>
+			
+				
+	</div>
+		<!-- </div> -->
 		<div class="wrapper">
 
 
