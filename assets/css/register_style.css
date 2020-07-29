@@ -26,7 +26,7 @@ form {
 }
 input{
 	padding: 5px 10px;
-	margin-bottom: 3px;
+	margin-bottom: 10px;
 	background-color: black;
 	color: white;
     border: 1px solid purple;
@@ -83,6 +83,7 @@ a:active{
 	margin-left: auto;
 	top: 7%;
 	width: 35%;
+	min-width: 320px;
 }
 h1{
 	font-family: "Seagram", sans-serif;
