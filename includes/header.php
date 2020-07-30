@@ -20,29 +20,27 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Verni Moj 2007 &#128148;</title>
-		<script src="assets/js/jquery-2.2.4.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-		<script src="assets/js/bootbox.min.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script src="assets/js/all.min.js"></script>
-		<script src="assets/js/jquery.jcrop.js"></script>
-		<script src="assets/js/jcrop_bits.js"></script>
-		<!-- Emoji -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
-		<script src="assets/js/emojionearea.js"></script>
-
 		<script>
 	    	const userLoggedIn = "<?php echo $userLoggedIn; ?>";
 	    </script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+		<!-- Emoji -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js"></script>
 
-		<link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet"/>
+		
+		<script src="assets/js/main.js"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/emojionearea.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/emojionearea.min.css">
 		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="stylesheet" href="assets/css/jquery.Jcrop.css" type="text/css" />
+		<link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v0.9.12/css/jquery.Jcrop.min.css" type="text/css" />
 	</head>
 	<body>
-		<div class="top_bar">
+		<header class="top_bar">
 			<div class="header-wrapper">
 				<div class="logo">
 					<h1>
@@ -128,7 +126,7 @@
 		
 			
 				
-	</div><!-- end top bar -->
+	</header><!-- end top bar -->
 
 		<div class="wrapper">
 

@@ -86,6 +86,7 @@
 		<div class="posts_area"></div>
 		<img id="loading" src="assets/images/icons/loading.gif">
 	</div>
+
 	<script>
 
 		$(function(){
@@ -191,8 +192,5 @@
 		});
 	};
 	</script>
-
+	<?php include('footer.php'); ?>
 	<!-- end wrapper from header -->
-	</div>
-	</body>
-</html>

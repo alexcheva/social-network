@@ -225,6 +225,9 @@ if (isset($_POST['x'])){
      <img src="<?=$result_path?>" style="position:relative; margin:10px auto; width:150px; height:150px;" />
 	 
  <?php } ?>
+
+ <script src="http://jcrop-cdn.tapmodo.com/v0.9.12/js/jquery.Jcrop.min.js"></script>
  
- 
+ <script>$(function(){$("#jcrop_target").Jcrop({aspectRatio:1,setSelect:[200,200,37,49],onSelect:updateCoords})});function updateCoords(a){$("#x").val(a.x);$("#y").val(a.y);$("#w").val(a.w);$("#h").val(a.h)}function checkCoords(){if(parseInt($("#w").val()))return!0;alert("Please select a crop region then press submit.");return!1}function cancelCrop(){top.location="upload.php";return!1};
+</script>
     <br /><br />
