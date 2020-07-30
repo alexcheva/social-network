@@ -194,6 +194,11 @@ class Post{
 
 				$user_logged_obj = new User($this->con, $userLoggedIn);
 				if($user_logged_obj->isFriend($added_by)){
+					//check if there are posts
+					$posts = mysqli_query($this->con, "SELECT * FROM posts WHERE added_by='$added_by' OR added_by='$userLoggedIn'");
+					if(mysqli_num_rows($posts) == 0){
+						$str = "<p>There are no posts to show yet! Try adding friends or post something!</p>";
+					}
 
 				if($num_iterations++ < $start)
 					continue;
@@ -327,36 +332,36 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
-							var youtube = document.querySelectorAll( ".youtube" );
+						var youtube = document.querySelectorAll( ".youtube" );
 
-							for (var i = 0; i < youtube.length; i++) {
+						for (var i = 0; i < youtube.length; i++) {
 
-								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-						    
-						    	youtube[i].addEventListener( "click", function() {
+							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+					    
+					    	youtube[i].addEventListener( "click", function() {
 
-						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-						       
-						    	});
-							};
+					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+					       
+					    	});
+						};
 
-							var embeded_images = document.querySelectorAll( ".embed-images" );
+						var embeded_images = document.querySelectorAll( ".embed-images" );
 
-							for (var i = 0; i < embeded_images.length; i++) {
+						for (var i = 0; i < embeded_images.length; i++) {
 
-								embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-							};
+							embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+						};
 
-							var embeded_link = document.querySelectorAll( ".embed-link" );
+						var embeded_link = document.querySelectorAll( ".embed-link" );
 
-							for (var i = 0; i < embeded_link.length; i++) {
+						for (var i = 0; i < embeded_link.length; i++) {
 
-								embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-							};
+							embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+						};
 
-							$("textarea").emojioneArea({
-								pickerPosition: "bottom"
-							});
+						$("textarea").emojioneArea({
+							pickerPosition: "bottom"
+						});
 						$('#post<?php echo $id; ?>').on('click', function(){
 							//bootstrap
 							bootbox.confirm({
@@ -385,9 +390,7 @@ class Post{
 			}//end while loop
 
 			//if there are no posts:
-			if(mysqli_num_rows($data_query) == 0){
-				$str = "<p>There are no posts to show yet! Try adding friends or post something!</p>";
-			}else if($count > $limit)
+			if($count > $limit)
 				$str .="<input type='hidden' class='nextPage' value='" . ($page + 1) ."'><input type='hidden' class='noMorePosts' value='false'>";//append to str
 				else
 				$str .="<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> No More Posts to show!</p>";
@@ -414,12 +417,12 @@ class Post{
 		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername') ORDER BY id DESC");
 		//if there are no posts:
 			if(mysqli_num_rows($data_query) == 0){
-				$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet!";
+				$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet! ";
 				if($userLoggedIn == $profileUsername){
-					$str .= "Try <a href='requests.php'>adding friends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>Post something</a>!";
+					$str .= "Try <a href='requests.php'>adding friends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>post something</a>!";
 				}
 				else{
-					$str .= " Add user to friends to post on their wall.";
+					$str .= "Add user to friends to post on their wall.";
 				}
 			$str .= "</p>";
 			}

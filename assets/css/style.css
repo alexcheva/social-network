@@ -2,28 +2,22 @@
   Base Element Styles
 ==================================== */
 /* ---- Scroll Bar ---- */
-::-webkit-scrollbar
-{
-    width: 10px;
+::-webkit-scrollbar {
+width:10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track
-{
-    background: black;
+::-webkit-scrollbar-track {
+background:#000;
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb
-{
-    background: purple;
+::-webkit-scrollbar-thumb {
+background:purple;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover
-{
-    background: #d51279;
+::-webkit-scrollbar-thumb:hover {
+background:#d51279;
 }
+
 @font-face {
     font-family: 'Seagram';
     src: url('../fonts/Seagram.ttf');
