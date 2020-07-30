@@ -146,6 +146,7 @@ hr
     background-color: rgba(0, 0, 0, .9);
 }
 .header-wrapper,
+.dropdown-wrapper,
 .wrapper{
     width: 93%;
     max-width: 1240px;

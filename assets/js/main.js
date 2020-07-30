@@ -7,23 +7,18 @@ $(document).ready(function(){
 	// $('#search_text_input').focus(function(){
 		//if device is larger than 800px
 	$(".search_button").on('click', function(){
-
-			$("#search").toggleClass("hide");
-			$("#search").toggleClass("vm_search");
-		});
+		$("#search").toggleClass("hide");
+		$("#search").toggleClass("vm_search");
+	});
 
 	if(window.matchMedia( "(min-width: 800px)" ).matches) {
 		$("#search").toggleClass("hide");
 		$("#search").toggleClass("vm_search");
-		};
+	};
 
 	if(window.matchMedia( "(max-width: 500px)" ).matches) {
-		
 		$("#search").toggleClass("vm_search");
 		$("#search").toggleClass("hide");
-		
-
-		
 	};
 	//});
 	//submit form when click on button holder div
