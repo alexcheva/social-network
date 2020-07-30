@@ -182,3 +182,4 @@ Maximum Resolution: http://img.youtube.com/vi/G0wGs3useV8/maxresdefault.jpg (192
     }
     
 </script>
+<?php include('footer.php'); ?>

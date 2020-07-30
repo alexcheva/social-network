@@ -231,3 +231,4 @@ if (isset($_POST['x'])){
  <script>$(function(){$("#jcrop_target").Jcrop({aspectRatio:1,setSelect:[200,200,37,49],onSelect:updateCoords})});function updateCoords(a){$("#x").val(a.x);$("#y").val(a.y);$("#w").val(a.w);$("#h").val(a.h)}function checkCoords(){if(parseInt($("#w").val()))return!0;alert("Please select a crop region then press submit.");return!1}function cancelCrop(){top.location="upload.php";return!1};
 </script>
     <br /><br />
+    <?php include('footer.php'); ?>

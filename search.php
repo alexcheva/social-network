@@ -108,3 +108,4 @@ if(isset($_GET['type'])){
 
 	 ?>
 </div>
+<?php include('footer.php'); ?>

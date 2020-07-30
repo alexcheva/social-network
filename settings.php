@@ -79,3 +79,4 @@ include("includes/form_handlers/settings_handler.php");
 	    </div>
 	  </div>
 	</div>
+	<?php include('footer.php'); ?>

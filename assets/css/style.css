@@ -134,19 +134,27 @@ hr
 ==================================== */
 
 /* ---- HEADER ---- */
-.top_bar
-{
+.bar{
     position: fixed;
     z-index: 10;
 
     width: 100%;
-    height: 65px;
-
-    border-bottom: 3px solid purple;
     background-color: rgba(0, 0, 0, .9);
+}
+.header_bar
+{
+    height: 65px;
+    border-bottom: 3px solid purple;
+}
+.footer_bar{
+    height: 50px;
+    border-top: 3px solid purple;
+    text-align: center;
+    padding: 10px 0;
 }
 .header-wrapper,
 .dropdown-wrapper,
+.footer-wrapper,
 .wrapper{
     width: 93%;
     max-width: 1240px;
@@ -362,7 +370,7 @@ span.notification_badge:hover{
 {
     position: relative;
     padding-top: 75px;
-    height: 100vh;
+    height: calc(100vh - 50px);
 }
 .column
 {
@@ -388,7 +396,7 @@ span.notification_badge:hover{
 .main_column
 {
     width: 78%;
-    margin-bottom: 30px;
+    margin-bottom: 65px;
 }
 .profile
 {
@@ -1255,7 +1263,7 @@ aside{
 {
     width: 70%;
     min-height: 250px;
-    margin-bottom: 30px;
+    margin-bottom: 65px;
 }
 
 .message{
@@ -1731,10 +1739,13 @@ input[type='submit'].save_details:active
 
         margin-top: 10px;
     }
+    .footer_bar{
+        height: auto;
+    }
     .wrapper
     {
         top: 130px;
-        height: calc(100vh - 125px);
+        height: calc(100vh - 65px);
         width: 100%;
         margin: 0;
         padding: 0;
@@ -1767,7 +1778,7 @@ input[type='submit'].save_details:active
         text-align: center;
         width: 100%;
     }
-    .top_bar
+    .header_bar
     {
         padding: 0;
         min-height: 94px;

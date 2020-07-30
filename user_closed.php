@@ -9,3 +9,4 @@ include('includes/header.php');
  	<img style='width: 175px; margin-bottom: 10px;' src='assets/images/icons/not-found.png'>
  	<p><a href="index.php">Click here to go back.</a></p>
  </div>
+ <?php include('footer.php'); ?>

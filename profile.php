@@ -465,7 +465,4 @@
 		});
 	};
 	</script>
-	<!-- end wrapper from header -->
-	</div>
-	</body>
-</html>
+<?php include('footer.php'); ?>

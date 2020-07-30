@@ -38,7 +38,7 @@
 		
 	</head>
 	<body>
-		<header class="top_bar">
+		<header class="header_bar bar">
 			<div class="header-wrapper">
 				<div class="logo">
 					<h1>

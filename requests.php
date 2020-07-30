@@ -81,6 +81,4 @@ include('includes/header.php');
 	</div>
 
 
-	</div>
-	</body>
-</html>
+<?php include('footer.php'); ?>

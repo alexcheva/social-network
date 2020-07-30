@@ -10,3 +10,4 @@
 	<p>If you got here by typing randomly in the address bar, stop doing that. You're filling my error logs with unnecessary junk. :)</p>
 	<p><a href="index.php">Go back to the main page.</a></p>
 </div>
+<?php include('footer.php'); ?>
