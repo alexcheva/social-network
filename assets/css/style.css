@@ -464,7 +464,8 @@ span.notification_badge:hover{
 {
     width: 100%;
 }
-.posted_by {
+.posted_by,
+.post_body {
     padding-bottom: 10px;
 }
 
@@ -1895,4 +1896,9 @@ input[type='submit'].save_details:active
     {
     width: 100%;
     margin-bottom: 0px;
+}
+.clearfix::after{
+    content: "";
+    display: table;
+    clear: both;
 }

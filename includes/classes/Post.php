@@ -278,24 +278,25 @@ class Post{
 				</a>
 				";
 
-				$str .= "<div class='status_post'>
+				$str .= "<div class='status_post clearfix'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
 							<div class='post_main'>
-							<div class='posted_by'>
-								<a href='$added_by'>$first_name $last_name</a> $user_to 
-							$delete_button
-							$edit_button
+								<div class='posted_by'>
+									<a href='$added_by'>$first_name $last_name</a> $user_to 
+								$delete_button
+								$edit_button
+								</div>
+								<div class='post_body'>
+									$body
+									$imageDiv
+								</div>
+								<div class='post_time'>
+									$time_message
+								</div>
 							</div>
-							<div class='post_body'>
-								$body
-								$imageDiv
-							</div>
-							<div class='post_time'>
-								$time_message
-							</div>
-							</div>
+						</div>
 							<hr>
 							<div class='newsfeedPostOptions'>
 								<span class='num_comments' onClick='javaScript:toggle$id()'>";
@@ -316,16 +317,15 @@ class Post{
 
 								$str .= "</span>
 								<span>$like_button</span>
-							</div>					
-						</div>
-						<div class='post_comment' id='toggleComment$id' style='display:none;'>
-						   <div class='comments_area'>
-						     <textarea class='comment' id='comment$id' placeholder='Post a comment...'></textarea>
-						     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
-						   </div>"
+							</div>
+							<div class='post_comment' id='toggleComment$id' style='display:none;'>
+							   <div class='comments_area'>
+							     <textarea class='comment' id='comment$id' placeholder='Post a comment...'></textarea>
+							     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
+							   </div>"
 							.$this->getComments($id).
-						"</div>
-						<hr>";
+							"</div>
+							<hr>";
 				}//if friend end if statement
 
 				?>
@@ -520,7 +520,7 @@ class Post{
 				}else{
 					$imageDiv = "";
 				}
-				$str .= "<div class='status_post'>
+				$str .= "<div class='status_post clearfix'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
@@ -763,12 +763,12 @@ class Post{
 					<a href='$posted_by' target='_parent'>
 						<img src='$profile_pic' title='$posted_by' class='comment_profile_img'>
 					</a>
-					<div class='post_main'>
+					<div class='comment_main'>
 						<a href='$posted_by'>
 							$name
 						</a>
 						$delete_button
-						<div class='post_body'>
+						<div class='comment_body'>
 							$comment_body
 						</div>
 						<div class='post_time'>
@@ -895,7 +895,7 @@ class Post{
 				</a>
 				";
 
-				$str .= "<div class='status_post'>
+				$str .= "<div class='status_post clearfix'>
 							<div class='post_profile_pic'>
 								<img class='post_profile_img' src='$profile_pic'>
 							</div>
@@ -912,23 +912,23 @@ class Post{
 									$time_message
 								</div>
 							</div>
-							<hr>
-							<div class='newsfeedPostOptions'>
-								<span class='num_comments' onClick='javaScript:toggle$id()'>
-									Comments ($comments_check_num)
-								</span>
-								<span class='like_value' id='total_like_$id'>";
-								if($total_likes === '1' ){
-									$str .= "$total_likes Like";
-								}
-								else{
-									$str .= "$total_likes Likes";
-								}
-
-								$str .= "</span>
-								<span>$like_button</span>
-							</div>					
 						</div>
+						<hr>
+						<div class='newsfeedPostOptions'>
+							<span class='num_comments' onClick='javaScript:toggle$id()'>
+								Comments ($comments_check_num)
+							</span>
+							<span class='like_value' id='total_like_$id'>";
+							if($total_likes === '1' ){
+								$str .= "$total_likes Like";
+							}
+							else{
+								$str .= "$total_likes Likes";
+							}
+
+							$str .= "</span>
+							<span>$like_button</span>
+						</div>					
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>
 						   <div class='comments_area'>
 						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>

@@ -92,7 +92,7 @@
 				echo $user_array['first_name'] . " " . $user_array['last_name'];
 				?>
 			</a></p>
-		<div class="profile_info">
+		<div class="profile_info clearfix">
 			<a href="<?php echo $username; ?>"><img id="profile_pic" src="<?php echo $user_array['profile_pic']; ?>"></a>
 			<form action="<?php echo $username; ?>" method="POST">
 				<?php 

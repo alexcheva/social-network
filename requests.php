@@ -4,7 +4,7 @@ include('includes/header.php');
 ?>
 	<div class="user_details column profile_left">
 		<a href="<?php echo $userLoggedIn ?>"><img id="profile_pic" src="<?php echo $user['profile_pic']; ?>"></a>
-		<div class="profile_info">
+		<div class="profile_info clearfix">
 			<p><a href="<?php echo $userLoggedIn ?>" id="name">
 				<?php 
 				echo $user['first_name'] . " " . $user['last_name'];
