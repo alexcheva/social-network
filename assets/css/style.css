@@ -450,8 +450,8 @@ span.notification_badge:hover{
 .post_profile_pic
 {
     float: left;
-
-    padding-right: 20px;
+    width: 13%;
+    margin-right: 2%;
 }
 
 .post_profile_img,
@@ -462,7 +462,7 @@ span.notification_badge:hover{
 
 .post_profile_img
 {
-    width: 75px;
+    width: 100%;
 }
 .posted_by {
     padding-bottom: 10px;
@@ -470,7 +470,8 @@ span.notification_badge:hover{
 
 .post_main
 {
-    display: flow-root;
+    display: inline-block;
+    width: 85%;
 }
 
 .post_time,
@@ -1876,14 +1877,7 @@ input[type='submit'].save_details:active
     {
         width: 100%;
     }
-    .post_profile_pic
-    {
-        padding-right: 13px;
-    }
-    .post_profile_img
-    {
-        width: 50px;
-    }
+
     .result_profile_pic
     {
         width: 28%;
