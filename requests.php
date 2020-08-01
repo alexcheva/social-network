@@ -2,6 +2,24 @@
 include('includes/header.php');
 
 ?>
+	<div class="user_details column profile_left">
+		<a href="<?php echo $userLoggedIn ?>"><img id="profile_pic" src="<?php echo $user['profile_pic']; ?>"></a>
+		<div class="profile_info">
+			<p><a href="<?php echo $userLoggedIn ?>" id="name">
+				<?php 
+				echo $user['first_name'] . " " . $user['last_name'];
+				?>
+			</a></p>
+
+			<p><?php
+					echo "Posts: " . $user['num_posts']; ?></p>
+			<p><?php echo "Likes: " . $user['num_likes']; ?></p>
+			<?php 
+			if($user['friend_array'] !== ",")
+			echo "Friends: " . str_replace(",", "<br>", $user['friend_array']); ?>
+			
+		</div>
+	</div>
 	<div class="main_column column profile" id="main_column">
 	<h2>Friend Requests:</h2>
 	<?php 
@@ -61,24 +79,7 @@ include('includes/header.php');
 
 	<div class="results"></div>
 	</div>
-	<div class="user_details column profile_left">
-		<a href="<?php echo $userLoggedIn ?>"><img id="profile_pic" src="<?php echo $user['profile_pic']; ?>"></a>
-		<div class="profile_info">
-			<p><a href="<?php echo $userLoggedIn ?>" id="name">
-				<?php 
-				echo $user['first_name'] . " " . $user['last_name'];
-				?>
-			</a></p>
-
-			<p><?php
-					echo "Posts: " . $user['num_posts']; ?></p>
-			<p><?php echo "Likes: " . $user['num_likes']; ?></p>
-			<?php 
-			if($user['friend_array'] !== ",")
-			echo "Friends: " . str_replace(",", "<br>", $user['friend_array']); ?>
-			
-		</div>
-	</div>
+	
 
 
 <?php include('footer.php'); ?>

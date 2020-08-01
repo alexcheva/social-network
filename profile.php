@@ -254,6 +254,7 @@
 			
 		</div>
 	</div>
+</div>
 	
 
 	<!-- Post on wall -->
