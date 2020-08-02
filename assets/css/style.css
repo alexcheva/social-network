@@ -450,7 +450,7 @@ span.notification_badge:hover{
 .post_profile_pic
 {
     float: left;
-    width: 13%;
+    width: 10%;
     margin-right: 2%;
 }
 
@@ -472,7 +472,7 @@ span.notification_badge:hover{
 .post_main
 {
     display: inline-block;
-    width: 85%;
+    width: 88%;
 }
 
 .post_time,
