@@ -137,8 +137,7 @@ Maximum Resolution: http://img.youtube.com/vi/G0wGs3useV8/maxresdefault.jpg (192
 		if(window.matchMedia( "(max-width: 768px)" ).matches) {
 			for (var i = 0; i < youtube.length; i++) {
 
-				youtube[i].innerHTML = "<div class='youtube-play' style='width: 320px; height: 180px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/mqdefault.jpg);'><img class='youtube-logo'  style='width: 20%; height: auto; position: relative; top: 66px; left: 128px;' src='assets/images/icons/youtube.png'></div>";
-				youtube_img = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'>";
+				youtube[i].innerHTML = "<div class='youtube-play' style='width: 320px; height: 180px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/mqdefault.jpg);'><img class='youtube-logo' src='assets/images/icons/youtube.png'></div>";
 		    
 		    	youtube[i].addEventListener( "click", function() {
 
@@ -149,8 +148,7 @@ Maximum Resolution: http://img.youtube.com/vi/G0wGs3useV8/maxresdefault.jpg (192
 		} else{
 				for (var i = 0; i < youtube.length; i++) {
 
-				youtube[i].innerHTML = "<div class='youtube-play' style='width: 480px; height: 360px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg);'><img class='youtube-logo'  style='width: 20%; height: auto; position: relative; top: 140px; left: 190px;' src='assets/images/icons/youtube.png'></div>";
-				youtube_img = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'>";
+				youtube[i].innerHTML = "<div class='youtube-play' style='width: 480px; height: 360px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg);'><img class='youtube-logo' src='assets/images/icons/youtube.png'></div>";
 		    
 		    	youtube[i].addEventListener( "click", function() {
 
