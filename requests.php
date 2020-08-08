@@ -15,8 +15,16 @@ include('includes/header.php');
 					echo "Posts: " . $user['num_posts']; ?></p>
 			<p><?php echo "Likes: " . $user['num_likes']; ?></p>
 			<?php 
-			if($user['friend_array'] !== ",")
-			echo "Friends: " . str_replace(",", "<br>", $user['friend_array']); ?>
+			if($user['friend_array'] !== ","){
+				$friend_array = preg_split("/[\s,]+/", $user['friend_array']);
+				foreach($friend_array as $key => $value) {
+					$value = "<a href='". $value ."'>". $value ."</a>";
+					$friend_array[$key] = $value;
+				}
+				$friends = implode("<br>", $friend_array);
+				echo "Friends: " . $friends;
+			}
+			?>
 			
 		</div>
 	</div>

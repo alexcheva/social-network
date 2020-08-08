@@ -70,6 +70,15 @@ class User{
 		else
 			return false;
 	}
+	public function isBlocked(){
+		$username = $this->user['username'];
+		$query = mysqli_query($this->con, "SELECT user_blocked FROM users WHERE username='$username'");
+		$row = mysqli_fetch_array($query);
+		if($row['user_blocked'] == 'yes')
+			return true;
+		else
+			return false;
+	}
 	public function isFriend($username_to_check){
 		$usernameComma = "," . $username_to_check . ",";
 
@@ -125,7 +134,7 @@ class User{
 		$user_array_explode = explode(",", $user_array);
 		$query = mysqli_query($this->con, "SELECT friend_array FROM users WHERE username='$user'");
 		foreach($user_array_explode as $i){
-			echo $i;
+			echo "<a href='".$i."'>".$i."</a>";
 		}
 	}
 	public function getMutualFriends($user_to_check){

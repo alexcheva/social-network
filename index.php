@@ -43,7 +43,7 @@
 	}
 ?>
 
-	<div class="user_details column">
+	<aside class="user_details column">
 		<a href="<?php echo $userLoggedIn ?>">
 			<img id="profile_pic" src="<?php echo $user['profile_pic']; ?>">
 		</a>
@@ -60,8 +60,9 @@
 				?>
 			</p>
 		</div>		
-	</div>
-	<div class="main_column column">
+	</aside>
+
+	<section class="main_column column">
 		
 		<form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
 
@@ -85,7 +86,7 @@
 		<hr>
 		<div class="posts_area"></div>
 		<img id="loading" src="assets/images/icons/loading.gif">
-	</div>
+	</section>
 
 	<script>
 
