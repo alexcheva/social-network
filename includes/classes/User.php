@@ -82,7 +82,8 @@ class User{
 	public function banUser($user_to_ban){
 		$logged_in_user = $this->user['username'];
 
-		$query = mysqli_query($this->con, "UPDATE users SET user_blocked='yes' WHERE username='$user_to_ban'");
+		$block_user = mysqli_query($this->con, "UPDATE users SET user_blocked='yes' WHERE username='$user_to_ban'");
+		$block_user_posts = mysqli_query($this->con, "UPDATE posts SET user_closed='yes' WHERE added_by='$user_to_ban'");
 	}
 	public function isFriend($username_to_check){
 		$usernameComma = "," . $username_to_check . ",";

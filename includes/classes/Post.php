@@ -162,7 +162,7 @@ class Post{
 			$start = ($page - 1) * $limit;
 		
 		$str = ""; //string to return
-		$data_query = mysqli_query($this->con, "SELECT * FROM posts ORDER BY id DESC");
+		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE user_closed='no' ORDER BY id DESC");
 		//if there are posts:
 		if(mysqli_num_rows($data_query) > 0){
 
@@ -419,15 +419,22 @@ class Post{
 		
 		$str = ""; //string to return
 		//show only posts that are not addressed to anybody or addressed to this user
-		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername') ORDER BY id DESC");
+		$data_query = mysqli_query($this->con, "SELECT * FROM posts WHERE (user_closed='no' AND ((added_by='$profileUsername' AND user_to='none') OR user_to='$profileUsername')) ORDER BY id DESC");
+
 		//if there are no posts:
 			if(mysqli_num_rows($data_query) == 0){
-				$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet! ";
-				if($userLoggedIn == $profileUsername){
-					$str .= "Try <a href='requests.php'>adding friends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>post something</a>!";
+				if($user_logged_obj->isBlocked()){
+					$str = "<input type='hidden' class='noMorePosts' value='true'><p class='error'>You have been BANNED by Admin and your posts have been hidden.";
 				}
 				else{
+					$str = "<input type='hidden' class='noMorePosts' value='true'><p class='no_posts_p'> There are no posts to show yet! ";
+
+					if($userLoggedIn == $profileUsername){
+					$str .= "Try <a href='requests.php'>adding friends</a> or <a href='#' data-toggle='modal' data-target='#post_form'>post something</a>!";
+					}
+					else{
 					$str .= "Add user to friends to post on their wall.";
+					}
 				}
 			$str .= "</p>";
 			}
