@@ -55,9 +55,7 @@ if(isset($_POST['register_button'])){
 	else {
 		array_push($error_array, "<span class='error'>Emails don't match.</span>");
 	}
-	// if(strlen($username) > 30 || strlen($username) < 3) {
-	// 	array_push($error_array, "<span class='error'>Your username must be between 3 and 30 characters.</span>");
-	// }
+
 	if(preg_match('/^[a-z\d_]{5,25}$/i', $username)){
 		$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
 		$num_rows = mysqli_num_rows($check_username_query);
@@ -88,17 +86,6 @@ if(isset($_POST['register_button'])){
 	}
 	if(empty($error_array)){
 		$password = md5($password); //ecrypt password
-
-		//Genarate username by concatentaing first name and last name
-		// $username = strtolower($fname . "_" . $lname);
-		// $check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
-		//if username exists add number to username
-		// $i = 0;
-		// while(mysqli_num_rows($check_username_query) != 0) {
-		// 	$i ++; 
-		// 	$username = $username . "_" . $i;
-		// 	$check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
-		// }
 
 		//Profile picture assignment
 		$rand = rand(1, 2); //random number between 1 and 2
