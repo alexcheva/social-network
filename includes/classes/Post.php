@@ -565,14 +565,19 @@ class Post{
 								<span>$like_button</span>
 							</div>					
 						</div>
-						<div class='post_comment' id='toggleComment$id' style='display:none;'>
-						   <div class='comments_area'>
-						     <textarea id='comment_textarea$id' placeholder='Post a comment...'></textarea>
-						     <input class='comment_btn' type='button' onclick='sendComment($id)' value='Send'>
-						   </div>"
-							.$this->getComments($id).
-						"</div>
-						<hr>";
+						<div class='post_comment' id='toggleComment$id' style='display:none;'>";
+							if($user_logged_obj->isBlocked($userLoggedIn))
+								$str .= '<p class="error">You are BANNED and no longer allowed to comment.</p>';
+							else {
+								$str .= "
+								   <div class='comments_area'>
+								     <textarea id='comment_textarea$id' placeholder='Post a comment...'></textarea>
+								     <input class='comment_btn' type='button' onclick='sendComment($id)' value='Send'>
+								   </div>";
+							}
+							$str .= $this->getComments($id).
+							"</div>
+							<hr>";
 
 				?>
 				<script>
@@ -934,12 +939,17 @@ class Post{
 							$str .= "</span>
 							<span>$like_button</span>
 						</div>					
-						<div class='post_comment' id='toggleComment$id' style='display:none;'>
-						   <div class='comments_area'>
-						     <textarea id='comment$id' placeholder='Post a comment...'></textarea>
-						     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
-						   </div>"
-							.$this->getComments($id).
+						<div class='post_comment' id='toggleComment$id' style='display:none;'>";
+						if($user_logged_obj->isBlocked($userLoggedIn))
+							$str .= '<p class="error">You are BANNED and no longer allowed to comment.</p>';
+						else {
+							$str .= "
+							   <div class='comments_area'>
+							     <textarea id='comment_textarea$id' placeholder='Post a comment...'></textarea>
+							     <input class='comment_btn' type='button' onclick='sendComment($id)' value='Send'>
+							   </div>";
+						}
+						$str .= $this->getComments($id).
 						"</div>
 						<hr>";
 			?>
