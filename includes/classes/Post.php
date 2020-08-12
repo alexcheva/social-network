@@ -318,12 +318,17 @@ class Post{
 								$str .= "</span>
 								<span>$like_button</span>
 							</div>
-							<div class='post_comment' id='toggleComment$id' style='display:none;'>
+							<div class='post_comment' id='toggleComment$id' style='display:none;'>";
+							if($user_logged_obj->isBlocked($userLoggedIn))
+								$str .= '<p class="error">You are BANNED and no longer allowed to comment.</p>';
+							else{
+							$str .= "
 							   <div class='comments_area'>
 							     <textarea class='comment' id='comment$id' placeholder='Post a comment...'></textarea>
 							     <input type='button' class='comment_btn' onclick='sendComment($id)' value='Send'>
-							   </div>"
-							.$this->getComments($id).
+							   </div>";
+							}
+							$str .= $this->getComments($id).
 							"</div>
 							<hr>";
 				}//if friend end if statement

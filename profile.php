@@ -48,7 +48,7 @@
 		$new_bands = strip_tags($_POST['bands']);
 
 		if($new_about == "" && $new_interests == "" && $new_bands == "")
-			$error = "<p class='message error'>Nothing to update. The fields are empty.</p>";
+			$error = "<p class='message error errorMessage'>Nothing to update. The fields are empty.</p>";
 		else if($row > 0){
 			$query = mysqli_query($con, "UPDATE details SET about='$new_about', interests='$new_interests', bands='$new_bands' WHERE username='$userLoggedIn'");
 			$message = "<p class='message success'>Profile details have been successfully updated!</p>";
@@ -426,7 +426,7 @@
 		$("#about_div").removeClass("fade").addClass("active");
 	};
 
-	if($(".error").length){
+	if($(".errorMessage").length){
 		$("#about_div").removeClass("active").addClass("fade");
 		$("#edit_about").removeClass("fade").addClass("active");
 	}
