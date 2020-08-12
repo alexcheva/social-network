@@ -137,7 +137,14 @@
 					echo $logged_in_user_obj->getMutualFriends($username);
 					echo '</p>';
 				}
-				if($logged_in_user_obj ->isFriend($username))
+				if($logged_in_user_obj->isBlocked()){
+					echo '<p class="error">You have been BANNED by Admin. You are no longer allowed to post or comment.</p>';
+				}
+				else if($profile_user_obj->isBlocked()){
+					echo '<p class="error">This user has been BANNED by Admin.</p>';
+				}
+
+				else if($logged_in_user_obj ->isFriend($username))
 					echo '<input type="submit" data-toggle="modal" data-target="#post_form" value="Post Something">';
 			?>
 			
