@@ -26,6 +26,7 @@ form {
 }
 input{
 	padding: 5px 10px;
+	border-radius: 0;
 	margin-bottom: 10px;
 	background-color: black;
 	color: white;
@@ -37,7 +38,8 @@ input:hover{
 	border-color: #d500ff;
 }
 input[type="submit"] {
-	padding: 5px 10px;
+	border-radius: 0;
+	background-color: #000;
 	margin-top: 10px;
 }
 input[type="submit"]:hover {
@@ -77,10 +79,9 @@ a:active{
 .login-box{
 	border-radius: 11px;
     background-color: rgba(0, 0, 0, 0.54);
-    padding-top: 3px;
 	position: relative;
-	margin-right: auto;
-	margin-left: auto;
+	margin: 0 auto;
+	padding: 20px 30px;
 	top: 7%;
 	width: 35%;
 	min-width: 320px;
