@@ -61,9 +61,9 @@
 		}
 
 	}
-	if(isset($_POST['delete_about'])){
-	$delete_about = mysqli_query($con, "DELETE FROM details WHERE username='$userLoggedIn'");
-	header("Location: profile.php");
+	if(isset($_POST['ban_user'])){
+		$user = new User($con, $userLoggedIn);
+		$user->banUser($username);
 	}
 	
 	//when remove friend button pressed
@@ -71,19 +71,23 @@
 		$user = new User($con, $userLoggedIn);
 		//pass the parameter into removeFriend function
 		$user->removeFriend($username);
-		echo "<script>bootbox.alert('Friend has been removed!');</script>";
 	}
 	//when add friend button pressed
 	if(isset($_POST['add_friend'])){
 		$user = new User($con, $userLoggedIn);
 		//pass the parameter into sendRequest( function
 		$user->sendRequest($username);
-		echo "<script>bootbox.alert('Friend request has been sent!');</script>";
 	}
 	//when respond_request button pressed redirect to requests
 	if(isset($_POST['respond_request'])){
 		header("Location: requests.php");
 	}
+
+	if(isset($_POST['delete_about'])){
+	$delete_about = mysqli_query($con, "DELETE FROM details WHERE username='$userLoggedIn'");
+	header("Location: profile.php");
+	}
+	
 
 ?>
 	<div class="user_details column profile_left">
@@ -101,6 +105,12 @@
 						header("Location: user_closed.php");
 					}
 					$logged_in_user_obj = new User($con, $userLoggedIn); 
+					if($logged_in_user_obj->isAdmin($userLoggedIn)){
+						if($profile_user_obj->isBlocked()){
+							echo '<input class="default" type="submit" value="USER BANNED">';
+						}else
+						echo '<input class="danger" type="submit" name="ban_user" onClick="showAlert("The user has been sucessfully blocked!")" value="BAN USER">';
+					}
 					//if they are friends
 					if($userLoggedIn != $username) {
 						if($logged_in_user_obj ->isFriend($username)){
@@ -373,6 +383,7 @@
 	        );
 	    }
 	});
+	
 	//tabs functionality
 	$("#about").on('click', function(){
 		$("#newsfeed").removeClass("active_tab");

@@ -70,6 +70,20 @@ class User{
 		else
 			return false;
 	}
+	public function isBlocked(){
+		$username = $this->user['username'];
+		$query = mysqli_query($this->con, "SELECT user_blocked FROM users WHERE username='$username'");
+		$row = mysqli_fetch_array($query);
+		if($row['user_blocked'] == 'yes')
+			return true;
+		else
+			return false;
+	}
+	public function banUser($user_to_ban){
+		$logged_in_user = $this->user['username'];
+
+		$query = mysqli_query($this->con, "UPDATE users SET user_blocked='yes' WHERE username='$user_to_ban'");
+	}
 	public function isFriend($username_to_check){
 		$usernameComma = "," . $username_to_check . ",";
 
