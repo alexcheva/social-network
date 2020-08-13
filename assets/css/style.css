@@ -224,6 +224,8 @@ h1 a:active
     width: 37%;
     margin: 0 auto;
 }
+.search_button{
+    display: none;}
 
 /* ---- Navigation ---- */
 
@@ -254,6 +256,9 @@ nav a:active
 
     color: purple;
 }
+.profile_button{
+    display: none;
+}
 
 /* ================================= 
    Notifications and Dropdowns
@@ -281,17 +286,6 @@ nav a:active
 span.notification_badge:hover{
     color: white;
 }
-/*#unread_notification
-{
-    top: 6px;
-    right: 49px;
-}
-#unread_request
-{
-    top: 15px;
-    right: 92px;
-}*/
-
 /* ---- Dropdown ---- */
 .dropdown_data_window
 {
@@ -1662,10 +1656,7 @@ input[type='submit'].save_details:active
         color: purple;
     }
 }
-@media only screen and (max-width: 830px){
 
-
-}
 @media only screen and (max-width: 960px){
     h1{
         font-size: 2.3rem;
@@ -1687,6 +1678,9 @@ input[type='submit'].save_details:active
     #username{
         display: none;
     }
+    .profile_button{
+        display: inline-block;
+    }
 	nav a {
 	    padding: 1px;
 	}
@@ -1696,9 +1690,6 @@ input[type='submit'].save_details:active
 }
 
 @media only screen and (max-width: 744px) and (min-width: 647px) {
-    #moj{
-        display: none;
-    }
     .logo{
         margin-right: 11px;
     }
@@ -1709,7 +1700,8 @@ input[type='submit'].save_details:active
     .main_column{
         width: 100%;
     }
-    .user_details{
+     #moj,
+     .user_details{
         display: none;
     }
 
@@ -1742,7 +1734,7 @@ input[type='submit'].save_details:active
         margin-top: 10px;
     }
     .footer_bar{
-        height: auto;
+        height: 65px;
     }
     .wrapper
     {
@@ -1763,8 +1755,9 @@ input[type='submit'].save_details:active
 
         margin-bottom: 20px;
     }
-    #mobile_profile_info_data
-    {
+    #mobile_profile_info_data,
+    .search_button,
+    .profile_button{
         display: inline-block;
     }
     .header-wrapper{
@@ -1783,10 +1776,7 @@ input[type='submit'].save_details:active
         margin-right: 0px;
 
     }
-    .moj{
-        display: none;
-    }
-    .vm_search{
+    .show_search{
         display: block;
         padding-bottom: 5px;
         top: -2px;
@@ -1863,7 +1853,8 @@ input[type='submit'].save_details:active
     .profile {
         border-top: none;
     }
-    .profile-name {
+    .profile-name,
+    .vm_search{
         display: none;
     }
 

@@ -78,7 +78,7 @@
 					<a href="index.php">
 						<i class="fas fa-home"></i>
 					</a>
-					<a href="<?php echo $userLoggedIn ?>">
+					<a class="profile_button" href="<?php echo $userLoggedIn ?>">
 						<i class="fas fa-user-circle"></i>
 					</a>
 					<a href="requests.php">
@@ -86,14 +86,12 @@
 						<?php if($num_requests > 0)
 							echo '<span id="unread_request" class="notification_badge">'.$num_requests.'</span>';
 						?>
-						<!-- <span id="unread_request" class="notification_badge">5</span> -->
 					</a>
 					<a href="messages.php">
 						<i class="fas fa-envelope"></i>
 						<?php if($num_messages > 0)
 							echo '<span id="unread_message" class="notification_badge">'.$num_messages.'</span>';
 						?>
-						<!-- <span id="unread_message" class="notification_badge">5</span> -->
 					</a>
 					<a href="javaScript:void(0)" onClick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
 						<i class="fas fa-bell"></i>

@@ -71,9 +71,9 @@ include('includes/header.php');
 	<h4>Friend Search:</h4>
 	<p>Find users</p>
 
-	<form action="search_page.php" method="GET" name="search_form">
+	<form action="search.php" method="GET" name="search_form">
 		<input type="text" onkeyup="getUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_page_text_input">
-		<input type="submit" name="find" value="Search">
+		<input type="submit" name="find" value="Search" style="display: inline-block;">
 
 	</form>
 

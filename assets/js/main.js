@@ -1,27 +1,10 @@
 $(document).ready(function(){
 
-	// $(".search_button").on('click', function(){
-	// 	$("#search").show();
-	// 	$("#search").hide();
-	// });
-	// $('#search_text_input').focus(function(){
-		//if device is larger than 800px
 	$(".search_button").on('click', function(){
-		$("#search").toggleClass("hide");
 		$("#search").toggleClass("vm_search");
+		$("#search").toggleClass("show_search");
 	});
-
-	if(window.matchMedia( "(min-width: 800px)" ).matches) {
-		$("#search").toggleClass("hide");
-		$("#search").toggleClass("vm_search");
-	};
-
-	if(window.matchMedia( "(max-width: 500px)" ).matches) {
-		$("#search").toggleClass("vm_search");
-		$("#search").toggleClass("hide");
-	};
-	//});
-	const showAlert = message => bootbox.alert(message);
+	
 	//submit form when click on button holder div
 	$(".button_holder").on('click', function(){
 		document.search_form.submit();
