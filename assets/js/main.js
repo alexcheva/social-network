@@ -21,7 +21,7 @@ $(document).ready(function(){
 		$("#search").toggleClass("hide");
 	};
 	//});
-	const showAlert = message => alert(message);
+	const showAlert = message => bootbox.alert(message);
 	//submit form when click on button holder div
 	$(".button_holder").on('click', function(){
 		document.search_form.submit();

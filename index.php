@@ -86,7 +86,7 @@
 				<i class="fas fa-file-image" id="toggle_file_upload"></i>
 			</a>
 			<input type="file" name="fileToUpload" id="fileToUpload" class="hide">
-		 	<input type="submit" name="post" id="post_button" value="Post">
+		 	<input type="submit" onclick="showAlert('Sucessfully submited!')" name="post" id="post_button" value="Post">
 
 		</form>
 	<?php } ?>

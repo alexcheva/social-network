@@ -6,5 +6,6 @@
 		</div>
 	</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-	</body>
+<script>const showAlert = message => bootbox.alert(message);</script>	
+</body>
 </html>

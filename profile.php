@@ -5,6 +5,7 @@
 		$username = $_GET['profile_username'];
 		$user_details_query = mysqli_query($con, "SELECT * FROM users WHERE username='$username'");
 		$user_array = mysqli_fetch_array($user_details_query);
+		$opened_query = mysqli_query($con, "UPDATE notifications SET opened='yes' WHERE user_to='$userLoggedIn' AND link='$username'");
 
 		if($user_array == 0){
 			echo '<div class="main_column column" id="main_colum">
@@ -105,11 +106,11 @@
 						header("Location: user_closed.php");
 					}
 					$logged_in_user_obj = new User($con, $userLoggedIn); 
-					if($logged_in_user_obj->isAdmin($userLoggedIn)){
+					if($logged_in_user_obj->isAdmin($userLoggedIn)&& $userLoggedIn != $username){
 						if($profile_user_obj->isBlocked()){
 							echo '<input class="default" type="submit" value="USER BANNED">';
 						}else
-						echo '<input class="danger" type="submit" name="ban_user" onClick="showAlert("The user has been sucessfully blocked!")" value="BAN USER">';
+						echo '<input class="danger" type="submit" name="ban_user" onClick="showAlert(\'The user has been sucessfully blocked!\')" value="BAN USER">';
 					}
 					//if they are friends
 					if($userLoggedIn != $username) {
@@ -298,7 +299,7 @@
 
 	      <div class="modal-footer">
 	        <button type="button" id="ignore" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" id="submit_profile_post" class="btn btn-primary" name="post_button">Post</button>
+	        <button type="button" id="submit_profile_post" class="btn btn-primary" onclick="showAlert('Sucessfully submited!')" name="post_button">Post</button>
 	      </div>
 	    </div>
 	  </div>

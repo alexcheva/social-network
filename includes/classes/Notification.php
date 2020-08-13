@@ -27,7 +27,7 @@ class Notification{
 			$start = ($page - 1) * $limit;
 
 		$set_viewed_query = mysqli_query($this->con, "UPDATE notifications SET viewed='yes' WHERE user_to='$userLoggedIn'");
-		$query = mysqli_query($this->con, "SELECT * FROM notifications WHERE user_to='$userLoggedIn' ORDER BY id DESC");
+		$query = mysqli_query($this->con, "SELECT * FROM notifications WHERE user_to='$userLoggedIn' AND opened='no' ORDER BY id DESC");
 
 		if(mysqli_num_rows($query) == 0) {
 			echo "<p>You have no notifications!</p>";
@@ -54,7 +54,7 @@ class Notification{
 
 			$opened = $row['opened'];
 			//hightlight unread messages:
-			$style = (isset($row['opened']) && $row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
+			//$style = (isset($row['opened']) && $row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
 
 			$return_string .= "<a href='". $row['link'] . "'>
 								<div class='notification'>
