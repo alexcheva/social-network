@@ -364,7 +364,7 @@ span.notification_badge:hover{
 {
     position: relative;
     padding-top: 75px;
-    height: calc(100vh - 50px);
+    min-height: calc(100vh - 50px);
 }
 .column
 {
@@ -1026,6 +1026,18 @@ input[type='submit'].default:active
     width: 100%;
     height: 100%;
 }*/
+/* Message youtube */
+.youtube-play{
+    position: relative;
+}
+.youtube-logo{
+    width: 20%; 
+    height: auto; 
+    position: absolute; 
+    top: 40%; 
+    left: 41%; 
+    /*src='assets/images/icons/youtube.png*/
+}
 /* ---- Emoji ---- */
 .emojione
 {
@@ -1739,7 +1751,7 @@ input[type='submit'].save_details:active
     .wrapper
     {
         top: 130px;
-        height: calc(100vh - 65px);
+        min-height: calc(100vh - 65px);
         width: 100%;
         margin: 0;
         padding: 0;

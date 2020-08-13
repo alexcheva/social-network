@@ -79,12 +79,14 @@ class User{
 		else
 			return false;
 	}
+
 	public function banUser($user_to_ban){
 		$logged_in_user = $this->user['username'];
 
 		$block_user = mysqli_query($this->con, "UPDATE users SET user_blocked='yes' WHERE username='$user_to_ban'");
 		$block_user_posts = mysqli_query($this->con, "UPDATE posts SET user_closed='yes' WHERE added_by='$user_to_ban'");
 	}
+
 	public function isFriend($username_to_check){
 		$usernameComma = "," . $username_to_check . ",";
 
@@ -140,7 +142,7 @@ class User{
 		$user_array_explode = explode(",", $user_array);
 		$query = mysqli_query($this->con, "SELECT friend_array FROM users WHERE username='$user'");
 		foreach($user_array_explode as $i){
-			echo $i;
+			echo "<a href='".$i."'>".$i."</a>";
 		}
 	}
 	public function getMutualFriends($user_to_check){
