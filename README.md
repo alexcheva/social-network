@@ -85,10 +85,10 @@ CREATE TABLE details(
 ```
 <br/>
 I would like to:<br/>
-1. Implement the option to post posts as global or friends only.<br/>
-2. Show global posts to everyone, without option to comment or like.<br/>
-3. Show friends only posts to user friends.<br/>
-4. Add login/register to top right nav bar, if user is not logged in.<br/>
+1. Add option to post globally or to friends only.<br/>
+2. Show global posts to everyone.<br/>
+3. Unregistered users can't comment or like.<br/>
+4. If user is not logged in, add login/register to top right nav bar.<br/>
 ✔ 5. Add media queries for mobile devices.<br/>
 ✔ 6. Add notifications.<br/>
 ✔ 7. Add about user.<br/>
@@ -100,9 +100,9 @@ I would like to:<br/>
 ✔ 13. Delete comments.<br/>
 ✔ 14. Edit comments.<br/>
 ✔ 15. Delete messages.
-16. Put all js into one file.
-17. Add paste image url.
-✔ 18. Add block user option.
-✔ 19. Add admins.
-✔ 20. Choose username.
-21. Change username.
+16. Put all js into one file.<br/>
+17. Add paste image url.<br/>
+✔ 18. Add block user option.<br/>
+✔ 19. Add admins.<br/>
+✔ 20. Choose username.<br/>
+21. Change username.<br/>
