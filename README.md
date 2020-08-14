@@ -99,7 +99,7 @@ I would like to:<br/>
 ✔ 12. Edit post functionality.<br/>
 ✔ 13. Delete comments.<br/>
 ✔ 14. Edit comments.<br/>
-✔ 15. Delete messages.
+✔ 15. Delete messages.<br/>
 16. Put all js into one file.<br/>
 17. Add paste image url.<br/>
 ✔ 18. Add block user option.<br/>
