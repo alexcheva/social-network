@@ -1,13 +1,6 @@
 # social-network
 PHP, MySQL, jQuery, Bootstrap, FontAwesome
 -------------
-WORDKING ON LIKES:
-1.assets/css/style.css : linnes 312 to 331; <br/>
-2.assets/js/main.js : lines 145 to 150; <br/>
-3.includes/classes/Post.php : lines 217 to 233; <br/>
-
---------------
-
 Need to install XAMPP for it to work.<br/>
 Then copy git into htdocs folder.<br/>
 Then create database in phpmyadmin called "**social**."<br/>
@@ -25,6 +18,7 @@ CREATE TABLE users(
     num_posts INT(11) NOT NULL,
     num_likes INT(11) NOT NULL,
     user_closed VARCHAR(3) NOT NULL,
+    user_blocked VARCHAR(3) NOT NULL,
     admin VARCHAR(3) NOT NULL,
     friend_array TEXT NOT NULL
 ); 
@@ -95,19 +89,20 @@ I would like to:<br/>
 2. Show global posts to everyone, without option to comment or like.<br/>
 3. Show friends only posts to user friends.<br/>
 4. Add login/register to top right nav bar, if user is not logged in.<br/>
-5. Add media queries for mobile devices.<br/>
-6. Add notifications.<br/>
-7. Add about user.<br/>
-~~8. Add user settings.~~<br/>
-~~9. Add live search.~~<br/>
-10. Add emoji to posts.<br/>
-11. Add videos/pictures to posts.<br/>
-12. Edit post functionality.<br/>
-~~13. Delete comments.~~<br/>
-14. Edit comments.<br/>
-15. Delete messages.
+✔ 5. Add media queries for mobile devices.<br/>
+✔ 6. Add notifications.<br/>
+✔ 7. Add about user.<br/>
+✔ 8. Add user settings.<br/>
+✔ 9. Add live search.<br/>
+✔ 10. Add emoji to posts.<br/>
+✔ 11. Add videos/pictures to posts.<br/>
+✔ 12. Edit post functionality.<br/>
+✔ 13. Delete comments.<br/>
+✔ 14. Edit comments.<br/>
+✔ 15. Delete messages.
 16. Put all js into one file.
 17. Add paste image url.
-
-<br/>
-Thanks for looking it over, Gabriel!<br/>
+✔ 18. Add block user option.
+✔ 19. Add admins.
+✔ 20. Choose username.
+21. Change username.
