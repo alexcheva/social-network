@@ -191,6 +191,7 @@ class Post{
 				}else{
 					$visibility = '<i class="fas fa-user-friends post_time"></i>';
 				}
+				
 				//check is user have their account closed
 				$added_by_obj = new User($this->con, $added_by);
 				if($added_by_obj->isClosed()){

@@ -14,13 +14,13 @@
 	$post_author = $row['added_by'];
 	$global = $row['global'];
 
-	// if($global=='yes'){
-	// 	$global_check = 'checked="checked"';
-	// 	$friends_only = '';
-	// }else{
-	// 	$friends_only = 'checked="checked"';
-	// 	$global_check = '';
-	// }
+	if($global=='yes'){
+		$global_check = 'checked="checked"';
+		$friends_only = '';
+	}else{
+		$friends_only = 'checked="checked"';
+		$global_check = '';
+	}
 
 	if($post_image_src != "")
 		$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$post_image_src'></a></div>";
@@ -102,12 +102,16 @@
 			$new_post_body = implode(" ", $body_array);
 			$new_post_body = mysqli_real_escape_string($con, $new_post_body);
 			$visibility = $_POST['visibility'];
-			if($visibility == 'global')
+			if($visibility == 'global'){
 				$global = 'yes';
-			else
+				$global_check = 'checked="checked"';
+				$friends_only = '';
+			}else{
 				$global = 'no';
-
-			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' AND global='$global' WHERE id='$id'");
+				$global_check = '';
+				$friends_only = 'checked="checked"';
+			}
+			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body', global='$global' WHERE id='$id'");
 
 			//remake newpost body into post body:
 
