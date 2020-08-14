@@ -199,7 +199,7 @@ class Post{
 				}
 
 				$user_logged_obj = new User($this->con, $userLoggedIn);
-				if($user_logged_obj->isFriend($added_by)){
+				if($user_logged_obj->isFriend($added_by)||$global == 'yes'){
 					//check if there are posts
 					$posts = mysqli_query($this->con, "SELECT * FROM posts WHERE added_by='$added_by' OR added_by='$userLoggedIn'");
 					if(mysqli_num_rows($posts) == 0){
@@ -299,7 +299,7 @@ class Post{
 									$imageDiv
 								</div>
 								<div class='post_time'>
-									$time_message $visibility
+									$visibility $time_message
 								</div>
 							</div>
 						</div>
@@ -457,6 +457,7 @@ class Post{
 				$added_by = $row['added_by'];
 				$user_to = $row['user_to'];
 				$date_time = $row['date_added'];
+				$global = $row['global'];
 				$imagePath = $row['image'];
 
 				if($num_iterations++ < $start)
@@ -512,6 +513,12 @@ class Post{
 				//Time frame
 				$time_message = $this->getTime($date_time);
 
+				if($global == 'yes'){
+					$visibility = '<i class="fas fa-globe post_time"></i>';
+				}else{
+					$visibility = '<i class="fas fa-user-friends post_time"></i>';
+				}
+
 				//Number of likes from posts:
 				$get_likes = mysqli_query($this->con, "SELECT likes FROM posts WHERE id='$id'");
 				$row = mysqli_fetch_array($get_likes);
@@ -550,7 +557,7 @@ class Post{
 									$body
 								</div>$imageDiv
 								<div class='post_time'>
-									$time_message
+									$visibility $time_message
 								</div>
 							</div>
 						</div>

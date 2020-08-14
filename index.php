@@ -89,9 +89,9 @@
 		<form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
 			<textarea name="post_text" id="post_text"  placeholder="Write a post"></textarea>
 			<div class="visibility"><input type="radio" id="global" name="visibility" value="global" checked="checked">
-			<i class="fas fa-globe radio"></i> Global
+			<i class="fas fa-globe radio"></i>
 			<input type="radio" id="friends_only" name="visibility" value="friends_only">
-			<i class="fas fa-user-friends radio"></i> Friends only
+			<i class="fas fa-user-friends radio"></i>
 			</div>
 			<a href="javaScript:void(0)" onClick="showFileUpload()">
 				<i class="fas fa-file-image" id="toggle_file_upload"></i>
