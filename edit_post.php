@@ -12,6 +12,15 @@
 	$post_body = $row['body'];
 	$post_image_src = $row['image'];
 	$post_author = $row['added_by'];
+	$global = $row['global'];
+
+	// if($global=='yes'){
+	// 	$global_check = 'checked="checked"';
+	// 	$friends_only = '';
+	// }else{
+	// 	$friends_only = 'checked="checked"';
+	// 	$global_check = '';
+	// }
 
 	if($post_image_src != "")
 		$post_image = "<div><a href='$post_image_src' target='_blank'><img class='postedImages' src='$post_image_src'></a></div>";
@@ -38,7 +47,7 @@
 	$message = "";
 	$errorImage = "";
 
-	if(isset($_POST['save_post'])){ 
+	if(isset($_POST['save_post'])){
 
 		$new_post_body = strip_tags($_POST['new_post']);
 
@@ -92,8 +101,13 @@
 
 			$new_post_body = implode(" ", $body_array);
 			$new_post_body = mysqli_real_escape_string($con, $new_post_body);
+			$visibility = $_POST['visibility'];
+			if($visibility == 'global')
+				$global = 'yes';
+			else
+				$global = 'no';
 
-			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' WHERE id='$id'");
+			$query = mysqli_query($con, "UPDATE posts SET body='$new_post_body' AND global='$global' WHERE id='$id'");
 
 			//remake newpost body into post body:
 
@@ -256,6 +270,12 @@
 			<?php echo $message; ?>
 			<form action="edit_post.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
 				<textarea name="new_post" cols="30" rows="10" placeholder="Write Something"><?php echo $post_body; ?></textarea>
+				<div class="visibility">
+				<input type="radio" name="visibility" value="global" <?php echo $global_check; ?>>
+				<i class="fas fa-globe radio"></i>
+				<input type="radio" name="visibility" value="friends_only" <?php echo $friends_only; ?>>
+				<i class="fas fa-user-friends radio"></i>
+				</div>
 				<?php if ($post_image == ""){ ?>
 					<input type="file" name="fileToUpload" id="fileToUpload">
 				<?php } ?>
@@ -268,7 +288,6 @@
 				<?php echo $errorImage; ?>
 				<?php echo $post_image; ?>
 				<form action="edit_post.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
-
 					<input type="file" name="fileToUpload" id="fileToUpload">
 				 	<input type="submit" name="update_image" class="warning inline" value="Change Image">
 				 	<input type="submit" name="delete_image" class="danger inline" value="Delete Image">

@@ -190,7 +190,6 @@ class Post{
 					$visibility = '<i class="fas fa-globe post_time"></i>';
 				}else{
 					$visibility = '<i class="fas fa-user-friends post_time"></i>';
-
 				}
 				//check is user have their account closed
 				$added_by_obj = new User($this->con, $added_by);
@@ -833,7 +832,15 @@ class Post{
 			$body = $row['body'];
 			$added_by = $row['added_by'];
 			$date_time = $row['date_added'];
+			$global = $row['global'];
 			$imagePath = $row['image'];
+
+			if($global == 'yes'){
+					$visibility = '<i class="fas fa-globe post_time"></i>';
+				}else{
+					$visibility = '<i class="fas fa-user-friends post_time"></i>';
+
+				}
 
 			//prepare user_to string so it can be included even if noot posted to a user
 			if($row['user_to'] == "none") {
@@ -939,7 +946,7 @@ class Post{
 								</div>
 								$imageDiv
 								<div class='post_time'>
-									$time_message
+									$visibility $time_message
 								</div>
 							</div>
 						</div>
