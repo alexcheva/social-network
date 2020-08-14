@@ -60,6 +60,8 @@ function getUsers(value, user) {
 function showFileUpload(){
 	$("#fileToUpload").toggleClass("hide");
 }
+const showUpdate = message => bootbox.alert(message);
+
 function getDropdownData(user, type){
 	//might need to delete type  all together later
 	if($(".dropdown_data_window").css("height") == "0px"){

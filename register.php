@@ -7,6 +7,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Welcome to VM2007!</title>
+		<link rel="icon" href="assets/images/icons/broken-heart-icon.png" sizes="any" type="image/png">
 		<link rel="stylesheet" href="assets/css/register_style.css">
 		<script src="assets/js/jquery-2.2.4.min.js"></script>
 		<script src="assets/js/register.js"></script>

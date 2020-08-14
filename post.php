@@ -1,6 +1,5 @@
 <?php 
 	include("includes/header.php");
-	require_once("includes/classes/Emojis.php");
 
 	if(isset($_GET['id'])){
 		$id = $_GET['id'];

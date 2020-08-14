@@ -9,7 +9,7 @@ class Post{
 		$this->user_obj = new User($con, $user);
 	}
 	//handle post submission
-	public function submitPost($body, $user_to, $imageName){
+	public function submitPost($body, $user_to, $global, $imageName){
 		$body = strip_tags($body);//removes html tags
 		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
 
@@ -72,7 +72,7 @@ class Post{
 				$user_to = "none";
 			}
 			//insert post into a database
-			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added', 'no','0', '$imageName')");
+			$query = mysqli_query($this->con, "INSERT INTO posts VALUES(NULL, '$body', '$added_by', '$user_to', '$date_added','$global', 'no','0', '$imageName')");
 			//find out the id of the last post
 			$returned_id = mysqli_insert_id($this->con);
 

@@ -7,6 +7,11 @@
 		$uploadOk = 1;
 		$imageName = $_FILES['fileToUpload']['name'];
 		$errorMessage = "";
+		$visibility = $_POST['visibility'];
+		if($visibility == 'global')
+			$global = 'yes';
+		else
+			$global = 'no';
 
 		if($imageName != ""){
 			$targetDir = "assets/images/posts/";
@@ -35,10 +40,11 @@
 
 		if($uploadOk){
 			$post = new Post($con, $userLoggedIn);
-			$post->submitPost($_POST['post_text'], 'none', $imageName);
+			$post->submitPost($_POST['post_text'], 'none', $global, $imageName);
+			echo "<script>showUpdate('Sucessfully posted!');</script>";
 			header("Location: index.php");
 		}else{
-			echo "<script>bootbox.alert('$errorMessage');</script>";
+			echo "<script>showUpdate('$errorMessage');</script>";
 		}
 	}
 ?>
@@ -56,7 +62,17 @@
 			<p>
 				<?php 
 					echo "Posts: " . $user['num_posts'] . "<br>";
-					echo "Likes: " . $user['num_likes'];
+					echo "Likes: " . $user['num_likes'] . "<br>";
+
+				if($user['friend_array'] !== ","){
+					$friend_array = preg_split("/[\s,]+/", $user['friend_array']);
+					foreach($friend_array as $key => $value) {
+						$value = "<a href='". $value ."'>". $value ."</a>";
+						$friend_array[$key] = $value;
+					}
+					$friends = implode("<br>", $friend_array);
+					echo "Friends: " . $friends;
+				}
 				?>
 			</p>
 		</div>
@@ -74,19 +90,17 @@
 
 			<textarea name="post_text" id="post_text"  placeholder="Write a post"></textarea>
 			
-			
-	<!-- 		<br>
+			<br>
 			<input type="radio" id="global" name="visibility" value="global" checked="checked">
 			<i class="fas fa-globe radio"></i>
 			<input type="radio" id="friends_only" name="visibility" value="friends_only">
 			<i class="fas fa-user-friends radio"></i>
-
-	 -->	
+		
 			<a href="javaScript:void(0)" onClick="showFileUpload()">
 				<i class="fas fa-file-image" id="toggle_file_upload"></i>
 			</a>
 			<input type="file" name="fileToUpload" id="fileToUpload" class="hide">
-		 	<input type="submit" onclick="showAlert('Sucessfully submited!')" name="post" id="post_button" value="Post">
+		 	<input type="submit" name="post" id="post_button" value="Post">
 
 		</form>
 	<?php } ?>
