@@ -343,11 +343,12 @@ class Post{
 				<script>
 				//Delete post functionality bootbox
 					$(document).ready(function(){
+						
 						var youtube = document.querySelectorAll( ".youtube" );
 
 						for (var i = 0; i < youtube.length; i++) {
 
-							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
 					    
 					    	youtube[i].addEventListener( "click", function() {
 
@@ -614,7 +615,7 @@ class Post{
 
 							for (var i = 0; i < youtube.length; i++) {
 
-								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
 						    
 						    	youtube[i].addEventListener( "click", function() {
 
@@ -995,7 +996,7 @@ class Post{
 
 							for (var i = 0; i < youtube.length; i++) {
 
-								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/sddefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
 						    
 						    	youtube[i].addEventListener( "click", function() {
 

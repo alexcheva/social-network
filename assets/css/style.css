@@ -957,7 +957,7 @@ input[type='submit'].default:active
 /* ---- Youtube Embeds ---- */
 .youtube {
     background-color: #000;
-    margin-bottom: 30px;
+    margin: 10px 0;
     position: relative;
     padding-top: 56.25%;
     overflow: hidden;
