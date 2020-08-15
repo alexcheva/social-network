@@ -191,7 +191,7 @@ class Post{
 				}else{
 					$visibility = '<i class="fas fa-user-friends post_time"></i>';
 				}
-				
+
 				//check is user have their account closed
 				$added_by_obj = new User($this->con, $added_by);
 				if($added_by_obj->isClosed()){
@@ -199,7 +199,7 @@ class Post{
 				}
 
 				$user_logged_obj = new User($this->con, $userLoggedIn);
-				if($user_logged_obj->isFriend($added_by)||$global == 'yes'){
+				if($user_logged_obj->isFriend($added_by)||$global == 'yes' || $user_logged_obj->isAdmin($userLoggedIn)){
 					//check if there are posts
 					$posts = mysqli_query($this->con, "SELECT * FROM posts WHERE added_by='$added_by' OR added_by='$userLoggedIn'");
 					if(mysqli_num_rows($posts) == 0){
@@ -460,6 +460,9 @@ class Post{
 				$global = $row['global'];
 				$imagePath = $row['image'];
 
+				$user_logged_obj = new User($this->con, $userLoggedIn);
+				if($user_logged_obj->isFriend($added_by)||$global == 'yes' || $user_logged_obj->isAdmin($userLoggedIn)){
+
 				if($num_iterations++ < $start)
 					continue;
 
@@ -598,6 +601,7 @@ class Post{
 							$str .= $this->getComments($id).
 							"</div>
 							<hr>";
+						}
 
 				?>
 				<script>
@@ -862,7 +866,7 @@ class Post{
 			$user_logged_obj = new User($this->con, $userLoggedIn);
 
 			//If friend statement
-			if($user_logged_obj->isFriend($added_by)){
+			if($user_logged_obj->isFriend($added_by)||$global == 'yes' || $user_logged_obj->isAdmin($userLoggedIn)){
 
 				//add delete post button if user is the one posted or admin
 				if($userLoggedIn == $added_by || $user_logged_obj->isAdmin($userLoggedIn))
