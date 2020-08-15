@@ -201,7 +201,7 @@ function sendLike(id) {
     const $elem = $(`#like_button_${id}`);
     const isLiked = $elem.hasClass('liked');
 
-	const sendLike = $.post("includes/handlers/send_like.php", 
+	const sendLike = $.post("includes/handlers/ajax_update_like.php", 
 		{userLoggedIn:userLoggedIn, id:id}, 
 		function(response){
             updateLikes(id);
