@@ -28,6 +28,7 @@ CREATE TABLE posts(
     added_by VARCHAR(200) NOT NULL,
     user_to VARCHAR(200) NOT NULL,
     date_added DATETIME NOT NULL,
+    global VARCHAR(3) NOT NULL,
     user_closed VARCHAR(3) NOT NULL,
     likes INT(11) NOT NULL,
     image VARCHAR(500) NOT NULL
@@ -85,8 +86,8 @@ CREATE TABLE details(
 ```
 <br/>
 I would like to:<br/>
-1. Add option to post globally or to friends only.<br/>
-2. Show global posts to everyone.<br/>
+✔ 1. Add option to post globally or to friends only.<br/>
+✔ 2. Show global posts to everyone.<br/>
 3. Unregistered users can't comment or like.<br/>
 4. If user is not logged in, add login/register to top right nav bar.<br/>
 ✔ 5. Add media queries for mobile devices.<br/>
