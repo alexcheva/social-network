@@ -144,6 +144,7 @@ $(document).click(function(e){
 		$(".fa-bell").css({"color":""});
 	};
 });
+
 function sendComment(id) {
 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
 	const commentText = $("#comment" + id).val();

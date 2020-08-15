@@ -677,16 +677,71 @@ class Post{
  
 		$userLoggedIn = $this->user_obj->getUsername();
 	 
-		$body = strip_tags($commentText);
-		$body = mysqli_real_escape_string($this->con, $body);
-		$body = str_replace('\r\n', '\n', $body);
-		$body = nl2br($body);
+		// $body = strip_tags($commentText);
+		// $body = mysqli_real_escape_string($this->con, $body);
+		// $body = str_replace('\r\n', '\n', $body);
+		// $body = nl2br($body);
 	 
+		// if($body === "") {
+		// 	echo "No text";
+		// 	return;
+		// };
+		$body = strip_tags($commentText);
+		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
+
 		if($body === "") {
 			echo "No text";
 			return;
 		};
-		$date_added = date("Y-m-d H:i:s");
+		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
+		
+		if($check_empty != "") {
+			$body_array = preg_split("/\s+/", $body);
+ 
+			foreach($body_array as $key => $value) {
+
+				$regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
+				$regex_links = '~(?<!src=\')https?://\S+\b~x';
+
+				if(strpos($value, "www.youtube.com/watch?v=") !== false){
+
+					$link = preg_split("!&!", $value);
+
+					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
+
+					$value = "<div class='youtube-embed' data-embed='". $value ."'></div>";
+					
+					//$key refers to position of the link
+					$body_array[$key] = $value;
+				}
+				if(strpos($value, "https://youtu.be/") !== false){
+
+					$link = preg_split("!\?!", $value);
+					
+					$value = str_replace("https://youtu.be/", "", $link[0]);
+
+					$value = "<div class='youtube-embed' data-embed='". $value ."'></div>";
+				
+					$body_array[$key] = $value;
+				}
+				if(preg_match($regex_images, $value)) {
+					$link = preg_split("!\?!", $value);
+				 	$value = preg_replace($regex_images, "<div class='embed-images' data-embed='\\0'></div>", $link[0]);
+					$body_array[$key] = $value;
+				}
+				else if(preg_match($regex_links, $value)) {
+				 	$value = preg_replace($regex_links, "<div class='embed-link' data-embed='\\0'></div>", $value);
+				 	//<i class='fa fa-external-link-square'></i>
+					$body_array[$key] = $value;
+				}
+			 
+			$body = implode(" ", $body_array);
+			}
+			 
+			 
+			$body = mysqli_real_escape_string($this->con, $body);
+			$date_added = date("Y-m-d H:i:s");
+		}
 	 
 		$insert_comment = mysqli_query($this->con, "INSERT INTO comments VALUES(NULL, '$body', '$userLoggedIn', '$post_author', '$date_added', 'no', '$id')");
 
@@ -794,7 +849,7 @@ class Post{
 						
 				$commment_from_db .= "
 				<hr>
-				<div class='comment_section'>
+				<div class='comment_section clearfix'>
 					<a href='$posted_by' target='_parent'>
 						<img src='$profile_pic' title='$posted_by' class='comment_profile_img'>
 					</a>
@@ -813,7 +868,38 @@ class Post{
 					
 				</div>";		
 			}
+		?>
+			<script>
+			$(document).ready(function(){
+		    	
+				var youtube = document.querySelectorAll( ".youtube-embed" );
 
+					for (var i = 0; i < youtube.length; i++) {
+
+						youtube[i].innerHTML = "<div class='youtube-play embed-responsive' style='width: 320px; height: 240px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg); background-size: contain;'><img class='youtube-logo' src='assets/images/icons/youtube.png'></div>";
+		    
+			    	youtube[i].addEventListener( "click", function() {
+
+			            this.innerHTML = '<iframe style="width: 320px; height: 240px;" allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+					       
+					    	});
+					};
+				var embeded_images = document.querySelectorAll( ".embed-images" );
+
+					for (var i = 0; i < embeded_images.length; i++) {
+
+						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages commentImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+					};
+
+				var embeded_link = document.querySelectorAll( ".embed-link" );
+
+					for (var i = 0; i < embeded_link.length; i++) {
+
+						embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+					};
+				});
+		</script>
+		<?php
 		}
 	 
 		else {
