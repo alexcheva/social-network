@@ -709,7 +709,7 @@ class Post{
 
 					$value = str_replace("https://www.youtube.com/watch?v=", "", $link[0]);
 
-					$value = "<div class='youtube-embed' data-embed='". $value ."'></div>";
+					$value = "<div class='embed-container youtube' data-embed='". $value ."'></div>";
 					
 					//$key refers to position of the link
 					$body_array[$key] = $value;
@@ -720,7 +720,7 @@ class Post{
 					
 					$value = str_replace("https://youtu.be/", "", $link[0]);
 
-					$value = "<div class='youtube-embed' data-embed='". $value ."'></div>";
+					$value = "<div class='embed-container youtube' data-embed='". $value ."'></div>";
 				
 					$body_array[$key] = $value;
 				}
@@ -872,23 +872,23 @@ class Post{
 			<script>
 			$(document).ready(function(){
 		    	
-				var youtube = document.querySelectorAll( ".youtube-embed" );
+				var youtube = document.querySelectorAll( ".youtube" );
 
 					for (var i = 0; i < youtube.length; i++) {
 
-						youtube[i].innerHTML = "<div class='youtube-play embed-responsive' style='width: 320px; height: 240px; background-image: url(https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg); background-size: contain;'><img class='youtube-logo' src='assets/images/icons/youtube.png'></div>";
-		    
-			    	youtube[i].addEventListener( "click", function() {
+						youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+				    
+				    	youtube[i].addEventListener( "click", function() {
 
-			            this.innerHTML = '<iframe style="width: 320px; height: 240px;" allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-					       
-					    	});
+				            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+				       
+				    	});
 					};
 				var embeded_images = document.querySelectorAll( ".embed-images" );
 
 					for (var i = 0; i < embeded_images.length; i++) {
 
-						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages commentImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='commentImages' src='" + embeded_images[i].dataset.embed + "'></a>";
 					};
 
 				var embeded_link = document.querySelectorAll( ".embed-link" );
