@@ -4,7 +4,7 @@ function sendComment(id) {
 	
 	if(commentText === "") {
  
-		alert("Please enter some text first");
+		bootbox.alert("Please enter some text first");
 		return;
 	}
  
@@ -24,7 +24,7 @@ function sendComment(id) {
 				}, 
 				function(newComment) {
  
-				$("#comment" + id).val("");
+				$(".emojionearea-editor").text("");
 				const noComment = $("#toggleComment" + id).find("#noComment" + id);
 				
 				if(noComment.length !== 0) {
@@ -38,7 +38,7 @@ function sendComment(id) {
  
 		else {
  
-			alert("Something went wrong. Please try again");
+			bootbox.alert("Something went wrong. Please try again");
 		} 
  
 	});
