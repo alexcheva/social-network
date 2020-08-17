@@ -217,7 +217,7 @@ class Post{
 				}
 				//delete post if logged in user is the one posted or admin
 				if($userLoggedIn == $added_by || $user_logged_obj->isAdmin($userLoggedIn))
-					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
+					$delete_button = "<a class='delete_button' onclick='deletePost($id);'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
 				//edit post functionality
@@ -231,23 +231,6 @@ class Post{
 				$first_name = $user_row['first_name'];
 				$last_name = $user_row['last_name'];
 				$profile_pic = $user_row['profile_pic'];
-
-				?>
-				<!-- Show the comment -->
-				<script>
-					function toggle<?php echo $id; ?>(){
-						var target = $(event.target);
-						if(!target.is("a")){
-							var element = document.getElementById("toggleComment<?php echo $id; ?>");
-							if(element.style.display == "block")
-								element.style.display = "none";
-							else
-								element.style.display = "block";
-						}
-					}
-
-				</script>
-				<?php
 
 				//Check if there are comments:
 				//find all comments for post:
@@ -305,7 +288,7 @@ class Post{
 						</div>
 							<hr>
 							<div class='newsfeedPostOptions'>
-								<span class='num_comments' onClick='javaScript:toggle$id()'>";
+								<span class='num_comments' onClick='javaScript:toggle($id)'>";
 								if($comments_check_num == 0)
 									$str.= "<i class='fas fa-comment-alt'></i> Comment";
 								else if($comments_check_num == 1)
@@ -339,66 +322,6 @@ class Post{
 							<hr>";
 				}//if friend end if statement
 
-				?>
-				<script>
-				//Delete post functionality bootbox
-					$(document).ready(function(){
-						
-						var youtube = document.querySelectorAll( ".youtube" );
-
-						for (var i = 0; i < youtube.length; i++) {
-
-							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-					    
-					    	youtube[i].addEventListener( "click", function() {
-
-					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-					       
-					    	});
-						};
-
-						var embeded_images = document.querySelectorAll( ".embed-images" );
-
-						for (var i = 0; i < embeded_images.length; i++) {
-
-							embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-						};
-
-						var embeded_link = document.querySelectorAll( ".embed-link" );
-
-						for (var i = 0; i < embeded_link.length; i++) {
-
-							embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-						};
-
-						$("textarea").emojioneArea({
-							pickerPosition: "bottom"
-						});
-						$('#post<?php echo $id; ?>').on('click', function(){
-							//bootstrap
-							bootbox.confirm({
-								message: "Are you sure you want to delete this post?", buttons: {
-	        					confirm: {
-						            label: 'Yes'
-						        },
-
-						        cancel: {
-						            label: 'No'						        }
-						    	},
-						    	
-						        callback:
-						    	function
-								(result){
-									$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
-									//if there is a result = true
-									if(result)
-										location.reload();
-								}
-							});
-						});
-					});
-				</script>
-				<?php
 			}//end while loop
 
 			//if there are no posts:
@@ -476,7 +399,7 @@ class Post{
 
 				//delete post if user is the one posted, profile owner or admin
 				if($userLoggedIn == $added_by || $userLoggedIn == $user_to || $user_logged_obj->isAdmin($userLoggedIn))
-					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
+					$delete_button = "<a class='delete_button' onClick='javaScript:deletePost($id)'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
 				//edit
@@ -490,23 +413,6 @@ class Post{
 				$first_name = $user_row['first_name'];
 				$last_name = $user_row['last_name'];
 				$profile_pic = $user_row['profile_pic'];
-
-				?>
-				<!-- Show the comment -->
-				<script>
-					function toggle<?php echo $id; ?>(){
-						var target = $(event.target);
-						if(!target.is("a")){
-							var element = document.getElementById("toggleComment<?php echo $id; ?>");
-							if(element.style.display == "block")
-								element.style.display = "none";
-							else
-								element.style.display = "block";
-						}
-					}
-
-				</script>
-				<?php
 
 				//Check if there are comments:
 				//find all comments for post:
@@ -568,7 +474,7 @@ class Post{
 							
 						<hr>
 						<div class='newsfeedPostOptions'>
-							<span class='num_comments' onClick='javaScript:toggle$id()'>";
+							<span class='num_comments' onClick='javaScript:toggle($id)'>";
 								if($comments_check_num == 0)
 									$str.= "<i class='fas fa-comment-alt'></i> Comment";
 								else if($comments_check_num == 1)
@@ -606,59 +512,36 @@ class Post{
 
 				?>
 				<script>
-				//Delete post functionality bootbox
-					$(document).ready(function(){
-						$("#comment_textarea<?php echo $id; ?>").emojioneArea({
-								pickerPosition: "bottom"
-							});
-						var youtube = document.querySelectorAll( ".youtube" );
-
-							for (var i = 0; i < youtube.length; i++) {
-
-								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-						    
-						    	youtube[i].addEventListener( "click", function() {
-
-						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-						       
-						    	});
-							};
-
-							var embeded_images = document.querySelectorAll( ".embed-images" );
-
-							for (var i = 0; i < embeded_images.length; i++) {
-
-								embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-							};
-
-							var embeded_link = document.querySelectorAll( ".embed-link" );
-
-							for (var i = 0; i < embeded_link.length; i++) {
-
-								embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-							};
-						$('#post<?php echo $id; ?>').on('click', function(){
-							//bootstrap
-							bootbox.confirm({
-								message: "Are you sure you want to delete this post?", buttons: {
-	        					confirm: {
-						            label: 'Yes'
-						        },
-
-						        cancel: {
-						            label: 'No'						        }
-						    	},
-						    	
-						        callback:
-						    	function
-								(result){
-									$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
-									//if there is a result = true
-									if(result)
-										location.reload();
-								}
-							});
+				$(document).ready(function(){
+					$("#comment_textarea<?php echo $id; ?>").emojioneArea({
+							pickerPosition: "bottom"
 						});
+					var youtube = document.querySelectorAll( ".youtube" );
+
+						for (var i = 0; i < youtube.length; i++) {
+
+							youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+					    
+					    	youtube[i].addEventListener( "click", function() {
+
+					            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+					       
+					    	});
+						};
+
+					var embeded_images = document.querySelectorAll( ".embed-images" );
+
+						for (var i = 0; i < embeded_images.length; i++) {
+
+							embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+						};
+
+					var embeded_link = document.querySelectorAll( ".embed-link" );
+
+						for (var i = 0; i < embeded_link.length; i++) {
+
+							embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+						};
 					});
 				</script>
 				<?php
@@ -676,16 +559,7 @@ class Post{
 	public function sendComment($post_author, $commentText, $id, $user_to) {
  
 		$userLoggedIn = $this->user_obj->getUsername();
-	 
-		// $body = strip_tags($commentText);
-		// $body = mysqli_real_escape_string($this->con, $body);
-		// $body = str_replace('\r\n', '\n', $body);
-		// $body = nl2br($body);
-	 
-		// if($body === "") {
-		// 	echo "No text";
-		// 	return;
-		// };
+
 		$body = strip_tags($commentText);
 		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
 
@@ -693,6 +567,7 @@ class Post{
 			echo "No text";
 			return;
 		};
+
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
 		
 		if($check_empty != "") {
@@ -812,37 +687,8 @@ class Post{
 				$name = $user_obj->getFirstAndLastName();
 	 			
 	 			//delete comment if user is the one posted or post creator or admin
-				if($userLoggedIn == $posted_by || $user_logged_obj->isAdmin($userLoggedIn)) {
-					$delete_button = "<a class='delete_button' id='comment$comment_id'><i class='fas fa-trash-alt'></i></a>";
-					$script = "<script>
-				//Delete comment functionality bootbox
-					$(document).ready(function(){
-						$('#comment$comment_id').on('click', function(){
-							//bootstrap
-							bootbox.confirm({
-								message: 'Are you sure you want to delete this comment?', buttons: {
-	        					confirm: {
-						            label: 'Yes'
-						        },
-
-						        cancel: {
-						            label: 'No'						        }
-						    	},
-						    	
-						        callback:
-						    	function
-								(result){
-									$.post('includes/form_handlers/delete_comment.php?comment_id=$comment_id',{result: result});
-									//if there is a result = true
-									if(result)
-										location.reload();
-
-								}
-							});
-						});
-					});
-				</script>";
-					$delete_button .= $script;	}
+				if($userLoggedIn == $posted_by || $user_logged_obj->isAdmin($userLoggedIn))
+					$delete_button = "<a class='delete_button' onclick='deleteComment($comment_id);'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
 
@@ -868,38 +714,6 @@ class Post{
 					
 				</div>";		
 			}
-		?>
-			<script>
-			$(document).ready(function(){
-		    	
-				var youtube = document.querySelectorAll( ".youtube" );
-
-					for (var i = 0; i < youtube.length; i++) {
-
-						youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-				    
-				    	youtube[i].addEventListener( "click", function() {
-
-				            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-				       
-				    	});
-					};
-				var embeded_images = document.querySelectorAll( ".embed-images" );
-
-					for (var i = 0; i < embeded_images.length; i++) {
-
-						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-					};
-
-				var embeded_link = document.querySelectorAll( ".embed-link" );
-
-					for (var i = 0; i < embeded_link.length; i++) {
-
-						embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-					};
-				});
-		</script>
-		<?php
 		}
 	 
 		else {
@@ -957,7 +771,7 @@ class Post{
 
 				//add delete post button if user is the one posted or admin
 				if($userLoggedIn == $added_by || $user_logged_obj->isAdmin($userLoggedIn))
-					$delete_button = "<a class='delete_button' id='post$id'><i class='fas fa-trash-alt'></i></a>";
+					$delete_button = "<a class='delete_button' onClick='javaScript:deletePost($id)'><i class='fas fa-trash-alt'></i></a>";
 				else
 					$delete_button = "";
 
@@ -973,23 +787,6 @@ class Post{
 				$first_name = $user_row['first_name'];
 				$last_name = $user_row['last_name'];
 				$profile_pic = $user_row['profile_pic'];
-
-				?>
-				<!-- Show the comment -->
-				<script>
-					function toggle<?php echo $id; ?>(){
-						var target = $(event.target);
-						if(!target.is("a")){
-							var element = document.getElementById("toggleComment<?php echo $id; ?>");
-							if(element.style.display == "block")
-								element.style.display = "none";
-							else
-								element.style.display = "block";
-						}
-					}
-
-				</script>
-				<?php
 
 				//Check if there are comments:
 				//find all comments for post:
@@ -1044,7 +841,7 @@ class Post{
 						</div>
 						<hr>
 						<div class='newsfeedPostOptions'>
-							<span class='num_comments' onClick='javaScript:toggle$id()'>
+							<span class='num_comments' onClick='javaScript:toggle($id)'>
 								Comments ($comments_check_num)
 							</span>
 							<span class='like_value' id='total_like_$id'>";
@@ -1065,7 +862,7 @@ class Post{
 							$str .= "
 							   <div class='comments_area'>
 							     <textarea id='comment_textarea$id' placeholder='Post a comment...'></textarea>
-							     <input class='comment_btn' type='button' onclick='sendComment($id)' value='Send'>
+							     <input class='comment_btn' type='button' onclick='sendComment($id);' value='Send'>
 							   </div>";
 						}
 						$str .= $this->getComments($id).
@@ -1075,57 +872,33 @@ class Post{
 			<script>
 			//Delete post functionality bootbox
 				$(document).ready(function(){
-					$(".textarea").emojioneArea({
-						pickerPosition: "bottom"
-					});
+
 					var youtube = document.querySelectorAll( ".youtube" );
 
-							for (var i = 0; i < youtube.length; i++) {
+					for (var i = 0; i < youtube.length; i++) {
 
-								youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-						    
-						    	youtube[i].addEventListener( "click", function() {
+						youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+				    
+				    	youtube[i].addEventListener( "click", function() {
 
-						            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-						       
-						    	});
-							};
+				            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+				       
+				    	});
+					};
 
-							var embeded_images = document.querySelectorAll( ".embed-images" );
+					var embeded_images = document.querySelectorAll( ".embed-images" );
 
-							for (var i = 0; i < embeded_images.length; i++) {
+					for (var i = 0; i < embeded_images.length; i++) {
 
-								embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-							};
+						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+					};
 
-							var embeded_link = document.querySelectorAll( ".embed-link" );
+					var embeded_link = document.querySelectorAll( ".embed-link" );
 
-							for (var i = 0; i < embeded_link.length; i++) {
+					for (var i = 0; i < embeded_link.length; i++) {
 
-								embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-							};
-					$('#post<?php echo $id; ?>').on('click', function(){
-						//bootstrap
-						bootbox.confirm({
-							message: "Are you sure you want to delete this post?", buttons: {
-        					confirm: {
-					            label: 'Yes'
-					        },
-
-					        cancel: {
-					            label: 'No'						        }
-					    	},
-					    	
-					        callback:
-					    	function
-							(result){
-								$.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>",{result: result});
-								//if there is a result = true
-								if(result)
-									location.reload();
-							}
-						});
-					});
+						embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+					};
 				});
 			</script>
 			<?php

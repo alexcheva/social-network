@@ -13,6 +13,9 @@ $(document).ready(function(){
 	$("#post_text").emojioneArea({
 		pickerPosition: "bottom"
 	});
+	$("textarea").emojioneArea({
+		pickerPosition: "bottom"
+	});
 
 	//button for profile post
 	$('#submit_profile_post').click(function(){
@@ -33,15 +36,32 @@ $(document).ready(function(){
 	});
 
 
-	 // if you save to database with default value of EmojioneArea saveEmojisAs: 'unicode'
-    $(".your-selector-with-unicode-emojis").each(function() {
-        $(this).html(emojione.unicodeToImage($(this).html()));
-    });
+	var youtube = document.querySelectorAll( ".youtube" );
 
-    // if you save to db with value EmojioneArea saveEmojisAs: 'shortname'
-    $(".your-selector-with-shortname-emojis").each(function() {
-        $(this).html(emojione.shortnameToImage($(this).html()));
-    });
+	for (var i = 0; i < youtube.length; i++) {
+
+		youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+    
+    	youtube[i].addEventListener( "click", function() {
+
+            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+       
+    	});
+	};
+
+var embeded_images = document.querySelectorAll( ".embed-images" );
+
+	for (var i = 0; i < embeded_images.length; i++) {
+
+		embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+	};
+
+var embeded_link = document.querySelectorAll( ".embed-link" );
+
+	for (var i = 0; i < embeded_link.length; i++) {
+
+		embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+	};
 	
 });
 
@@ -146,49 +166,47 @@ $(document).click(function(e){
 });
 
 function sendComment(id) {
-	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
 	const commentText = $("#comment" + id).val();
-
+	
 	if(commentText === "") {
-
+ 
 		bootbox.alert("Please enter some text first!");
 		return;
-		}
-
+	}
+ 
 	const sendComment = $.post("includes/handlers/send_comment.php", {
-		userLoggedIn: userLoggedIn, 
-		commentText: commentText, 
-		id: id
-		},
+			userLoggedIn: userLoggedIn, 
+			commentText: commentText, 
+			id: id
+		}, 
+		function(response){
+ 
+		if(response !== "No text") {
+ 
+			const loadComment = $.post("includes/handlers/load_comment.php", 
+				{
+					id: id, 
+					userLoggedIn: userLoggedIn
+				}, 
+				function(newComment) {
 
-	function(response){
-
-	if(response !== "No text") {
-
-		const loadComment = $.post("includes/handlers/load_comment.php", 
-			{
-				id: id, 
-				userLoggedIn: userLoggedIn
-			}, 
-			function(newComment) {
-			//$(".emojionearea-editor").text("");
-			//$("#comment" + id).val("");
-			const noComment = $("#toggleComment" + id).find("#noComment" + id);
-			
-			if(noComment.length !== 0) {
-				noComment.remove();
-			}
-
-			$("#toggleComment" + id).append(newComment);
-
+				$(".emojionearea-editor").text("");
+				const noComment = $("#toggleComment" + id).find("#noComment" + id);
+				
+				if(noComment.length !== 0) {
+					noComment.remove();
+				}
+ 
+				$("#toggleComment" + id).append(newComment);
+ 
 			});
 		}
-
-	else {
-
-		bootbox.alert("Something went wrong. Please try again.");
+ 
+		else {
+ 
+			bootbox.alert("Something went wrong. Please try again.");
 		} 
-
+ 
 	});
 };
 
@@ -210,4 +228,95 @@ function sendLike(id) {
             $elem.removeClass(isLiked ? 'liked' : 'unliked');
         });
 
+};
+function deletePost(id) {
+	bootbox.confirm({
+		message: "Are you sure you want to delete this post?", 
+		buttons: {
+			confirm: {
+	            label: 'Yes'
+	        },
+
+	        cancel: {
+	            label: 'No'
+	        }
+	    },
+        callback:
+    	function
+		(result){
+			$.post("includes/form_handlers/delete_post.php?post_id="+id,{result: result});
+			if(result)
+				location.reload();
+
+		}
+	});
+};
+function makeEmbeds(){
+	var youtube = document.querySelectorAll( ".youtube" );
+
+		for (var i = 0; i < youtube.length; i++) {
+
+			youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+	    
+	    	youtube[i].addEventListener( "click", function() {
+
+	            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+	       
+	    	});
+		};
+
+	var embeded_images = document.querySelectorAll( ".embed-images" );
+
+		for (var i = 0; i < embeded_images.length; i++) {
+
+			embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+		};
+
+	var embeded_link = document.querySelectorAll( ".embed-link" );
+
+		for (var i = 0; i < embeded_link.length; i++) {
+
+			embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+		};
+};
+
+function toggle(id){
+	var target = $(event.target);
+
+	if(!target.is("a")){
+		var element = document.getElementById("toggleComment" + id);
+		if(element.style.display == "block")
+			element.style.display = "none";
+		else
+			element.style.display = "block";
+
+		$("textarea").emojioneArea({
+		pickerPosition: "bottom"
+		});
+		makeEmbeds();
+	}
+};
+
+function deleteComment(id) {
+	bootbox.confirm({
+		message: 'Are you sure you want to delete this comment?', 
+		buttons: {
+			confirm: {
+	            label: 'Yes'
+	        },
+
+	        cancel: {
+	            label: 'No'						        
+	        }
+	    },
+    	
+        callback:
+    	function
+		(result){
+			$.post("includes/form_handlers/delete_comment.php?comment_id="+id,{result: result});
+			if(result)
+				location.reload();
+
+		}
+	});
 };
