@@ -460,6 +460,9 @@ span.notification_badge:hover{
 .post_body {
     padding-bottom: 10px;
 }
+.post_body {
+    max-width: 93%;
+}
 
 .post_main
 {
