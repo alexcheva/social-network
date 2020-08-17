@@ -51,7 +51,7 @@
 			$message_obj->sendMessage($user_to, $body, $date, $imageName);
 			header("Location: messages.php");
 		}else{
-			echo "<script>bootbox.alert('$errorMessage');</script>";
+			echo "showUpdate('$errorMessage');";
 		}
 
 		// if(isset($_POST['message_body'])){
