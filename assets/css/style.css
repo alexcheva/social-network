@@ -1088,7 +1088,6 @@ input[type='submit'].default:active
 
     cursor: zoom-in;
 }
-.commentImages,
 .comment_body{
     max-width: 320px;
 }

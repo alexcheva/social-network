@@ -888,7 +888,7 @@ class Post{
 
 					for (var i = 0; i < embeded_images.length; i++) {
 
-						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='commentImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+						embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
 					};
 
 				var embeded_link = document.querySelectorAll( ".embed-link" );
