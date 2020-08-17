@@ -114,7 +114,7 @@
 
 			loadPosts(); //Load first posts
 		    $(window).scroll(function() {
-		    	var bottomElement = $(".status_post").last();
+		    	var bottomElement = $(".bottom").last();
 		    	var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 		 
 		        // isElementInViewport uses getBoundingClientRect(), which requires the HTML DOM object, not the jQuery object. The jQuery equivalent is using [0] as shown below.
@@ -211,5 +211,6 @@
 		});
 	};
 	</script>
+	<hr class="bottom"/>
 	<?php include('footer.php'); ?>
 	<!-- end wrapper from header -->
