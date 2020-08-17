@@ -235,6 +235,45 @@ class Post{
 				?>
 				<!-- Show the comment -->
 				<script>
+					$(function(){
+
+						let id = "<?php echo $id; ?>";
+
+						$("#" + id + " .click_likes").on('click', function(e){
+
+							if($(".din_likes span").length !== 0) {
+
+							     $('.din_likes').find("span").remove();
+
+							     $(".din_likes").replaceWith(function(){
+								  return $(".click_likes", this);
+							     });
+
+							}
+
+							$("#" + id + " .click_likes").wrap("<div class='din_likes'></div>");
+
+							$.post("includes/handlers/check_likes.php", {like:id}, function(data){
+
+								if(data) {
+
+									$("#" + id + " .click_likes").append('<span></span>');
+									$("#" + id + " .click_likes span").html(data);
+
+								}
+
+								else {
+
+									$(".din_likes").replaceWith(function(){
+										return $(".click_likes", this);
+									});
+								}
+
+							});
+
+						});
+
+					});
 					function toggle<?php echo $id; ?>(){
 						var target = $(event.target);
 						if(!target.is("a")){
@@ -323,6 +362,7 @@ class Post{
 
 								$str .= "</span>
 								<span>$like_button</span>
+								<div class='click_likes' id='$id'></div>
 							</div>
 							<div class='post_comment' id='toggleComment$id' style='display:none;'>";
 							if($user_logged_obj->isBlocked($userLoggedIn))
