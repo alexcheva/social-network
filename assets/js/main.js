@@ -121,7 +121,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	//makeEmbeds();
+
 	if($(".index").length){
 		loadPagePosts(userLoggedIn,userLoggedIn,'index');
 	}else if($(".profile").length){
@@ -328,6 +328,21 @@ function deleteComment(id) {
 				location.reload();
 
 		}
+	});
+};
+function whoLiked(id) {
+	$("#who_liked" + id).toggleClass("hide");
+
+	$.post("includes/handlers/check_likes.php", {like:id}, function(data){
+
+		if(data) {
+			$("#who_liked" + id).html("<span class='grey'>Liked by:</span>" +data);
+		}
+
+		else {
+			$("#who_liked" + id).html("<p class='grey'>No likes yet!</p>");
+		}
+
 	});
 };
 

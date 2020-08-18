@@ -431,8 +431,12 @@ span.notification_badge:hover{
 
     align-self: center;
 }
+/* ---- States ---- */
 .hide{
     display: none;
+}
+.block{
+    display: block;
 }
 .inline{
     display: inline-block;
@@ -470,7 +474,7 @@ span.notification_badge:hover{
     display: inline-block;
     width: 84%;
 }
-
+.grey,
 .post_time,
 .mutural_friends
 {
@@ -569,13 +573,23 @@ span.notification_badge:hover{
 
     color: #d500ff;
 }
-.num_comments:hover
+.num_comments:hover,
+.like_value:hover
 {
     color: #ffea00;
 }
 .num_comments:active
 {
     color: purple;
+}
+.who_liked{
+    margin-top: 1em;
+}
+.liked_img{
+    width: 3%;
+    margin: 0 0.5%;
+    border: 1px solid purple;
+    border-radius: 50%;
 }
 .radio{
     color: #d500ff;
@@ -1369,7 +1383,8 @@ aside{
 {
     font-style: italic;
 }
-#grey
+#grey,
+a.liked_name
 {
     font-weight: 400;
 }
