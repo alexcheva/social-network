@@ -36,6 +36,7 @@ $(function(){
  
 				$('#loading').hide();
 				$(".posts_area").append(response);
+				makeEmbeds();
 				inProgress = false;
 			}
 		});

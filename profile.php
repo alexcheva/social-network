@@ -375,6 +375,7 @@
 					$(".posts_area").append(response);
 	 
 					inProgress = false;
+					makeEmbeds();
 				}
 			});
 	    }
@@ -432,57 +433,5 @@
 		$("#edit_about").removeClass("fade").addClass("active");
 	}
 
-	//emoji one plugIn
-	$("textarea").emojioneArea({
-		pickerPosition: "bottom"
-	});
-
-
-
-	function sendComment(id) {
-	 	const userLoggedIn = '<?php echo $userLoggedIn; ?>';
-		const commentText = $("#comment_textarea" + id).val();
-		
-		if(commentText === "") {
-	 
-			bootbox.alert("Please enter some text first!");
-			return;
-		}
- 
-		const sendComment = $.post("includes/handlers/send_comment.php", {
-			userLoggedIn: userLoggedIn, 
-			commentText: commentText, 
-			id: id
-		}, 
-		function(response){
- 
-			if(response !== "No text") {
-	 
-				const loadComment = $.post("includes/handlers/load_comment.php", 
-					{
-						id: id, 
-						userLoggedIn: userLoggedIn
-					}, 
-					function(newComment) {
-	 
-					$("div.emojionearea-editor").text("");
-					const noComment = $("#toggleComment" + id).find("#noComment" + id);
-					
-					if(noComment.length !== 0) {
-						noComment.remove();
-					}
-	 
-					$("#toggleComment" + id).append(newComment);
-	 
-				});
-			}
-	 
-			else {
-	 
-				bootbox.alert("Something went wrong. Please try again");
-			} 
- 
-		});
-	};
 	</script>
 <?php include('footer.php'); ?>
