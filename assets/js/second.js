@@ -1,32 +1,39 @@
-$(document).ready(function(){
-
-	var youtube = document.querySelectorAll( ".youtube" );
-
-	for (var i = 0; i < youtube.length; i++) {
-
-		youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-    
-    	youtube[i].addEventListener( "click", function() {
-
-            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-       
-    	});
-	};
-
-	var embeded_images = document.querySelectorAll( ".embed-images" );
-
-	for (var i = 0; i < embeded_images.length; i++) {
-
-		embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-	};
-
-	var embeded_link = document.querySelectorAll( ".embed-link" );
-
-	for (var i = 0; i < embeded_link.length; i++) {
-
-		embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-	};
-	$("textarea").emojioneArea({
-		pickerPosition: "bottom"
-	});
+//tabs functionality
+$("#about").on('click', function(){
+	$("#newsfeed").removeClass("active_tab");
+	$("#about").addClass("active_tab");
+	$("#newsfeed_div").removeClass("active").addClass("fade");
+	$("#edit_about").removeClass("active").addClass("fade");
+	$("#about_div").removeClass("fade").addClass("active");
+	
 });
+$('#newsfeed').on('click', function(){
+	$("#about").removeClass("active_tab");
+	$("#newsfeed").addClass("active_tab");
+	$("#edit_about").removeClass("active").addClass("fade");
+	$("#about_div").removeClass("active").addClass("fade");
+	$("#newsfeed_div").removeClass("fade").addClass("active");
+	$(".message").html("");
+});
+
+$('.edit_button').on('click', function(){
+	$("#about_div").removeClass("active").addClass("fade");
+	$("#edit_about").removeClass("fade").addClass("active");
+});
+$('.close_edit').on('click', function(){
+	$("#edit_about").removeClass("active").addClass("fade");
+	$("#about_div").removeClass("fade").addClass("active");
+	$(".message").html("");
+});
+
+if($(".message").length){
+	$("#newsfeed").removeClass("active_tab");
+	$("#about").addClass("active_tab");
+	$("#newsfeed_div").removeClass("active").addClass("fade");
+	$("#about_div").removeClass("fade").addClass("active");
+};
+
+if($(".errorMessage").length){
+	$("#about_div").removeClass("active").addClass("fade");
+	$("#edit_about").removeClass("fade").addClass("active");
+}
