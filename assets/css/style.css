@@ -34,8 +34,8 @@ body
 
     color: white;
 
+    background: url('../images/images/sky.jpg') no-repeat center center fixed;
     background-color: black;
-    background: url('../images/images/sky.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -1858,7 +1858,7 @@ input[type='submit'].save_details:active
         top: 0px;
         padding: 5px;
         border-bottom: 3px solid purple;
-        background: rgba(128, 0, 128, 0.58);
+        background: #480248;
     }
     nav a
     {

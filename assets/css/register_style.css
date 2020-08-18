@@ -7,8 +7,8 @@ body{
 	padding: 0px;
 }
 body{
-	background-color: black;
 	background: url("../images/images/sky.jpg") no-repeat center center fixed;
+	background-color: black;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

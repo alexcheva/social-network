@@ -24,7 +24,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/emojionearea.min.css"/>
-		<link rel="stylesheet" href="assets/css/style.css"/>
+		<link rel="stylesheet" href="assets/css/style.css?v=<?php echo date('his'); ?>"/>
 		<link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v0.9.12/css/jquery.Jcrop.min.css" />
 		<script>
 	    	const userLoggedIn = "<?php echo $userLoggedIn; ?>";
@@ -36,7 +36,7 @@
 		<!-- Emoji -->
 <!-- 		<script src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/lib/js/emojione.min.js"></script>
  -->		<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.min.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="assets/js/main.js?v=<?php echo date('his'); ?>"></script>
 		
 	</head>
 	<body>
