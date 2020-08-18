@@ -191,6 +191,22 @@ function sendComment(id) {
 
 	});
 };
+function whoLiked(id) {
+	$("#who_liked" + id).toggleClass("hide");
+	// $("#who_liked" + id).toggleClass("inline");
+
+	$.post("includes/handlers/check_likes.php", {like:id}, function(data){
+
+		if(data) {
+			$("#who_liked" + id).html("<span class='grey'>Liked by:</span>" +data);
+		}
+
+		else {
+			$("#who_liked" + id).html("<p class='grey'>No likes yet!</p>");
+		}
+
+	});
+};
 
 function updateLikes(id) {
     return $.get("like_post.php", {post_id: id}).done((num_likes) => {

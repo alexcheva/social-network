@@ -19,8 +19,9 @@ if($num > 0) {
 		$data = mysqli_fetch_array($query_users);
  
  
-		echo "<a href='" . $data['username'] . "'><img src='" . $data['profile_pic'] . "' style='height: 50px;'></a>
-			  <a href='" . $data['username'] . "'>" . $data['first_name'] . " " . $data['last_name'] . "</a><br>"; 
+		echo "<span>
+		<a href='" . $data['username'] . "' class='liked_name'>
+		<img src='" . $data['profile_pic'] . "' class='liked_img'>" . $data['first_name'] . " " . $data['last_name'] . "</a></span>"; 
  
 	}
  

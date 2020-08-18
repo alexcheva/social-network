@@ -352,7 +352,7 @@ class Post{
 								else
 									$str.= "<i class='fas fa-comment-alt'></i> $comments_check_num Comments";
 								$str.="</span>  | 
-								<span class='like_value' id='total_like_$id'>";
+								<span class='like_value' id='total_like_$id' onClick='javaScript:whoLiked($id);'>";
 								if($total_likes === '1' ){
 									$str .= "$total_likes Like";
 								}
@@ -362,7 +362,7 @@ class Post{
 
 								$str .= "</span>
 								<span>$like_button</span>
-								<div class='click_likes' id='$id'></div>
+								<div class='hide who_liked' id='who_liked$id'></div>
 							</div>
 							<div class='post_comment' id='toggleComment$id' style='display:none;'>";
 							if($user_logged_obj->isBlocked($userLoggedIn))
@@ -616,7 +616,7 @@ class Post{
 								else
 									$str.= "<i class='fas fa-comment-alt'></i> $comments_check_num Comments";
 								$str.="</span>  | 
-								<span class='like_value' id='total_like_$id'>";
+								<span class='like_value' onClick='javaScript:whoLiked($id);' id='total_like_$id'>";
 
 								if($total_likes === '1' ){
 								    $str .= "$total_likes Like";
@@ -627,6 +627,7 @@ class Post{
 
 								$str .= "</span>
 								<span>$like_button</span>
+								<div class='hide who_liked' id='who_liked$id'></div>
 							</div>					
 						</div>
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>";
@@ -1087,7 +1088,7 @@ class Post{
 							<span class='num_comments' onClick='javaScript:toggle$id()'>
 								Comments ($comments_check_num)
 							</span>
-							<span class='like_value' id='total_like_$id'>";
+							<span class='like_value' id='total_like_$id' onClick='javaScript:whoLiked($id);'>";
 							if($total_likes === '1' ){
 								$str .= "$total_likes Like";
 							}
@@ -1097,6 +1098,7 @@ class Post{
 
 							$str .= "</span>
 							<span>$like_button</span>
+							<div class='hide who_liked' id='who_liked$id'></div>
 						</div>					
 						<div class='post_comment' id='toggleComment$id' style='display:none;'>";
 						if($user_logged_obj->isBlocked($userLoggedIn))
