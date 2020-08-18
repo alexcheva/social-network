@@ -14,7 +14,9 @@ class User{
 	}
 	public function getUsername(){
 		return $this->user['username'];
-
+	}
+	public function getFirstName() { 
+		return $this->user['first_name'];
 	}
 	public function getNumberFriendRequests(){
 		$username = $this->user['username'];
@@ -30,7 +32,6 @@ class User{
 		$row = mysqli_fetch_array($query);
 		return $row['num_posts'];
 	}
-	//get first and last name of the user
 	public function getFirstAndLastName(){
 		$username = $this->user['username'];
 		$query = mysqli_query($this->con, "SELECT first_name, last_name FROM users WHERE username='$username'");
