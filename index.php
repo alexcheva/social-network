@@ -1,7 +1,5 @@
 <?php
 	include('includes/header.php');
-
-	//handle posting
 	//redirect back to index
 	if(isset($_POST['post'])){
 		$uploadOk = 1;
@@ -48,7 +46,7 @@
 		}
 	}
 ?>
-
+	<input type='hidden' class="index"/>
 	<aside class="user_details column">
 		<a href="<?php echo $userLoggedIn ?>">
 			<img id="profile_pic" src="<?php echo $user['profile_pic']; ?>">
@@ -106,6 +104,5 @@
 		<img id="loading" src="assets/images/icons/loading.gif">
 	</section>
 
-	<hr class="bottom"/>
-	<script src="assets/js/index_load.js"></script>
+	<input type='hidden' class="bottom"/>
 	<?php include('footer.php'); ?>

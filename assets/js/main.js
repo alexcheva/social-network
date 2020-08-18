@@ -1,31 +1,89 @@
 function makeEmbeds(){
 	var youtube = document.querySelectorAll( ".youtube" );
-
-		for (var i = 0; i < youtube.length; i++) {
-
-			youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
-	    
-	    	youtube[i].addEventListener( "click", function() {
-
-	            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
-	       
-	    	});
-		};
+	for (var i = 0; i < youtube.length; i++) {
+		youtube[i].innerHTML = "<img src='https://img.youtube.com/vi/" + youtube[i].dataset.embed + "/hqdefault.jpg' async class='play-youtube-video'><div class='play-button'></div>";
+    	youtube[i].addEventListener( "click", function() {
+            this.innerHTML = '<iframe allowfullscreen frameborder="0" class="embed-responsive-item" src="https://www.youtube.com/embed/' + this.dataset.embed + '"></iframe>';
+    	});
+	};
 
 	var embeded_images = document.querySelectorAll( ".embed-images" );
-
-		for (var i = 0; i < embeded_images.length; i++) {
-
-			embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
-		};
+	for (var i = 0; i < embeded_images.length; i++) {
+		embeded_images[i].innerHTML = "<a target='_blank' title='Open image in a new window' class='external_link' href='" + embeded_images[i].dataset.embed + "'><img class='postedImages' src='" + embeded_images[i].dataset.embed + "'></a>";
+	};
 
 	var embeded_link = document.querySelectorAll( ".embed-link" );
-
-		for (var i = 0; i < embeded_link.length; i++) {
-
-			embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
-		};
+	for (var i = 0; i < embeded_link.length; i++) {
+		embeded_link[i].innerHTML = "<a target='_blank' title='Open link in a new window' class='external_link' href='" + embeded_link[i].dataset.embed + "''>" + embeded_link[i].dataset.embed + "</a>";
+	};
 };
+
+function loadPagePosts(userLoggedIn, username, type){
+	var inProgress = false;
+
+	loadPosts(); //Load first posts
+
+    $(window).scroll(function() {
+    	var bottomElement = $(".bottom").last();
+    	var noMorePosts = $('.posts_area').find('.noMorePosts').val();
+ 
+        // isElementInViewport uses getBoundingClientRect(), which requires the HTML DOM object, not the jQuery object. The jQuery equivalent is using [0] as shown below.
+        if (isElementInView(bottomElement[0]) && noMorePosts == 'false') {
+            loadPosts();
+        }
+    });
+ 
+    function loadPosts() {
+        if(inProgress) { //If it is already in the process of loading some posts, just return
+			return;
+		}
+		
+		inProgress = true;
+		$('#loading').show();
+ 
+		var page = $('.posts_area').find('.nextPage').val() || 1;
+		 //If .nextPage couldn't be found, it must not be on the page yet (it must be the first time loading posts), so use the value '1'
+	 	if(type == 'index') {
+			var url = "includes/handlers/ajax_load_posts.php";
+			var data = "page=" + page + "&userLoggedIn=" + userLoggedIn;
+
+		}
+		else if(type == 'profile'){
+			var url = "includes/handlers/ajax_load_profile_posts.php";
+			var data = "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + username;
+		}
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: data,
+			cache: false,
+ 
+			success: function(response) {
+				$('.posts_area').find('.nextPage').remove(); //Removes current .nextpage 
+				$('.posts_area').find('.noMorePosts').remove(); //Removes current .nextpage 
+				$('.posts_area').find('.noMorePostsText').remove(); //Removes current .nextpage 
+ 
+				$('#loading').hide();
+				$(".posts_area").append(response);
+				makeEmbeds();
+				inProgress = false;
+			}
+		});
+    }
+ 
+    //Check if the element is in view
+    function isElementInView (el) {
+        var rect = el.getBoundingClientRect();
+ 
+        return (
+            rect.top >= Math.min((window.innerHeight || document.documentElement.clientHeight) - rect.height, 0) &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
+        );
+    }
+};
+
 $(document).ready(function(){
 
 	$(".search_button").on('click', function(){
@@ -63,7 +121,12 @@ $(document).ready(function(){
 		});
 	});
 	makeEmbeds();
-	
+	if($(".index").length){
+		loadPagePosts(userLoggedIn,userLoggedIn,'index');
+	}else if($(".profile").length){
+		var username = $(".profile").val();
+		loadPagePosts(userLoggedIn,username,'profile');
+	}
 });
 
 function getUserFriends(value, user) {
@@ -165,6 +228,43 @@ $(document).click(function(e){
 		$(".fa-bell").css({"color":""});
 	};
 });
+function deletePost(id) {
+	bootbox.confirm({
+		message: "Are you sure you want to delete this post?", 
+		buttons: {
+			confirm: {
+	            label: 'Yes'
+	        },
+
+	        cancel: {
+	            label: 'No'
+	        }
+	    },
+        callback:
+    	function
+		(result){
+			$.post("includes/form_handlers/delete_post.php?post_id="+id,{result: result});
+			if(result)
+				location.reload();
+
+		}
+	});
+};
+function toggle(id){
+	var target = $(event.target);
+
+	if(!target.is("a")){
+		var element = document.getElementById("toggleComment" + id);
+		if(element.style.display == "block")
+			element.style.display = "none";
+		else
+			element.style.display = "block";
+
+		$("textarea").emojioneArea({
+		pickerPosition: "bottom"
+		});
+	}
+};
 
 function sendComment(id) {
 	const commentText = $("#comment" + id).val();
@@ -210,67 +310,6 @@ function sendComment(id) {
  
 	});
 };
-
-function updateLikes(id) {
-    return $.get("like_post.php", {post_id: id}).done((num_likes) => {
-        $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
-    });
-};
-
-function sendLike(id) {
-    const $elem = $(`#like_button_${id}`);
-    const isLiked = $elem.hasClass('liked');
-
-	const sendLike = $.post("includes/handlers/ajax_update_like.php", 
-		{userLoggedIn:userLoggedIn, id:id}, 
-		function(response){
-            updateLikes(id);
-            $elem.addClass(isLiked ? 'unliked' : 'liked');
-            $elem.removeClass(isLiked ? 'liked' : 'unliked');
-        });
-
-};
-function deletePost(id) {
-	bootbox.confirm({
-		message: "Are you sure you want to delete this post?", 
-		buttons: {
-			confirm: {
-	            label: 'Yes'
-	        },
-
-	        cancel: {
-	            label: 'No'
-	        }
-	    },
-        callback:
-    	function
-		(result){
-			$.post("includes/form_handlers/delete_post.php?post_id="+id,{result: result});
-			if(result)
-				location.reload();
-
-		}
-	});
-};
-
-
-function toggle(id){
-	var target = $(event.target);
-
-	if(!target.is("a")){
-		var element = document.getElementById("toggleComment" + id);
-		if(element.style.display == "block")
-			element.style.display = "none";
-		else
-			element.style.display = "block";
-
-		$("textarea").emojioneArea({
-		pickerPosition: "bottom"
-		});
-		makeEmbeds();
-	}
-};
-
 function deleteComment(id) {
 	bootbox.confirm({
 		message: 'Are you sure you want to delete this comment?', 
@@ -293,4 +332,24 @@ function deleteComment(id) {
 
 		}
 	});
+};
+
+function updateLikes(id) {
+    return $.get("like_post.php", {post_id: id}).done((num_likes) => {
+        $(`#total_like_${id}`).html(`${num_likes} ${num_likes === '1' ? 'Like' : 'Likes'}`)
+    });
+};
+
+function sendLike(id) {
+    const $elem = $(`#like_button_${id}`);
+    const isLiked = $elem.hasClass('liked');
+
+	const sendLike = $.post("includes/handlers/ajax_update_like.php", 
+		{userLoggedIn:userLoggedIn, id:id}, 
+		function(response){
+            updateLikes(id);
+            $elem.addClass(isLiked ? 'unliked' : 'liked');
+            $elem.removeClass(isLiked ? 'liked' : 'unliked');
+        });
+
 };
