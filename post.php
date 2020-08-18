@@ -32,6 +32,6 @@
 			 ?>
 		</div>
 	</div>
-
+<script>makeEmbeds();</script>
 
 <?php include('footer.php'); ?>

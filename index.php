@@ -104,5 +104,5 @@
 		<img id="loading" src="assets/images/icons/loading.gif">
 	</section>
 
-	<input type='hidden' class="bottom"/>
+	<div class="bottom"></div>
 	<?php include('footer.php'); ?>

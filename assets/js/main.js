@@ -74,13 +74,13 @@ function loadPagePosts(userLoggedIn, username, type){
     //Check if the element is in view
     function isElementInView (el) {
         var rect = el.getBoundingClientRect();
- 
-        return (
-            rect.top >= Math.min((window.innerHeight || document.documentElement.clientHeight) - rect.height, 0) &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
+        const result = (
+            Math.floor(rect.top) >= Math.min((window.innerHeight || document.documentElement.clientHeight) - rect.height, 0) &&
+            Math.floor(rect.left) >= 0 &&
+            Math.floor(rect.bottom) <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
+            Math.floor(rect.right) <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
         );
+        return result;
     }
 };
 
@@ -99,8 +99,9 @@ $(document).ready(function(){
 	$("#post_text").emojioneArea({
 		pickerPosition: "bottom"
 	});
-	$("textarea").emojioneArea({
-		pickerPosition: "bottom"
+	$(document).delegate('textarea', 'focus', ({target}) => {   
+		$(target).emojioneArea({pickerPosition: 'bottom'})   
+
 	});
 
 	//button for profile post
@@ -120,7 +121,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	makeEmbeds();
+	//makeEmbeds();
 	if($(".index").length){
 		loadPagePosts(userLoggedIn,userLoggedIn,'index');
 	}else if($(".profile").length){
@@ -259,10 +260,6 @@ function toggle(id){
 			element.style.display = "none";
 		else
 			element.style.display = "block";
-
-		$("textarea").emojioneArea({
-		pickerPosition: "bottom"
-		});
 	}
 };
 
