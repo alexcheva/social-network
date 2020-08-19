@@ -29,14 +29,13 @@ class Notification{
 		$set_viewed_query = mysqli_query($this->con, "UPDATE notifications SET viewed='yes' WHERE user_to='$userLoggedIn'");
 		$query = mysqli_query($this->con, "SELECT * FROM notifications WHERE user_to='$userLoggedIn' AND opened='no' ORDER BY id DESC");
 
-		if(mysqli_num_rows($query) == 0) {
-			echo "<p>You have no notifications!</p>";
-		}
-
 		$num_iterations = 0;
 		$count = 1;
-
+		$return_string = "<a href='#' id='mark_read'><h6 style='text-align: center;'>Mark all as read</h6></a>";
+		// $return_string = '<div style="text-align: center;"><input type="checkbox" id="read_all" name="read_all">
+  // 			<label for="read_all">Mark all as read</label></div>';
 		while($row = mysqli_fetch_array($query)){
+
 			if($num_iterations++ < $start)
 				continue;
 			if ($count > $limit)
@@ -52,10 +51,6 @@ class Notification{
 			$user_data_query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$user_from'");
 			$user_data = mysqli_fetch_array($user_data_query);
 
-			$opened = $row['opened'];
-			//hightlight unread messages:
-			//$style = (isset($row['opened']) && $row['opened'] == 'no') ? "background-color: #DDEDFF;" : "";
-
 			$return_string .= "<a href='". $row['link'] . "'>
 								<div class='notification'>
 									<img class='notificationsProfilePic' src='". $user_data['profile_pic']. "'>
@@ -63,11 +58,13 @@ class Notification{
 									<div class='notification_time' id='grey'>". $time_message ."</div>
 								</div>
 								</a>";
-
 		}
+
 		//if notifications were loaded
 		if($count > $limit)
 			$return_string .= "<input type='hidden' class='nextPageDropdownData' value='" . ($page + 1) ."'><input type='hidden' class='noMoreDropdownData' value='false'>";
+		// else if(mysqli_num_rows($query) == 0) 
+		// 	$return_string = "<p>You have no notifications!</p>";
 		else
 			$return_string .= "<input type='hidden' class='noMoreDropdownData' value='true'><p>No more notifications to load!</p>";
 		return $return_string;

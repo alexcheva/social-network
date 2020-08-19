@@ -212,6 +212,13 @@ function getLiveSearchUsers(value, user){
 	});
 
 }
+$(function(){
+	   $("#mark_read").click(function(){
+              $.post("includes/handlers/mark_read.php");
+	      $('.resultDisplayNotification').css('background-color', '#fff');
+	    return false;
+	  });
+	});
 $(document).click(function(e){
 	if(e.target.class != "search_result" && e.target.id != "search_text_input"){
 
