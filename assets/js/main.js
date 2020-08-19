@@ -100,7 +100,8 @@ $(document).ready(function(){
 		pickerPosition: "bottom"
 	});
 	$(document).delegate('textarea', 'focus', ({target}) => {   
-		$(target).emojioneArea({pickerPosition: 'bottom'})   
+		$(target).emojioneArea({pickerPosition: 'bottom'}) ;
+		$(target)[0].emojioneArea.setFocus();
 
 	});
 
