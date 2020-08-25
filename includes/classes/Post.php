@@ -10,6 +10,8 @@ class Post{
 	}
 	//handle post submission
 	public function submitPost($body, $user_to, $global, $imageName){
+		$_SESSION["returned_id"] = $returned_id;
+		
 		$body = strip_tags($body);//removes html tags
 		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
 
@@ -17,7 +19,8 @@ class Post{
 		
 		if($check_empty != "") {
 			$body_array = preg_split("/\s+/", $body);
- 
+ 			$returned_id = mysqli_insert_id($this->con);
+			
 			foreach($body_array as $key => $value) {
 
 				$regex_images = '~https?://\S+?(?:png|gif|jpe?g)~';
