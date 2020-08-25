@@ -104,7 +104,22 @@ $(document).ready(function(){
 		$(target)[0].emojioneArea.setFocus();
 
 	});
+	//tag feature:
+	$("#post_text").keydown(function (e) { 
+	      if(e.which === 50 && e.shiftKey === true)
+		userTag('userLoggedIn');
+	      if(e.which !== 50)
+		$('.tag_results').html("");
+	  });
 
+	  $('.tag_results').hover(function(e) {
+	      textTag();
+	  });
+
+	  $(document).click(function (e) {
+	    if(e.target.className !== "tag_results")
+		  $('.tag_results').html("");                      
+	  });
 	//button for profile post
 	$('#submit_profile_post').click(function(){
 		$.ajax({
@@ -146,6 +161,30 @@ function getUsers(value, user) {
 function showFileUpload(){
 	$("#fileToUpload").toggleClass("hide");
 }
+
+function userTag(user) {  
+ $.post("includes/handlers/ajax_user_tag.php", {userLoggedIn:user}, function(data){
+ $('.tag_results').html(data);
+ });
+}
+ 
+function textTag() { 
+ $('.displayTag a').click(function(a){
+        var username = $(this).attr('href');
+        var quotesName = JSON.stringify(username);
+        var name = JSON.parse(quotesName);
+ 
+        var $txt = $("#post_text");
+        var caretPos = $txt[0].selectionStart;
+        var textAreaTxt = $txt.val();
+ 
+        $txt.val(textAreaTxt.substring(0, caretPos) + name + textAreaTxt.substring(caretPos) );
+        $('.tag_results').html("");
+ 
+        return false;
+      });
+}
+
 const showUpdate = message => bootbox.alert(message);
 
 function getDropdownData(user, type){
