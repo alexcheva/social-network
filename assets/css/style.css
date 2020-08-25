@@ -384,7 +384,7 @@ span.notification_badge:hover{
     width: 20%;
     margin-bottom: 20px;
 }
-.user_details_left_right
+.user_info
 {
     padding-top: 10px;
 }
@@ -421,6 +421,22 @@ span.notification_badge:hover{
     font-size: 18px;
     font-weight: 500;
 }
+.tag_results {
+ width: 15%;
+ margin-left: 1px;
+ margin-bottom: 15px;
+ border-radius: 8px;
+ box-shadow: 3px 3px 2px #D3D3D3;
+ box-sizing: border-box;
+ background: rgba(132, 123, 132, 0.2);
+ overflow-y: auto;
+ max-height: 350px;
+}
+ 
+.tag_results img {
+ width: 90%;
+}
+
 #loading
 {
     width: 30px;
