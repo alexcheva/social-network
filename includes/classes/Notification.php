@@ -96,6 +96,9 @@ class Notification{
 			case 'profile_comment':
 				$message = $userLoggedInName . " commented on your profile post.";
 				break;
+			case 'tag':
+				 $message = $userLoggedInName . " mentioned you in a post";
+				 break;
 		}
 
 		$link = "post.php?id=" . $post_id;
