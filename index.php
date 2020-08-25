@@ -45,13 +45,31 @@
 			echo "<script>showUpdate('$errorMessage');</script>";
 		}
 	}
+	if(strpos($text, "@") !== false) { // this is the added code that checks for @ and if it finds it, then checks for the usernames and sends notifications
+	    $returned_id = $_SESSION["returned_id"];
+	    $pos = strpos($text, "@");
+	    $sub = substr($text, $pos + 1);
+	    $usernow = $_SESSION['username'];
+	    $usernow = new User($con, $usernow);
+	    $friends = array();
+	    $friends = $usernow->getFriendArray();
+	    $frexpl = explode(",", $friends);
+	    foreach ($frexpl as $key => $value) {
+	      $frlist = mysqli_query($con, "SELECT username FROM users WHERE username='$value'");
+	      $row = mysqli_fetch_assoc($frlist);
+	      if (strpos($sub, $row['username']) !== false) {
+		$notification = new Notification($con, $_SESSION['username']);
+		$notification->insertNotification($returned_id, $row['username'],'tag');
+	      }
+	    }
+	  }
 ?>
 	<input type='hidden' class="index"/>
 	<aside class="user_details column">
 		<a href="<?php echo $userLoggedIn ?>">
 			<img id="profile_pic" src="<?php echo $user['profile_pic']; ?>">
 		</a>
-		<div class="user_details_left_right">
+		<div class="user_info">
 			<a href="<?php echo $userLoggedIn ?>" id="name">
 				<?php 
 					echo $user['first_name'] . " " . $user['last_name'];
