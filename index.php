@@ -85,7 +85,8 @@
 		 ?>
 		
 		<form class="post_form" action="index.php" method="POST" enctype="multipart/form-data">
-			<textarea name="post_text" id="post_text"  placeholder="Write a post"></textarea>
+			<textarea name="post_text" id="post_text" onblur="this.focus();" placeholder="Write a post"></textarea>
+			<div class="tag_results"></div>
 			<div class="visibility"><input type="radio" id="global" name="visibility" value="global" checked="checked">
 			<i class="fas fa-globe radio"></i>
 			<input type="radio" id="friends_only" name="visibility" value="friends_only">
