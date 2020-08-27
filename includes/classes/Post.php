@@ -11,8 +11,24 @@ class Post{
 	//handle post submission
 	public function submitPost($body, $user_to, $global, $imageName){
 		$_SESSION["returned_id"] = $returned_id;
+		$returned_id = mysqli_insert_id($this->con);
+
+		$body = strip_tags($body);
 		
-		$body = strip_tags($body);//removes html tags
+		 $checkDb = mysqli_query($this->con, "SELECT username FROM users");
+ 
+		 while ($row = mysqli_fetch_array($checkDb)) {
+
+		    $fullName = '@' . $row['username'];
+
+		    if(strpos($body, $fullName) !== false) {
+		     $name = substr($fullName, 1);
+		     $name = "<a href='" . $name ."' style='background-color:pink; color:#000;'>" . $name . "</a>";
+
+		     $body = str_replace($fullName, "@" . $name, $body);
+		   }
+		 }
+		
 		$body = str_replace(array("\r\n", "\r", "\n"), " <br/> ", $body);
 
 		$check_empty = preg_replace('/\s+/', '', $body); //deletes all spaces
@@ -63,8 +79,7 @@ class Post{
 			 
 			 
 			$body = mysqli_real_escape_string($this->con, $body);
-			// $body = implode(" ", $body_array);
-
+			
 			//Current date and time
 			$date_added = date("Y-m-d H:i:s");
 			//Get username
