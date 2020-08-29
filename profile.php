@@ -254,15 +254,15 @@
 					echo $error;
 				 ?>
 				<form action="profile.php" method="POST">
-					<label>About me:</label>
+					<label class='block'>About me:</label>
 					
 					<textarea name="about" cols="30" rows="10" placeholder="Write Something"><?php echo $about; ?></textarea>
 					
 					
-					<label>My Interests:</label>
+					<label class='block'>My Interests:</label>
 					<textarea name="interests" cols="30" rows="10" value="Write Something" placeholder="Write Something"><?php echo $interests; ?></textarea>
 					
-					<label>My Favourite Bands:</label>
+					<label class='block'>My Favourite Bands:</label>
 					<textarea name="bands" cols="30" rows="10" placeholder="Write Something"><?php echo $bands; ?></textarea>
 					<input type="submit" name="save_about" class="warning" id="save_about" value="Save">
 					<input type="submit" name="delete" class="danger close_edit" href="#about_div" aria-control="about_div" role="tab" data-toggle="tab" id="close_edit" value="Cancel">

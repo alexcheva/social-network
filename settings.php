@@ -27,24 +27,24 @@ include("includes/form_handlers/settings_handler.php");
  	 	<form class="settings" action="settings.php#message" method="POST">
  	 		<?php echo $message; ?>
 <!--  	 		<input type="hidden" name="id" value="<?php echo $user['id']; ?>">			 --> 	 		
-			<label>First Name:</label>
+			<label class='block'>First Name:</label>
  	 		<input type="text" name="first_name" value="<?php echo $first_name; ?>">
- 	 		<label>Last Name:</label>
+ 	 		<label class='block'>Last Name:</label>
  	 		<input type="text" name="last_name" value="<?php echo $last_name; ?>">
- 	 		<!-- <label>Username:</label>
+ 	 		<!-- <label class='block'>Username:</label>
  	 		<input type="text" name="username" value="<?php echo $username; ?>"> -->
- 	 		<label>E-mail:</label>
+ 	 		<label class='block'>E-mail:</label>
  	 		<input type="text" name="email" value="<?php echo $email; ?>">
  	 		<input type="submit" name="update_details" class="save_details" value="Update Details">
  	 	</form>
  	 	<h4>Change Password:</h4>
  	 	<form class="settings" action="settings.php#password_message" method="POST">
  	 		<?php echo $password_message; ?>
- 	 		<label>Old Password:</label>
+ 	 		<label class='block'>Old Password:</label>
  	 		<input type="password" name="old_password">
- 	 		<label>New Password:</label>
+ 	 		<label class='block'>New Password:</label>
  	 		<input type="password" name="new_password1">
- 	 		<label>New Password Again:</label>
+ 	 		<label class='block'>New Password Again:</label>
  	 		<input type="password" name="new_password2">
  	 		<input type="submit" name="update_password" class="save_details" value="Update Password">
  	 	</form>

@@ -122,8 +122,6 @@
 		<div class="dropdown_data_window"></div>
 		<input type="hidden" id="dropdown_data_type" value=""></div>
 		
-			
-				
 	</header><!-- end top bar -->
 
 		<div class="wrapper">
