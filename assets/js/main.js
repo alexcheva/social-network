@@ -99,6 +99,64 @@ $(document).ready(function(){
 	$("#post_text").emojioneArea({
 		pickerPosition: "bottom"
 	});
+	var dropdownInProgress = false;
+ 
+	    $(".dropdown_data_window").scroll(function() {
+	    	var bottomElement = $(".dropdown_data_window a").last();
+			var noMoreData = $('.dropdown_data_window').find('.noMoreDropdownData').val();
+ 
+	        // isElementInViewport uses getBoundingClientRect(), which requires the HTML DOM object, not the jQuery object. The jQuery equivalent is using [0] as shown below.
+	        if (isElementInView(bottomElement[0]) && noMoreData == 'false') {
+	            loadPosts();
+	        }
+	    });
+ 
+	    function loadPosts() {
+	        if(dropdownInProgress) { //If it is already in the process of loading some posts, just return
+				return;
+			}
+			
+			dropdownInProgress = true;
+ 
+			var page = $('.dropdown_data_window').find('.nextPageDropdownData').val() || 1; //If .nextPage couldn't be found, it must not be on the page yet (it must be the first time loading posts), so use the value '1'
+ 
+			var pageName; //Holds name of page to send ajax request to
+			var type = $('#dropdown_data_type').val();
+ 
+			if(type == 'notification')
+				pageName = "ajax_load_notifications.php";
+			else if(type == 'message')
+				pageName = "ajax_load_messages.php";
+ 
+			$.ajax({
+				url: "includes/handlers/" + pageName,
+				type: "POST",
+				data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+				cache:false,
+ 
+				success: function(response) {
+ 
+					$('.dropdown_data_window').find('.nextPageDropdownData').remove(); //Removes current .nextpage 
+					$('.dropdown_data_window').find('.noMoreDropdownData').remove();
+ 
+					$('.dropdown_data_window').append(response);
+ 
+					dropdownInProgress = false;
+				}
+			});
+	    }
+ 
+	    //Check if the element is in view
+	    function isElementInView (el) {
+	        var rect = el.getBoundingClientRect();
+ 
+	        return (
+	            rect.top >= 0 &&
+	            rect.left >= 0 &&
+	            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //* or $(window).height()
+	            rect.right <= (window.innerWidth || document.documentElement.clientWidth) //* or $(window).width()
+	        );
+	    }
 	$(document).delegate('textarea', 'focus', ({target}) => {   
 		$(target).emojioneArea({pickerPosition: 'bottom'})   
 
@@ -154,7 +212,7 @@ function getDropdownData(user, type){
 
 		if(type == 'notification') {
 			pageName = "ajax_load_notifications.php";
-			$("span").remove("#unread_notification");
+			// $("span").remove("#unread_notification");
 			$(".fa-bell").css({"color":"#d500ff"});
 		}
 		else if(type == 'message'){
@@ -212,13 +270,12 @@ function getLiveSearchUsers(value, user){
 	});
 
 }
-$(function(){
-	   $("#mark_read").click(function(){
-              $.post("includes/handlers/mark_read.php");
-	      $('.resultDisplayNotification').css('background-color', '#fff');
-	    return false;
-	  });
-	});
+
+function markRead(){
+	$.post("includes/handlers/ajax_mark_read.php");
+	bootbox.alert("All notifications have been marked as read!");
+	location.reload();
+}
 $(document).click(function(e){
 	if(e.target.class != "search_result" && e.target.id != "search_text_input"){
 
