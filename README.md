@@ -101,8 +101,8 @@ I would like to:<br/>
 ✔ 13. Delete comments.<br/>
 ✔ 14. Edit comments.<br/>
 ✔ 15. Delete messages.<br/>
-16. Put all js into one file.<br/>
-17. Add paste image url.<br/>
+✔ 16. Put all js into one file.<br/>
+✔ 17. Add paste image url.<br/>
 ✔ 18. Add block user option.<br/>
 ✔ 19. Add admins.<br/>
 ✔ 20. Choose username.<br/>
